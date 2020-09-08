@@ -1,5 +1,6 @@
 package model;
 
-public class numberGenerator {
+public class numberGenerator 
+{
 
 }
