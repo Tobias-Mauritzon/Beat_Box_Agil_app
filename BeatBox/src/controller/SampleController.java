@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import model.testGenerator;
 
@@ -29,24 +30,31 @@ public class SampleController implements Initializable{
 	    
 	    @FXML
 	    void AnswerText(ActionEvent event) {
-	    	
+	    	answer();
 	    }
 	    
 	   @FXML
 	    void ButtonClicked(ActionEvent event) {	   
-		   
+		   answer();
+	    }
+	 
+	   private void answer() {
 		   if(answerText.getText().equals(answer)) {
 			   System.out.println("CORRECT");
 			   String[] a = testGen.getNextProblem();
 			   text = a[0];
 			   answer = a[1];
 			   problemText.setText(text);
+			   answerText.clear();
+			   answerText.requestFocus();
 		   }else {
 			   System.out.println("WRONG");
+			   answerText.clear();
+			   answerText.requestFocus();
 		   }
 		   
 		   System.out.println("Clicked button");
-	    }
+	   }
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
