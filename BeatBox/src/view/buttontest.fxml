@@ -1,37 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #212121;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SampleController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #212121;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SampleController">
    <children>
-      <BorderPane prefHeight="100.0" prefWidth="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <center>
-            <Label text="Addition" textFill="#48ff33" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="Rockwell" size="36.0" />
-               </font>
-            </Label>
-         </center>
-      </BorderPane>
-      <TextField fx:id="problemText" alignment="CENTER" editable="false" layoutX="38.0" layoutY="108.0" style="-fx-background-color: transparent; -fx-text-inner-color: WHITE;" text="10 +5">
-         <font>
-            <Font size="26.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="answerText" alignment="CENTER" layoutX="38.0" layoutY="200.0" onAction="#AnswerText" style="-fx-background-color: WHITE; -fx-text-inner-color: BLACK;">
-         <font>
-            <Font size="26.0" />
-         </font>
-      </TextField>
-      <Button fx:id="button" layoutX="85.0" layoutY="288.0" mnemonicParsing="false" onAction="#ButtonClicked" prefHeight="40.0" prefWidth="230.0" style="-fx-background-radius: 100; -fx-background-color: #00E300;" text="Answer" textAlignment="CENTER">
-         <font>
-            <Font size="31.0" />
-         </font>
-      </Button>
+      <VBox alignment="CENTER" prefHeight="500.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <GridPane alignment="CENTER" prefHeight="500.0" prefWidth="700.0">
+              <columnConstraints>
+                <ColumnConstraints maxWidth="400.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="314.66666666666663" minHeight="10.0" prefHeight="219.99998982747394" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="314.66666666666663" minHeight="10.0" prefHeight="219.99998982747394" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="314.66666666666663" minHeight="10.0" prefHeight="219.99998982747394" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <HBox alignment="CENTER" prefHeight="153.0" prefWidth="400.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <children>
+                        <Text fx:id="problemText" fill="WHITE" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="4 + 8 =" textAlignment="CENTER" wrappingWidth="152.0">
+                           <font>
+                              <Font name="Rockwell" size="40.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="50.0" />
+                           </HBox.margin>
+                        </Text>
+                        <TextField fx:id="answerText" alignment="CENTER" onAction="#AnswerText" prefHeight="77.0" prefWidth="100.0" style="-fx-background-color: WHITE; -fx-text-inner-color: BLACK;" text="12">
+                           <font>
+                              <Font name="Rockwell" size="40.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="50.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <Button fx:id="button" alignment="CENTER" mnemonicParsing="false" onAction="#ButtonClicked" prefHeight="40.0" prefWidth="230.0" style="-fx-background-radius: 100; -fx-background-color: #00E300;" text="Answer" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Rockwell" size="35.0" />
+                     </font>
+                  </Button>
+                  <Label alignment="CENTER" text="What is" textAlignment="CENTER" textFill="#48ff33" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Rockwell" size="60.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

@@ -20,11 +20,12 @@ public class ProblemGUI extends Application implements EventHandler<ActionEvent>
     public void start(Stage primaryStage) {
         try {
         	AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("buttontest.fxml"));
-			Scene scene = new Scene(root,400,400);
+			Scene scene = new Scene(root,root.getWidth(),root.getHeight());
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
-
+			primaryStage.setMinWidth(600);
+	        primaryStage.setMinHeight(400);
         } catch(Exception e) {
             e.printStackTrace();
         }

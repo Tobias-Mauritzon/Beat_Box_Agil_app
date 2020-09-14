@@ -10,11 +10,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import model.testGenerator;
 
 public class SampleController implements Initializable{
 		@FXML
-	    private TextField problemText;
+	    private Text problemText;
 
 	    @FXML
 	    private TextField answerText;
@@ -63,7 +64,9 @@ public class SampleController implements Initializable{
 		String[] a = testGen.getNextProblem();
 		text = a[0];
 		answer = a[1];
-		
+		answerText.clear();
 		problemText.setText(text);
+		problemText.setFocusTraversable(false);
+		
 	}
 }
