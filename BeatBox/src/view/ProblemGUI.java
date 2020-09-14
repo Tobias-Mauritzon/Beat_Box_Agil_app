@@ -6,6 +6,8 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -17,15 +19,11 @@ public class ProblemGUI extends Application implements EventHandler<ActionEvent>
     @Override
     public void start(Stage primaryStage) {
         try {
-        	primaryStage.setTitle("MathGame");
-        	button = new Button();
-        	button.setText("Answer");
-        	button.setOnAction(this);
-        	StackPane layout = new StackPane();
-        	layout.getChildren().add(button);
-            Scene scene = new Scene(layout,400,400);
-            primaryStage.setScene(scene);
-            primaryStage.show();
+        	AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("buttontest.fxml"));
+			Scene scene = new Scene(root,400,400);
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			primaryStage.setScene(scene);
+			primaryStage.show();
 
         } catch(Exception e) {
             e.printStackTrace();
