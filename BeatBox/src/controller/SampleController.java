@@ -21,6 +21,7 @@ public class SampleController implements Initializable{
 	    @FXML
 	    private Button button;
 	    
+	    
 	    private testGenerator testGen;
 
 	    private String text;
