@@ -1,18 +1,52 @@
 package model;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 public class calculator {
-	int num1;
-	int num2;
+	
+	private LinkedList<String> uniqueness; 
+	public calculator() {
+		this.uniqueness = new LinkedList<String>();
+	}
+	
+	/**
+	 * @param numbers the number of numbers in the expression
+	 * @param numberSize allowed number size {small, big}
+	 * @param expressionAndAwnser new String[2]
+	 * @param modifiers if array contains 1 = addition, 2 = subtraction, 3 = division, 4 = multiplication, 
+	 * 			5 = power of 2. array can be any size
+	 * @return String array. array[0] = expression, array[1] = awnser
+	 */
+	public String[] uniqueGeneration(int numbers, int[] numberSize, int[] modifiers) {
+		boolean unique = false;
+		String[] returnString = new String[2];
+		while(!unique) {
+			returnString = generate(numbers, numberSize, new String[2], modifiers);
+			for(String s : uniqueness) {
+				if(s.equals(returnString[0])) {
+					unique = false;
+					break;
+				}
+				unique = true;
+			}
+		}
+		
+		if(uniqueness.size() >= 10) {
+			uniqueness.removeFirst();
+		}
+		uniqueness.addLast(returnString[0]);
+		
+		return returnString;
+	}
 	
 	public static void main(String[] args) 
 	{
 		//number size
 		int[] size = {1,100};
 		// allowed modifiers
-		int[] mod = {1,2,3,4};
-		String[] s = generator(5, size,new String[2], mod);
+		int[] mod = {1,2,3,4,0};
+		String[] s = generate(5, size,new String[2], mod);
 		
 		System.out.println(s[0]);
 		System.out.println(s[1]);
@@ -22,10 +56,11 @@ public class calculator {
 	 * @param numbers the number of numbers in the expression
 	 * @param numberSize allowed number size {small, big}
 	 * @param expressionAndAwnser new String[2]
-	 * @param modifiers if list contains 1 = addition, 2 = subtraction, 3 = division, 4 = multiplication. list can be any size
-	 * @return string array. array[0] = expression, array[1] = awnser
+	 * @param modifiers if array contains 1 = addition, 2 = subtraction, 3 = division, 4 = multiplication, 
+	 * 			5 = power of 2. array can be any size
+	 * @return String array. array[0] = expression, array[1] = awnser
 	 */
-	private static String[] generator(int numbers, int[] numberSize, String[] expressionAndAwnser, int[] modifiers) {
+	public static String[] generate(int numbers, int[] numberSize, String[] expressionAndAwnser, int[] modifiers) {
 		Random rand = new Random();
 		if(numbers > 0) {
 			numbers--;
@@ -40,7 +75,7 @@ public class calculator {
 				
 				while(!allowed) {
 					// generates a number 1 - 4 randomly for modifier
-					whichMod = rand.nextInt(4)+1;					
+					whichMod = rand.nextInt(5)+1;					
 					for(int m : modifiers) {
 						if(m == whichMod) {
 							allowed = true;
@@ -73,12 +108,17 @@ public class calculator {
 					expressionAndAwnser[0] = "("+expressionAndAwnser[0]+") * "+genNumber;
 					newAwnser = Double.parseDouble(expressionAndAwnser[1]) * genNumber;
 					expressionAndAwnser[1] = Double.toString(newAwnser);					
-				}								
+				}else if(whichMod == 5){
+					// the parentheses are a feature
+					expressionAndAwnser[0] = "("+expressionAndAwnser[0]+") ^ "+2;
+					newAwnser = Math.pow(Double.parseDouble(expressionAndAwnser[1]), 2);
+					expressionAndAwnser[1] = Double.toString(newAwnser);					
+				}
 			}else {								
 				expressionAndAwnser[0] = Integer.toString(genNumber);
 				expressionAndAwnser[1] = Integer.toString(genNumber);
 			}			
-			expressionAndAwnser = generator(numbers, numberSize, expressionAndAwnser, modifiers);
+			expressionAndAwnser = generate(numbers, numberSize, expressionAndAwnser, modifiers);
 		}		
 		return expressionAndAwnser;
 	}
