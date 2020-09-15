@@ -26,7 +26,9 @@ public class NumberGenerator
 	public String[] uniqueGeneration(int numbers, int[] numberSize, int[] modifiers) {
 		boolean unique = false;
 		String[] returnString = new String[2];
+	
 		while(!unique) {
+			if(uniqueness.isEmpty()) unique = true;
 			returnString = generate(numbers, numberSize, new String[2], modifiers);
 			for(String s : uniqueness) {
 				if(s.equals(returnString[0])) {
@@ -44,6 +46,7 @@ public class NumberGenerator
 		
 		return returnString;
 	}
+	
 	
 	public static void main(String[] args) 
 	{
