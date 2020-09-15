@@ -3,6 +3,10 @@ package model;
 import java.util.LinkedList;
 import java.util.Random;
 
+/**
+ * @author Tobias & Joachim
+ * Class used to generate random expressions depending on different modifiers
+ */
 public class numberGenerator 
 {
 	private LinkedList<String> uniqueness; 
