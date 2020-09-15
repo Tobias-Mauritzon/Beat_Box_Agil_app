@@ -11,9 +11,10 @@ public class calculator {
 	}
 	
 	/**
+	 * guarantees the generated number has not appeared in the last 10 numbers
+	 * 
 	 * @param numbers the number of numbers in the expression
 	 * @param numberSize allowed number size {small, big}
-	 * @param expressionAndAwnser new String[2]
 	 * @param modifiers if array contains 1 = addition, 2 = subtraction, 3 = division, 4 = multiplication, 
 	 * 			5 = power of 2. array can be any size
 	 * @return String array. array[0] = expression, array[1] = awnser
@@ -53,12 +54,14 @@ public class calculator {
 	}
 	
 	/**
+	 * Generates a expression and and answer for that expression
+	 * 
 	 * @param numbers the number of numbers in the expression
 	 * @param numberSize allowed number size {small, big}
 	 * @param expressionAndAwnser new String[2]
 	 * @param modifiers if array contains 1 = addition, 2 = subtraction, 3 = division, 4 = multiplication, 
 	 * 			5 = power of 2. array can be any size
-	 * @return String array. array[0] = expression, array[1] = awnser
+	 * @return String array. array[0] = expression, array[1] = answer
 	 */
 	public static String[] generate(int numbers, int[] numberSize, String[] expressionAndAwnser, int[] modifiers) {
 		Random rand = new Random();
