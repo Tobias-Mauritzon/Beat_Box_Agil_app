@@ -7,10 +7,10 @@ import java.util.Random;
  * @author Tobias & Joachim
  * Class used to generate random expressions depending on different modifiers
  */
-public class numberGenerator 
+public class NumberGenerator 
 {
 	private LinkedList<String> uniqueness; 
-	public numberGenerator() {
+	public NumberGenerator() {
 		this.uniqueness = new LinkedList<String>();
 	}
 	
