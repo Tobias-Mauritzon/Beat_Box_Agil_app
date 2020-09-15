@@ -57,6 +57,18 @@
                         <Font name="Rockwell" size="60.0" />
                      </font>
                   </Label>
+                  <VBox fx:id="responseBox" alignment="CENTER" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #212121;" visible="false">
+                     <children>
+                        <Text fx:id="responseText" fill="#4dff36" strokeType="OUTSIDE" strokeWidth="0.0" text="CORRECT!" textAlignment="CENTER">
+                           <font>
+                              <Font name="Rockwell" size="70.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Text>
+                     </children>
+                  </VBox>
                </children>
             </GridPane>
          </children>
