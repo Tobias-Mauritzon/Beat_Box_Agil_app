@@ -7,7 +7,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class ProblemGUI extends Application{
-
+	
     @Override
     public void start(Stage primaryStage) {
         try {
@@ -23,7 +23,5 @@ public class ProblemGUI extends Application{
         }
     }
     
-    public static void main(String[] args) {
-        launch(args);
-    }
+   
 }
