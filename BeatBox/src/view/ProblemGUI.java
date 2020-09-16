@@ -17,7 +17,9 @@ public class ProblemGUI extends Application{
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			primaryStage.setMinWidth(600);
-	        primaryStage.setMinHeight(400);
+	        primaryStage.setMinHeight(600);
+	        primaryStage.setWidth(600);
+	        primaryStage.setHeight(600);
         } catch(Exception e) {
             e.printStackTrace();
         }

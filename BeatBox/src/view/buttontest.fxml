@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -13,51 +12,43 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #212121;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SampleController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #212121;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SampleController">
    <children>
-      <VBox alignment="CENTER" prefHeight="500.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" prefHeight="600.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <GridPane alignment="CENTER" prefHeight="500.0" prefWidth="700.0">
+            <GridPane prefHeight="600.0" prefWidth="600.0">
               <columnConstraints>
-                <ColumnConstraints maxWidth="400.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                  <RowConstraints maxHeight="314.66666666666663" minHeight="10.0" prefHeight="219.99998982747394" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="314.66666666666663" minHeight="10.0" prefHeight="219.99998982747394" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="314.66666666666663" minHeight="10.0" prefHeight="219.99998982747394" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <HBox alignment="CENTER" prefHeight="153.0" prefWidth="400.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <HBox alignment="CENTER" prefHeight="70.0" prefWidth="226.0" GridPane.rowIndex="1">
                      <children>
-                        <Text fx:id="problemText" fill="WHITE" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="4 + 8 =" textAlignment="CENTER" wrappingWidth="152.0">
+                        <Text fx:id="problemText" fill="WHITE" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="4 + 8 =" textAlignment="CENTER" wrappingWidth="165.6000370979309">
                            <font>
-                              <Font name="Rockwell" size="40.0" />
+                              <Font name="Rockwell" size="50.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="50.0" />
+                              <Insets />
                            </HBox.margin>
                         </Text>
-                        <TextField fx:id="answerText" alignment="CENTER" onAction="#AnswerText" prefHeight="77.0" prefWidth="100.0" style="-fx-background-color: WHITE; -fx-text-inner-color: BLACK;" text="12">
+                        <TextField fx:id="answerText" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#AnswerText" prefHeight="70.0" prefWidth="120.0" style="-fx-background-color: WHITE; -fx-text-inner-color: BLACK;" text="12" HBox.hgrow="ALWAYS">
                            <font>
-                              <Font name="Rockwell" size="40.0" />
+                              <Font name="Rockwell" size="50.0" />
                            </font>
-                           <HBox.margin>
-                              <Insets right="50.0" />
-                           </HBox.margin>
                         </TextField>
                      </children>
                   </HBox>
-                  <Button fx:id="button" alignment="CENTER" mnemonicParsing="false" onAction="#ButtonClicked" prefHeight="40.0" prefWidth="230.0" style="-fx-background-radius: 100; -fx-background-color: #00E300;" text="Answer" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Button fx:id="button" alignment="CENTER" mnemonicParsing="false" onAction="#ButtonClicked" prefHeight="28.0" prefWidth="184.0" style="-fx-background-radius: 100; -fx-background-color: White;" text="Answer" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <font>
-                        <Font name="Rockwell" size="35.0" />
+                        <Font name="Rockwell" size="30.0" />
                      </font>
                   </Button>
-                  <Label alignment="CENTER" text="What is" textAlignment="CENTER" textFill="#48ff33" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                     <font>
-                        <Font name="Rockwell" size="60.0" />
-                     </font>
-                  </Label>
-                  <VBox fx:id="responseBox" alignment="CENTER" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #212121;" visible="false">
+                  <VBox fx:id="responseBox" alignment="CENTER" prefHeight="217.0" prefWidth="226.0" style="-fx-background-color: #212121;" visible="false">
                      <children>
                         <Text fx:id="responseText" fill="#4dff36" strokeType="OUTSIDE" strokeWidth="0.0" text="CORRECT!" textAlignment="CENTER">
                            <font>

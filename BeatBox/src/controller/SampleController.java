@@ -53,7 +53,6 @@ public class SampleController implements Initializable{
  
    private void answer() {
 	   if(answerText.getText().equals(answer)) {
-		   System.out.println("CORRECT");
 		   String[] a = testGen.getNextProblem();
 		   text = a[0];
 		   answer = a[1];
@@ -62,13 +61,11 @@ public class SampleController implements Initializable{
 		   answerText.requestFocus();
 		   showResponse(true);
 	   }else {
-		   System.out.println("WRONG");
 		   answerText.clear();
 		   answerText.requestFocus();
 		   showResponse(false);
 	   }
-	   
-	   System.out.println("Clicked button");
+
    }
 
    
