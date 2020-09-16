@@ -58,7 +58,7 @@ public class calculator {
 		//number size
 		int[] size = {1,10};
 		// allowed modifiers
-		Operator[] mod = {Operator.MUL};
+		Operator[] mod = {Operator.ADD, Operator.SUB};
 		String[] s = generate(3, size,new String[2], mod);
 		
 		System.out.println(s[0]);
@@ -71,8 +71,7 @@ public class calculator {
 	 * @param numbers the number of numbers in the expression
 	 * @param numberSize allowed number size {small, big}
 	 * @param expressionAndAnswer new String[2]
-	 * @param modifiers if array contains 1 = addition, 2 = subtraction, 3 = division, 4 = multiplication, 
-	 * 			5 = power of 2. array can be any size
+	 * @param modifiers array of enum Operators that can be used to generate expressions 
 	 * @return String array. array[0] = expression, array[1] = answer
 	 */
 	public static String[] generate(int numbers, int[] numberSize, String[] expressionAndAnswer, Operator[] modifiers) {
@@ -81,6 +80,14 @@ public class calculator {
 		return gen(numbers, numberSize, modifiers, rand);
 	}
 	
+	/**
+	 * Recursively generates mathematical expressions and calculates their value
+	 * @param numbers the number of numbers in the expression
+	 * @param numberRange allowed number range {small, big}
+	 * @param modifiers array of enum Operators that can be used to generate expressions
+	 * @param rand random number generator to be used
+	 * @return String array. array[0] = expression, array[1] = answer
+	 */
 	private static String[] gen(int numbers, int[] numberRange, Operator[] modifiers, Random rand) {
 		String[] returnVal = new String[2];
 		if(numbers == 1) {
