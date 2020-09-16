@@ -9,6 +9,9 @@ import java.util.Random;
  */
 public class calculator {
 	
+	public enum operators{
+		
+	}
 	private LinkedList<String> uniqueness; 
 	public calculator() {
 		this.uniqueness = new LinkedList<String>();
@@ -26,7 +29,9 @@ public class calculator {
 	public String[] uniqueGeneration(int numbers, int[] numberSize, int[] modifiers) {
 		boolean unique = false;
 		String[] returnString = new String[2];
+	
 		while(!unique) {
+			if(uniqueness.isEmpty()) unique = true;
 			returnString = generate(numbers, numberSize, new String[2], modifiers);
 			for(String s : uniqueness) {
 				if(s.equals(returnString[0])) {
@@ -44,6 +49,7 @@ public class calculator {
 		
 		return returnString;
 	}
+	
 	
 	public static void main(String[] args) 
 	{
@@ -128,5 +134,18 @@ public class calculator {
 			expressionAndAnswer = generate(numbers, numberSize, expressionAndAnswer, modifiers);
 		}		
 		return expressionAndAnswer;
+	}
+	
+	private String[] gen(int numbers, int[] numberSize, int[] modifiers, Random rand) {
+		if(numbers == 1) {
+			int number =  rand.nextInt((numberSize[1] - (numberSize[0]))+1) + (numberSize[0]);
+			return new String[]{"" + number, "" + number};
+		}
+		else {
+			int whichMod = rand.nextInt(5)+1;	
+		}
+			
+			
+		
 	}
 }
