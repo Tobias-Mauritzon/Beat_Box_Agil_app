@@ -7,11 +7,13 @@ import java.util.Random;
  * @author Tobias & Joachim
  * Class used to generate random expression depending on different modifiers
  */
+
+enum Operator{
+	ADD, SUB, DIV, MUL, POW;
+}
+
 public class calculator {
-	
-	public enum operators{
 		
-	}
 	private LinkedList<String> uniqueness; 
 	public calculator() {
 		this.uniqueness = new LinkedList<String>();
@@ -26,7 +28,7 @@ public class calculator {
 	 * 			5 = power of 2. array can be any size
 	 * @return String array. array[0] = expression, array[1] = awnser
 	 */
-	public String[] uniqueGeneration(int numbers, int[] numberSize, int[] modifiers) {
+	public String[] uniqueGeneration(int numbers, int[] numberSize, Operator[] modifiers) {
 		boolean unique = false;
 		String[] returnString = new String[2];
 	
@@ -54,10 +56,10 @@ public class calculator {
 	public static void main(String[] args) 
 	{
 		//number size
-		int[] size = {1,100};
+		int[] size = {1,10};
 		// allowed modifiers
-		int[] mod = {1,2,3,4,0};
-		String[] s = generate(5, size,new String[2], mod);
+		Operator[] mod = {Operator.ADD, Operator.SUB};
+		String[] s = generate(3, size,new String[2], mod);
 		
 		System.out.println(s[0]);
 		System.out.println(s[1]);
@@ -69,83 +71,59 @@ public class calculator {
 	 * @param numbers the number of numbers in the expression
 	 * @param numberSize allowed number size {small, big}
 	 * @param expressionAndAnswer new String[2]
-	 * @param modifiers if array contains 1 = addition, 2 = subtraction, 3 = division, 4 = multiplication, 
-	 * 			5 = power of 2. array can be any size
+	 * @param modifiers array of enum Operators that can be used to generate expressions 
 	 * @return String array. array[0] = expression, array[1] = answer
 	 */
-	public static String[] generate(int numbers, int[] numberSize, String[] expressionAndAnswer, int[] modifiers) {
+	public static String[] generate(int numbers, int[] numberSize, String[] expressionAndAnswer, Operator[] modifiers) {
 		Random rand = new Random();
-		if(numbers > 0) {
-			numbers--;
-			
-			// generates the next number for the expression
-			int genNumber = rand.nextInt((numberSize[1] - (numberSize[0]))+1) + (numberSize[0]);
-			double newAnswer;
-			if(expressionAndAnswer[1] != null) {				
-				
-				boolean allowed = false;
-				int whichMod = 0;
-				
-				while(!allowed) {
-					// generates a number 1 - 4 randomly for modifier
-					whichMod = rand.nextInt(5)+1;					
-					for(int m : modifiers) {
-						if(m == whichMod) {
-							allowed = true;
-						}
-					}
-				}
-				
-				if(whichMod == 1) {					
-					expressionAndAnswer[0] = expressionAndAnswer[0]+" + "+genNumber;
-					newAnswer = Double.parseDouble(expressionAndAnswer[1]) + genNumber;
-					expressionAndAnswer[1] = Double.toString(newAnswer);					
-				}else if(whichMod == 2){					
-					expressionAndAnswer[0] = expressionAndAnswer[0]+" - "+genNumber;
-					newAnswer = Double.parseDouble(expressionAndAnswer[1]) - genNumber;
-					expressionAndAnswer[1] = Double.toString(newAnswer);					
-				}else if(whichMod == 3){
-					boolean run = true;
-					while(run) {						
-						try {
-							expressionAndAnswer[0] = "("+expressionAndAnswer[0]+")/"+genNumber;
-							newAnswer = Double.parseDouble(expressionAndAnswer[1]) / genNumber;
-							expressionAndAnswer[1] = Double.toString(newAnswer);
-							run = false;
-						}catch(Exception e) {
-							genNumber = rand.nextInt((numberSize[1] - (numberSize[0]))) + (numberSize[0]);
-						}
-					}															
-				}else if(whichMod == 4){
-					// the parentheses are a feature
-					expressionAndAnswer[0] = "("+expressionAndAnswer[0]+") * "+genNumber;
-					newAnswer = Double.parseDouble(expressionAndAnswer[1]) * genNumber;
-					expressionAndAnswer[1] = Double.toString(newAnswer);					
-				}else if(whichMod == 5){
-					// the parentheses are a feature
-					expressionAndAnswer[0] = "("+expressionAndAnswer[0]+") ^ "+2;
-					newAnswer = Math.pow(Double.parseDouble(expressionAndAnswer[1]), 2);
-					expressionAndAnswer[1] = Double.toString(newAnswer);					
-				}
-			}else {								
-				expressionAndAnswer[0] = Integer.toString(genNumber);
-				expressionAndAnswer[1] = Integer.toString(genNumber);
-			}			
-			expressionAndAnswer = generate(numbers, numberSize, expressionAndAnswer, modifiers);
-		}		
-		return expressionAndAnswer;
+
+		return gen(numbers, numberSize, modifiers, rand);
 	}
 	
-	private String[] gen(int numbers, int[] numberSize, int[] modifiers, Random rand) {
+	/**
+	 * Recursively generates mathematical expressions and calculates their value
+	 * @param numbers the number of numbers in the expression
+	 * @param numberRange allowed number range {small, big}
+	 * @param modifiers array of enum Operators that can be used to generate expressions
+	 * @param rand random number generator to be used
+	 * @return String array. array[0] = expression, array[1] = answer
+	 */
+	private static String[] gen(int numbers, int[] numberRange, Operator[] modifiers, Random rand) {
+		String[] returnVal = new String[2];
 		if(numbers == 1) {
-			int number =  rand.nextInt((numberSize[1] - (numberSize[0]))+1) + (numberSize[0]);
-			return new String[]{"" + number, "" + number};
+			int number =  rand.nextInt((numberRange[1] - (numberRange[0]))+1) + (numberRange[0]);
+			returnVal[0] = "" + number;
+			returnVal[1] = "" + number;
 		}
 		else {
-			int whichMod = rand.nextInt(5)+1;	
-		}
+			int right = numbers/2;
+			int left = numbers - right;
+			String[] rightRet = gen(right, numberRange, modifiers, rand); 
+			String[] leftRet = gen(left, numberRange, modifiers, rand); 
 			
-			
-		
+			switch(modifiers[rand.nextInt(modifiers.length)]) {
+			case ADD:
+				returnVal[0] = "(" + rightRet[0] + " + " + leftRet[0] + ")";
+				returnVal[1] = Double.toString(Double.parseDouble(rightRet[1]) + Double.parseDouble(leftRet[1]));
+				break;
+			case SUB:
+				returnVal[0] = "(" + rightRet[0] + " - " + leftRet[0] + ")";
+				returnVal[1] = Double.toString(Double.parseDouble(rightRet[1]) - Double.parseDouble(leftRet[1]));
+				break;
+			case DIV:
+				returnVal[0] = "(" + rightRet[0] + " / " + leftRet[0] + ")";
+				returnVal[1] = Double.toString(Double.parseDouble(rightRet[1]) / Double.parseDouble(leftRet[1]));
+				break;
+			case MUL:
+				returnVal[0] = "(" + rightRet[0] + " * " + leftRet[0] + ")";
+				returnVal[1] = Double.toString(Double.parseDouble(rightRet[1]) * Double.parseDouble(leftRet[1]));
+				break;
+			case POW:
+				returnVal[0] = "(" + rightRet[0] + " ^ " + leftRet[0] + ")";
+				returnVal[1] = Double.toString(Math.pow(Double.parseDouble(rightRet[1]), Double.parseDouble(leftRet[1])));
+				break;
+			}
+		}				
+		return returnVal;
 	}
 }
