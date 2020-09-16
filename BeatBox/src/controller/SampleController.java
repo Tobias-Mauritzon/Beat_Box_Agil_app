@@ -41,6 +41,7 @@ public class SampleController implements Initializable{
     private String answer;
     
     
+    
     @FXML
     void AnswerText(ActionEvent event) {
     	answer();
