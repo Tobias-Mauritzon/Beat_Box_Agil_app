@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -26,6 +27,12 @@ public class NumberGenerator
 	public String[] uniqueGeneration(int numbers, int[] numberSize, int[] modifiers) {
 		boolean unique = false;
 		String[] returnString = new String[2];
+		
+		if(numbers < 2) {
+			throw new IllegalArgumentException("Number of Terms must be grater than 2");			
+		}
+		
+		Arrays.sort(numberSize);
 	
 		while(!unique) {
 			if(uniqueness.isEmpty()) unique = true;

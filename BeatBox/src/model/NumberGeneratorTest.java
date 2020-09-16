@@ -70,4 +70,32 @@ public class NumberGeneratorTest {
 		output = numG.uniqueGeneration(2, new int[]{1, 10}, new int[]{4});
 		assertTrue(contains(output[0],'*'));
 	}
+	
+	@Test
+	public void testSimpleAddition() {
+		
+		String[] output = numG.uniqueGeneration(2, new int[]{2, 2}, new int[]{1});
+		assertEquals(output[1].charAt(0), '4');
+	}
+	
+	@Test
+	public void testCorectSorting() {	
+		String[] output = numG.uniqueGeneration(2, new int[]{10, 2}, new int[]{1});
+		output = numG.uniqueGeneration(2, new int[]{2, 10}, new int[]{1});
+	}
+	
+	@Test
+	public void testCorectSortingNegativ() {
+		String[] output = numG.uniqueGeneration(2, new int[]{-2, -6}, new int[]{1});
+		output = numG.uniqueGeneration(2, new int[]{-6, -2}, new int[]{1});
+	}
+	
+	@Test
+	public void testNoNegativTermNumber() {
+		try {
+			String[] output = numG.uniqueGeneration(-2, new int[]{2, 3}, new int[]{1});
+		}catch(IllegalArgumentException e){
+			assertTrue(e.getMessage().equals("Number of Terms must be grater than 2"));
+		}						
+	}
 }
