@@ -2,7 +2,7 @@ package model;
 /**
  * Class used to generate random expression depending on different modifiers
  * @author Tobias & Joachim
- * @version 1.0
+ * @version 2.0
  * @since 2020-09-17
  */
 
