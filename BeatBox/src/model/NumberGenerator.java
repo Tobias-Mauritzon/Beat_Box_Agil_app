@@ -72,7 +72,7 @@ public class NumberGenerator implements ProblemGenerator{
 			throw new IllegalArgumentException("Number of terms must be grater than 2!");
 		}
 		
-		if(numberRange[0] > numberRange[1]) {
+		if(numberRange[0] >= numberRange[1]) {
 			throw new IllegalArgumentException("The real interval has to in the format [smaller, bigger]!");
 		}
 
