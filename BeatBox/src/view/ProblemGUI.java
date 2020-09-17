@@ -49,9 +49,7 @@ public class ProblemGUI{
     public Text responseText;
     
     private String text;
-    
     private AnchorPane root;
-    
     public Delegate delegate;
     
     /***
@@ -61,7 +59,7 @@ public class ProblemGUI{
      */
     public ProblemGUI(AnchorPane root) {
     	this.root=root;
-    	initGUI();
+    	getGUIObjects();
     }
     
     /***
@@ -88,14 +86,15 @@ public class ProblemGUI{
 		   if(delegate.grade(answerText.getText())) {
 			   text = delegate.getProblem();
 			   problemText.setText(text);
-			   answerText.clear();
-			   answerText.requestFocus();
 			   showResponse(true);
 		   }else {
-			   answerText.clear();
-			   answerText.requestFocus();
 			   showResponse(false);
+			   
+			   ShakeTransition anim = new ShakeTransition(answerText, t->System.out.println("test"));
+               anim.playFromStart();
 		   }
+		   answerText.clear();
+		   answerText.requestFocus();
 	   }
    }
 
@@ -108,29 +107,21 @@ public class ProblemGUI{
 	   if(correct) {
 		   responseText.setText("CORRECT!");
 		   responseText.setFill(Color.LIMEGREEN);
-		   responseBox.setVisible(true); 
-		   
-		   FadeTransition ft = new FadeTransition(Duration.millis(1500), responseBox);
-		   ft.setFromValue(1);
-		   ft.setToValue(0);
-		   ft.play();
-		  
 	   }else {
 		   responseText.setText("WRONG!");
-		   responseText.setFill(Color.RED);
-		   responseBox.setVisible(true);
-		   
-		   FadeTransition ft = new FadeTransition(Duration.millis(1500), responseBox);
-		   ft.setFromValue(1);
-		   ft.setToValue(0);
-		   ft.play();	   
+		   responseText.setFill(Color.RED);   
 	   }
+	   responseBox.setVisible(true);
+	   FadeTransition ft = new FadeTransition(Duration.millis(1500), responseBox);
+	   ft.setFromValue(1);
+	   ft.setToValue(0);
+	   ft.play();	
    }
 	
    /***
-    *  Initalizes the GUI elements so the users can interact with them.
+    *  Initializes the GUI elements so the users can interact with them.
     */
-   private void initGUI() {
+   private void getGUIObjects() {
     	responseBox =  (VBox) root.lookup("#responseBox");
     	problemText = (Text) root.lookup("#problemText");
     	answerText = (TextField) root.lookup("#answerText");

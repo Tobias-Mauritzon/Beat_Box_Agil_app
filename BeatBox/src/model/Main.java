@@ -11,7 +11,7 @@ import view.ProblemGUI;
 import view.ProblemGUI.Delegate;
 
 /***
- * the Main class of the applcation, creates most classes and communicates between them using delegates.
+ * the Main class of the application, creates most classes and communicates between them using delegates.
  * @author Greppe
  * @author Philip
  * @version 1.0
