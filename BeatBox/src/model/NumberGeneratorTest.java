@@ -162,6 +162,12 @@ public class NumberGeneratorTest{
 		
 		String output[] = numG.uniqueGeneration(100, new int[]{0, 3}, new Operator[]{Operator.DIV});
 		
-		//assertTrue(Double.parseDouble(output[1]) <= 3);
+		assertTrue(Double.parseDouble(output[1]) >= 0);
+	}
+	
+	@Test
+	public void testDivisionByZeroManyOperators() {
+		
+		String output[] = numG.uniqueGeneration(1000, new int[]{0, 3}, new Operator[]{Operator.DIV, Operator.ADD, Operator.EXP, Operator.MUL, Operator.SUB});
 	}
 }
