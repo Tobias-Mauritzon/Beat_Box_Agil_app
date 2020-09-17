@@ -2,9 +2,12 @@ package view;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -68,10 +71,21 @@ public class ProblemGUI{
     public void initProblem() 
     {
     	System.out.println("Delegate:" + delegate);
+    	
     	if(delegate != null)
     	{
     		text = delegate.getProblem();
     		answerText.clear();
+    		answerText.textProperty().addListener(new ChangeListener<String>() {
+    		    @Override
+    		    public void changed(ObservableValue<? extends String> observable, String oldValue, 
+    		        String newValue) {
+    		        if (!newValue.matches("^[-+]?[0-9]*[.,]?[0-9]+$")) {
+    		        	System.out.println("JA");
+    		        	answerText.setText(newValue.replaceAll("[^[-+]?[0-9]*[.,]?[0-9]+$]", ""));
+    		        }
+    		    }
+    		});
     		problemText.setText(text);
     		problemText.setFocusTraversable(false);
     	}
