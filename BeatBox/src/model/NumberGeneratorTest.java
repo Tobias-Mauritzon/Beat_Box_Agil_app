@@ -125,8 +125,7 @@ public class NumberGeneratorTest {
 	public void testNoNegativTermNumber() {
 		exceptionRule.expect(IllegalArgumentException.class);
 	    exceptionRule.expectMessage("Number of terms must be grater than 2!");
-		numG.uniqueGeneration(-1, new int[]{2, 6}, new Operator[]{Operator.ADD});
-		NumberGenerator.generate(-1, new int[]{2, 6}, new Operator[]{Operator.ADD});
+		NumberGenerator.generate(-2, new int[]{2, 6}, new Operator[]{Operator.ADD});
 	}
 	
 	/**
@@ -134,10 +133,11 @@ public class NumberGeneratorTest {
 	 */
 	@Test
 	public void testUniqueGeneration() {
-		for(int i = 0; i < 10; i++) {
-			numG.uniqueGeneration(3, new int[]{0, 10}, new Operator[]{Operator.ADD});
+		LinkedList<String> list = new LinkedList<String>();
+		for(int i = 0; i < 15; i++) {
+			numG.uniqueGeneration(2, new int[]{1, 4}, new Operator[]{Operator.ADD});
 		}
-		LinkedList<String> list = numG.getList();
+		list = numG.getList();
 		assertTrue(list.size() == 10);
 	}
 	
