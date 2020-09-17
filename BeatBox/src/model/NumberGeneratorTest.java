@@ -1,9 +1,13 @@
 package model;
 
 import static org.junit.Assert.*;
+
+import java.util.LinkedList;
+
 import org.junit.Before;
-import org.junit.After;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class NumberGeneratorTest {
 	private NumberGenerator numG;
@@ -11,98 +15,141 @@ public class NumberGeneratorTest {
 	public static boolean contains(String s, char value){
 	    return s != null && s.indexOf(value) > -1;
 	}
+	
+	@Rule
+	public ExpectedException exceptionRule = ExpectedException.none();
+	
 
-	/*
-	 * 	
+	/**
+	 * 	Before each test reinitialize generator object
 	 */
 	@Before
 	public void setup() {
 		numG = new NumberGenerator();
 	}
-	/*
-	 * 
+	
+	/**
+	 * Test that Generator can generate addition
 	 */
 	@Test
 	public void testGenerateAdd() {
-		// addition is working
-		String[] output = NumberGenerator.generate(2, new int[]{1, 10},new String[2], new int[]{1});
+		String[] output = NumberGenerator.generate(2, new int[]{1, 10}, new Operator[]{Operator.ADD});
 		assertTrue(contains(output[0],'+'));
 		
-		output = numG.uniqueGeneration(2, new int[]{1, 10}, new int[]{1});
+		output = numG.uniqueGeneration(2, new int[]{1, 10}, new Operator[]{Operator.ADD});
 		assertTrue(contains(output[0],'+'));
 	}
 	
-	/*
-	 * 
+	/**
+	 * Test that Generator can generate subtraction
 	 */
 	@Test
 	public void testGenerateSub() {
-		// subtraction is working
-		String[] output = NumberGenerator.generate(2, new int[]{1, 10},new String[2], new int[]{2});
+		String[] output = NumberGenerator.generate(2, new int[]{1, 10}, new Operator[]{Operator.SUB});
 		assertTrue(contains(output[0],'-'));
 		
-		output = numG.uniqueGeneration(2, new int[]{1, 10}, new int[]{2});
+		output = numG.uniqueGeneration(2, new int[]{1, 10}, new Operator[] {Operator.SUB});
 		assertTrue(contains(output[0],'-'));
 	}
 	
-	/*
-	 * 
+	/**
+	 * Test that Generator can generate division
 	 */
 	@Test
 	public void testGenerateDiv() {
-		// division is working
-		String[] output = NumberGenerator.generate(2, new int[]{1, 10},new String[2], new int[]{3});
+		String[] output = NumberGenerator.generate(2, new int[]{1, 10}, new Operator[]{Operator.DIV});
 		assertTrue(contains(output[0],'/'));
 		
-		output = numG.uniqueGeneration(2, new int[]{1, 10}, new int[]{3});
+		output = numG.uniqueGeneration(2, new int[]{1, 10}, new Operator[] {Operator.DIV});
 		assertTrue(contains(output[0],'/'));
 	}
 	
-	/*
-	 * 
+	/**
+	 * Test that Generator can generate multiplication
 	 */
 	@Test
 	public void testGenerateMul() {
-		// multiplication is working
-		String[] output = NumberGenerator.generate(2, new int[]{1, 10},new String[2], new int[]{4});
+		String[] output = NumberGenerator.generate(2, new int[]{1, 10}, new Operator[]{Operator.MUL});
 		assertTrue(contains(output[0],'*'));
 		
-		output = numG.uniqueGeneration(2, new int[]{1, 10}, new int[]{4});
+		output = numG.uniqueGeneration(2, new int[]{1, 10}, new Operator[] {Operator.MUL});
 		assertTrue(contains(output[0],'*'));
 	}
 	
+	/**
+	 * Test that Generator can generate Exponentiation
+	 */
 	@Test
-	public void testSimpleAddition() {
+	public void testGenerateExp() {
+		String[] output = NumberGenerator.generate(2, new int[]{1, 10}, new Operator[]{Operator.EXP});
+		assertTrue(contains(output[0],'^'));
 		
-		String[] output = numG.uniqueGeneration(2, new int[]{2, 2}, new int[]{1});
-		assertEquals(output[1].charAt(0), '4');
+		output = numG.uniqueGeneration(2, new int[]{1, 10}, new Operator[] {Operator.EXP});
+		assertTrue(contains(output[0],'^'));
 	}
 	
+	/**
+	 * Test that number range in form bigger, smaller throws error, with positive numbers
+	 */
 	@Test
-	public void testCorectSorting() {	
-		String[] output = numG.uniqueGeneration(2, new int[]{10, 2}, new int[]{1});
-		output = numG.uniqueGeneration(2, new int[]{2, 10}, new int[]{1});
+	public void testCorrectSortingPositive() {
+		exceptionRule.expect(IllegalArgumentException.class);
+	    exceptionRule.expectMessage("The real interval has to in the format [smaller, bigger]!");
+		NumberGenerator.generate(2, new int[]{10, 2}, new Operator[]{Operator.ADD});
 	}
-	
+
+	/**
+	 * Test that number range in form bigger, smaller throws error, with negative numbers
+	 */
 	@Test
-	public void testCorectSortingNegativ() {
-		String[] output = numG.uniqueGeneration(2, new int[]{-2, -6}, new int[]{1});
-		output = numG.uniqueGeneration(2, new int[]{-6, -2}, new int[]{1});
+	public void testCorrectSortingNegativ() {
+		exceptionRule.expect(IllegalArgumentException.class);
+	    exceptionRule.expectMessage("The real interval has to in the format [smaller, bigger]!");
+		NumberGenerator.generate(2, new int[]{-2, -6}, new Operator[]{Operator.ADD});
 	}
 	
+	/**
+	 * Test that number range in form bigger, smaller throws error, with negative numbers
+	 */
+	@Test
+	public void testCorrectSortingBoth() {
+		exceptionRule.expect(IllegalArgumentException.class);
+	    exceptionRule.expectMessage("The real interval has to in the format [smaller, bigger]!");
+		NumberGenerator.generate(2, new int[]{10, -6}, new Operator[]{Operator.ADD});
+	}
+	
+	/**
+	 * Test that negative term number throws IllegalArgumentException
+	 */
 	@Test
 	public void testNoNegativTermNumber() {
-		try {
-			String[] output = numG.uniqueGeneration(-2, new int[]{2, 3}, new int[]{1});
-		}catch(IllegalArgumentException e){
-			assertTrue(e.getMessage().equals("Number of Terms must be grater than 2"));
-		}						
+		exceptionRule.expect(IllegalArgumentException.class);
+	    exceptionRule.expectMessage("Number of terms must be grater than 2!");
+		numG.uniqueGeneration(-1, new int[]{2, 6}, new Operator[]{Operator.ADD});
+		NumberGenerator.generate(-1, new int[]{2, 6}, new Operator[]{Operator.ADD});
 	}
 	
+	/**
+	 * Test that unique generation happens when parameters allow at least 11 different problems 
+	 */
 	@Test
-	public void testNoNegativNumber() {
-		
-		String[] output = numG.uniqueGeneration(2, new int[]{-5, -1}, new int[]{1});
-		assertTrue(Double.parseDouble(output[1])<0);						
+	public void testUniqueGeneration() {
+		for(int i = 0; i < 10; i++) {
+			numG.uniqueGeneration(3, new int[]{0, 10}, new Operator[]{Operator.ADD});
+		}
+		LinkedList<String> list = numG.getList();
+		assertTrue(list.size() == 10);
+	}
+	
+	/**
+	 * Test that unique generation does not happen when parameters don't allow for at least 11 different problems 
+	 */
+	@Test
+	public void testUniqueGenerationFail() {
+		for(int i = 0; i < 10; i++) {
+			numG.uniqueGeneration(2, new int[]{0, 2}, new Operator[]{Operator.ADD});
+		}
+		LinkedList<String> list = numG.getList();
+		assertTrue(list.isEmpty()); //Doesn't touch list if parameters are to narrow
 	}
 }
