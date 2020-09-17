@@ -63,26 +63,6 @@ public class NumberGenerator {
 	}
 	
 	/**
-	 * testing
-	 * @param args
-	 */
-	public static void main(String[] args) 
-	{
-		//number size
-		int[] size = {0,100};
-		// allowed modifiers
-		Operator[] mod = {Operator.ADD};
-		String[] s = new String[2];
-		try {
-			s = generate(3, size, mod);
-			System.out.println(s[0]);
-			System.out.println(s[1]);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}	
-	}
-	
-	/**
 	 * Generates a expression and and answer for that expression
 	 * 
 	 * @param numbers the number of numbers in the expression
