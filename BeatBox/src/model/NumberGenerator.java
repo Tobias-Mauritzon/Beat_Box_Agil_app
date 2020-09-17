@@ -41,7 +41,6 @@ public class NumberGenerator implements ProblemGenerator{
 						unique = true;
 					}
 				}
-				
 				if(uniqueness.size() >= 10) {
 					uniqueness.removeFirst();
 				}
