@@ -1,8 +1,4 @@
 package model;
-
-import java.util.LinkedList;
-import java.util.Random;
-
 /**
  * Class used to generate random expression depending on different modifiers
  * @author Tobias & Joachim
@@ -10,11 +6,10 @@ import java.util.Random;
  * @since 2020-09-17
  */
 
-enum Operator{
-	ADD, SUB, DIV, MUL, EXP;
-}
+import java.util.LinkedList;
+import java.util.Random;
 
-public class NumberGenerator {
+public class NumberGenerator implements ProblemGenerator{
 		
 	private LinkedList<String> uniqueness; 
 	
@@ -30,14 +25,14 @@ public class NumberGenerator {
 	 * @param modifiers array of enum Operators that can be used to generate expressions 
 	 * @return String array. array[0] = expression, array[1] = awnser
 	 */
-	public String[] uniqueGeneration(int numbers, int[] numberRange, Operator[] modifiers) {
+	public String[] uniqueGeneration(int terms, int[] numberRange, Operator[] modifiers) {
 		boolean unique = false;
 		String[] returnString = new String[2];
 		try {
-			if(10 < (modifiers.length * Math.pow((numberRange[1] - numberRange[0] + 1), numbers))) {
+			if(10 < (modifiers.length * Math.pow((numberRange[1] - numberRange[0] + 1), terms))) {
 				while(!unique) {
 					if(uniqueness.isEmpty()) unique = true;
-					returnString = generate(numbers, numberRange, modifiers);
+					returnString = generate(terms, numberRange, modifiers);
 					for(String s : uniqueness) {
 						if(s.equals(returnString[0])) {
 							unique = false;
@@ -55,7 +50,7 @@ public class NumberGenerator {
 				return returnString;
 				
 			}else {
-				return generate(numbers, numberRange, modifiers);
+				return generate(terms, numberRange, modifiers);
 			}
 		}catch(IllegalArgumentException e) {
 			throw e;
@@ -71,18 +66,18 @@ public class NumberGenerator {
 	 * @param modifiers array of enum Operators that can be used to generate expressions 
 	 * @return String array. array[0] = expression, array[1] = answer
 	 */
-	public static String[] generate(int numbers, int[] numberSize, Operator[] modifiers) {
+	public static String[] generate(int terms, int[] numberRange, Operator[] modifiers) {
 		Random rand = new Random();
 		
-		if(numbers < 2) {
+		if(terms < 2) {
 			throw new IllegalArgumentException("Number of terms must be grater than 2!");
 		}
 		
-		if(numberSize[0] > numberSize[1]) {
+		if(numberRange[0] > numberRange[1]) {
 			throw new IllegalArgumentException("The real interval has to in the format [smaller, bigger]!");
 		}
 
-		return gen(numbers, numberSize, modifiers, rand);
+		return gen(terms, numberRange, modifiers, rand);
 	}
 	
 	/**
@@ -140,6 +135,10 @@ public class NumberGenerator {
 		return returnVal;
 	}
 	
+	/**
+	 * Returns the list of the latest ten uniquely generated problems
+	 * @return List of math problems
+	 */
 	public LinkedList<String> getList(){
 		return uniqueness;
 	}

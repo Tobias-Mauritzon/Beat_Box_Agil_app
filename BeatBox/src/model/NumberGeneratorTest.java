@@ -1,15 +1,19 @@
 package model;
+/**
+ * Class used to generate random expression depending on different modifiers
+ * @author Tobias & Joachim
+ * @version 1.0
+ * @since 2020-09-17
+ */
 
 import static org.junit.Assert.*;
-
 import java.util.LinkedList;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-public class NumberGeneratorTest {
+public class NumberGeneratorTest{
 	private NumberGenerator numG;
 	
 	public static boolean contains(String s, char value){
