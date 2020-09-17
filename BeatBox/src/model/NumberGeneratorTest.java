@@ -98,4 +98,11 @@ public class NumberGeneratorTest {
 			assertTrue(e.getMessage().equals("Number of Terms must be grater than 2"));
 		}						
 	}
+	
+	@Test
+	public void testNoNegativNumber() {
+		
+		String[] output = numG.uniqueGeneration(2, new int[]{-5, -1}, new int[]{1});
+		assertTrue(Double.parseDouble(output[1])<0);						
+	}
 }
