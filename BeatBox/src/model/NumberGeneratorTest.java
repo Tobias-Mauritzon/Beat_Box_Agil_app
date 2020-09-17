@@ -152,4 +152,12 @@ public class NumberGeneratorTest {
 		LinkedList<String> list = numG.getList();
 		assertTrue(list.isEmpty()); //Doesn't touch list if parameters are to narrow
 	}
+	
+	@Test
+	public void testDivisionByZero() {
+		
+		String output[] = numG.uniqueGeneration(100, new int[]{0, 3}, new Operator[]{Operator.DIV});
+		
+		//assertTrue(Double.parseDouble(output[1]) <= 3);
+	}
 }
