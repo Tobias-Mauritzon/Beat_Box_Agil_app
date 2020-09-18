@@ -1,0 +1,18 @@
+/*  Tab fix for MenuGUI
+    Authors: Andreas Palmqvist & Seif Bourogaa
+*/
+
+/* Rotate the lable so text in the vertical tabs is horisontal. */
+.tab *.tab-label {
+    -fx-rotate: 90;
+}
+
+/* Change padding of the tabs. */
+.tab {
+    -fx-padding: 2em 0.5em 2em 0.5em;
+}
+
+/* Remove highlight of the tab. */
+.tab:selected .focus-indicator {
+    -fx-border-color: transparent;
+}
