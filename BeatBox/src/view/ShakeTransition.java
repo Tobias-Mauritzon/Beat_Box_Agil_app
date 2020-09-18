@@ -22,6 +22,7 @@ class ShakeTransition extends Transition {
     private CacheHint oldCacheHint = CacheHint.DEFAULT;
     private final boolean useCache=true;
    
+    private int shakeFactor = 5;
 
     private final DoubleProperty x = new SimpleDoubleProperty();
 
@@ -45,15 +46,15 @@ class ShakeTransition extends Transition {
 
         this.timeline= new Timeline(
                 
-                new KeyFrame(Duration.millis(100), new KeyValue(x, -10, WEB_EASE)),
-                new KeyFrame(Duration.millis(200), new KeyValue(x, 10, WEB_EASE)),
-                new KeyFrame(Duration.millis(300), new KeyValue(x, -10, WEB_EASE)),
-                new KeyFrame(Duration.millis(400), new KeyValue(x, 10, WEB_EASE)),
-                new KeyFrame(Duration.millis(500), new KeyValue(x, -10, WEB_EASE)),
-                new KeyFrame(Duration.millis(600), new KeyValue(x, 10, WEB_EASE)),
-                new KeyFrame(Duration.millis(700), new KeyValue(x, -10, WEB_EASE)),
-                new KeyFrame(Duration.millis(800), new KeyValue(x, 10, WEB_EASE)),
-                new KeyFrame(Duration.millis(900), new KeyValue(x, -10, WEB_EASE)),
+                new KeyFrame(Duration.millis(100), new KeyValue(x, -shakeFactor, WEB_EASE)),
+                new KeyFrame(Duration.millis(200), new KeyValue(x, shakeFactor, WEB_EASE)),
+                new KeyFrame(Duration.millis(300), new KeyValue(x, -shakeFactor, WEB_EASE)),
+                new KeyFrame(Duration.millis(400), new KeyValue(x, shakeFactor, WEB_EASE)),
+                new KeyFrame(Duration.millis(500), new KeyValue(x, -shakeFactor, WEB_EASE)),
+                new KeyFrame(Duration.millis(600), new KeyValue(x, shakeFactor, WEB_EASE)),
+                new KeyFrame(Duration.millis(700), new KeyValue(x, -shakeFactor, WEB_EASE)),
+                new KeyFrame(Duration.millis(800), new KeyValue(x, shakeFactor, WEB_EASE)),
+                new KeyFrame(Duration.millis(900), new KeyValue(x, -shakeFactor, WEB_EASE)),
                 new KeyFrame(Duration.millis(1000), new KeyValue(x, 0, WEB_EASE))
             );
         
