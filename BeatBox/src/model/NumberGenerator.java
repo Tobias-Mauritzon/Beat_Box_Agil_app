@@ -5,15 +5,9 @@ package model;
  * @version 2.0
  * @since 2020-09-17
  */
-
 import java.util.LinkedList;
 import java.util.Random;
 
-/**
- * @author Joachim & Tobias
- * @version 2.0
- * @since 2020-09-17
- */
 public class NumberGenerator implements ProblemGenerator{
 		
 	private LinkedList<String> uniqueness; 
