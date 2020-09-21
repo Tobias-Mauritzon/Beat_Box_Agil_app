@@ -1,7 +1,9 @@
 package controller;
 
 import view.MenuGUI;
-
+/**
+*	Controller Class for MenuGUI. 
+*/
 public class MenuController {
 	private MenuGUI menuGUI;
 	
@@ -10,6 +12,9 @@ public class MenuController {
 		initActions();
 	}
 	
+/**
+*	Set behaviour for buttons in MenuGUI. 
+*/	
 	private void initActions() {
 		menuGUI.addEasy.setOnAction(e->{System.out.println("addition easy");});
 		menuGUI.addInzane.setOnAction(e->{System.out.println("addition inzane");});
