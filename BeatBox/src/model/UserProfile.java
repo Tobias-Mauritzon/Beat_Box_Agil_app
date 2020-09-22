@@ -21,13 +21,12 @@ public class UserProfile {
 		this.records = new HashMap<String,Integer>();
 	}
 	
-	public void loadProfile(String name) {
+	public UserProfile loadProfile(String name) {
 		/* TODO
 		 * method needs proper implementation
 		 * should load from a sereilised save if possible
 		*/
-		this.history = new LinkedList<Problem>();
-		this.records = new HashMap<String,Integer>();
+		return new UserProfile("hej");
 	}
 	
 	public void saveProfile() {
@@ -35,8 +34,6 @@ public class UserProfile {
 	}
 	
 	/*
-	+ saveProfile() : void
-	+ loadProfile(name : String) : UserProfile
 	+ getName() : String
 	+ getHistory() : LinkedList<String>
 	+ getRecords() : HashMap<String, int> 
