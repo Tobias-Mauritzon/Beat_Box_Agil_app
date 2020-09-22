@@ -176,7 +176,7 @@ public class UserProfile implements Serializable{
 		public String getUserAnswer() {
 			return userAnswer;
 		}
-		public String getcCrrectAnswer() {
+		public String getCorrectAnswer() {
 			return correctAnswer;
 		}
 		public Date getDate() {

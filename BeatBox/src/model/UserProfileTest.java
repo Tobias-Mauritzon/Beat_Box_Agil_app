@@ -39,6 +39,8 @@ public class UserProfileTest {
 		Problem p = userJoachim.getHistory().removeFirst();
 		Operator[] modifiers = p.getModifiers();
 		assertTrue(modifiers[2] == Operator.MUL);
+		assertTrue(modifiers[0] == null);
+		assertTrue(modifiers[1] == null);
 	}
 	
 	@Test
