@@ -48,6 +48,7 @@ public class UserProfile implements Serializable{
 			current = (UserProfile) loadFile(current.name+"SavedProfile.Save");
 		}catch(IOException | ClassNotFoundException e){
 			System.out.println("Could not load save-file");
+			e.printStackTrace();
 			return current;
 		}
 		return current;
@@ -61,7 +62,7 @@ public class UserProfile implements Serializable{
 	 * @throws ClassNotFoundException when the loaded file is wrong format.
 	 * @throws IOException            when file is not found
 	 */
-	public Object loadFile(String fileName) throws ClassNotFoundException, IOException {
+	private Object loadFile(String fileName) throws ClassNotFoundException, IOException {
 		try (ObjectInputStream inputStream = new ObjectInputStream(Files.newInputStream(Paths.get(fileName)))) {
 			return inputStream.readObject();
 		}
@@ -74,18 +75,30 @@ public class UserProfile implements Serializable{
 	 * @param fileName the name of file that the data is saved in
 	 * @throws IOException when the file can't be saved.
 	 */
-	public void saveFile(Serializable data, String fileName) throws IOException {
+	private void saveFile(Serializable data, String fileName) throws IOException {
 		try (ObjectOutputStream outputStream = new ObjectOutputStream(Files.newOutputStream(Paths.get(fileName)))) {
 			outputStream.writeObject(data);
 		}
 	}
 	
-	public void saveProfile(UserProfile current) throws IOException {
+	public boolean saveProfile(UserProfile current){
 		try {
-			saveFile(current, current.name+"saveFile.Save");
+			saveFile(current, current.name+"SavedProfile.Save");
+			return true;
 		}catch (IOException e) {
 			//JOptionPane.showMessageDialog(null, "Could not save game");
-			System.out.println("Could not save game");
+			System.out.println("Could not save file");
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public void saveProfile2(){
+		try {
+			saveFile(this, this.name+"saveFile.Save");
+		}catch (IOException e) {
+			//JOptionPane.showMessageDialog(null, "Could not save game");
+			System.out.println("Could not save file");
 		}
 	}
 	
@@ -106,7 +119,9 @@ public class UserProfile implements Serializable{
 	 * @author Tobias
 	 *
 	 */
-	public class Problem {
+	public class Problem implements Serializable{
+		
+		private static final long serialVersionUID = 2L;
 		
 		private final String problem;
 		private final String userAnswer;
@@ -158,7 +173,7 @@ public class UserProfile implements Serializable{
 		public String getProblem() {
 			return problem;
 		}
-		public String getAwnser() {
+		public String getUserAnswer() {
 			return userAnswer;
 		}
 		public String getcCrrectAnswer() {
