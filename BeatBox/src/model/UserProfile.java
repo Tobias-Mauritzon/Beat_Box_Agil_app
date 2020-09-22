@@ -53,6 +53,14 @@ public class UserProfile implements Serializable{
 		return current;
 	}
 	
+	/**
+	 * Reads the data from the selected file and loads it
+	 * 
+	 * @param fileName the name of file that the data is saved in
+	 * @return input stream
+	 * @throws ClassNotFoundException when the loaded file is wrong format.
+	 * @throws IOException            when file is not found
+	 */
 	public Object loadFile(String fileName) throws ClassNotFoundException, IOException {
 		try (ObjectInputStream inputStream = new ObjectInputStream(Files.newInputStream(Paths.get(fileName)))) {
 			return inputStream.readObject();
@@ -81,8 +89,8 @@ public class UserProfile implements Serializable{
 		}
 	}
 	
-	public void addProblemToHistory(String problem, String answer, String correctAnswer, int points, int timeRequierd, Operator[] modifiers) {
-		history.addLast(new Problem(problem, answer, correctAnswer, points, timeRequierd, modifiers));
+	public void addProblemToHistory(String problem, String userAnswer, String correctAnswer, int points, int timeRequierd, Operator[] modifiers) {
+		history.addLast(new Problem(problem, userAnswer, correctAnswer, points, timeRequierd, modifiers));
 	}
 	
 	/*
@@ -98,10 +106,10 @@ public class UserProfile implements Serializable{
 	 * @author Tobias
 	 *
 	 */
-	private class Problem {
+	public class Problem {
 		
 		private final String problem;
-		private final String answer;
+		private final String userAnswer;
 		private final String correctAnswer;
 		private final Date date;
 		private final int points;
@@ -114,15 +122,36 @@ public class UserProfile implements Serializable{
 		 * @param awnser to the problem as a String
 		 * @param points for the solve or failiure
 		 * @param timeRequierd to solve the problem
-		 * @param modifiers used to create the problem
+		 * @param modifiers used to create the problem, modifiers can 
+		 * 		be null and problem will be used as refrence
 		 */
-		public Problem(String problem, String answer, String correctAnswer, int points, int timeRequierd, Operator[] modifiers) {
+		public Problem(String problem, String userAnswer, String correctAnswer, int points, int timeRequierd, Operator[] modifiers) {
 			this.problem = problem;
-			this.answer = answer;
+			this.userAnswer = userAnswer;
 			this.correctAnswer = correctAnswer;
 			this.date =  new Date();
 			this.points = points;
 			this.timeRequierd = timeRequierd;
+			
+			// if modifiers is null we look for what modifiers are used and add them to the list
+			if(modifiers == null) {
+				modifiers = new Operator[5];
+				if(problem.contains("+")) {
+					modifiers[0] = Operator.ADD;
+				}
+				if(problem.contains("-")) {
+					modifiers[1] = Operator.SUB;
+				}
+				if(problem.contains("*")) {
+					modifiers[2] = Operator.MUL;
+				}
+				if(problem.contains("/")) {
+					modifiers[3] = Operator.DIV;
+				}
+				if(problem.contains("^")) {
+					modifiers[4] = Operator.EXP;
+				}
+			}
 			this.modifiers = modifiers;
 		}
 
@@ -130,7 +159,7 @@ public class UserProfile implements Serializable{
 			return problem;
 		}
 		public String getAwnser() {
-			return answer;
+			return userAnswer;
 		}
 		public String getcCrrectAnswer() {
 			return correctAnswer;
