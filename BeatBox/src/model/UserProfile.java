@@ -21,12 +21,17 @@ public class UserProfile {
 		this.records = new HashMap<String,Integer>();
 	}
 	
-	public UserProfile loadProfile(String name) {
+	public UserProfile loadProfile(String name, UserProfile current ) {
 		/* TODO
 		 * method needs proper implementation
 		 * should load from a sereilised save if possible
 		*/
-		return new UserProfile("hej");
+		try {
+			
+		}catch(Exception e){
+			return current;
+		}
+		return current;
 	}
 	
 	public void saveProfile() {
