@@ -1,10 +1,20 @@
 package model;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-public class UserProfile {
+import javax.swing.JOptionPane;
+
+public class UserProfile implements Serializable{
+	//used for saving the profile
+	private static final long serialVersionUID = 1L;
 	
 	// user name
 	private String name;
@@ -27,15 +37,34 @@ public class UserProfile {
 		 * should load from a sereilised save if possible
 		*/
 		try {
-			
-		}catch(Exception e){
+			current = (UserProfile) loadFile(current.name+"SavedProfile.Save");
+		}catch(IOException | ClassNotFoundException e){
+			System.out.println("Could not load save-file");
 			return current;
 		}
 		return current;
 	}
 	
-	public void saveProfile() {
-		
+	public static Object loadFile(String fileName) throws ClassNotFoundException, IOException {
+		try (ObjectInputStream inputStream = new ObjectInputStream(Files.newInputStream(Paths.get(fileName)))) {
+			return inputStream.readObject();
+		}
+	}
+	
+	/**
+	 * Saves the data to a file with the parameter filename as the files name.
+	 * 
+	 * @param data     the that is saved
+	 * @param fileName the name of file that the data is saved in
+	 * @throws IOException when the file can't be saved.
+	 */
+	public static void saveProfile(Serializable data, UserProfile current) throws IOException {
+		try (ObjectOutputStream outputStream = new ObjectOutputStream(Files.newOutputStream(Paths.get(current.name+"SavedProfile.Save")))) {
+			outputStream.writeObject(data);
+		}catch (IOException e) {
+			//JOptionPane.showMessageDialog(null, "Could not save game");
+			System.out.println("Could not save game");
+		}
 	}
 	
 	/*
