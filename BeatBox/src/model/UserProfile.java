@@ -41,11 +41,9 @@ public class UserProfile implements Serializable{
 		return records;
 	}
 	
+	
+	
 	public UserProfile loadProfile(String name, UserProfile current ) {
-		/* TODO
-		 * method needs proper implementation
-		 * should load from a sereilised save if possible
-		*/
 		try {
 			current = (UserProfile) loadFile(current.name+"SavedProfile.Save");
 		}catch(IOException | ClassNotFoundException e){
@@ -55,7 +53,7 @@ public class UserProfile implements Serializable{
 		return current;
 	}
 	
-	public static Object loadFile(String fileName) throws ClassNotFoundException, IOException {
+	public Object loadFile(String fileName) throws ClassNotFoundException, IOException {
 		try (ObjectInputStream inputStream = new ObjectInputStream(Files.newInputStream(Paths.get(fileName)))) {
 			return inputStream.readObject();
 		}
@@ -68,13 +66,13 @@ public class UserProfile implements Serializable{
 	 * @param fileName the name of file that the data is saved in
 	 * @throws IOException when the file can't be saved.
 	 */
-	public static void saveFile(Serializable data, String fileName) throws IOException {
+	public void saveFile(Serializable data, String fileName) throws IOException {
 		try (ObjectOutputStream outputStream = new ObjectOutputStream(Files.newOutputStream(Paths.get(fileName)))) {
 			outputStream.writeObject(data);
 		}
 	}
 	
-	public static void saveProfile(UserProfile current) throws IOException {
+	public void saveProfile(UserProfile current) throws IOException {
 		try {
 			saveFile(current, current.name+"saveFile.Save");
 		}catch (IOException e) {
@@ -83,10 +81,11 @@ public class UserProfile implements Serializable{
 		}
 	}
 	
+	public void addProblemToHistory(String problem, String answer, String correctAnswer, int points, int timeRequierd, Operator[] modifiers) {
+		history.addLast(new Problem(problem, answer, correctAnswer, points, timeRequierd, modifiers));
+	}
+	
 	/*
-	+ getName() : String
-	+ getHistory() : LinkedList<String>
-	+ getRecords() : HashMap<String, int> 
 	+ setName(name : String) : void
 	+ setHistory(history : LinkedList<String>) : void
 	+ setRecords(record : HashMap<String, int>) : void
