@@ -10,8 +10,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import javax.swing.JOptionPane;
-
 public class UserProfile implements Serializable{
 	//used for saving the profile
 	private static final long serialVersionUID = 1L;
@@ -29,6 +27,18 @@ public class UserProfile implements Serializable{
 		this.name = name;
 		this.history = new LinkedList<Problem>();
 		this.records = new HashMap<String,Integer>();
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public LinkedList<Problem>getHistory(){
+		return history;
+	}
+	
+	public HashMap<String,Integer> getRecords(){
+		return records;
 	}
 	
 	public UserProfile loadProfile(String name, UserProfile current ) {
@@ -58,9 +68,15 @@ public class UserProfile implements Serializable{
 	 * @param fileName the name of file that the data is saved in
 	 * @throws IOException when the file can't be saved.
 	 */
-	public static void saveProfile(Serializable data, UserProfile current) throws IOException {
-		try (ObjectOutputStream outputStream = new ObjectOutputStream(Files.newOutputStream(Paths.get(current.name+"SavedProfile.Save")))) {
+	public static void saveFile(Serializable data, String fileName) throws IOException {
+		try (ObjectOutputStream outputStream = new ObjectOutputStream(Files.newOutputStream(Paths.get(fileName)))) {
 			outputStream.writeObject(data);
+		}
+	}
+	
+	public static void saveProfile(UserProfile current) throws IOException {
+		try {
+			saveFile(current, current.name+"saveFile.Save");
 		}catch (IOException e) {
 			//JOptionPane.showMessageDialog(null, "Could not save game");
 			System.out.println("Could not save game");
@@ -83,7 +99,8 @@ public class UserProfile implements Serializable{
 	 * @author Tobias
 	 *
 	 */
-	private class Problem{
+	private class Problem {
+		
 		private final String problem;
 		private final String answer;
 		private final String correctAnswer;
