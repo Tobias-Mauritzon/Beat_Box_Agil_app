@@ -1,12 +1,17 @@
 package model;
 
 
+import java.io.IOException;
+import java.util.LinkedList;
+
+import controller.MenuController;
 import controller.SampleController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import view.MenuGUI;
 import view.ProblemGUI;
 import view.ProblemGUI.Delegate;
 
@@ -26,13 +31,17 @@ public class Main extends Application{
 	private AnchorPane root;
 	private testGenerator gen;
 	private grading grade;
+	private SceneHandler sh;
 	@Override
     public void start(Stage primaryStage) {
         try {
-        	root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/buttontest.fxml"));
-			Scene scene = new Scene(root,root.getWidth(),root.getHeight());
-			scene.getStylesheets().add(getClass().getResource("/view/application.css").toExternalForm());
-			primaryStage.setScene(scene);
+        	LinkedList<Scene> sceneList = new LinkedList<Scene>();
+        	sceneList.add(createScene("/view/buttontest.fxml","/view/application.css"));
+        	sceneList.add(createScene("/view/MenuGUI.fxml","/view/TabFix.css"));
+        	sceneList.add(createScene("/view/HomeMenu.fxml","/view/application.css"));
+        	sceneList.add(createScene("/view/SettingsMenu.fxml","/view/application.css"));
+        	sceneList.add(createScene("/view/StartWindow.fxml","/view/application.css"));
+			primaryStage.setScene(sceneList.get(1));
 			primaryStage.show();
 			primaryStage.setMinWidth(600);
 	        primaryStage.setMinHeight(600);
@@ -41,7 +50,19 @@ public class Main extends Application{
 	        gen = new testGenerator();
 	        grade = new grading();
 	        
-	        ProblemGUI pg = new ProblemGUI(root);
+	        sh = new SceneHandler(sceneList, primaryStage);
+
+	        MenuGUI mg = new MenuGUI((AnchorPane) sceneList.get(1).getRoot());
+	        mg.delegate =  new MenuGUI.Delegate() 
+	        {
+
+				@Override
+				public void changeScene(int i) {
+					sh.changeScene(i);
+				}
+	        	
+	        };
+	        ProblemGUI pg = new ProblemGUI((AnchorPane) sceneList.get(0).getRoot());
 	        pg.delegate =  new ProblemGUI.Delegate() 
 	        {
 				/***
@@ -66,12 +87,33 @@ public class Main extends Application{
 					return problemString[0];
 				}
 	        };
-	        
+
 	        pg.initProblem();
 	        new SampleController(pg);
+	        new MenuController(mg);
 	        
         } catch(Exception e) {
             e.printStackTrace();
         }
     }
+	
+	/***
+	 * 
+	 * @param stringFXML
+	 * @param stringCSS
+	 * @return
+	 */
+	private Scene createScene(String stringFXML, String stringCSS) 
+	{
+    	try {
+			root = (AnchorPane)FXMLLoader.load(getClass().getResource(stringFXML));
+			Scene scene = new Scene(root,root.getWidth(),root.getHeight());
+			scene.getStylesheets().add(getClass().getResource(stringCSS).toExternalForm());
+			return scene;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return null;
+	}
 }
