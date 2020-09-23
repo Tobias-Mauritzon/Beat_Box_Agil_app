@@ -1,0 +1,61 @@
+/*  Tab fix for MenuGUI
+    Authors: Andreas Palmqvist & Seif Bourogaa
+*/
+
+.root{
+	-fx-base: #111111;
+	-fx-font-size: 12pt;
+    -fx-font-family: "Rockwell";
+}
+.tab-pane{
+    -fx-background-color: -fx-base;
+    -fx-tab-min-height: 100;
+	-fx-tab-max-height: 100;
+    -fx-tab-min-width: 50;
+	-fx-tab-max-width: 50;
+}
+
+.tab-pane .tab-header-area .headers-region .tab {
+    -fx-background-color: derive(-fx-base, 20%);
+	-fx-border-style: hidden hidden solid hidden; 
+	-fx-border-width: 2; 
+	-fx-border-color: derive(-fx-base, 20%);
+}
+
+.tab-pane .tab-header-area .headers-region .tab:hover{
+    -fx-background-color:  derive(-fx-base, 30%);
+	-fx-border-color: derive(-fx-base, 30%);
+}
+
+.tab-pane .tab-header-area .headers-region .tab:selected{
+	 -fx-border-color: #ffffff;
+}
+
+.tab-pane .tab-header-area .headers-region .tab .tab-container .tab-label{
+    -fx-rotate: 90;
+    -fx-text-fill: #ffffff;
+}
+
+.tab-pane .tab-header-area .headers-region .tab:selected .tab-container .tab-label{
+    -fx-text-fill: #ffffff;
+}
+
+.tab-pane .tab-header-area .tab-header-background{
+    -fx-background-color: derive(-fx-base, 10%);
+}
+
+.button{
+	-fx-background-color: derive(-fx-base, 20%);
+	-fx-min-height: 40;
+	-fx-max-height: 40;
+    -fx-min-width: 130;
+	-fx-max-width: 130;
+}
+
+.button:hover{
+	-fx-background-color: derive(-fx-base, 30%);
+
+}
+
+
+

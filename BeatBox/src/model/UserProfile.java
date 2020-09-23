@@ -33,7 +33,7 @@ public class UserProfile implements Serializable{
 		return name;
 	}
 	
-	public LinkedList<Problem>getHistory(){
+	public LinkedList<Problem> getHistory(){
 		return history;
 	}
 	

@@ -133,6 +133,37 @@ public class NumberGeneratorTest{
 	}
 	
 	/**
+	 * Test that array of number range can not be longer than two elements
+	 */
+	@Test
+	public void testToLongNumberRange() {
+		exceptionRule.expect(IllegalArgumentException.class);
+	    exceptionRule.expectMessage("The real interval has to be composed of two elements!");
+		NumberGenerator.generate(2, new int[]{2, 3, 6}, new Operator[]{Operator.ADD});
+	}
+	
+	/**
+	 * Test that array of number range can not be shorter than two elements
+	 */
+	@Test
+	public void testToShortNumberRange() {
+		exceptionRule.expect(IllegalArgumentException.class);
+	    exceptionRule.expectMessage("The real interval has to be composed of two elements!");
+		NumberGenerator.generate(2, new int[]{6}, new Operator[]{Operator.ADD});
+	}
+	
+	/**
+	 * Test that array of modifiers can not contain a null value
+	 */
+	@Test
+	public void testNoNullOperator() {
+		exceptionRule.expect(NullPointerException.class);
+	    exceptionRule.expectMessage("The operator array can not contain null values!");
+		NumberGenerator.generate(2, new int[]{2, 6}, new Operator[]{Operator.ADD, null});
+	}
+	
+	
+	/**
 	 * Test that unique generation happens when parameters allow at least 11 different problems 
 	 */
 	@Test
