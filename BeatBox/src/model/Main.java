@@ -50,7 +50,7 @@ public class Main extends Application{
 	        gen = new testGenerator();
 	        grade = new grading();
 	        
-	        sh = new SceneHandler(sceneList, primaryStage);
+	        sh = new SceneHandler(sceneList, primaryStage, 800, 800);
 
 	        MenuGUI mg = new MenuGUI((AnchorPane) sceneList.get(1).getRoot());
 	        mg.delegate =  new MenuGUI.Delegate() 
