@@ -11,6 +11,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import view.GUIHandler;
@@ -48,7 +49,8 @@ public class Main extends Application{
 //			primaryStage.setScene(sceneList.get(1));
         	Scene mainScene = createScene("/view/StartWindow.fxml","/view/application.css");
         	primaryStage.setScene(mainScene);
-        	
+        	primaryStage.getIcons().add(new Image("/frameIcons/app-icon2.png"));
+	        primaryStage.setTitle("Mathematics");
         	LinkedList<Node> nodeList = new LinkedList<Node>();
         	nodeList.add(createSubScene("/view/HomeMenu.fxml"));
         	nodeList.add(createSubScene("/view/buttontest.fxml"));
