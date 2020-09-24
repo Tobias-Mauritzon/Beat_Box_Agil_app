@@ -7,6 +7,11 @@ import org.junit.Test;
 
 import model.UserProfile.Problem;
 
+/**Class used to create, save and switch between user profiles 
+ * 
+ * @author Tobias Mauritzon & Joachim Antfolk
+ * @since 2020-09-24
+ */
 public class UserProfileTest {
 	private UserProfile userJoachim;
 	private UserProfile userTobias;
@@ -20,11 +25,19 @@ public class UserProfileTest {
 		userTobias = new UserProfile("Tobias");
 	}
 	
+	/**Test the creation of a UserProfile Object, since it is 
+	 * very basic no assert condition fits.
+	 * 
+	 */
 	@Test
 	public void testCreateUser() {
 		UserProfile test = new UserProfile("test");
 	}
 	
+	/**Here we test adding a problem to history and then removing it again
+	 * to check on its values.
+	 * 
+	 */
 	@Test
 	public void testAddProblemWhitModifiers() {
 		userJoachim.addProblemToHistory("2+2", "3", "4", 10, 100, new Operator[] {Operator.ADD});
@@ -33,6 +46,11 @@ public class UserProfileTest {
 		assertTrue(answer.equals("3"));
 	}
 	
+	/**Here we test adding a problem to history and then removing it again
+	 * to check on its values. But we also check if our code can handle null 
+	 * for a modifiers list.
+	 * 
+	 */
 	@Test
 	public void testAddProblemWhitOutModifiers() {
 		userJoachim.addProblemToHistory("2*2", "3", "4", 10, 100, null);
@@ -43,28 +61,54 @@ public class UserProfileTest {
 		assertTrue(modifiers[1] == null);
 	}
 	
+	/**Here we test the save function. 
+	 * 
+	 */
 	@Test
 	public void testSave() {
 		UserProfile test = new UserProfile("test");
 		test.addProblemToHistory("3+3", "6", "6", 10, 4, new Operator[] {Operator.ADD});
-		assertTrue(test.saveProfile(test));
-		
+		assertTrue(test.saveProfile());
+		test.deleteFile(test.getName());	
 	}
 	
-	/**May fail if it's the first time you run the test 
-	 * since test methods are run in a random order
+	/**Here we test the load function. 
 	 * 
 	 */
 	@Test
 	public void testLoad() {
 		UserProfile test = new UserProfile("test");
+		test.addProblemToHistory("3+3", "6", "6", 10, 4, new Operator[] {Operator.ADD});
+		assertTrue(test.saveProfile());
+		
+		test = new UserProfile("test");
 		test.addProblemToHistory("5-5", "2", "0", 0, 2, new Operator[] {Operator.SUB});
 		test = test.loadProfile(test.getName(), test);
 		Problem p = test.getHistory().getFirst();
+		
 		assertTrue(p.getUserAnswer().equals("6"));
 		assertTrue(p.getPoints() == 10);
 		assertTrue(p.getTimeRequierd() == 4);
 		
 	}
+	
+	/**Here we test if we can delete a saved UserProfile.
+	 * 
+	 */
+	@Test
+	public void testDeleteFileOk() {
+		userTobias.saveProfile();
+		String res = userTobias.deleteFile(userTobias.getName());
+		assertTrue(res.equals("Ok"));
+	}
+	/**Here we test if we can delete a UserProfile that does not exist.
+	 * 
+	 */
+	@Test
+	public void testDeleteFileFail() {
+		String res = userTobias.deleteFile(userTobias.getName());
+		assertTrue(res.equals("Fail, no such file"));
+	}
+
 
 }

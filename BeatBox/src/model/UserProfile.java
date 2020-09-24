@@ -1,5 +1,6 @@
 package model;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -10,6 +11,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+/**
+ * @author Tobias Mauritzon & Joachim Antfolk
+ * @version 1.0
+ * @since 2020-09-24
+ */
 public class UserProfile implements Serializable{
 	//used for saving the profile
 	private static final long serialVersionUID = 1L;
@@ -23,6 +29,11 @@ public class UserProfile implements Serializable{
 	//mapybe <recordType(as String), Problem>
 	private HashMap<String,Integer> records;
 
+	/**Constructor for UserProfile. A UserProfile is initialized with 
+	 * the given name, an empty List History and an empty HashMap records
+	 * 
+	 * @param name
+	 */
 	public UserProfile(String name) {
 		this.name = name;
 		this.history = new LinkedList<Problem>();
@@ -43,6 +54,14 @@ public class UserProfile implements Serializable{
 	
 	
 	
+	/**Loads a UserProfile with the specified name given to the method
+	 * if no saved UserProfile matches that name we return your current 
+	 * UserProfile.
+	 * 
+	 * @param name of the UserProfile you want to load
+	 * @param current is your current UserProfile
+	 * @return
+	 */
 	public UserProfile loadProfile(String name, UserProfile current ) {
 		try {
 			current = (UserProfile) loadFile(current.name+"SavedProfile.Save");
@@ -68,6 +87,25 @@ public class UserProfile implements Serializable{
 		}
 	}
 	
+	
+	
+	/**Saved the current UserProfile using the getName method and a 
+	 * predetermined String as the name of the file
+	 * 
+	 * @return True if file was saved, False if file failed to save
+	 * 		as of right now there is no way for this method to fail.
+	 */
+	public boolean saveProfile(){
+		try {
+			saveFile(this, this.name+"SavedProfile.Save");
+			return true;
+		}catch (IOException e) {
+			System.out.println("Could not save file");
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	/**
 	 * Saves the data to a file with the parameter filename as the files name.
 	 * 
@@ -81,40 +119,37 @@ public class UserProfile implements Serializable{
 		}
 	}
 	
-	public boolean saveProfile(UserProfile current){
-		try {
-			saveFile(current, current.name+"SavedProfile.Save");
-			return true;
-		}catch (IOException e) {
-			//JOptionPane.showMessageDialog(null, "Could not save game");
-			System.out.println("Could not save file");
-			e.printStackTrace();
-			return false;
-		}
-	}
-	
-	public void saveProfile2(){
-		try {
-			saveFile(this, this.name+"saveFile.Save");
-		}catch (IOException e) {
-			//JOptionPane.showMessageDialog(null, "Could not save game");
-			System.out.println("Could not save file");
-		}
-	}
-	
+	/**Adds a Problem last in UserProfile local LinkedList history
+	 * 
+	 * @param problem
+	 * @param userAnswer
+	 * @param correctAnswer
+	 * @param points
+	 * @param timeRequierd
+	 * @param modifiers
+	 */
 	public void addProblemToHistory(String problem, String userAnswer, String correctAnswer, int points, int timeRequierd, Operator[] modifiers) {
 		history.addLast(new Problem(problem, userAnswer, correctAnswer, points, timeRequierd, modifiers));
 	}
 	
-	/*
-	+ setName(name : String) : void
-	+ setHistory(history : LinkedList<String>) : void
-	+ setRecords(record : HashMap<String, int>) : void
-
-	*/
+	/**Method for removal of specified UserProfile save
+	 * 
+	 * @param name is the name of the UserProfile you want to remove
+	 * @return "Ok" if the file was removed "Fail, no such file" if file could not be found
+	 */
+	public String deleteFile(String name){
+		File myFile = new File(name+"SavedProfile.Save"); 
+		if(myFile.delete()) {
+			return "Ok";
+		}else {
+			return "Fail, no such file";
+		}
+	}
 	
-	/**Private problem class created to enable easy sorting 
-	 * and categorization
+	
+	
+	/**The internal class Problem was created to enable easy sorting 
+	 * and categorization of problems
 	 * 
 	 * @author Tobias
 	 *
