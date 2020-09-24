@@ -23,7 +23,7 @@ public class SceneHandler
 	Scene currentScene;
 	AnchorPane currentPane;
 	Stage stage;
-	AnchorPane pane;
+	AnchorPane rootPane;
 	Boolean subScenes = false;
 	
 	/***
@@ -42,18 +42,16 @@ public class SceneHandler
 		subScenes = false;
 	}
 	/***
-	 * 
+	 * a Constructor for sceneHandler when the scenes are subscenes of the navigation bar scene
 	 * @param nodeList the list of the subscenes the main menu has.
 	 * @param pane reference to the subscene pane
 	 * @param h the height of the window
 	 * @param w the width of the window
 	 */
-	public SceneHandler(LinkedList<Node> nodeList, AnchorPane pane, int h, int w) 
+	public SceneHandler(LinkedList<Node> nodeList, AnchorPane rootPane) 
 	{		 
 		this.nodeList = nodeList;
-		this.pane = pane;
-		sceneHeight = h;
-		sceneWidth = w;
+		this.rootPane = rootPane;
 		subScenes = true;
 	}
 	 
@@ -62,7 +60,7 @@ public class SceneHandler
 	 * Changes the the scene to another scene  if the inputed index exists in sceneList
 	 * @param i the index of the scene we want to change to in the sceneList
 	 */
-	void changeScene(int i) 
+	public void changeScene(int i) 
 	{
 		if(subScenes) 
 		{
@@ -70,12 +68,13 @@ public class SceneHandler
 			{
 				if(currentPane != null) 
 				{
+					//pane.setStyle(currentPane.getStyle());
 			        AnchorPane.setTopAnchor(currentPane, 0.0);
 			        AnchorPane.setRightAnchor(currentPane, 0.0);
 			        AnchorPane.setLeftAnchor(currentPane, 0.0);
 			        AnchorPane.setBottomAnchor(currentPane, 0.0);
-					pane.getChildren().clear();
-					pane.getChildren().add(currentPane);
+			        rootPane.getChildren().clear();
+			        rootPane.getChildren().add(currentPane);
 				}
 			}
 		}

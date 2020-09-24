@@ -4,14 +4,18 @@ package model;
 import java.io.IOException;
 import java.util.LinkedList;
 
+import controller.Controller;
 import controller.MenuController;
 import controller.SampleController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import view.GUIHandler;
 import view.MenuGUI;
+import view.NavigationMenu;
 import view.ProblemGUI;
 import view.ProblemGUI.Delegate;
 
@@ -35,13 +39,21 @@ public class Main extends Application{
 	@Override
     public void start(Stage primaryStage) {
         try {
-        	LinkedList<Scene> sceneList = new LinkedList<Scene>();
-        	sceneList.add(createScene("/view/buttontest.fxml","/view/application.css"));
-        	sceneList.add(createScene("/view/MenuGUI.fxml","/view/TabFix.css"));
-        	sceneList.add(createScene("/view/HomeMenu.fxml","/view/application.css"));
-        	sceneList.add(createScene("/view/SettingsMenu.fxml","/view/application.css"));
-        	sceneList.add(createScene("/view/StartWindow.fxml","/view/application.css"));
-			primaryStage.setScene(sceneList.get(1));
+//        	LinkedList<Scene> sceneList = new LinkedList<Scene>();
+//        	sceneList.add(createScene("/view/buttontest.fxml","/view/application.css"));
+//        	sceneList.add(createScene("/view/MenuGUI.fxml","/view/TabFix.css"));
+//        	sceneList.add(createScene("/view/HomeMenu.fxml","/view/application.css"));
+//        	sceneList.add(createScene("/view/SettingsMenu.fxml","/view/application.css"));
+//        	sceneList.add(createScene("/view/StartWindow.fxml","/view/application.css"));
+//			primaryStage.setScene(sceneList.get(1));
+        	Scene mainScene = createScene("/view/StartWindow.fxml","/view/application.css");
+        	primaryStage.setScene(mainScene);
+        	
+        	LinkedList<Node> nodeList = new LinkedList<Node>();
+        	nodeList.add(createSubScene("/view/HomeMenu.fxml"));
+        	nodeList.add(createSubScene("/view/buttontest.fxml"));
+        	nodeList.add(createSubScene("/view/SettingsMenu.fxml"));
+        	
 			primaryStage.show();
 			primaryStage.setMinWidth(600);
 	        primaryStage.setMinHeight(600);
@@ -50,19 +62,26 @@ public class Main extends Application{
 	        gen = new testGenerator();
 	        grade = new grading();
 	        
-	        sh = new SceneHandler(sceneList, primaryStage, 800, 800);
+	        //sh = new SceneHandler(sceneList, primaryStage, 800, 800);
 
-	        MenuGUI mg = new MenuGUI((AnchorPane) sceneList.get(1).getRoot());
-	        mg.delegate =  new MenuGUI.Delegate() 
-	        {
+	        NavigationMenu nm = new NavigationMenu(root, 6);
+	        sh = new SceneHandler(nodeList, nm.getBasePane());
+	        //MenuGUI mg = new MenuGUI((AnchorPane) sceneList.get(1).getRoot());
+//	        mg.delegate =  new MenuGUI.Delegate() 
+//	        {
+//
+//				@Override
+//				public void changeScene(int i) {
+//					sh.changeScene(i);
+//				}
+//	        	
+//	        };
+	        //ProblemGUI pg = new ProblemGUI((AnchorPane) sceneList.get(0).getRoot());
+	        ProblemGUI pg = new ProblemGUI((AnchorPane) nodeList.get(1));
+			LinkedList<GUIHandler> GUIHandlers = new LinkedList<GUIHandler>();
+			GUIHandlers.add(nm);
+			GUIHandlers.add(pg);
 
-				@Override
-				public void changeScene(int i) {
-					sh.changeScene(i);
-				}
-	        	
-	        };
-	        ProblemGUI pg = new ProblemGUI((AnchorPane) sceneList.get(0).getRoot());
 	        pg.delegate =  new ProblemGUI.Delegate() 
 	        {
 				/***
@@ -89,8 +108,9 @@ public class Main extends Application{
 	        };
 
 	        pg.initProblem();
-	        new SampleController(pg);
-	        new MenuController(mg);
+	        new Controller(GUIHandlers, sh);
+	        //new SampleController(pg);
+	        //new MenuController(mg);
 	        
         } catch(Exception e) {
             e.printStackTrace();
@@ -98,10 +118,10 @@ public class Main extends Application{
     }
 	
 	/***
-	 * 
+	 * Creates a new Scene with a FXML document and a CSS file path as parameters.
 	 * @param stringFXML
 	 * @param stringCSS
-	 * @return
+	 * @return returns the created scene
 	 */
 	private Scene createScene(String stringFXML, String stringCSS) 
 	{
@@ -115,5 +135,23 @@ public class Main extends Application{
 			e.printStackTrace();
 		}
     	return null;
+	}
+	
+	/***
+	 * Creates a subscene using the FXML doccuemnt specified by a filepath string
+	 * @param stringFXML the filepath for the FXML file
+	 * @return returns the subscene as a node
+	 */
+	private Node createSubScene(String stringFXML) 
+	{
+		try {
+			AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource(stringFXML));
+			return pane;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
 	}
 }

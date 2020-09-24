@@ -18,21 +18,21 @@ import javafx.util.Duration;
  * @version 1.0
  * @since 2020-09-19
  */
-public class NavigationMenu {
+public class NavigationMenu extends GUIHandler {
 	
 	private AnchorPane root;
-	private AnchorPane rootPane;
-	private AnchorPane[] leftPanes;
-	private AnchorPane[] rightPanes;
+	private AnchorPane pane;
+	public AnchorPane[] leftPanes;
+	public AnchorPane[] rightPanes;
 	private int amountOfPanes;
 	private VBox sideBox;
-	private Button menuButton;
-	private AnchorPane menuButtonPane;
+	public Button menuButton;
+	public AnchorPane menuButtonPane;
 	private Button[] leftSideButtons;
 	private Button[] rightSideButtons;
 	
-	private String enteredColor = "#505050";
-    private String exitedColor = " #303030";
+	public String enteredColor = "#505050";
+    public String exitedColor = " #303030";
     
     private TranslateTransition openNav;
     private TranslateTransition closeNav;
@@ -43,8 +43,7 @@ public class NavigationMenu {
 		this.amountOfPanes = amountOfPanes;
 		setSideButtonNames();
 		getGUIObjects();
-		initSlideEffect();
-		setActionsOnObjects();        
+		initSlideEffect();     
 	}
 	
 	private void setSideButtonNames() {
@@ -64,52 +63,30 @@ public class NavigationMenu {
 		return rightSideButtons;
 	}
 
-	public AnchorPane getRoot() {
-		return rootPane;
+	public AnchorPane getBasePane() {
+		return pane;
 	}
 	/**
-	 * Starts the translate-transition which makes the sideBox slide.
+	 * initializes the translate-transition.
 	 */
 	private void initSlideEffect() {
 		openNav=new TranslateTransition(new Duration(350), sideBox);
-        openNav.setToX(0);
+        openNav.setToX(0.0);
         closeNav=new TranslateTransition(new Duration(350), sideBox);
         closeNav.setToX(-(sideBox.getWidth()));
 	}
 	
 	/**
-	 * Sets all actions for the GUI-objects
-	 */
-	private void setActionsOnObjects() {
-		menuButton.setOnMouseClicked(e->{slidePanel();});
-        menuButtonPane.setOnMouseEntered(e->{menuButtonPane.setStyle("-fx-background-color:" + enteredColor);});
-        menuButtonPane.setOnMouseExited(e->{menuButtonPane.setStyle("-fx-background-color:" + exitedColor);});
-
-        
-        //set actions on sidepane objects
-		for(int i = 0; i<leftPanes.length; i++) {
-			AnchorPane lPane = leftPanes[i];
-			AnchorPane rPane = rightPanes[i];
-			lPane.setOnMouseEntered(e->{focusOn(lPane,rPane);});
-			lPane.setOnMouseExited(e->{focusOff(lPane,rPane);});
-			rPane.setOnMouseEntered(e->{focusOn(lPane,rPane);});
-			rPane.setOnMouseExited(e->{focusOff(lPane,rPane);});
-		}		
-	}
-	
-	
-	
-	/**
 	 * Starts the translate-transition which makes the sideBox slide.
 	 */
-	private void slidePanel() {
-		if(sideBox.getTranslateX()!=0){
-			sideBox.setPrefWidth(150);
-            openNav.play();
-      
+	public void slidePanel() {
+		if(sideBox.getTranslateX()!=0.0){
+			openNav.play();
+			sideBox.setPrefWidth(150.0);
+			
         }else{
             closeNav.play();
-            closeNav.setOnFinished(e->{sideBox.setPrefWidth(0);});
+            closeNav.setOnFinished(e->{sideBox.setPrefWidth(0.0);});
             
         }
 	}
@@ -119,7 +96,7 @@ public class NavigationMenu {
 	 * @param lPane the left pane to highlight.
 	 * @param rPane the right pane to highlight.
 	 */
-	private void focusOn(AnchorPane lPane, AnchorPane rPane) {
+	public void focusOn(AnchorPane lPane, AnchorPane rPane) {
 		lPane.setStyle("-fx-background-color:" + enteredColor);
 		rPane.setStyle("-fx-background-color:" + enteredColor);
 	}
@@ -129,7 +106,7 @@ public class NavigationMenu {
 	 * @param lPane the left pane to set to default color.
 	 * @param rPane the right pane to set to default color.
 	 */
-	private void focusOff(AnchorPane lPane, AnchorPane rPane) {
+	public void focusOff(AnchorPane lPane, AnchorPane rPane) {
 		lPane.setStyle("-fx-background-color:" + exitedColor);
 		rPane.setStyle("-fx-background-color:" + exitedColor);
 	}
@@ -137,7 +114,8 @@ public class NavigationMenu {
 	/**
 	 * Initialize the GUI-objects.
 	 */
-	private void getGUIObjects() {
+	@Override
+	protected void getGUIObjects() {
 		
 		leftPanes = new AnchorPane[amountOfPanes];
 		leftPanes[0] = (AnchorPane) root.lookup("#homeButtonPane");
@@ -165,6 +143,8 @@ public class NavigationMenu {
 		sideBox = (VBox) root.lookup("#sideBox");
 		menuButtonPane = (AnchorPane) root.lookup("#menuButtonPane");
 		menuButton = (Button) root.lookup("#menuButton");
-		rootPane = (AnchorPane) root.lookup("#rootPane");
+		pane = (AnchorPane) root.lookup("#rootPane");
 	}
+	
+	
 }
