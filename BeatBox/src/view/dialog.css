@@ -1,0 +1,62 @@
+/*  Settings for user profile gui
+    Author: Joachim Atfolk
+*/
+
+/*
+	Sets the base color, font-size, the backgroung color and font used by everything else
+*/
+.root{
+	-fx-base: #111111;
+	-fx-default-button: #111111;
+	-fx-font-size: 12pt;
+    -fx-font-family: "Rockwell";
+	-fx-font-weight: NORMAL;
+}	
+
+.dialog-pane{
+    -fx-background-color: -fx-base;
+}
+
+.dialog-pane .label .content{
+    -fx-font-weight: NORMAL;
+	-fx-fill: #ffffff;
+}
+.dialog-pane:header .header-panel{
+    -fx-background-color: -fx-base;
+}
+.dialog-pane:header .header-panel .label{
+    -fx-font-style: NORMAL;
+    -fx-fill: #ffffff;
+}
+
+/*
+
+*/
+.text-field{
+	-fx-background-radius: 0 0 0 0;
+	-fx-background-color: derive(-fx-base, 40%);
+	-fx-text-box-border: transparent ;
+	-fx-focus-color: transparent ;
+	-fx-text-fill: #ffffff;
+}
+
+/*
+
+*/
+.dialog-pane .button-bar .container .button{
+	-fx-background-radius: 0 0 0 0;
+	-fx-pref-height: 30;
+    -fx-pref-width: 100;
+	-fx-background-color: derive(-fx-base, 20%);
+	-fx-border-color: transparent;
+}
+
+
+/*
+
+*/
+.dialog-pane .button-bar .container .button:hover{
+	-fx-background-color: derive(-fx-base, 30%);
+}
+
+

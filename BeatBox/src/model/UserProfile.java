@@ -5,7 +5,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.HashMap;
@@ -138,7 +141,8 @@ public class UserProfile implements Serializable{
 	 * @return "Ok" if the file was removed "Fail, no such file" if file could not be found
 	 */
 	public String deleteFile(String name){
-		File myFile = new File(name+"SavedProfile.Save"); 
+		
+		File myFile = new File(name); 
 		if(myFile.delete()) {
 			return "Ok";
 		}else {
