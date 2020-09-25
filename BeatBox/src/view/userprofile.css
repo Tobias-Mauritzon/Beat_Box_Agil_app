@@ -53,30 +53,26 @@
 	 -fx-border-color: #ffffff;
 }
 
-.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+/*
+	Removes focus indicator on selected tab 
+*/
+.tab-pane:focused .tab-header-area .headers-region .tab:selected .focus-indicator {
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
 }
 
 /*
-
+	Sets background color in tab header
 */
 .tab-pane .tab-header-area .tab-header-background{
     -fx-background-color: derive(-fx-base, 10%);
 }
 
 /*
-
+	Sets text color in tabs
 */
 .tab-pane .tab-header-area .headers-region .tab .tab-container .tab-label{
     -fx-text-fill: #ffffff;
-}
-
-/*
-
-*/
-.tab-pane .tab-header-area .headers-region .tab:selected .tab-container .tab-label{
-	-fx-text-fill: #ffffff;
 }
 
 /*

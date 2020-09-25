@@ -1,4 +1,4 @@
-/*  Settings for user profile gui
+/*  Settings for dialog gui
     Author: Joachim Atfolk
 */
 
@@ -13,24 +13,38 @@
 	-fx-font-weight: NORMAL;
 }	
 
+/*
+	Sets bagcground color in dialog window
+*/
 .dialog-pane{
     -fx-background-color: -fx-base;
 }
 
+/*
+	Sets text weight and text color in dialog content
+*/
 .dialog-pane .label .content{
     -fx-font-weight: NORMAL;
 	-fx-fill: #ffffff;
 }
+
+/*
+	Sets background for header profile
+*/
 .dialog-pane:header .header-panel{
     -fx-background-color: -fx-base;
 }
+
+/*
+	Sets font weight and color in dialog header
+*/
 .dialog-pane:header .header-panel .label{
-    -fx-font-style: NORMAL;
+    -fx-font-weight: NORMAL;
     -fx-fill: #ffffff;
 }
 
 /*
-
+	Sets shape, color and text color for text field
 */
 .text-field{
 	-fx-background-radius: 0 0 0 0;
@@ -41,7 +55,7 @@
 }
 
 /*
-
+	Sets button shape, size, and color for dialog buttons
 */
 .dialog-pane .button-bar .container .button{
 	-fx-background-radius: 0 0 0 0;
@@ -51,9 +65,8 @@
 	-fx-border-color: transparent;
 }
 
-
 /*
-
+	Sets button color when hovering over
 */
 .dialog-pane .button-bar .container .button:hover{
 	-fx-background-color: derive(-fx-base, 30%);
