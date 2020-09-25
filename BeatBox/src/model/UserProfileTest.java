@@ -9,7 +9,7 @@ import model.UserProfile.Problem;
 
 /**Class used to create, save and switch between user profiles 
  * 
- * @author Tobias Mauritzon & Joachim Antfolk
+ * @author Tobias Mauritzon
  * @since 2020-09-24
  */
 public class UserProfileTest {

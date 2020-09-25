@@ -142,15 +142,13 @@ public class UserProfile implements Serializable{
 	 */
 	public String deleteFile(String name){
 		
-		File myFile = new File(name); 
+		File myFile = new File(name+"SavedProfile.Save"); 
 		if(myFile.delete()) {
 			return "Ok";
 		}else {
 			return "Fail, no such file";
 		}
 	}
-	
-	
 	
 	/**The internal class Problem was created to enable easy sorting 
 	 * and categorization of problems
