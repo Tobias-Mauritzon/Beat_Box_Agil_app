@@ -75,7 +75,7 @@ public class UserProfileGui extends Application{
 		   
 		   Optional<String> name = dialog.showAndWait();
 		   try {
-			   SaveManager.saveFile(profile, profile.getName() + "Profile.Save");
+			   SaveManager.saveFile(profile, "Profiles/"+profile.getName() + "Profile.Save");
 		   }catch(IOException e) {
 			   errorMessage("Could not save profile: " + profile.getName() + "!");
 		   }
@@ -88,9 +88,9 @@ public class UserProfileGui extends Application{
 		   
 		   Optional<String> name = dialog.showAndWait();
 		   try {
-			   SaveManager.saveFile(profile, profile.getName() + "Profile.Save");
+			   SaveManager.saveFile(profile, "Profiles/"+profile.getName() + "Profile.Save");
 			   
-			   profile = (UserProfile) SaveManager.loadFile(name.get() + "Profile.Save");
+			   profile = (UserProfile) SaveManager.loadFile("Profiles/"+name.get() + "Profile.Save");
 		   }catch(IOException | ClassNotFoundException e) {
 			   errorMessage("Could not switch profile!");
 		   }
@@ -100,7 +100,7 @@ public class UserProfileGui extends Application{
 	   profileDelete.setOnAction((event) -> {
 		   try {
 			   Optional<String> name = dialog.showAndWait();
-			   SaveManager.deleteFile(name.get() + "Profile.Save");
+			   SaveManager.deleteFile("Profiles/"+name.get() + "Profile.Save");
 		   }catch(IOException e) {
 			   errorMessage("Could not delete profile: " + profile.getName() + "!");
 		   }
