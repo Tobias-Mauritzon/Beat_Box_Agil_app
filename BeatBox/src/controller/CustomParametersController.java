@@ -1,7 +1,10 @@
 package controller;
 
+import model.Operator;
 import view.CustomParametersGUI;
 import model.CustomParametersModel;
+
+import java.util.List;
 
 /***
  * A simple controller for the custom parameters gui. WILL BE FUSED WITH CONTROLLER NEXT SPRINT!
@@ -15,11 +18,17 @@ public class CustomParametersController  {
     public CustomParametersController(CustomParametersGUI cpGUI, CustomParametersModel cpModel) {
         this.cpGUI = cpGUI;
         this.cpModel = cpModel;
-        this.cpModel.initModel(cpGUI.getOperators(), cpGUI.getRange(), cpGUI.getTermAmount(), cpGUI.getTimed());
-        setActions();
+        this.cpModel.updateModel(cpGUI.getOperators(), cpGUI.getRange(), cpGUI.getTermAmount(), cpGUI.getTimed());
+        setDelegates();
     }
 
-    private void setActions() {
-
+    private void setDelegates() {
+        cpGUI.setDelegate(new CustomParametersGUI.Delegate() {
+            @Override
+            public void play() {
+                cpModel.updateModel(cpGUI.getOperators(), cpGUI.getRange(), cpGUI.getTermAmount(), cpGUI.getTimed());
+                cpModel.generateProblemParameters();
+            }
+        });
     }
 }

@@ -15,14 +15,14 @@
       <CheckBox fx:id="mulCheckBox" layoutX="294.0" layoutY="130.0" mnemonicParsing="false" text="Multiplication" />
       <CheckBox fx:id="divCheckBox" layoutX="438.0" layoutY="130.0" mnemonicParsing="false" text="Division" />
       <Label layoutX="58.0" layoutY="266.0" text="Number of terms per problem:" />
-      <Slider fx:id="termSlider" layoutX="58.0" layoutY="291.0" max="10.0" min="2.0" showTickLabels="true" />
+      <Slider fx:id="termSlider" blockIncrement="1.0" layoutX="58.0" layoutY="291.0" majorTickUnit="2.0" max="10.0" min="2.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="2.0" />
       <CheckBox fx:id="timedCheckBox" layoutX="440.0" layoutY="291.0" mnemonicParsing="false" text="Timed?" />
       <Label layoutX="63.0" layoutY="419.0" text="Minimum number:" />
       <Label layoutX="224.0" layoutY="419.0" text="Maximum number" />
-      <Spinner fx:id="minSpinner" layoutX="63.0" layoutY="446.0" prefHeight="26.0" prefWidth="109.0" min="0" max="1000" initialValue="0">
+      <Spinner fx:id="minSpinner" initialValue="0" layoutX="63.0" layoutY="446.0" max="1000" min="0" prefHeight="26.0" prefWidth="109.0">
          <editable> true </editable>
       </Spinner>
-      <Spinner fx:id="maxSpinner" layoutX="224.0" layoutY="446.0" prefHeight="26.0" prefWidth="109.0" min="1" max="1000" initialValue="10">
+      <Spinner fx:id="maxSpinner" initialValue="10" layoutX="224.0" layoutY="446.0" max="1000" min="1" prefHeight="26.0" prefWidth="109.0">
          <editable> true </editable>
       </Spinner>
       <Button fx:id="playButton" layoutX="451.0" layoutY="443.0" mnemonicParsing="false" text="Play" />

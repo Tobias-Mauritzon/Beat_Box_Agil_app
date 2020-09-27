@@ -29,6 +29,8 @@ public class CustomParametersGUI {
     private Spinner maxSpinner;
     private Button playButton;
 
+    private Delegate delegate;
+
     public CustomParametersGUI() {
         try {
             root = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/CustomParametersGUI.fxml"));
@@ -37,6 +39,12 @@ public class CustomParametersGUI {
         }
 
         getGUIObjects();
+
+        playButton.setOnAction(e -> delegate.play());
+    }
+
+    public void setDelegate(Delegate delegate) {
+        this.delegate = delegate;
     }
 
     public AnchorPane getRoot() {
@@ -88,6 +96,6 @@ public class CustomParametersGUI {
     }
 
     public interface Delegate {
-        void initModel(List<Operator> operators, int[] range, int termAmount, boolean timed);
+        void play();
     }
 }
