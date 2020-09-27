@@ -26,6 +26,6 @@ public class TempMain extends Application{
         primaryStage.setHeight(600);
         primaryStage.show();
 
-        new CustomParametersController(customParametersGUI);
+        new CustomParametersController(customParametersGUI, new CustomParametersModel());
     }
 }

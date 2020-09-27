@@ -8,21 +8,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <CheckBox layoutX="58.0" layoutY="130.0" mnemonicParsing="false" text="Addition" />
-      <CheckBox layoutX="171.0" layoutY="130.0" mnemonicParsing="false" text="Subtraction" />
-      <CheckBox layoutX="294.0" layoutY="130.0" mnemonicParsing="false" text="Multiplication" />
-      <CheckBox layoutX="438.0" layoutY="130.0" mnemonicParsing="false" text="Division" />
+      <CheckBox fx:id="addCheckBox" layoutX="58.0" layoutY="130.0" mnemonicParsing="false" selected="true" text="Addition" />
+      <CheckBox fx:id="subCheckBox" layoutX="171.0" layoutY="130.0" mnemonicParsing="false" text="Subtraction" />
+      <CheckBox fx:id="mulCheckBox" layoutX="294.0" layoutY="130.0" mnemonicParsing="false" text="Multiplication" />
+      <CheckBox fx:id="divCheckBox" layoutX="438.0" layoutY="130.0" mnemonicParsing="false" text="Division" />
       <Label layoutX="58.0" layoutY="266.0" text="Number of terms per problem:" />
-      <Slider layoutX="58.0" layoutY="291.0" max="10.0" min="2.0" showTickLabels="true" />
-      <CheckBox layoutX="440.0" layoutY="291.0" mnemonicParsing="false" text="Timed?" />
+      <Slider fx:id="termSlider" layoutX="58.0" layoutY="291.0" max="10.0" min="2.0" showTickLabels="true" />
+      <CheckBox fx:id="timedCheckBox" layoutX="440.0" layoutY="291.0" mnemonicParsing="false" text="Timed?" />
       <Label layoutX="63.0" layoutY="419.0" text="Minimum number:" />
       <Label layoutX="224.0" layoutY="419.0" text="Maximum number" />
-      <Spinner layoutX="63.0" layoutY="446.0" prefHeight="26.0" prefWidth="109.0" />
-      <Spinner layoutX="224.0" layoutY="446.0" prefHeight="26.0" prefWidth="109.0" />
-      <Button layoutX="451.0" layoutY="443.0" mnemonicParsing="false" text="Play" />
+      <Spinner fx:id="minSpinner" layoutX="63.0" layoutY="446.0" prefHeight="26.0" prefWidth="109.0" min="0" max="1000" initialValue="0">
+         <editable> true </editable>
+      </Spinner>
+      <Spinner fx:id="maxSpinner" layoutX="224.0" layoutY="446.0" prefHeight="26.0" prefWidth="109.0" min="1" max="1000" initialValue="10">
+         <editable> true </editable>
+      </Spinner>
+      <Button fx:id="playButton" layoutX="451.0" layoutY="443.0" mnemonicParsing="false" text="Play" />
       <Label layoutX="162.0" layoutY="47.0" text="Custom Parameters" textAlignment="CENTER">
          <font>
             <Font size="32.0" />
