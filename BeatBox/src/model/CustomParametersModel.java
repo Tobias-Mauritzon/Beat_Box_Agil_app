@@ -32,12 +32,12 @@ public class CustomParametersModel {
         debugPrint(p);
     }
 
-    private boolean operatorsIsValid() {
+    public boolean operatorsIsValid() {
         checkInitialization();
         return (operators.size() > 0);
     }
 
-    private boolean rangeIsValid() {
+    public boolean rangeIsValid() {
         checkInitialization();
         return (range[0] <= range[1]);
     }

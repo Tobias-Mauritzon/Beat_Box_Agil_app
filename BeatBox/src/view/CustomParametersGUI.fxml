@@ -31,5 +31,7 @@
             <Font size="32.0" />
          </font>
       </Label>
+      <Label fx:id="rangeError" layoutX="60.0" layoutY="499.0" prefHeight="21.0" prefWidth="438.0" text="Error: minimum number must be smaller than maximum number!" textAlignment="CENTER" textFill="RED" visible="false" />
+      <Label fx:id="opError" layoutX="58.0" layoutY="173.0" prefHeight="21.0" prefWidth="458.0" text="Error: at least one operator must be selected!" textFill="RED" visible="false" />
    </children>
 </AnchorPane>

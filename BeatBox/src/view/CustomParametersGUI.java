@@ -1,10 +1,7 @@
 package view;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Slider;
-import javafx.scene.control.Spinner;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import model.Operator;
 
@@ -28,6 +25,8 @@ public class CustomParametersGUI {
     private Spinner minSpinner;
     private Spinner maxSpinner;
     private Button playButton;
+    private Label rangeError;
+    private Label opError;
 
     private Delegate delegate;
 
@@ -47,6 +46,14 @@ public class CustomParametersGUI {
         this.delegate = delegate;
     }
 
+    public void displayOpError() {
+        opError.setVisible(true);
+    }
+
+    public void displayRangeError() {
+        rangeError.setVisible(true);
+    }
+
     public AnchorPane getRoot() {
         return root;
     }
@@ -61,6 +68,8 @@ public class CustomParametersGUI {
         minSpinner = (Spinner) root.lookup("#minSpinner");
         maxSpinner = (Spinner) root.lookup("#maxSpinner");
         playButton = (Button) root.lookup("#playButton");
+        opError = (Label) root.lookup("#opError");
+        rangeError = (Label) root.lookup("#rangeError");
     }
 
     public List<Operator> getOperators() {

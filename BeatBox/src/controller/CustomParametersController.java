@@ -27,6 +27,12 @@ public class CustomParametersController  {
             @Override
             public void play() {
                 cpModel.updateModel(cpGUI.getOperators(), cpGUI.getRange(), cpGUI.getTermAmount(), cpGUI.getTimed());
+                if (!cpModel.operatorsIsValid()) {
+                    cpGUI.displayOpError();
+                }
+                if (!cpModel.rangeIsValid()) {
+                    cpGUI.displayRangeError();
+                }
                 cpModel.generateProblemParameters();
             }
         });
