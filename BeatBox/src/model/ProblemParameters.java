@@ -4,32 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProblemParameters {
-
-
 	private List<Operator> operators = new ArrayList<>();
 	private int[] range;
 	private int termAmount;
 	private boolean timed;
 
-
 	public ProblemParameters(List<Operator> operators, int[] range, int termAmount, boolean timed){
-
 		this.operators = operators;
 		this.range = range;
 		this.termAmount = termAmount; 
 		this.timed = timed;
 	}
 
-
 	/*
 		Get acceptable operators. 
 	*/
 	public List<Operator> getOperators(){
-
 		return (operators);
-
 	}
-
 	
 	/*
 		Get acceptable range for numbers to generate, from a -> b. 
@@ -51,6 +43,4 @@ public class ProblemParameters {
 	public boolean getTimed(){
 		return timed;
 	}
-
-	
 }
