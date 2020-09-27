@@ -1,10 +1,7 @@
 package controller;
 
-import model.Operator;
 import view.CustomParametersGUI;
 import model.CustomParametersModel;
-
-import java.util.List;
 
 /***
  * A simple controller for the custom parameters gui. WILL BE FUSED WITH CONTROLLER NEXT SPRINT!
@@ -18,7 +15,6 @@ public class CustomParametersController  {
     public CustomParametersController(CustomParametersGUI cpGUI, CustomParametersModel cpModel) {
         this.cpGUI = cpGUI;
         this.cpModel = cpModel;
-        this.cpModel.updateModel(cpGUI.getOperators(), cpGUI.getRange(), cpGUI.getTermAmount(), cpGUI.getTimed());
         setDelegates();
     }
 
