@@ -13,6 +13,7 @@ import java.util.List;
 * @author Andreas Palmqvist 
 */
 public class ProblemParameters {
+<<<<<<< HEAD
 
 
 	/**
@@ -23,11 +24,14 @@ public class ProblemParameters {
 	* @see termAmount  variable holding the number of terms in a problem.
 	* @see timed       variable holding whether or not the session should be timed. 
 	*/
+=======
+>>>>>>> 50be9502b210a1dff416fed193fe3baa2f6b06f2
 	private List<Operator> operators = new ArrayList<>();
 	private int[] range;
 	private int termAmount;
 	private boolean timed;
 
+<<<<<<< HEAD
 
 	/**
 	* Constructor for the ProblemParameter class. 
@@ -37,14 +41,16 @@ public class ProblemParameters {
 	* @param termAmount How many terms each problem should have. 
 	* @param timed      If the session should be timed or not. 
 	*/
+=======
+>>>>>>> 50be9502b210a1dff416fed193fe3baa2f6b06f2
 	public ProblemParameters(List<Operator> operators, int[] range, int termAmount, boolean timed){
-
 		this.operators = operators;
 		this.range = range;
 		this.termAmount = termAmount; 
 		this.timed = timed;
 	}
 
+<<<<<<< HEAD
 
 	/**
 	* Get which operators that should be used. 
@@ -52,17 +58,25 @@ public class ProblemParameters {
 	* @return List of operators.
 	*
 	* @see Operator enum/class.  
+=======
+	/*
+		Get acceptable operators. 
+>>>>>>> 50be9502b210a1dff416fed193fe3baa2f6b06f2
 	*/
 	public List<Operator> getOperators(){
-
 		return (operators);
-
 	}
+<<<<<<< HEAD
 
 	/**
 	* Get acceptable range for numbers to generate, from a -> b.
 	*
 	* @return Array of minimum and maximum number to generate terms from. 
+=======
+	
+	/*
+		Get acceptable range for numbers to generate, from a -> b. 
+>>>>>>> 50be9502b210a1dff416fed193fe3baa2f6b06f2
 	*/
 	public int[] getRange(){
 		return range;
