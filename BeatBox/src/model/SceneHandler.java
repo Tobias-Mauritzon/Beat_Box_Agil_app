@@ -16,15 +16,15 @@ import javafx.stage.Stage;
  */
 public class SceneHandler 
 {
-	LinkedList<Node> nodeList;
-	LinkedList<Scene> sceneList;
-	int sceneHeight;
-	int sceneWidth;
-	Scene currentScene;
-	AnchorPane currentPane;
-	Stage stage;
-	AnchorPane rootPane;
-	Boolean subScenes = false;
+	private LinkedList<Node> nodeList;
+	private LinkedList<Scene> sceneList;
+	private int sceneHeight;
+	private int sceneWidth;
+	private Scene currentScene;
+	private AnchorPane currentPane;
+	private Stage stage;
+	private AnchorPane rootPane;
+	private Boolean subScenes = false;
 	
 	/***
 	 * a Constructor for sceneHandler when the scenes are sepearate windows
