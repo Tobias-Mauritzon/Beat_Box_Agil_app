@@ -1,6 +1,10 @@
 package model;
 
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,7 +14,7 @@ import model.UserProfile.Problem;
 /**Class used to create, save and switch between user profiles 
  * 
  * @author Tobias Mauritzon
- * @since 2020-09-24
+ * @since 2020-09-28
  */
 public class UserProfileTest {
 	private UserProfile userJoachim;
@@ -68,8 +72,10 @@ public class UserProfileTest {
 	public void testSave() {
 		UserProfile test = new UserProfile("test");
 		test.addProblemToHistory("3+3", "6", "6", 10, 4, new Operator[] {Operator.ADD});
-		assertTrue(test.saveProfile());
-		test.deleteFile(test.getName());	
+		assertDoesNotThrow(() -> {
+			SaveManager.saveFile(test, "test.Save");
+			SaveManager.deleteFile("test.Save");
+		});	
 	}
 	
 	/**Here we test the load function. 
@@ -79,16 +85,22 @@ public class UserProfileTest {
 	public void testLoad() {
 		UserProfile test = new UserProfile("test");
 		test.addProblemToHistory("3+3", "6", "6", 10, 4, new Operator[] {Operator.ADD});
-		assertTrue(test.saveProfile());
+		try {
+			SaveManager.saveFile(test, "test.Save");
+		} catch (IOException e) {}
 		
 		test = new UserProfile("test");
 		test.addProblemToHistory("5-5", "2", "0", 0, 2, new Operator[] {Operator.SUB});
-		test = test.loadProfile(test.getName(), test);
+		
+		try {
+			test = (UserProfile) SaveManager.loadFile("test.Save");
+		} catch (ClassNotFoundException | IOException e) {} 
+		
 		Problem p = test.getHistory().getFirst();
 		
 		assertTrue(p.getUserAnswer().equals("6"));
 		assertTrue(p.getPoints() == 10);
-		assertTrue(p.getTimeRequierd() == 4);
+		assertTrue(p.getTimeRequired() == 4);
 		
 	}
 	
@@ -97,17 +109,19 @@ public class UserProfileTest {
 	 */
 	@Test
 	public void testDeleteFileOk() {
-		userTobias.saveProfile();
-		String res = userTobias.deleteFile(userTobias.getName());
-		assertTrue(res.equals("Ok"));
+		assertDoesNotThrow(() -> {
+			SaveManager.saveFile(userTobias, userTobias.getName() + ".Save");
+			SaveManager.deleteFile(userTobias.getName() + ".Save");
+		});
 	}
 	/**Here we test if we can delete a UserProfile that does not exist.
 	 * 
 	 */
 	@Test
 	public void testDeleteFileFail() {
-		String res = userTobias.deleteFile(userTobias.getName());
-		assertTrue(res.equals("Fail, no such file"));
+		assertThrows(IOException.class, () ->
+		SaveManager.deleteFile(userTobias.getName() + ".Save")
+	);
 	}
 
 
