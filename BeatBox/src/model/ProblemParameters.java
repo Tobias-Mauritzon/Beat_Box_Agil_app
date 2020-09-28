@@ -18,8 +18,8 @@ public class ProblemParameters {
 	*
 	* @see operators   List holding all the seeked Operators.
 	* @see range 	   Array holding the range of numbers to create.
-	* @see termAmount  variable holding the number of terms in a problem.
-	* @see timed       variable holding whether or not the session should be timed. 
+	* @see termAmount  Variable holding the number of terms in a problem.
+	* @see timed       Variable holding whether or not the session should be timed. 
 	*/
 
 	private List<Operator> operators = new ArrayList<>();

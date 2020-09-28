@@ -12,12 +12,27 @@ public class CustomParametersController  {
     CustomParametersGUI cpGUI;
     CustomParametersModel cpModel;
 
+
+    /**
+    * Constructor for CustomParameter controller. 
+    *
+    * @param cpgui GUI for custom parameter. 
+    * @param cpmodel model for CustomParameter
+    *
+    * @see CustomParameterGUI
+    * @see CustomParameterModel
+    * @see CustomParameters
+    *
+    */
     public CustomParametersController(CustomParametersGUI cpGUI, CustomParametersModel cpModel) {
         this.cpGUI = cpGUI;
         this.cpModel = cpModel;
         setDelegates();
     }
 
+    /**
+    * Method to define the delegate for the GUI.
+    */ 
     private void setDelegates() {
         cpGUI.setDelegate(new CustomParametersGUI.Delegate() {
             @Override
