@@ -16,10 +16,29 @@ import javafx.util.Duration;
  * This class initializes and manipulates GUI objects from the StartWindow.fxml file.
  * @author Philip
  * @version 1.0
- * @since 2020-09-19
+ * @since 2020-09-28
  */
 public class NavigationMenu extends GUIHandler {
 	
+	/***
+	 * All GUI Objects used to build up the NavigationMenu GUI.
+	 * 
+	 * @see root Root of the main scene
+	 * @see pane Root of the subscenes
+	 * @see leftPanes Pane containin the symbol for the buttons (always visible)
+	 * @see rightPanes Pane containing the text for the buttons (can be closed)
+	 * @see amountOfPanes Int containg the amount of sub scenes
+	 * @see sideBox the Sidebox which is the base for the navigation menu.
+	 * @see menuButton The Button for closing and Opening the sideMenu
+	 * @see menuButtonPane The Pane Containg all the menu Buttons
+	 * @see leftSideButtons Array Containing all the Button icons
+	 * @see rightSideButtons Array Contianing all the Button text
+	 * @see enteredColor String ,Color when SideMenu is opened
+	 * @see exitedColor String ,Color when SideMenu is closed
+	 * @see openNav TranslateTransition for when the SideMenu is Opened
+	 * @see closeNav TranslateTransition for when the SideMenu is Closed
+	 * @see sideButtonNames Array containing strings with name of the Buttons
+	 */
 	private AnchorPane root;
 	private AnchorPane pane;
 	public AnchorPane[] leftPanes;
@@ -38,6 +57,13 @@ public class NavigationMenu extends GUIHandler {
     private TranslateTransition closeNav;
 	private String[] sideButtonNames;
     
+	
+	/***
+	 * Constructor for NavigationMenu
+	 * 
+	 * @param root the main scenes root
+	 * @param amountOfPanes the amount of subscenes NavigationMenu has.
+	 */
 	public NavigationMenu(AnchorPane root, int amountOfPanes) {
 		this.root = root;
 		this.amountOfPanes = amountOfPanes;
@@ -46,6 +72,9 @@ public class NavigationMenu extends GUIHandler {
 		initSlideEffect();     
 	}
 	
+	/***
+	 * Sets the name of the sideButton in an array called sideButtonsNames
+	 */
 	private void setSideButtonNames() {
 		sideButtonNames = new String[6];
 		sideButtonNames[0] = ("#homeButton");
@@ -56,17 +85,31 @@ public class NavigationMenu extends GUIHandler {
 		sideButtonNames[5] = ("#settingsButton");
 	}
 	
+	/***
+	 *  gets the LeftSideButtons array
+	 * @return returns the LeftSideButtons array
+	 */
 	public Button[] getLeftSideButtons() {
 		return leftSideButtons;
 	}
+	
+	/***
+	 *  gets the RightSideButtons array
+	 * @return returns the RightSideButtons array
+	 */
 	public Button[] getRightSideButtons() {
 		return rightSideButtons;
 	}
-
+	
+	/***
+	 *  gets the root pane of the sub scene
+	 * @return returns the AnchorPane which is the root for the sub scene
+	 */
 	public AnchorPane getBasePane() {
 		return pane;
 	}
-	/**
+	
+	/***
 	 * initializes the translate-transition.
 	 */
 	private void initSlideEffect() {
@@ -76,7 +119,7 @@ public class NavigationMenu extends GUIHandler {
         closeNav.setToX(-(sideBox.getWidth()));
 	}
 	
-	/**
+	/***
 	 * Starts the translate-transition which makes the sideBox slide.
 	 */
 	public void slidePanel() {
@@ -91,7 +134,7 @@ public class NavigationMenu extends GUIHandler {
         }
 	}
 	
-	/**
+	/***
 	 * Sets the color on the left- and right panes to a lighter color
 	 * @param lPane the left pane to highlight.
 	 * @param rPane the right pane to highlight.
@@ -101,7 +144,7 @@ public class NavigationMenu extends GUIHandler {
 		rPane.setStyle("-fx-background-color:" + enteredColor);
 	}
 	
-	/**
+	/***
 	 * Sets the color on the left- and right panes to default color
 	 * @param lPane the left pane to set to default color.
 	 * @param rPane the right pane to set to default color.
@@ -111,8 +154,9 @@ public class NavigationMenu extends GUIHandler {
 		rPane.setStyle("-fx-background-color:" + exitedColor);
 	}
 	
-	/**
-	 * Initialize the GUI-objects.
+	/***
+	 * Initialize the GUI elements
+	 * Sets up the Panes and the Buttons with the corresponding text.
 	 */
 	@Override
 	protected void getGUIObjects() {

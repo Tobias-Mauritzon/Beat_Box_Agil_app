@@ -19,10 +19,14 @@ import view.ProblemGUI;
  * @author Greppe
  * @author Philip
  * @version 1.0
- * @since 2020-09-17
+ * @since 2020-09-28
  */
 public class Controller {
 
+	/***
+	 * @see GUIHandlers List if all the GUI classes
+	 * @see sceneHandler Scenehandler instance to change scenes.
+	 */
 	private LinkedList<GUIHandler> GUIHandlers;
 
 	private SceneHandler sceneHandler;
@@ -38,7 +42,10 @@ public class Controller {
 		setActionsNavigationMenu();
 		setActionsProblemGUI();
 	}
-
+	
+	/***
+	 * Sets up the actions for the navigation Menu
+	 */
 	private void setActionsNavigationMenu() {
 		NavigationMenu navigationMenu = (NavigationMenu) GUIHandlers.get(0);
 
@@ -95,6 +102,9 @@ public class Controller {
 		
 	}
 
+	/***
+	 * Sets up the actions for the Problem GUI to connect it the rest of the program.
+	 */
 	private void setActionsProblemGUI() {
 
 		ProblemGUI problemGUI = (ProblemGUI) GUIHandlers.get(1);
