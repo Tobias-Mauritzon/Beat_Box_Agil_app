@@ -42,6 +42,10 @@ public class CustomParametersGUI {
         playButton.setOnAction(e -> delegate.play());
     }
 
+    /*
+    * 
+    *
+    */ 
     public void setDelegate(Delegate delegate) {
         this.delegate = delegate;
     }
@@ -58,6 +62,10 @@ public class CustomParametersGUI {
         return root;
     }
 
+
+    /**
+    * Get all GUI objects: Buttons, checkboxes, spinners etc. on the scene. 
+    */
     private void getGUIObjects() {
         addCheckBox = (CheckBox) root.lookup("#addCheckBox");
         subCheckBox = (CheckBox) root.lookup("#subCheckBox");
@@ -72,6 +80,12 @@ public class CustomParametersGUI {
         rangeError = (Label) root.lookup("#rangeError");
     }
 
+    /**
+    * Get all chosen Operators.
+    * 
+    * @see Operator class.
+    * @see ProblemParameters class.
+    */
     public List<Operator> getOperators() {
         List<Operator> operators = new ArrayList<>();
         if (addCheckBox.isSelected()) {
@@ -89,6 +103,11 @@ public class CustomParametersGUI {
         return operators;
     }
 
+    /**
+    * Method to get the range of numbers to generate terms from.
+    * 
+    * @see ProblemParameters class. 
+    */
     public int[] getRange() {
         int range[] = new int[2];
         range[0] = (Integer) minSpinner.getValue();
@@ -96,10 +115,20 @@ public class CustomParametersGUI {
         return range;
     }
 
+    /**
+    * Method to get the number of terms for a problem.
+    * 
+    * @see ProblemParameters class. 
+    */
     public int getTermAmount() {
         return (int) termSlider.getValue();
     }
 
+    /**
+    * Method to see if a session is timed or not. 
+    * 
+    * @see ProblemParameters class. 
+    */
     public boolean getTimed() {
         return timedCheckBox.isSelected();
     }
