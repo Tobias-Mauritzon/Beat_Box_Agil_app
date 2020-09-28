@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <CheckBox fx:id="addCheckBox" layoutX="58.0" layoutY="130.0" mnemonicParsing="false" selected="true" text="Addition" />
+      <CheckBox fx:id="subCheckBox" layoutX="171.0" layoutY="130.0" mnemonicParsing="false" text="Subtraction" />
+      <CheckBox fx:id="mulCheckBox" layoutX="294.0" layoutY="130.0" mnemonicParsing="false" text="Multiplication" />
+      <CheckBox fx:id="divCheckBox" layoutX="438.0" layoutY="130.0" mnemonicParsing="false" text="Division" />
+      <Label layoutX="58.0" layoutY="266.0" text="Number of terms per problem:" />
+      <Slider fx:id="termSlider" blockIncrement="1.0" layoutX="58.0" layoutY="291.0" majorTickUnit="2.0" max="10.0" min="2.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="2.0" />
+      <CheckBox fx:id="timedCheckBox" layoutX="440.0" layoutY="291.0" mnemonicParsing="false" text="Timed?" />
+      <Label layoutX="63.0" layoutY="419.0" text="Minimum number:" />
+      <Label layoutX="224.0" layoutY="419.0" text="Maximum number" />
+      <Spinner fx:id="minSpinner" initialValue="0" layoutX="63.0" layoutY="446.0" max="1000" min="0" prefHeight="26.0" prefWidth="109.0">
+         <editable> true </editable>
+      </Spinner>
+      <Spinner fx:id="maxSpinner" initialValue="10" layoutX="224.0" layoutY="446.0" max="1000" min="1" prefHeight="26.0" prefWidth="109.0">
+         <editable> true </editable>
+      </Spinner>
+      <Button fx:id="playButton" layoutX="451.0" layoutY="443.0" mnemonicParsing="false" text="Play" />
+      <Label layoutX="162.0" layoutY="47.0" text="Custom Parameters" textAlignment="CENTER">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <Label fx:id="rangeError" layoutX="60.0" layoutY="499.0" prefHeight="21.0" prefWidth="438.0" text="Error: minimum number must be smaller than maximum number!" textAlignment="CENTER" textFill="RED" visible="false" />
+      <Label fx:id="opError" layoutX="58.0" layoutY="173.0" prefHeight="21.0" prefWidth="458.0" text="Error: at least one operator must be selected!" textFill="RED" visible="false" />
+   </children>
+</AnchorPane>
