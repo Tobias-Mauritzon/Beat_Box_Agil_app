@@ -1,4 +1,5 @@
 package model;
+import java.util.Arrays;
 /**
  * Class used to generate random expression depending on different modifiers
  * @author Tobias Mauritzon, Joachim Antfolk
@@ -67,6 +68,14 @@ public class NumberGenerator implements ProblemGenerator{
 	public static String[] generate(int terms, int[] numberRange, Operator[] modifiers) {
 		Random rand = new Random();
 		
+		if(Arrays.asList(modifiers).contains(null)) {
+			throw new NullPointerException("The operator array can not contain null values!");
+		}
+
+		if(numberRange.length != 2) {
+			throw new IllegalArgumentException("The real interval has to be composed of two elements!");
+		}
+		
 		if(terms < 2) {
 			throw new IllegalArgumentException("Number of terms must be grater than 2!");
 		}
@@ -74,7 +83,7 @@ public class NumberGenerator implements ProblemGenerator{
 		if(numberRange[0] >= numberRange[1]) {
 			throw new IllegalArgumentException("The real interval has to in the format [smaller, bigger]!");
 		}
-
+		
 		return gen(terms, numberRange, modifiers, rand);
 	}
 	
