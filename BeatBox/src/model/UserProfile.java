@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 // HEJ
 /**
  * Stores the users information. 
@@ -65,8 +68,38 @@ public class UserProfile implements Serializable{
 	 */
 	public void addProblemToHistory(String problem, String userAnswer, String correctAnswer, int points, int timeRequierd, Operator[] modifiers) {
 		history.addLast(new Problem(problem, userAnswer, correctAnswer, points, timeRequierd, modifiers));
+		
 	}
 	
+	public class History{
+		private final String problem;
+		private final String userAnswer;
+		
+		public History(String problem, String userAnswer) {
+			this.problem = problem;
+			this.userAnswer = userAnswer;
+		}
+		
+
+		public String getProblem() {
+			return problem;
+		}
+		
+		public String getUserAnswer() {
+			return userAnswer;
+		}
+		
+	}
+	
+	
+	public LinkedList<History> getDataForHistory(){
+		LinkedList<History> history = new LinkedList<History>();
+		for(Problem p : this.history) {
+			history.add(new History(p.getProblem(), p.getUserAnswer()));
+		}
+		
+		return history;
+	}
 	
 	
 	/**The internal class Problem was created to enable easy sorting 
