@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
-
+// HEJ
 /**
  * Stores the users information. 
  * Such as name, previous problems, and records for different categories
