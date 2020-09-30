@@ -8,6 +8,7 @@ import controller.MenuController;
 import controller.NavigationMenuController;
 import controller.ProglemGUIController;
 import controller.SampleController;
+import controller.UserController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -20,6 +21,7 @@ import view.MenuGUI;
 import view.NavigationMenu;
 import view.ProblemGUI;
 import view.ProblemGUI.Delegate;
+import view.UserProfileGUI;
 
 /***
  * the Main class of the application, creates most classes and communicates
@@ -59,7 +61,9 @@ public class Main extends Application {
 			nodeList.add(createSubScene("/FXML/HomeMenu.fxml"));
 			nodeList.add(createSubScene("/FXML/ProblemGUI.fxml"));
 			nodeList.add(createSubScene("/FXML/SettingsMenu.fxml"));
+			nodeList.add(createSubScene("/FXML/UserProfile.fxml"));
 
+			
 			primaryStage.show();
 			primaryStage.setMinWidth(600);
 			primaryStage.setMinHeight(600);
@@ -107,6 +111,11 @@ public class Main extends Application {
 				}
 			};
 
+			UserProfile up = new UserProfile("TestProfile");
+			UserProfileGUI upGUI = new UserProfileGUI();
+			new UserController(upGUI,up);
+			
+			
 			pg.initProblem();
 			new NavigationMenuController(nm, sh);
 			new ProglemGUIController(pg);

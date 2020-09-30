@@ -43,7 +43,7 @@
                         </TextField>
                      </children>
                   </HBox>
-                  <Button fx:id="button" alignment="CENTER" mnemonicParsing="false" prefHeight="28.0" prefWidth="184.0" style="-fx-background-radius: 100; -fx-background-color: White;" text="Answer" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Button fx:id="answerButton" alignment="CENTER" mnemonicParsing="false" prefHeight="28.0" prefWidth="184.0" style="-fx-background-radius: 100; -fx-background-color: White;" text="Answer" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <font>
                         <Font name="Rockwell" size="30.0" />
                      </font>

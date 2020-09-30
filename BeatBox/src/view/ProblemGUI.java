@@ -52,13 +52,13 @@ public class ProblemGUI implements GUIHandler {
 	}
 
 	// Input objects
-	public TextField answerText;
-	public Button button;
+	private TextField answerText;
+	private Button answerButton;
 
 	// Output objects
-	public VBox responseBox;
-	public Text problemText;
-	public Text responseText;
+	private VBox responseBox;
+	private Text problemText;
+	private Text responseText;
 	private String text;
 	private AnchorPane root;
 
@@ -77,10 +77,6 @@ public class ProblemGUI implements GUIHandler {
 		this.root = root;
 		inputObjects = new LinkedList<Node>();
 		getGUIObjects();
-	}
-
-	public LinkedList<Node> getInputObjects() {
-		return inputObjects;
 	}
 
 	/***
@@ -155,15 +151,23 @@ public class ProblemGUI implements GUIHandler {
 	public void getGUIObjects() {
 		// input objects
 		answerText = (TextField) root.lookup("#answerText");
-		button = (Button) root.lookup("#button");
+		answerButton = (Button) root.lookup("#answerButton");
 		inputObjects.add(answerText);
-		inputObjects.add(button);
-		
+		inputObjects.add(answerButton);
+
 		// output objects
 		responseBox = (VBox) root.lookup("#responseBox");
 		problemText = (Text) root.lookup("#problemText");
 		responseText = (Text) root.lookup("#responseText");
-		
+
 	}
-	
+
+	public TextField getAnswerText() {
+		return answerText;
+	}
+
+	public Button getAnswerButton() {
+		return answerButton;
+	}
+
 }

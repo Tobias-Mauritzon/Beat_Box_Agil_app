@@ -42,22 +42,21 @@ public class NavigationMenu implements GUIHandler {
 	 */
 	private AnchorPane root;
 	private AnchorPane pane;
-	public AnchorPane[] leftPanes;
-	public AnchorPane[] rightPanes;
+	private AnchorPane[] leftPanes;
+	private AnchorPane[] rightPanes;
 	private int amountOfPanes;
 	private VBox sideBox;
-	public Button menuButton;
-	public AnchorPane menuButtonPane;
+	private Button menuButton;
+	private AnchorPane menuButtonPane;
 	private Button[] leftSideButtons;
 	private Button[] rightSideButtons;
 	
-	public String enteredColor = "#505050";
-    public String exitedColor = " #303030";
+	private String enteredColor = "#505050";
+	private String exitedColor = " #303030";
     
     private TranslateTransition openNav;
     private TranslateTransition closeNav;
 	private String[] sideButtonNames;
-    
 	
 	/***
 	 * Constructor for NavigationMenu
@@ -86,29 +85,6 @@ public class NavigationMenu implements GUIHandler {
 		sideButtonNames[5] = ("#settingsButton");
 	}
 	
-	/***
-	 *  gets the LeftSideButtons array
-	 * @return returns the LeftSideButtons array
-	 */
-	public Button[] getLeftSideButtons() {
-		return leftSideButtons;
-	}
-	
-	/***
-	 *  gets the RightSideButtons array
-	 * @return returns the RightSideButtons array
-	 */
-	public Button[] getRightSideButtons() {
-		return rightSideButtons;
-	}
-	
-	/***
-	 *  gets the root pane of the sub scene
-	 * @return returns the AnchorPane which is the root for the sub scene
-	 */
-	public AnchorPane getBasePane() {
-		return pane;
-	}
 	
 	/***
 	 * initializes the translate-transition.
@@ -190,5 +166,74 @@ public class NavigationMenu implements GUIHandler {
 		menuButton = (Button) root.lookup("#menuButton");
 		pane = (AnchorPane) root.lookup("#rootPane");
 	}
+
+	
+	/***
+	 *  gets the menu button 
+	 * @return returns menubutton 
+	 */
+	public Button getMenuButton() {
+		return menuButton;
+	}
+	/***
+	 *  gets the menu button anchorpane
+	 * @return returns menubutton anchorpane
+	 */
+	public AnchorPane getMenuButtonPane() {
+		return menuButtonPane;
+	}
+	/***
+	 *  gets the array of leftPanes
+	 * @return returns leftPanes array
+	 */
+	public AnchorPane[] getLeftPanes() {
+		return leftPanes;
+	}
+	/***
+	 *  gets the array of rightPanes
+	 * @return returns rightPanes array
+	 */
+	public AnchorPane[] getRightPanes() {
+		return rightPanes;
+	}
+	/***
+	 *  gets the enter color
+	 * @return returns color string
+	 */
+	public String getEnteredColor() {
+		return enteredColor;
+	}
+	/***
+	 *  gets the exited color
+	 * @return returns color string
+	 */
+	public String getExitedColor() {
+		return exitedColor;
+	}
+	
+	/***
+	 *  gets the LeftSideButtons array
+	 * @return returns the LeftSideButtons array
+	 */
+	public Button[] getLeftSideButtons() {
+		return leftSideButtons;
+	}
+	
+	/***
+	 *  gets the RightSideButtons array
+	 * @return returns the RightSideButtons array
+	 */
+	public Button[] getRightSideButtons() {
+		return rightSideButtons;
+	}
+	
+	/***
+	 *  gets the root pane of the sub scene
+	 * @return returns the AnchorPane which is the root for the sub scene
+	 */
+	public AnchorPane getBasePane() {
+		return pane;
+	}
+	
 
 }

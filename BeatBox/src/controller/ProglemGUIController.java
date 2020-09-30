@@ -16,10 +16,10 @@ public class ProglemGUIController implements ControllerInterface{
 	 */
 	@Override
 	public void setActions() {
-		pg.button.setOnAction(e -> {
+		pg.getAnswerButton().setOnAction(e -> {
 			pg.answer();
 		});
-		pg.answerText.setOnAction(e -> {
+		pg.getAnswerText().setOnAction(e -> {
 			pg.answer();
 		});
 	}
