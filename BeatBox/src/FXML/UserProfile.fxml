@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<TabPane id="userProfile" fx:id="userProfile" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" rotateGraphic="true" side="LEFT" stylesheets="@UserProfile.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane id="userProfile" fx:id="userProfile" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" rotateGraphic="true" side="LEFT" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <tabs>
     <Tab id="profileTab" fx:id="profileTab" text="">
 		<graphic>
@@ -30,7 +31,7 @@
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@profile-icon.png" />
+                              <Image url="@../frameIcons/profile-icon.png" />
                            </image>
                         </ImageView>
                         <Label id="profileName" fx:id="profileName" prefWidth="150.0" text="User Name">
@@ -106,4 +107,8 @@
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
+   <stylesheets>
+      <URL value="@UserProfile.css" />
+      <URL value="@../CSS/userprofile.css" />
+   </stylesheets>
 </TabPane>

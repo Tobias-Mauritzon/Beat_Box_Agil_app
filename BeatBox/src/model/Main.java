@@ -49,14 +49,14 @@ public class Main extends Application {
 //        	sceneList.add(createScene("/view/SettingsMenu.fxml","/view/application.css"));
 //        	sceneList.add(createScene("/view/StartWindow.fxml","/view/application.css"));
 //			primaryStage.setScene(sceneList.get(1));
-			Scene mainScene = createScene("/view/StartWindow.fxml", "/view/application.css");
+			Scene mainScene = createScene("/FXML/StartWindow.fxml", "/CSS/application.css");
 			primaryStage.setScene(mainScene);
 			primaryStage.getIcons().add(new Image("/frameIcons/app-icon2.png"));
 			primaryStage.setTitle("Mathematics");
 			LinkedList<Node> nodeList = new LinkedList<Node>();
-			nodeList.add(createSubScene("/view/HomeMenu.fxml"));
-			nodeList.add(createSubScene("/view/buttontest.fxml"));
-			nodeList.add(createSubScene("/view/SettingsMenu.fxml"));
+			nodeList.add(createSubScene("/FXML/HomeMenu.fxml"));
+			nodeList.add(createSubScene("/FXML/buttontest.fxml"));
+			nodeList.add(createSubScene("/FXML/SettingsMenu.fxml"));
 
 			primaryStage.show();
 			primaryStage.setMinWidth(600);
