@@ -14,7 +14,7 @@ import java.util.List;
  * @author Andreas Palmqvist
  * @author Seif Bourogaa
  */
-public class CustomParametersGUI {
+public class CustomParametersGUI implements GUIHandler{
     private AnchorPane root;
     private CheckBox addCheckBox;
     private CheckBox subCheckBox;
@@ -66,7 +66,8 @@ public class CustomParametersGUI {
     /**
     * Get all GUI objects: Buttons, checkboxes, spinners etc. on the scene. 
     */
-    private void getGUIObjects() {
+    @Override
+    public void getGUIObjects() {
         addCheckBox = (CheckBox) root.lookup("#addCheckBox");
         subCheckBox = (CheckBox) root.lookup("#subCheckBox");
         mulCheckBox = (CheckBox) root.lookup("#mulCheckBox");

@@ -3,8 +3,10 @@ package model;
 import java.io.IOException;
 import java.util.LinkedList;
 
-import controller.Controller;
+import controller.ControllerInterface;
 import controller.MenuController;
+import controller.NavigationMenuController;
+import controller.ProglemGUIController;
 import controller.SampleController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -49,13 +51,13 @@ public class Main extends Application {
 //        	sceneList.add(createScene("/view/SettingsMenu.fxml","/view/application.css"));
 //        	sceneList.add(createScene("/view/StartWindow.fxml","/view/application.css"));
 //			primaryStage.setScene(sceneList.get(1));
-			Scene mainScene = createScene("/FXML/StartWindow.fxml", "/CSS/application.css");
+			Scene mainScene = createScene("/FXML/NavigationMenu.fxml", "/CSS/application.css");
 			primaryStage.setScene(mainScene);
 			primaryStage.getIcons().add(new Image("/frameIcons/app-icon2.png"));
 			primaryStage.setTitle("Mathematics");
 			LinkedList<Node> nodeList = new LinkedList<Node>();
 			nodeList.add(createSubScene("/FXML/HomeMenu.fxml"));
-			nodeList.add(createSubScene("/FXML/buttontest.fxml"));
+			nodeList.add(createSubScene("/FXML/ProblemGUI.fxml"));
 			nodeList.add(createSubScene("/FXML/SettingsMenu.fxml"));
 
 			primaryStage.show();
@@ -82,10 +84,6 @@ public class Main extends Application {
 //	        };
 			// ProblemGUI pg = new ProblemGUI((AnchorPane) sceneList.get(0).getRoot());
 			ProblemGUI pg = new ProblemGUI((AnchorPane) nodeList.get(1));
-			LinkedList<GUIHandler> GUIHandlers = new LinkedList<GUIHandler>();
-			GUIHandlers.add(nm);
-			GUIHandlers.add(pg);
-
 			pg.delegate = new ProblemGUI.Delegate() {
 				/***
 				 * calls the grade method from the instance of grading
@@ -110,7 +108,8 @@ public class Main extends Application {
 			};
 
 			pg.initProblem();
-			new Controller(GUIHandlers, sh);
+			new NavigationMenuController(nm, sh);
+			new ProglemGUIController(pg);
 			// new SampleController(pg);
 			// new MenuController(mg);
 

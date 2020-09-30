@@ -32,7 +32,7 @@ import model.testGenerator;
  * @version 1.0
  * @since 2020-09-17
  */
-public class ProblemGUI extends GUIHandler {
+public class ProblemGUI implements GUIHandler {
 
 	/***
 	 * A Delegate used to communicate with the main class without and direct
@@ -152,7 +152,7 @@ public class ProblemGUI extends GUIHandler {
 	 * Initializes the GUI elements so the users can interact with them.
 	 */
 	@Override
-	protected void getGUIObjects() {
+	public void getGUIObjects() {
 		// input objects
 		answerText = (TextField) root.lookup("#answerText");
 		button = (Button) root.lookup("#button");

@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -18,7 +19,7 @@ import javafx.util.Duration;
  * @version 1.0
  * @since 2020-09-28
  */
-public class NavigationMenu extends GUIHandler {
+public class NavigationMenu implements GUIHandler {
 	
 	/***
 	 * All GUI Objects used to build up the NavigationMenu GUI.
@@ -159,7 +160,7 @@ public class NavigationMenu extends GUIHandler {
 	 * Sets up the Panes and the Buttons with the corresponding text.
 	 */
 	@Override
-	protected void getGUIObjects() {
+	public void getGUIObjects() {
 		
 		leftPanes = new AnchorPane[amountOfPanes];
 		leftPanes[0] = (AnchorPane) root.lookup("#homeButtonPane");
@@ -189,6 +190,5 @@ public class NavigationMenu extends GUIHandler {
 		menuButton = (Button) root.lookup("#menuButton");
 		pane = (AnchorPane) root.lookup("#rootPane");
 	}
-	
-	
+
 }
