@@ -86,18 +86,24 @@ public class UserProfileGui2 extends Application{
 	   
 	   
 	   TableColumn problemCol = new TableColumn("Problem");
-       TableColumn solutionCol = new TableColumn("Solution");
-       history.getColumns().setAll(problemCol, solutionCol);
+       TableColumn userSolutionCol = new TableColumn("User Solution");
+       TableColumn rightSolutionCol = new TableColumn("Correct Solution");
+       history.getColumns().setAll(problemCol, userSolutionCol, rightSolutionCol);
        
        
 	   problemCol.setCellValueFactory(
 			    new PropertyValueFactory<History,String>("problem")
 			);
-	   solutionCol.setCellValueFactory(
+	   userSolutionCol.setCellValueFactory(
+			    new PropertyValueFactory<History,String>("userAnswer")
+	   );
+	   
+	   rightSolutionCol.setCellValueFactory(
 			    new PropertyValueFactory<History,String>("userAnswer")
 	   );
 	   
 	   history.setItems(FXCollections.observableArrayList(profile.getDataForHistory()));
+	   
 	   profileNew.setOnAction((event) -> {
 		   try {
 			   Optional<String> name = getInput("New Profile");
@@ -107,6 +113,7 @@ public class UserProfileGui2 extends Application{
 				   
 				   profile = new UserProfile(name.get());
 				   userName.setText(name.get());
+				   history.setItems(FXCollections.observableArrayList(profile.getDataForHistory()));
 			   }
 		   }catch(IOException e) {
 			   errorMessage("Could not save profile: " + profile.getName() + "!");
@@ -122,6 +129,7 @@ public class UserProfileGui2 extends Application{
 				   profile = (UserProfile) SaveManager.loadFile(name.get() + "Profile.Save");
 				   
 				   userName.setText(profile.getName());
+				   history.setItems(FXCollections.observableArrayList(profile.getDataForHistory()));
 			   }
 		   }catch(IOException | ClassNotFoundException e) {
 			   errorMessage("Could not switch profile!");
@@ -147,7 +155,7 @@ public class UserProfileGui2 extends Application{
     */
    private void errorMessage(String error) {
 	   Alert alert = new Alert(AlertType.ERROR);
-	   alert.getDialogPane().getStylesheets().add(getClass().getResource("/view/dialog.css").toExternalForm());
+	   alert.getDialogPane().getStylesheets().add(getClass().getResource("/CSS/dialog.css").toExternalForm());
 	   alert.setTitle("Error Detected");
 	   alert.setHeaderText("");
 	   alert.setContentText(error);
@@ -161,7 +169,7 @@ public class UserProfileGui2 extends Application{
     */
    private Optional<String> getInput(String title) {
 	   	TextInputDialog dialog = new TextInputDialog("");
-		dialog.getDialogPane().getStylesheets().add(getClass().getResource("/view/dialog.css").toExternalForm());
+		dialog.getDialogPane().getStylesheets().add(getClass().getResource("/CSS/dialog.css").toExternalForm());
 		dialog.setTitle(title);
 		dialog.setGraphic(null);
 		dialog.setHeaderText("");

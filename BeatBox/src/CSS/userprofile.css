@@ -92,11 +92,14 @@
 	-fx-background-color: derive(-fx-base, 30%);
 }
 
+
+
 /*
 	Sets background in table
 */
 .table-view{
 	-fx-background-color: -fx-base;
+	-fx-insets: 1;
 }
 
 /*
@@ -127,6 +130,40 @@
 .table-row-cell:even {
     -fx-background-color: derive(-fx-base, 40%);
 }
+
+
+
+.table-view .filler {
+	-fx-background-color: derive(-fx-base, 20%);
+}
+
+.table-cell {
+    -fx-text-fill: #ffffff;
+}
+
+.table-row-cell {
+	-fx-table-cell-border-color: -fx-base;
+	-fx-border-width: 0 1 1 1;
+	-fx-border-color: -fx-base;
+}
+
+.table-row-cell:selected {
+	-fx-background-color:  -fx-base;
+	-fx-table-cell-border-color: #ffffff;
+	-fx-border-width: 1 1 1 1;
+	-fx-border-color: #ffffff;
+}
+
+.scroll-bar{
+	-fx-background-color: derive(-fx-base, 30%);
+}
+
+.scroll-bar .thumb{
+	-fx-background-radius: 0 0 0 0;
+	-fx-border-color: transparent;
+}
+
+
 
 /*
 	Sets text alignment and color in label

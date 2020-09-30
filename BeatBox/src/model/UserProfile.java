@@ -76,10 +76,12 @@ public class UserProfile implements Serializable{
 	public class History{
 		private final String problem;
 		private final String userAnswer;
+		private final String correctAnswer;
 		
-		public History(String problem, String userAnswer) {
+		public History(String problem, String userAnswer, String correctAnswer) {
 			this.problem = problem;
 			this.userAnswer = userAnswer;
+			this.correctAnswer  = correctAnswer;
 		}
 		
 
@@ -91,13 +93,17 @@ public class UserProfile implements Serializable{
 			return userAnswer;
 		}
 		
+		public String getCorrectAnswer() {
+			return correctAnswer;
+		}
+		
 	}
 	
 	
 	public LinkedList<History> getDataForHistory(){
 		LinkedList<History> history = new LinkedList<History>();
 		for(Problem p : this.history) {
-			history.add(new History(p.getProblem(), p.getUserAnswer()));
+			history.add(new History(p.getProblem(), p.getUserAnswer(), p.getCorrectAnswer()));
 		}
 		
 		return history;
