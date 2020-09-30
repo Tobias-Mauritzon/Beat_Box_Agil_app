@@ -71,6 +71,8 @@ public class UserProfile implements Serializable{
 		
 	}
 	
+	// New Stuff Begin
+	
 	public class History{
 		private final String problem;
 		private final String userAnswer;
@@ -100,6 +102,8 @@ public class UserProfile implements Serializable{
 		
 		return history;
 	}
+	
+	// New Stuff End
 	
 	
 	/**The internal class Problem was created to enable easy sorting 
