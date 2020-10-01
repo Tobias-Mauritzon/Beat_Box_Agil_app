@@ -3,6 +3,7 @@ package model;
 import java.io.IOException;
 import java.util.LinkedList;
 
+import controller.CustomParametersController;
 import controller.NavigationMenuController;
 import controller.ProglemGUIController;
 import controller.UserController;
@@ -12,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import view.CustomParametersGUI;
 import view.NavigationMenu;
 import view.ProblemGUI;
 import view.UserProfileGUI;
@@ -34,8 +36,10 @@ public class Main extends Application {
 	private NavigationMenu navigationMenu;
 	private ProblemGUI problemGUI;
 	private UserProfileGUI userProfileGUI;
+	private CustomParametersGUI customParametersGUI;
 
 	// Model
+	private CustomParametersModel customParameters;
 	private UserProfile userProfile;
 	private SceneHandler sceneHandler;
 	private testGenerator gen;
@@ -59,12 +63,13 @@ public class Main extends Application {
 		primaryStage.setHeight(500);
 		primaryStage.show();
 
-		// Create a list of scenes that is used for
+		// Create a list of scenes that is used in the sceneHandler 
 		sceneList = new LinkedList<Scene>();
 		sceneList.add(createScene("/FXML/HomeMenu.fxml")); // [0]
 		sceneList.add(createScene("/FXML/ProblemGUI.fxml")); // [1]
 		sceneList.add(createScene("/FXML/SettingsMenu.fxml")); // [2]
 		sceneList.add(createScene("/FXML/UserProfile.fxml")); // [3]
+		sceneList.add(createScene("/FXML/CustomParametersGUI.fxml")); // [4]
 
 		// Instantiate all objects for the application
 		createViewObjects();
@@ -81,12 +86,14 @@ public class Main extends Application {
 		navigationMenu = new NavigationMenu((AnchorPane) mainScene.getRoot());
 		problemGUI = new ProblemGUI((AnchorPane) sceneList.get(1).getRoot());
 		userProfileGUI = new UserProfileGUI((AnchorPane) sceneList.get(3).getRoot());
+		customParametersGUI = new CustomParametersGUI((AnchorPane) sceneList.get(4).getRoot());
 	}
 
 	/**
 	 * Creates instances of model classes.
 	 */
 	private void createModelObjects() {
+		customParameters = new CustomParametersModel();
 		sceneHandler = new SceneHandler(sceneList, navigationMenu.getBasePane());
 		gen = new testGenerator();
 		grade = new grading();
@@ -100,6 +107,7 @@ public class Main extends Application {
 		new UserController(userProfileGUI, userProfile);
 		new NavigationMenuController(navigationMenu, sceneHandler);
 		new ProglemGUIController(problemGUI,grade,gen);
+		new CustomParametersController(customParametersGUI,customParameters);
 	}
 
 	/**

@@ -28,27 +28,12 @@ public class CustomParametersGUI implements GUIHandler{
     private Label rangeError;
     private Label opError;
 
-    private Delegate delegate;
-
-    public CustomParametersGUI() {
-        try {
-            root = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/CustomParametersGUI.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+    public CustomParametersGUI(AnchorPane root) {
+    	this.root = root;
         getGUIObjects();
-
-        playButton.setOnAction(e -> delegate.play());
     }
 
-    /*
-    * 
-    *
-    */ 
-    public void setDelegate(Delegate delegate) {
-        this.delegate = delegate;
-    }
+  
 
     public void displayOpError() {
         opError.setVisible(true);
@@ -134,7 +119,7 @@ public class CustomParametersGUI implements GUIHandler{
         return timedCheckBox.isSelected();
     }
 
-    public interface Delegate {
-        void play();
+    public Button getPlayButton() {
+    	return playButton;
     }
 }
