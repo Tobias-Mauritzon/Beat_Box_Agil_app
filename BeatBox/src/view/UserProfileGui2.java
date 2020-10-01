@@ -20,10 +20,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import model.UserProfile;
-import model.UserProfile.History;
+import model.UserProfile2;
+import model.History;
 import model.Operator;
 import model.SaveManager;
 
@@ -35,7 +37,7 @@ public class UserProfileGui2 extends Application{
     private Button profileSwitch;
     private Button profileDelete;
     private TabPane root;
-    private UserProfile profile;
+    private UserProfile2 profile;
     private TableView<History> history;
     
     public static void main(String[] args) {
@@ -78,45 +80,55 @@ public class UserProfileGui2 extends Application{
     * Creates a user profile, updates user name text and programs buttons 
     */
    private void setup() {
-	   profile = new UserProfile("Generic");
+	   profile = new UserProfile2("Generic");
 	   userName.setText(profile.getName());
 	   profile.addProblemToHistory("1 + 2", "3", "3", 4, 3, new Operator[] {Operator.ADD});
 	   profile.addProblemToHistory("1 + 3", "4", "4", 4, 3, new Operator[] {Operator.ADD});
 	   profile.addProblemToHistory("1 + 4", "5", "5", 4, 3, new Operator[] {Operator.ADD});
-	   
-	   
+	   profile.addProblemToHistory("1 - 4", "10", "-3", 4, 3, new Operator[] {Operator.ADD});
+	   profile.addProblemToHistory("5 * 10", "0", "50", 4, 3, new Operator[] {Operator.ADD});
+	  
+	   TableColumn dateCol = new TableColumn("Date");
 	   TableColumn problemCol = new TableColumn("Problem");
        TableColumn userSolutionCol = new TableColumn("User Solution");
        TableColumn rightSolutionCol = new TableColumn("Correct Solution");
-       history.getColumns().setAll(problemCol, userSolutionCol, rightSolutionCol);
+       history.getColumns().setAll(dateCol, problemCol, userSolutionCol, rightSolutionCol);
        
        
+       dateCol.setCellValueFactory(
+			    new PropertyValueFactory<History,String>("date")
+			);
 	   problemCol.setCellValueFactory(
 			    new PropertyValueFactory<History,String>("problem")
 			);
 	   userSolutionCol.setCellValueFactory(
-			    new PropertyValueFactory<History,String>("userAnswer")
+			    new PropertyValueFactory<History,Double>("userAnswer")
 	   );
 	   
 	   rightSolutionCol.setCellValueFactory(
-			    new PropertyValueFactory<History,String>("userAnswer")
+			    new PropertyValueFactory<History,Double>("correctAnswer")
 	   );
 	   
-	   history.setItems(FXCollections.observableArrayList(profile.getDataForHistory()));
+	   history.setItems(profile.getHistory());
 	   
 	   profileNew.setOnAction((event) -> {
 		   try {
 			   Optional<String> name = getInput("New Profile");
 			   
 			   if(name.isPresent() && name.get().length() > 0){
+				   profile.toArrayList();
+				   
 				   SaveManager.saveFile(profile, profile.getName() + "Profile.Save");
 				   
-				   profile = new UserProfile(name.get());
+				   profile = new UserProfile2(name.get());
 				   userName.setText(name.get());
-				   history.setItems(FXCollections.observableArrayList(profile.getDataForHistory()));
+				   history.setItems(FXCollections.observableArrayList(profile.getHistory()));
+				   profile.addProblemToHistory("5 * 10", "0", "50", 4, 3, new Operator[] {Operator.ADD});
+				   
 			   }
 		   }catch(IOException e) {
-			   errorMessage("Could not save profile: " + profile.getName() + "!");
+			   e.printStackTrace();
+			   //errorMessage("Could not save profile: " + profile.getName() + "!");
 		   }
 	   });
 	   
@@ -125,14 +137,19 @@ public class UserProfileGui2 extends Application{
 			   Optional<String> name = getInput("Switch Profile");
 			   
 			   if(name.isPresent() && name.get().length() > 0){
+				   profile.toArrayList();
 				   SaveManager.saveFile(profile, profile.getName() + "Profile.Save");
-				   profile = (UserProfile) SaveManager.loadFile(name.get() + "Profile.Save");
+				   
+				   profile = (UserProfile2) SaveManager.loadFile(name.get() + "Profile.Save");
+				   profile.toObservableList();
 				   
 				   userName.setText(profile.getName());
-				   history.setItems(FXCollections.observableArrayList(profile.getDataForHistory()));
+				   history.setItems(FXCollections.observableArrayList(profile.getHistory()));
+				   profile.addProblemToHistory("5 * 10", "0", "50", 4, 3, new Operator[] {Operator.ADD});
 			   }
 		   }catch(IOException | ClassNotFoundException e) {
-			   errorMessage("Could not switch profile!");
+			   e.printStackTrace();
+			   //errorMessage("Could not switch profile!");
 		   }
 	   });
 
@@ -144,7 +161,8 @@ public class UserProfileGui2 extends Application{
 				   SaveManager.deleteFile(name.get() + "Profile.Save");
 			   }
 		   }catch(IOException e) {
-			   errorMessage("Could not delete profile: " + profile.getName() + "!");
+			   e.printStackTrace();
+			   //errorMessage("Could not delete profile: " + profile.getName() + "!");
 		   }
 	   });
    }
