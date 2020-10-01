@@ -14,45 +14,46 @@ import view.UserProfileGUI;
 
 public class UserController implements ControllerInterface {
 
-	private UserProfileGUI up;
-	private UserProfile user;
+	private UserProfileGUI userProfileGUI;
+	private UserProfile userProfile;
 
 	
-	public UserController(UserProfileGUI up, UserProfile user) {
-		this.up = up;
-		this.user = user;
+	public UserController(UserProfileGUI userProfileGUI, UserProfile userProfile) {
+		this.userProfileGUI = userProfileGUI;
+		this.userProfile = userProfile;
+		setActions();
 	}
 	
 	@Override
 	public void setActions() {
-		
-		   up.setUserNameLabel(user.getName());
-		   
-		   up.getPSwitchButton().setOnAction((event) -> {
+//		System.out.println("test: " + userProfileGUI.getInput("Switch Profile"));
+		System.out.println("test2: " + userProfileGUI.getPSwitchButton());
+	
+		userProfileGUI.getPSwitchButton().setOnAction((event) -> {
 			   try {
-				   Optional<String> name = up.getInput("Switch Profile");
+				   Optional<String> name = userProfileGUI.getInput("Switch Profile");
 				   
 				   if(name.isPresent() && name.get().length() > 0){
-					   SaveManager.saveFile(user, user.getName() + "Profile.Save");
-					   user = (UserProfile) SaveManager.loadFile(name.get() + "Profile.Save");
+					   SaveManager.saveFile(userProfile, userProfile.getName() + "Profile.Save");
+					   userProfile = (UserProfile) SaveManager.loadFile(name.get() + "Profile.Save");
 					   
-					   up.setUserNameLabel(user.getName());
+					   userProfileGUI.setUserNameLabel(userProfile.getName());
 				   }
 			   }catch(IOException | ClassNotFoundException e) {
-				   up.errorMessage("Could not switch profile!");
+				   userProfileGUI.errorMessage("Could not switch profile!");
 			   }
 		   });
 		   
 		   
-		   up.getPDeleteButton().setOnAction((event) -> {
+		userProfileGUI.getPDeleteButton().setOnAction((event) -> {
 			   try {
-				   Optional<String> name = up.getInput("Delete Profile");
+				   Optional<String> name = userProfileGUI.getInput("Delete Profile");
 				   
 				   if(name.isPresent() && name.get().length() > 0){
 					   SaveManager.deleteFile(name.get() + "Profile.Save");
 				   }
 			   }catch(IOException e) {
-				   up.errorMessage("Could not delete profile: " + user.getName() + "!");
+				   userProfileGUI.errorMessage("Could not delete profile: " + userProfile.getName() + "!");
 			   }
 		   });
 		

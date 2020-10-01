@@ -10,13 +10,13 @@ import view.NavigationMenu;
 public class NavigationMenuController implements ControllerInterface{
 	
 	
-	private NavigationMenu nm;
-	private SceneHandler sh;
+	private NavigationMenu navigationMenu;
+	private SceneHandler sceneHandler;
 	
 	
-	public NavigationMenuController(NavigationMenu nm, SceneHandler sh) {
-		this.nm = nm;
-		this.sh = sh;
+	public NavigationMenuController(NavigationMenu navigationMenu, SceneHandler sceneHandler) {
+		this.navigationMenu = navigationMenu;
+		this.sceneHandler = sceneHandler;
 		setActions();
 	}
 
@@ -25,61 +25,68 @@ public class NavigationMenuController implements ControllerInterface{
 	 */
 	@Override
 	public void setActions() {
-		
-		AnchorPane menuButtonPane = nm.getMenuButtonPane();
-		Button menuButton = nm.getMenuButton();
-
-		menuButton.setOnMouseClicked(e -> {
-			nm.slidePanel();
-		});
-		menuButtonPane.setOnMouseEntered(e -> {
-			menuButtonPane.setStyle("-fx-background-color:" + nm.getEnteredColor());
-		});
-		menuButtonPane.setOnMouseExited(e -> {
-			menuButtonPane.setStyle("-fx-background-color:" + nm.getExitedColor());
-		});
-
+		visualEffectsActions();
+		navigationActions();		
+	}
+	
+	/***
+	 * Sets up visual effect actions for the navigation Menu
+	 */
+	private void visualEffectsActions() {
 		// set actions on sidepane objects
-		for (int i = 0; i < nm.getLeftPanes().length; i++) {
-			AnchorPane lPane = nm.getLeftPanes()[i];
-			AnchorPane rPane = nm.getRightPanes()[i];
+		for (int i = 0; i < navigationMenu.getLeftPanes().size(); i++) {
+			AnchorPane lPane = navigationMenu.getLeftPanes().get(i);
+			AnchorPane rPane = navigationMenu.getRightPanes().get(i);
 			lPane.setOnMouseEntered(e -> {
-				nm.focusOn(lPane, rPane);
+				navigationMenu.focusOn(lPane, rPane);
 			});
 			lPane.setOnMouseExited(e -> {
-				nm.focusOff(lPane, rPane);
+				navigationMenu.focusOff(lPane, rPane);
 			});
-			rPane.setOnMouseEntered(e -> {
-				nm.focusOn(lPane, rPane);
-			});
-			rPane.setOnMouseExited(e -> {
-				nm.focusOff(lPane, rPane);
-			});
+			if(rPane!=null) {
+				rPane.setOnMouseEntered(e -> {
+					navigationMenu.focusOn(lPane, rPane);
+				});
+				
+				rPane.setOnMouseExited(e -> {
+					navigationMenu.focusOff(lPane, rPane);
+				});
+			}
 		}
-		
-		// Action events 
-        EventHandler<ActionEvent> toHome = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sh.changeScene(0);}};
-        EventHandler<ActionEvent> toAddition = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sh.changeScene(1);}};
-        EventHandler<ActionEvent> toSettings = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sh.changeScene(2);}};
-        EventHandler<ActionEvent> toUser = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sh.changeScene(3);}};	//test
-
-        nm.getLeftSideButtons()[0].setOnAction(toHome);
-        nm.getRightSideButtons()[0].setOnAction(toHome);
-        
-        nm.getLeftSideButtons()[1].setOnAction(toAddition);
-        nm.getRightSideButtons()[1].setOnAction(toAddition);
-        
-        nm.getLeftSideButtons()[2].setOnAction(toUser);
-        nm.getRightSideButtons()[2].setOnAction(toUser);
-        
-        nm.getLeftSideButtons()[3].setOnAction(toAddition);
-        nm.getRightSideButtons()[3].setOnAction(toAddition);
-        
-        nm.getLeftSideButtons()[4].setOnAction(toAddition);
-        nm.getRightSideButtons()[4].setOnAction(toAddition);
-        
-        nm.getLeftSideButtons()[5].setOnAction(toSettings);
-        nm.getRightSideButtons()[5].setOnAction(toSettings);
-		
 	}
+	
+	/***
+	 * Sets up navigation actions for the navigation Menu
+	 */
+	private void navigationActions() {
+		
+		// Create action events that is used for each button on the navigationMenu
+		EventHandler<ActionEvent> slidePanel = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {navigationMenu.slidePanel();}};
+		EventHandler<ActionEvent> toHome = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sceneHandler.changeScene(0);}};
+		EventHandler<ActionEvent> toAddition = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sceneHandler.changeScene(1);}};
+		EventHandler<ActionEvent> toSettings = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sceneHandler.changeScene(2);}};
+		EventHandler<ActionEvent> toUser = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sceneHandler.changeScene(3);}};	//test
+		
+		// Set actions on all buttons on the navigationMenu
+		navigationMenu.getLeftSideButtons().get(0).setOnAction(slidePanel);
+		
+		navigationMenu.getLeftSideButtons().get(1).setOnAction(toHome);
+		navigationMenu.getRightSideButtons().get(1).setOnAction(toHome);
+		
+		navigationMenu.getLeftSideButtons().get(2).setOnAction(toAddition);
+		navigationMenu.getRightSideButtons().get(2).setOnAction(toAddition);
+		
+		navigationMenu.getLeftSideButtons().get(3).setOnAction(toUser);
+		navigationMenu.getRightSideButtons().get(3).setOnAction(toUser);
+		
+		navigationMenu.getLeftSideButtons().get(4).setOnAction(toAddition);
+		navigationMenu.getRightSideButtons().get(4).setOnAction(toAddition);
+		
+		navigationMenu.getLeftSideButtons().get(5).setOnAction(toAddition);
+		navigationMenu.getRightSideButtons().get(5).setOnAction(toAddition);
+		
+		navigationMenu.getLeftSideButtons().get(6).setOnAction(toSettings);
+		navigationMenu.getRightSideButtons().get(6).setOnAction(toSettings);
+	}
+	
 }

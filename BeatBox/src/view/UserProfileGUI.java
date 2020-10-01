@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import model.UserProfile;
@@ -30,10 +31,13 @@ public class UserProfileGUI implements GUIHandler{
 	private Button profileNew;
     private Button profileSwitch;
     private Button profileDelete;
-    private TabPane root;
+    private AnchorPane root;
 
     
-    
+    public UserProfileGUI(AnchorPane root) {
+    	this.root = root;
+    	getGUIObjects();
+    }
    
   
    

@@ -26,6 +26,7 @@ public class SceneHandler {
 	private Stage stage;
 	private AnchorPane rootPane;
 	private Boolean subScenes = false;
+	private AnchorPane mainPane;
 
 	/***
 	 * a Constructor for sceneHandler when the scenes are sepearate windows
@@ -35,28 +36,26 @@ public class SceneHandler {
 	 * @param h         the height of the window
 	 * @param w         the width of the window
 	 */
-	public SceneHandler(LinkedList<Scene> scenelist, Stage stage, int h, int w) {
+	public SceneHandler(LinkedList<Scene> scenelist, AnchorPane mainPane) {
 		this.sceneList = scenelist;
-		this.stage = stage;
-		sceneHeight = h;
-		sceneWidth = w;
+		this.mainPane = mainPane;
 		subScenes = false;
 	}
 
-	/***
-	 * a Constructor for sceneHandler when the scenes are subscenes of the
-	 * navigation bar scene
-	 * 
-	 * @param nodeList the list of the subscenes the main menu has.
-	 * @param pane     reference to the subscene pane
-	 * @param h        the height of the window
-	 * @param w        the width of the window
-	 */
-	public SceneHandler(LinkedList<Node> nodeList, AnchorPane rootPane) {
-		this.nodeList = nodeList;
-		this.rootPane = rootPane;
-		subScenes = true;
-	}
+//	/***
+//	 * a Constructor for sceneHandler when the scenes are subscenes of the
+//	 * navigation bar scene
+//	 * 
+//	 * @param nodeList the list of the subscenes the main menu has.
+//	 * @param pane     reference to the subscene pane
+//	 * @param h        the height of the window
+//	 * @param w        the width of the window
+//	 */
+//	public SceneHandler(LinkedList<Node> nodeList, AnchorPane rootPane) {
+//		this.nodeList = nodeList;
+//		this.rootPane = rootPane;
+//		subScenes = true;
+//	}
 
 	/***
 	 * Changes the the scene to another scene if the inputed index exists in
@@ -74,6 +73,7 @@ public class SceneHandler {
 					AnchorPane.setRightAnchor(currentPane, 0.0);
 					AnchorPane.setLeftAnchor(currentPane, 0.0);
 					AnchorPane.setBottomAnchor(currentPane, 0.0);
+					
 					rootPane.getChildren().clear();
 					rootPane.getChildren().add(currentPane);
 				}
@@ -82,12 +82,16 @@ public class SceneHandler {
 			currentScene = sceneList.get(i);
 			if (currentScene != null) {
 				// stage.hide();
-				stage.setScene(currentScene);
-				stage.show();
-				stage.setMinWidth(600);
-				stage.setMinHeight(600);
-				stage.setWidth(sceneWidth);
-				stage.setHeight(sceneHeight);
+				AnchorPane currentPane = (AnchorPane) currentScene.getRoot();
+				
+				AnchorPane.setTopAnchor(currentPane, 0.0);
+				AnchorPane.setRightAnchor(currentPane, 0.0);
+				AnchorPane.setLeftAnchor(currentPane, 0.0);
+				AnchorPane.setBottomAnchor(currentPane, 0.0);
+				
+				mainPane.getChildren().clear();
+				mainPane.getChildren().add(currentPane);
+				mainPane.applyCss();
 			}
 		}
 

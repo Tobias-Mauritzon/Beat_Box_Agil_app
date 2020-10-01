@@ -13,7 +13,7 @@ import javafx.scene.CacheHint;
 import javafx.scene.Node;
 import javafx.util.Duration;
 
-class ShakeTransition extends Transition {
+public class ShakeTransition extends Transition {
 
     private final Interpolator WEB_EASE = Interpolator.SPLINE(0.25, 0.1, 0.25, 1);
     private final Timeline timeline;

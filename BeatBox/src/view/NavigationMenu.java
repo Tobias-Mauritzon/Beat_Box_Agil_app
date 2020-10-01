@@ -42,21 +42,20 @@ public class NavigationMenu implements GUIHandler {
 	 */
 	private AnchorPane root;
 	private AnchorPane pane;
-	private AnchorPane[] leftPanes;
-	private AnchorPane[] rightPanes;
-	private int amountOfPanes;
+	private LinkedList<AnchorPane> leftPanes;
+	private LinkedList<AnchorPane> rightPanes;
 	private VBox sideBox;
-	private Button menuButton;
-	private AnchorPane menuButtonPane;
-	private Button[] leftSideButtons;
-	private Button[] rightSideButtons;
+//	private Button menuButton;
+//	private AnchorPane menuButtonPane;
+	private LinkedList<Button> leftSideButtons;
+	private LinkedList<Button> rightSideButtons;
 	
 	private String enteredColor = "#505050";
 	private String exitedColor = " #303030";
     
     private TranslateTransition openNav;
     private TranslateTransition closeNav;
-	private String[] sideButtonNames;
+//	private String[] sideButtonNames;
 	
 	/***
 	 * Constructor for NavigationMenu
@@ -64,26 +63,28 @@ public class NavigationMenu implements GUIHandler {
 	 * @param root the main scenes root
 	 * @param amountOfPanes the amount of subscenes NavigationMenu has.
 	 */
-	public NavigationMenu(AnchorPane root, int amountOfPanes) {
+	public NavigationMenu(AnchorPane root) {
 		this.root = root;
-		this.amountOfPanes = amountOfPanes;
-		setSideButtonNames();
+//		setSideButtonNames();
 		getGUIObjects();
-		initSlideEffect();     
+		initSlideEffect();   
+		sideBox.setTranslateX(-sideBox.getWidth()); //start with closed sidebox
+		sideBox.setPrefWidth(0.0);
 	}
 	
 	/***
 	 * Sets the name of the sideButton in an array called sideButtonsNames
 	 */
-	private void setSideButtonNames() {
-		sideButtonNames = new String[6];
-		sideButtonNames[0] = ("#homeButton");
-		sideButtonNames[1] = ("#plusButton");
-		sideButtonNames[2] = ("#minusButton");
-		sideButtonNames[3] = ("#multButton");
-		sideButtonNames[4] = ("#divButton");
-		sideButtonNames[5] = ("#settingsButton");
-	}
+//	private void setSideButtonNames() {
+//		sideButtonNames = new String[7];
+//		sideButtonNames[0] = ("#slideButton");
+//		sideButtonNames[1] = ("#homeButton");
+//		sideButtonNames[2] = ("#plusButton");
+//		sideButtonNames[3] = ("#minusButton");
+//		sideButtonNames[4] = ("#multButton");
+//		sideButtonNames[5] = ("#divButton");
+//		sideButtonNames[6] = ("#settingsButton");
+//	}
 	
 	
 	/***
@@ -118,7 +119,10 @@ public class NavigationMenu implements GUIHandler {
 	 */
 	public void focusOn(AnchorPane lPane, AnchorPane rPane) {
 		lPane.setStyle("-fx-background-color:" + enteredColor);
-		rPane.setStyle("-fx-background-color:" + enteredColor);
+		if(rPane!=null) {
+			rPane.setStyle("-fx-background-color:" + enteredColor);
+		}
+		
 	}
 	
 	/***
@@ -128,7 +132,10 @@ public class NavigationMenu implements GUIHandler {
 	 */
 	public void focusOff(AnchorPane lPane, AnchorPane rPane) {
 		lPane.setStyle("-fx-background-color:" + exitedColor);
-		rPane.setStyle("-fx-background-color:" + exitedColor);
+		if(rPane!=null) {
+			rPane.setStyle("-fx-background-color:" + exitedColor);
+		}
+		
 	}
 	
 	/***
@@ -138,32 +145,48 @@ public class NavigationMenu implements GUIHandler {
 	@Override
 	public void getGUIObjects() {
 		
-		leftPanes = new AnchorPane[amountOfPanes];
-		leftPanes[0] = (AnchorPane) root.lookup("#homeButtonPane");
-		leftPanes[1] = (AnchorPane) root.lookup("#plusButtonPane");
-		leftPanes[2] = (AnchorPane) root.lookup("#minusButtonPane");
-		leftPanes[3] = (AnchorPane) root.lookup("#multButtonPane");
-		leftPanes[4] = (AnchorPane) root.lookup("#divButtonPane");
-		leftPanes[5] = (AnchorPane) root.lookup("#settingsButtonPane");
+		leftPanes = new LinkedList<AnchorPane>();
+		leftPanes.add((AnchorPane) root.lookup("#slideButtonPane"));
+		leftPanes.add((AnchorPane) root.lookup("#homeButtonPane"));
+		leftPanes.add((AnchorPane) root.lookup("#plusButtonPane"));
+		leftPanes.add((AnchorPane) root.lookup("#minusButtonPane"));
+		leftPanes.add((AnchorPane) root.lookup("#multButtonPane"));
+		leftPanes.add((AnchorPane) root.lookup("#divButtonPane"));
+		leftPanes.add((AnchorPane) root.lookup("#settingsButtonPane"));
 		
-		rightPanes = new AnchorPane[amountOfPanes];
-		rightPanes[0] = (AnchorPane) root.lookup("#homeButtonPane1");
-		rightPanes[1] = (AnchorPane) root.lookup("#plusButtonPane1");
-		rightPanes[2] = (AnchorPane) root.lookup("#minusButtonPane1");
-		rightPanes[3] = (AnchorPane) root.lookup("#multButtonPane1");
-		rightPanes[4] = (AnchorPane) root.lookup("#divButtonPane1");
-		rightPanes[5] = (AnchorPane) root.lookup("#settingsButtonPane1");
+		leftSideButtons = new LinkedList<Button>();
+		leftSideButtons.add((Button) root.lookup("#slideButton"));
+		leftSideButtons.add((Button) root.lookup("#homeButton"));
+		leftSideButtons.add((Button) root.lookup("#plusButton"));
+		leftSideButtons.add((Button) root.lookup("#minusButton"));
+		leftSideButtons.add((Button) root.lookup("#multButton"));
+		leftSideButtons.add((Button) root.lookup("#divButton"));
+		leftSideButtons.add((Button) root.lookup("#settingsButton"));
 		
-		leftSideButtons = new Button[amountOfPanes];
-		rightSideButtons = new Button[amountOfPanes];
-		for(int i = 0; i< leftSideButtons.length; i++) {
-			leftSideButtons[i] = (Button) root.lookup(sideButtonNames[i]);
-			rightSideButtons[i] = (Button) root.lookup(sideButtonNames[i]+"1");
-		}
+		
+		rightPanes = new LinkedList<AnchorPane>();
+		rightPanes.add(null);
+		rightPanes.add((AnchorPane) root.lookup("#homeButtonPane1"));
+		rightPanes.add((AnchorPane) root.lookup("#plusButtonPane1"));
+		rightPanes.add((AnchorPane) root.lookup("#minusButtonPane1"));
+		rightPanes.add((AnchorPane) root.lookup("#multButtonPane1"));
+		rightPanes.add((AnchorPane) root.lookup("#divButtonPane1"));
+		rightPanes.add((AnchorPane) root.lookup("#settingsButtonPane1"));
+
+		rightSideButtons = new LinkedList<Button>();
+		rightSideButtons.add(null);
+		rightSideButtons.add((Button) root.lookup("#homeButton1"));
+		rightSideButtons.add((Button) root.lookup("#plusButton1"));
+		rightSideButtons.add((Button) root.lookup("#minusButton1"));
+		rightSideButtons.add((Button) root.lookup("#multButton1"));
+		rightSideButtons.add((Button) root.lookup("#divButton1"));
+		rightSideButtons.add((Button) root.lookup("#settingsButton1"));
+//		for(int i = 0; i< sideButtonNames.length; i++) {
+//			leftSideButtons.add((Button) root.lookup(sideButtonNames[i]));
+//			rightSideButtons.add((Button) root.lookup(sideButtonNames[i]+"1"));
+//		}
 		
 		sideBox = (VBox) root.lookup("#sideBox");
-		menuButtonPane = (AnchorPane) root.lookup("#menuButtonPane");
-		menuButton = (Button) root.lookup("#menuButton");
 		pane = (AnchorPane) root.lookup("#rootPane");
 	}
 
@@ -172,28 +195,19 @@ public class NavigationMenu implements GUIHandler {
 	 *  gets the menu button 
 	 * @return returns menubutton 
 	 */
-	public Button getMenuButton() {
-		return menuButton;
-	}
-	/***
-	 *  gets the menu button anchorpane
-	 * @return returns menubutton anchorpane
-	 */
-	public AnchorPane getMenuButtonPane() {
-		return menuButtonPane;
-	}
+	
 	/***
 	 *  gets the array of leftPanes
 	 * @return returns leftPanes array
 	 */
-	public AnchorPane[] getLeftPanes() {
+	public LinkedList<AnchorPane> getLeftPanes() {
 		return leftPanes;
 	}
 	/***
 	 *  gets the array of rightPanes
 	 * @return returns rightPanes array
 	 */
-	public AnchorPane[] getRightPanes() {
+	public LinkedList<AnchorPane> getRightPanes() {
 		return rightPanes;
 	}
 	/***
@@ -215,7 +229,7 @@ public class NavigationMenu implements GUIHandler {
 	 *  gets the LeftSideButtons array
 	 * @return returns the LeftSideButtons array
 	 */
-	public Button[] getLeftSideButtons() {
+	public LinkedList<Button> getLeftSideButtons() {
 		return leftSideButtons;
 	}
 	
@@ -223,7 +237,7 @@ public class NavigationMenu implements GUIHandler {
 	 *  gets the RightSideButtons array
 	 * @return returns the RightSideButtons array
 	 */
-	public Button[] getRightSideButtons() {
+	public LinkedList<Button> getRightSideButtons() {
 		return rightSideButtons;
 	}
 	
