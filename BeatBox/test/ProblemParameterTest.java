@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import model.Operator;
+import model.ProblemParameters;
+
 public class ProblemParameterTest {
 
     public static void main(String[] args) {
