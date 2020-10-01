@@ -62,32 +62,32 @@ public class NavigationMenuController implements ControllerInterface{
 		
 		// Create action events that is used for each button on the navigationMenu
 		EventHandler<ActionEvent> slidePanel = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {navigationMenu.slidePanel();}};
-		EventHandler<ActionEvent> toHome = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sceneHandler.changeScene(0);}};
+		EventHandler<ActionEvent> toUser = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sceneHandler.changeScene(0);}};
 		EventHandler<ActionEvent> toAddition = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sceneHandler.changeScene(1);}};
-		EventHandler<ActionEvent> toSettings = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sceneHandler.changeScene(2);}};
-		EventHandler<ActionEvent> toUser = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sceneHandler.changeScene(3);}};	//test
-		EventHandler<ActionEvent> toCustomParameters = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sceneHandler.changeScene(4);}};	//test
+		EventHandler<ActionEvent> toCustomParameters = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sceneHandler.changeScene(2);}};//test
+
+		
 		
 		// Set actions on all buttons on the navigationMenu
 		navigationMenu.getLeftSideButtons().get(0).setOnAction(slidePanel);
 		
-		navigationMenu.getLeftSideButtons().get(1).setOnAction(toHome);
-		navigationMenu.getRightSideButtons().get(1).setOnAction(toHome);
+		navigationMenu.getLeftSideButtons().get(1).setOnAction(toUser);
+		navigationMenu.getRightSideButtons().get(1).setOnAction(toUser);
 		
 		navigationMenu.getLeftSideButtons().get(2).setOnAction(toAddition);
 		navigationMenu.getRightSideButtons().get(2).setOnAction(toAddition);
 		
-		navigationMenu.getLeftSideButtons().get(3).setOnAction(toUser);
-		navigationMenu.getRightSideButtons().get(3).setOnAction(toUser);
+		navigationMenu.getLeftSideButtons().get(3).setOnAction(toAddition);
+		navigationMenu.getRightSideButtons().get(3).setOnAction(toAddition);
 		
-		navigationMenu.getLeftSideButtons().get(4).setOnAction(toCustomParameters);
-		navigationMenu.getRightSideButtons().get(4).setOnAction(toCustomParameters);
+		navigationMenu.getLeftSideButtons().get(4).setOnAction(toAddition);
+		navigationMenu.getRightSideButtons().get(4).setOnAction(toAddition);
 		
 		navigationMenu.getLeftSideButtons().get(5).setOnAction(toAddition);
 		navigationMenu.getRightSideButtons().get(5).setOnAction(toAddition);
 		
-		navigationMenu.getLeftSideButtons().get(6).setOnAction(toSettings);
-		navigationMenu.getRightSideButtons().get(6).setOnAction(toSettings);
+		navigationMenu.getLeftSideButtons().get(6).setOnAction(toCustomParameters);
+		navigationMenu.getRightSideButtons().get(6).setOnAction(toCustomParameters);
 	}
 	
 }

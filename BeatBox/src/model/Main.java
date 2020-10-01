@@ -65,11 +65,9 @@ public class Main extends Application {
 
 		// Create a list of scenes that is used in the sceneHandler 
 		sceneList = new LinkedList<Scene>();
-		sceneList.add(createScene("/FXML/HomeMenu.fxml")); // [0]
+		sceneList.add(createScene("/FXML/UserProfile.fxml")); // [0]
 		sceneList.add(createScene("/FXML/ProblemGUI.fxml")); // [1]
-		sceneList.add(createScene("/FXML/SettingsMenu.fxml")); // [2]
-		sceneList.add(createScene("/FXML/UserProfile.fxml")); // [3]
-		sceneList.add(createScene("/FXML/CustomParametersGUI.fxml")); // [4]
+		sceneList.add(createScene("/FXML/CustomParametersGUI.fxml")); // [2]
 
 		// Instantiate all objects for the application
 		createViewObjects();
@@ -85,8 +83,8 @@ public class Main extends Application {
 	private void createViewObjects() {
 		navigationMenu = new NavigationMenu((AnchorPane) mainScene.getRoot());
 		problemGUI = new ProblemGUI((AnchorPane) sceneList.get(1).getRoot());
-		userProfileGUI = new UserProfileGUI((AnchorPane) sceneList.get(3).getRoot());
-		customParametersGUI = new CustomParametersGUI((AnchorPane) sceneList.get(4).getRoot());
+		userProfileGUI = new UserProfileGUI((AnchorPane) sceneList.get(0).getRoot());
+		customParametersGUI = new CustomParametersGUI((AnchorPane) sceneList.get(2).getRoot());
 	}
 
 	/**
