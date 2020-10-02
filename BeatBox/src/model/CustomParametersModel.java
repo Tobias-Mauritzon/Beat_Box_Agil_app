@@ -59,7 +59,8 @@ public class CustomParametersModel {
     }
 
     /**
-    * Method to generate Problem parameters. 
+    * Method to generate Problem parameters based on the current state of this model. This ProblemParameters instance
+    * is then transmitted out of this class.
     *
     * @see checkInitialization()
     */

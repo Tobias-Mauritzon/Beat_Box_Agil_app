@@ -128,6 +128,11 @@ public class Main extends Application {
 				System.out.println(p.getRange()[1]);
 				System.out.println(p.getTermAmount());
 				System.out.println(p.getTimed());
+				System.out.println("\nPROBLEM EXAMPLES: ");
+				for (int i = 0; i < 3; i++) {
+					String[] prob = generator.generate();
+					System.out.println(prob[0] + " = " + prob[1]);
+				}
 				// END TEMPORARY
 
 				// Set scene to ProblemGui when Greppe and Philip has made support for the generator in there.
