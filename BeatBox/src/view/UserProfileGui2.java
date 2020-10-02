@@ -1,4 +1,5 @@
 package view;
+
 import java.io.IOException;
 import java.util.Locale;
 import java.util.Optional;
@@ -20,9 +21,9 @@ import model.History;
 import model.Operator;
 import model.SaveManager;
 
-
 /**
  * Class that creates a a prototype for the user profile gui
+ * 
  * @author Joachim Antfolk, Tobias Mauritzon
  * @since 2020-10-02
  */
@@ -131,28 +132,26 @@ public class UserProfileGui2 /* implements GUIHandler */ {
 	@SuppressWarnings("unchecked")
 	private void setup() {
 		userName.setText(profile.getName());
-		/*
-		 * for(int i = 0;i<1000;i++) { profile.addProblemToHistory("1 + "+i, ""+i,
-		 * ""+(1+i), 4, 3, new Operator[] {Operator.ADD});
-		 * profile.addProblemToHistory("2 + "+i, ""+2*i, ""+(2+i), 4, 3, new Operator[]
-		 * {Operator.ADD}); profile.addProblemToHistory("3 + "+i, ""+3*i, ""+(3+i), 4,
-		 * 3, new Operator[] {Operator.ADD}); profile.addProblemToHistory("4 - "+i,
-		 * ""+4*i, ""+(4+i), 4, 3, new Operator[] {Operator.ADD});
-		 * profile.addProblemToHistory("5 * "+i, ""+5*i, ""+(5*1), 4, 3, new Operator[]
-		 * {Operator.ADD}); }
-		 */
+
+//		for (int i = 0; i < 10; i++) {
+//			profile.addProblemToHistory("1 + " + i, "" + i, "" + (1 + i), 4, 3, new Operator[] { Operator.ADD, Operator.SUB });
+//			profile.addProblemToHistory("2 + " + i, "" + 2 * i, "" + (2 + i), 4, 3, new Operator[] { Operator.ADD });
+//			profile.addProblemToHistory("3 + " + i, "" + 3 * i, "" + (3 + i), 4, 3, new Operator[] { Operator.ADD });
+//			profile.addProblemToHistory("4 - " + i, "" + 4 * i, "" + (4 + i), 4, 3, new Operator[] { Operator.ADD });
+//			profile.addProblemToHistory("5 * " + i, "" + 5 * i, "" + (5 * 1), 4, 3, new Operator[] { Operator.ADD });
+//		}
 
 		TableColumn<History, String> dateCol = new TableColumn<History, String>("Date");
 		TableColumn<History, String> problemCol = new TableColumn<History, String>("Problem");
 		TableColumn<History, Double> userSolutionCol = new TableColumn<History, Double>("User Solution");
 		TableColumn<History, Double> rightSolutionCol = new TableColumn<History, Double>("Correct Solution");
+
 		history.getColumns().setAll(dateCol, problemCol, userSolutionCol, rightSolutionCol);
 		history.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
 
 		dateCol.setCellValueFactory(new PropertyValueFactory<History, String>("date"));
 		problemCol.setCellValueFactory(new PropertyValueFactory<History, String>("problem"));
 		userSolutionCol.setCellValueFactory(new PropertyValueFactory<History, Double>("userAnswer"));
-
 		rightSolutionCol.setCellValueFactory(new PropertyValueFactory<History, Double>("correctAnswer"));
 
 		history.setItems(profile.getHistory());

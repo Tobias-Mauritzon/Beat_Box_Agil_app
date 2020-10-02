@@ -7,10 +7,10 @@ import java.util.Date;
 /**The internal class Problem was created to enable easy sorting 
  * and categorization of problems
  * 
- * @author Tobias
- *
+ * @author Tobias Mauritzon, Joachim Antfolk
+ * @since 2020-10-02
  */
-public class History implements Serializable, Cloneable{
+public class History implements Serializable{
 	
 	private static final long serialVersionUID = 2L;
 	
@@ -42,7 +42,7 @@ public class History implements Serializable, Cloneable{
 		this.points = points;
 		this.timeRequired = timeRequired;
 		
-		// if modifiers is null we look for what modifiers are used and add them to the list
+		// if modifiers is null we look for what modifiers are used in the problem and add them to the list
 		if(modifiers == null) {
 			modifiers = new Operator[5];
 			if(problem.contains("+")) {
@@ -119,15 +119,4 @@ public class History implements Serializable, Cloneable{
 	public Operator[] getModifiers() {
 		return modifiers;
 	}
-
-	
-	public History clone() {
-		History clone = null;
-		try {
-			clone = (History)super.clone();
-		} catch (CloneNotSupportedException e) {}
-
-		return clone;
-	}
-
 }
