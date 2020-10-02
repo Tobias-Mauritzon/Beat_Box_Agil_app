@@ -36,6 +36,36 @@
 	-fx-padding: 0 0 0 0;
 }
 
+/*
+	Sets apprerance for show hidden tabs button
+*/
+.tab-pane:left .tab-header-area .control-buttons-tab .container .tab-down-button{
+	-fx-background-color: derive(-fx-base, 20%);
+	-fx-background-radius: 0;
+	-fx-border-width: 0 0 0 1;
+	-fx-border-color: -fx-base;
+}
+
+/*
+	Sets the background color of  the hidden tabs context menu
+*/
+.tab-pane:left .tab-header-area .control-buttons-tab .container .tab-down-button .context-menu{
+	-fx-background-color: derive(-fx-base, 20%);
+}
+
+/*
+	Sets the color of the focused hidden tabs context menu item
+*/
+.tab-pane:left .tab-header-area .control-buttons-tab .container .tab-down-button .context-menu .menu-item:focused{
+	-fx-background-color: derive(-fx-base, 30%);
+}
+
+/*
+	Sets the color of the hidden tabs context menu item hovering on
+*/
+.tab-pane:left .tab-header-area .control-buttons-tab .container .tab-down-button .context-menu .menu-item:hover{
+	-fx-background-color: derive(-fx-base, 30%);
+}
 
 /*
 	Sets the color of tab when hovering
