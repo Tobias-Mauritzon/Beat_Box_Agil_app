@@ -7,6 +7,8 @@ package model;
  */
 
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
 import java.util.LinkedList;
 import org.junit.Before;
 import org.junit.Rule;
@@ -37,10 +39,17 @@ public class NumberGeneratorTest{
 	 */
 	@Test
 	public void testGenerateAdd() {
-		String[] output = NumberGenerator.generate(2, new int[]{1, 10}, new Operator[]{Operator.ADD});
+		numG.setSettings(new ProblemParameters(
+				new ArrayList<Operator>() {{ add(Operator.ADD); }},
+				new int[]{1, 10},
+				2,
+				false)
+		);
+
+		String[] output = numG.generate();
 		assertTrue(contains(output[0],'+'));
 		
-		output = numG.uniqueGeneration(2, new int[]{1, 10}, new Operator[]{Operator.ADD});
+		output = numG.uniqueGeneration();
 		assertTrue(contains(output[0],'+'));
 	}
 	
@@ -49,10 +58,17 @@ public class NumberGeneratorTest{
 	 */
 	@Test
 	public void testGenerateSub() {
-		String[] output = NumberGenerator.generate(2, new int[]{1, 10}, new Operator[]{Operator.SUB});
+		numG.setSettings(new ProblemParameters(
+				new ArrayList<Operator>() {{ add(Operator.SUB); }},
+				new int[]{1, 10},
+				2,
+				false)
+		);
+
+		String[] output = numG.generate();
 		assertTrue(contains(output[0],'-'));
 		
-		output = numG.uniqueGeneration(2, new int[]{1, 10}, new Operator[] {Operator.SUB});
+		output = numG.generate();
 		assertTrue(contains(output[0],'-'));
 	}
 	
@@ -61,10 +77,17 @@ public class NumberGeneratorTest{
 	 */
 	@Test
 	public void testGenerateDiv() {
-		String[] output = NumberGenerator.generate(2, new int[]{1, 10}, new Operator[]{Operator.DIV});
+		numG.setSettings(new ProblemParameters(
+				new ArrayList<Operator>() {{ add(Operator.DIV); }},
+				new int[]{1, 10},
+				2,
+				false)
+		);
+
+		String[] output = numG.generate();
 		assertTrue(contains(output[0],'/'));
 		
-		output = numG.uniqueGeneration(2, new int[]{1, 10}, new Operator[] {Operator.DIV});
+		output = numG.uniqueGeneration();
 		assertTrue(contains(output[0],'/'));
 	}
 	
@@ -73,10 +96,17 @@ public class NumberGeneratorTest{
 	 */
 	@Test
 	public void testGenerateMul() {
-		String[] output = NumberGenerator.generate(2, new int[]{1, 10}, new Operator[]{Operator.MUL});
+		numG.setSettings(new ProblemParameters(
+				new ArrayList<Operator>() {{ add(Operator.MUL); }},
+				new int[]{1, 10},
+				2,
+				false)
+		);
+
+		String[] output = numG.generate();
 		assertTrue(contains(output[0],'*'));
 		
-		output = numG.uniqueGeneration(2, new int[]{1, 10}, new Operator[] {Operator.MUL});
+		output = numG.uniqueGeneration();
 		assertTrue(contains(output[0],'*'));
 	}
 	
@@ -85,21 +115,35 @@ public class NumberGeneratorTest{
 	 */
 	@Test
 	public void testGenerateExp() {
-		String[] output = NumberGenerator.generate(2, new int[]{1, 10}, new Operator[]{Operator.EXP});
+		numG.setSettings(new ProblemParameters(
+				new ArrayList<Operator>() {{ add(Operator.EXP); }},
+				new int[]{1, 10},
+				2,
+				false)
+		);
+
+		String[] output = numG.generate();
 		assertTrue(contains(output[0],'^'));
 		
-		output = numG.uniqueGeneration(2, new int[]{1, 10}, new Operator[] {Operator.EXP});
+		output = numG.uniqueGeneration();
 		assertTrue(contains(output[0],'^'));
 	}
-	
+
 	/**
 	 * Test that number range in form bigger, smaller throws error, with positive numbers
 	 */
 	@Test
 	public void testCorrectSortingPositive() {
+		numG.setSettings(new ProblemParameters(
+				new ArrayList<Operator>() {{ add(Operator.ADD); }},
+				new int[]{10, 2},
+				2,
+				false)
+		);
+
 		exceptionRule.expect(IllegalArgumentException.class);
 	    exceptionRule.expectMessage("The real interval has to in the format [smaller, bigger]!");
-		NumberGenerator.generate(2, new int[]{10, 2}, new Operator[]{Operator.ADD});
+		numG.generate();
 	}
 
 	/**
@@ -107,98 +151,167 @@ public class NumberGeneratorTest{
 	 */
 	@Test
 	public void testCorrectSortingNegativ() {
+		numG.setSettings(new ProblemParameters(
+				new ArrayList<Operator>() {{ add(Operator.ADD); }},
+				new int[]{-2, -6},
+				2,
+				false)
+		);
+
 		exceptionRule.expect(IllegalArgumentException.class);
 	    exceptionRule.expectMessage("The real interval has to in the format [smaller, bigger]!");
-		NumberGenerator.generate(2, new int[]{-2, -6}, new Operator[]{Operator.ADD});
+		numG.generate();
 	}
-	
+
 	/**
 	 * Test that number range in form bigger, smaller throws error, with negative numbers
 	 */
 	@Test
 	public void testCorrectSortingBoth() {
+		numG.setSettings(new ProblemParameters(
+				new ArrayList<Operator>() {{ add(Operator.ADD); }},
+				new int[]{10, -6},
+				2,
+				false)
+		);
+
 		exceptionRule.expect(IllegalArgumentException.class);
 	    exceptionRule.expectMessage("The real interval has to in the format [smaller, bigger]!");
-		NumberGenerator.generate(2, new int[]{10, -6}, new Operator[]{Operator.ADD});
+		numG.generate();
 	}
-	
+
 	/**
 	 * Test that negative term number throws IllegalArgumentException
 	 */
 	@Test
 	public void testNoNegativTermNumber() {
+		numG.setSettings(new ProblemParameters(
+				new ArrayList<Operator>() {{ add(Operator.ADD); }},
+				new int[]{2, 6},
+				-2,
+				false)
+		);
+
 		exceptionRule.expect(IllegalArgumentException.class);
 	    exceptionRule.expectMessage("Number of terms must be grater than 2!");
-		NumberGenerator.generate(-2, new int[]{2, 6}, new Operator[]{Operator.ADD});
+		numG.generate();
 	}
-	
+
 	/**
 	 * Test that array of number range can not be longer than two elements
 	 */
 	@Test
 	public void testToLongNumberRange() {
+		numG.setSettings(new ProblemParameters(
+				new ArrayList<Operator>() {{ add(Operator.ADD); }},
+				new int[]{2, 3, 6},
+				2,
+				false)
+		);
+
 		exceptionRule.expect(IllegalArgumentException.class);
 	    exceptionRule.expectMessage("The real interval has to be composed of two elements!");
-		NumberGenerator.generate(2, new int[]{2, 3, 6}, new Operator[]{Operator.ADD});
+		numG.generate();
 	}
-	
+
 	/**
 	 * Test that array of number range can not be shorter than two elements
 	 */
 	@Test
 	public void testToShortNumberRange() {
+		numG.setSettings(new ProblemParameters(
+				new ArrayList<Operator>() {{ add(Operator.ADD); }},
+				new int[]{6},
+				2,
+				false)
+		);
+
 		exceptionRule.expect(IllegalArgumentException.class);
 	    exceptionRule.expectMessage("The real interval has to be composed of two elements!");
-		NumberGenerator.generate(2, new int[]{6}, new Operator[]{Operator.ADD});
+		numG.generate();
 	}
-	
+
 	/**
 	 * Test that array of modifiers can not contain a null value
 	 */
 	@Test
 	public void testNoNullOperator() {
+		numG.setSettings(new ProblemParameters(
+				new ArrayList<Operator>() {{ add(Operator.ADD); add(null); }},
+				new int[]{2, 6},
+				2,
+				false)
+		);
+
 		exceptionRule.expect(NullPointerException.class);
 	    exceptionRule.expectMessage("The operator array can not contain null values!");
-		NumberGenerator.generate(2, new int[]{2, 6}, new Operator[]{Operator.ADD, null});
+		numG.generate();
 	}
-	
-	
+
+
 	/**
-	 * Test that unique generation happens when parameters allow at least 11 different problems 
+	 * Test that unique generation happens when parameters allow at least 11 different problems
 	 */
 	@Test
 	public void testUniqueGeneration() {
 		LinkedList<String> list = new LinkedList<String>();
+
+		numG.setSettings(new ProblemParameters(
+				new ArrayList<Operator>() {{ add(Operator.ADD); }},
+				new int[]{1, 4},
+				2,
+				false)
+		);
+
 		for(int i = 0; i < 15; i++) {
-			numG.uniqueGeneration(2, new int[]{1, 4}, new Operator[]{Operator.ADD});
+			numG.uniqueGeneration();
 		}
 		list = numG.getList();
 		assertTrue(list.size() == 10);
 	}
-	
+
 	/**
-	 * Test that unique generation does not happen when parameters don't allow for at least 11 different problems 
+	 * Test that unique generation does not happen when parameters don't allow for at least 11 different problems
 	 */
 	@Test
 	public void testUniqueGenerationFail() {
+		numG.setSettings(new ProblemParameters(
+				new ArrayList<Operator>() {{ add(Operator.ADD); }},
+				new int[]{0, 2},
+				2,
+				false)
+		);
+
 		for(int i = 0; i < 10; i++) {
-			numG.uniqueGeneration(2, new int[]{0, 2}, new Operator[]{Operator.ADD});
+			numG.uniqueGeneration();
 		}
 		LinkedList<String> list = numG.getList();
 		assertTrue(list.isEmpty()); //Doesn't touch list if parameters are to narrow
 	}
-	
+
 	@Test
 	public void testDivisionByZero() {
-		
-		String output[] = numG.uniqueGeneration(100, new int[]{0, 3}, new Operator[]{Operator.DIV});
-		
+		numG.setSettings(new ProblemParameters(
+				new ArrayList<Operator>() {{ add(Operator.DIV); }},
+				new int[]{0, 3},
+				100,
+				false)
+		);
+
+		String output[] = numG.uniqueGeneration();
+
 		assertTrue(Double.parseDouble(output[1]) >= 0);
 	}
-	
+
 	@Test
 	public void testDivisionByZeroManyOperators() {
-		
-		String output[] = numG.uniqueGeneration(1000, new int[]{0, 3}, new Operator[]{Operator.DIV, Operator.ADD, Operator.EXP, Operator.MUL, Operator.SUB});
+		numG.setSettings(new ProblemParameters(
+				new ArrayList<Operator>() {{ add(Operator.ADD); add(Operator.SUB); add(Operator.MUL); add(Operator.DIV); add(Operator.EXP); }},
+				new int[]{0, 3},
+				1000,
+				false)
+		);
+
+		String output[] = numG.uniqueGeneration();
 	}
 }
