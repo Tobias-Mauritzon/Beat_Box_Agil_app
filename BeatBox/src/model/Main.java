@@ -43,6 +43,7 @@ public class Main extends Application {
 	private UserProfile userProfile;
 	private SceneHandler sceneHandler;
 	private testGenerator gen;
+	private NumberGenerator generator;
 	private grading grade;
 	
 	
@@ -94,6 +95,7 @@ public class Main extends Application {
 		customParameters = new CustomParametersModel();
 		sceneHandler = new SceneHandler(sceneList, navigationMenu.getBasePane());
 		gen = new testGenerator();
+		generator = new NumberGenerator();
 		grade = new grading();
 		userProfile = new UserProfile("TestProfile");
 	}
@@ -112,7 +114,25 @@ public class Main extends Application {
 	 * Sets delegates.
 	 */
 	private void setDelegates() {
+		customParameters.setDelegate(new CustomParametersModel.Delegate() {
+			@Override
+			public void transmitProblemParameters(ProblemParameters p) {
+				generator.setSettings(p);
 
+				// TEMPORARY UNTIL SATURDAY
+				System.out.println("\nNEW SETTINGS: ");
+				for (Operator o : p.getOperators()) {
+					System.out.println(o.toString());
+				}
+				System.out.println(p.getRange()[0]);
+				System.out.println(p.getRange()[1]);
+				System.out.println(p.getTermAmount());
+				System.out.println(p.getTimed());
+				// END TEMPORARY
+
+				// Set scene to ProblemGui when Greppe and Philip has made support for the generator in there.
+			}
+		});
 	}
 
 	/**
