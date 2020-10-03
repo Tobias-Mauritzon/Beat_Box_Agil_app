@@ -48,6 +48,7 @@ public class Main extends Application {
 	
 	// Controller
 	private ProglemGUIController problemController;
+	private NavigationMenuController navigationMenuController;
 	
 	public static void main(String[] args) {
 		Application.launch(args);
@@ -106,7 +107,7 @@ public class Main extends Application {
 	 */
 	private void createControllerObjects() {
 		new UserController(userProfileGUI, userProfile);
-		new NavigationMenuController(navigationMenu, sceneHandler);
+		navigationMenuController = new NavigationMenuController(navigationMenu, sceneHandler);
 		problemController = new ProglemGUIController(problemGUI,grade,generator);
 		new CustomParametersController(customParametersGUI,customParameters);
 	}
@@ -121,9 +122,17 @@ public class Main extends Application {
 				generator.setSettings(p);
 				sceneHandler.changeScene(1);
 				problemController.ResetGUI();
-				// Set scene to ProblemGui when Greppe and Philip has made support for the generator in there.
 			}
 		});
+
+		navigationMenuController.delegate = new NavigationMenuController.Delegate() {
+			@Override
+			public void transmitProblemParameters(ProblemParameters p) {
+				generator.setSettings(p);
+				sceneHandler.changeScene(1);
+				problemController.ResetGUI();
+			}
+		};
 	}
 
 	/**

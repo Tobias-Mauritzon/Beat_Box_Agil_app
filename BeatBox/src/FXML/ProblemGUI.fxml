@@ -28,7 +28,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="70.0" prefWidth="226.0" GridPane.rowIndex="1">
                      <children>
-                        <Text fx:id="problemText" fill="WHITE" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="4 + 8 =" textAlignment="CENTER" wrappingWidth="165.6000370979309">
+                        <Text fx:id="problemText" fill="WHITE" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="1+2=" textAlignment="CENTER" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="Rockwell" size="50.0" />
                            </font>
