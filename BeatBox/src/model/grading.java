@@ -27,6 +27,16 @@ public class grading {
 	 * @param userInput the userInputed String
 	 */
 	public Boolean grade(String userInput) {
-		return answer.equals(userInput);
+		Double userDouble = Double.parseDouble(userInput);
+		Double answerDouble = Double.parseDouble(answer);
+		answerDouble = Math.round(answerDouble * 100.0) / 100.0;
+		userDouble = Math.round(userDouble * 100.0) / 100.0;
+		System.out.println("Input :" + userDouble);
+		System.out.println("Answer :" + answerDouble + "/n");
+		if(answerDouble == userDouble) 
+		{
+			System.out.println("isTrue");
+		}
+		return (answerDouble.equals(userDouble));
 	}
 }

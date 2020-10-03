@@ -1,5 +1,6 @@
 package controller;
 
+import model.NumberGenerator;
 import model.grading;
 import model.testGenerator;
 import view.ProblemGUI;
@@ -9,10 +10,10 @@ public class ProglemGUIController implements ControllerInterface{
 	
 	private ProblemGUI pg;
 	private grading g;
-	private testGenerator gen;
+	private NumberGenerator gen;
 	private String[] problemString;
 	
-	public ProglemGUIController(ProblemGUI pg, grading g,testGenerator gen) {
+	public ProglemGUIController(ProblemGUI pg, grading g, NumberGenerator gen) {
 		this.pg = pg;
 		this.g = g;
 		this.gen = gen;
@@ -40,6 +41,7 @@ public class ProglemGUIController implements ControllerInterface{
 	
 	private void answer() {
 		String answer = pg.getAnswerText().getText();
+		System.out.println("Answer :" + g.grade(answer));
 		if(g.grade(answer)){
 			pg.showResponse(true);
 			nextProblem();
@@ -51,8 +53,13 @@ public class ProglemGUIController implements ControllerInterface{
 	}
 	
 	private void nextProblem() {
-		problemString = gen.getNextProblem();
+		problemString = gen.generate();
 		g.setAnswer(problemString[1]);
 		pg.setProblemText(problemString[0]);
+	}
+	
+	public void ResetGUI() 
+	{
+		nextProblem();
 	}
 }

@@ -42,10 +42,12 @@ public class Main extends Application {
 	private CustomParametersModel customParameters;
 	private UserProfile userProfile;
 	private SceneHandler sceneHandler;
-	private testGenerator gen;
+
 	private NumberGenerator generator;
 	private grading grade;
 	
+	// Controller
+	private ProglemGUIController problemController;
 	
 	public static void main(String[] args) {
 		Application.launch(args);
@@ -58,7 +60,7 @@ public class Main extends Application {
 		primaryStage.setScene(mainScene);
 		primaryStage.getIcons().add(new Image("/frameIcons/app-icon2.png"));
 		primaryStage.setTitle("Mathematics");
-		primaryStage.setMinWidth(400);
+		primaryStage.setMinWidth(800);
 		primaryStage.setMinHeight(500);
 		primaryStage.setWidth(800);
 		primaryStage.setHeight(500);
@@ -94,7 +96,6 @@ public class Main extends Application {
 	private void createModelObjects() {
 		customParameters = new CustomParametersModel();
 		sceneHandler = new SceneHandler(sceneList, navigationMenu.getBasePane());
-		gen = new testGenerator();
 		generator = new NumberGenerator();
 		grade = new grading();
 		userProfile = new UserProfile("TestProfile");
@@ -106,7 +107,7 @@ public class Main extends Application {
 	private void createControllerObjects() {
 		new UserController(userProfileGUI, userProfile);
 		new NavigationMenuController(navigationMenu, sceneHandler);
-		new ProglemGUIController(problemGUI,grade,gen);
+		problemController = new ProglemGUIController(problemGUI,grade,generator);
 		new CustomParametersController(customParametersGUI,customParameters);
 	}
 
@@ -118,23 +119,8 @@ public class Main extends Application {
 			@Override
 			public void transmitProblemParameters(ProblemParameters p) {
 				generator.setSettings(p);
-
-				// TEMPORARY UNTIL SATURDAY
-				System.out.println("\nNEW SETTINGS: ");
-				for (Operator o : p.getOperators()) {
-					System.out.println(o.toString());
-				}
-				System.out.println(p.getRange()[0]);
-				System.out.println(p.getRange()[1]);
-				System.out.println(p.getTermAmount());
-				System.out.println(p.getTimed());
-				System.out.println("\nPROBLEM EXAMPLES: ");
-				for (int i = 0; i < 3; i++) {
-					String[] prob = generator.generate();
-					System.out.println(prob[0] + " = " + prob[1]);
-				}
-				// END TEMPORARY
-
+				sceneHandler.changeScene(1);
+				problemController.ResetGUI();
 				// Set scene to ProblemGui when Greppe and Philip has made support for the generator in there.
 			}
 		});
