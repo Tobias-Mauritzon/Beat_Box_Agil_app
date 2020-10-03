@@ -69,7 +69,7 @@
                   <AnchorPane fx:id="settingsButtonPane1" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="150.0">
                      <children>
                         <Button fx:id="settingsButton1" mnemonicParsing="false" opacity="0.0" prefHeight="50.0" prefWidth="150.0" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        <Text disable="true" fill="WHITE" layoutX="64.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings" AnchorPane.bottomAnchor="16.572265625" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.81298828125">
+                        <Text disable="true" fill="WHITE" layoutX="64.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Custom" AnchorPane.bottomAnchor="16.572265625" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.81298828125">
                            <font>
                               <Font name="Verdana" size="15.0" />
                            </font>

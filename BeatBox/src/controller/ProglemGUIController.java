@@ -41,7 +41,6 @@ public class ProglemGUIController implements ControllerInterface{
 	
 	private void answer() {
 		String answer = pg.getAnswerText().getText();
-		System.out.println("Answer :" + g.grade(answer));
 		if(g.grade(answer)){
 			pg.showResponse(true);
 			nextProblem();
