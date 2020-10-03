@@ -52,7 +52,7 @@ public class SceneHandler {
 			
 			mainPane.getChildren().clear();
 			mainPane.getChildren().add(currentPane);
-			mainPane.applyCss();
+			currentPane.applyCss();
 		}
 	}
 }

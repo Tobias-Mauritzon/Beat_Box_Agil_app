@@ -62,9 +62,9 @@ public class Main extends Application {
 		primaryStage.getIcons().add(new Image("/frameIcons/app-icon2.png"));
 		primaryStage.setTitle("Mathematics");
 		primaryStage.setMinWidth(800);
-		primaryStage.setMinHeight(500);
+		primaryStage.setMinHeight(550);
 		primaryStage.setWidth(800);
-		primaryStage.setHeight(500);
+		primaryStage.setHeight(550);
 		primaryStage.show();
 
 		// Create a list of scenes that is used in the sceneHandler 

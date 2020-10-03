@@ -8,7 +8,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.effect.Effect;
+import javafx.scene.effect.GaussianBlur;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
@@ -44,19 +48,20 @@ public class NavigationMenu implements GUIHandler {
 	private AnchorPane pane;
 	private LinkedList<AnchorPane> leftPanes;
 	private LinkedList<AnchorPane> rightPanes;
-	private VBox sideBox;
-//	private Button menuButton;
-//	private AnchorPane menuButtonPane;
+	private StackPane sidePane;
 	private LinkedList<Button> leftSideButtons;
 	private LinkedList<Button> rightSideButtons;
 	
 	private String enteredColor = "#505050";
-	private String exitedColor = " #303030";
+	private String exitedColor = "#000000";
     
     private TranslateTransition openNav;
     private TranslateTransition closeNav;
-//	private String[] sideButtonNames;
-	
+    
+    private final Effect frostEffect = new GaussianBlur();
+
+    private AnchorPane sideBoxBackground;
+
 	/***
 	 * Constructor for NavigationMenu
 	 * 
@@ -65,49 +70,36 @@ public class NavigationMenu implements GUIHandler {
 	 */
 	public NavigationMenu(AnchorPane root) {
 		this.root = root;
-//		setSideButtonNames();
 		getGUIObjects();
 		initSlideEffect();   
-		sideBox.setTranslateX(-sideBox.getWidth()); //start with closed sidebox
-		sideBox.setPrefWidth(0.0);
+		sidePane.setTranslateX(-sidePane.getWidth()); //start with closed sidebox
+		sidePane.setPrefWidth(0.0);
+		setVisualEffects();
 	}
 	
-	/***
-	 * Sets the name of the sideButton in an array called sideButtonsNames
-	 */
-//	private void setSideButtonNames() {
-//		sideButtonNames = new String[7];
-//		sideButtonNames[0] = ("#slideButton");
-//		sideButtonNames[1] = ("#homeButton");
-//		sideButtonNames[2] = ("#plusButton");
-//		sideButtonNames[3] = ("#minusButton");
-//		sideButtonNames[4] = ("#multButton");
-//		sideButtonNames[5] = ("#divButton");
-//		sideButtonNames[6] = ("#settingsButton");
-//	}
-	
+
 	
 	/***
 	 * initializes the translate-transition.
 	 */
 	private void initSlideEffect() {
-		openNav=new TranslateTransition(new Duration(350), sideBox);
+		openNav=new TranslateTransition(new Duration(350), sidePane);
         openNav.setToX(0.0);
-        closeNav=new TranslateTransition(new Duration(350), sideBox);
-        closeNav.setToX(-(sideBox.getWidth()));
+        closeNav=new TranslateTransition(new Duration(350), sidePane);
+        closeNav.setToX(-(sidePane.getWidth()));
 	}
 	
 	/***
 	 * Starts the translate-transition which makes the sideBox slide.
 	 */
 	public void slidePanel() {
-		if(sideBox.getTranslateX()!=0.0){
+		if(sidePane.getTranslateX()!=0.0){
 			openNav.play();
-			sideBox.setPrefWidth(150.0);
+			sidePane.setPrefWidth(150.0);
 			
         }else{
             closeNav.play();
-            closeNav.setOnFinished(e->{sideBox.setPrefWidth(0.0);});
+            closeNav.setOnFinished(e->{sidePane.setPrefWidth(0.0);});
             
         }
 	}
@@ -131,9 +123,9 @@ public class NavigationMenu implements GUIHandler {
 	 * @param rPane the right pane to set to default color.
 	 */
 	public void focusOff(AnchorPane lPane, AnchorPane rPane) {
-		lPane.setStyle("-fx-background-color:" + exitedColor);
+		lPane.setStyle("-fx-background-color: transparent" );
 		if(rPane!=null) {
-			rPane.setStyle("-fx-background-color:" + exitedColor);
+			rPane.setStyle("-fx-background-color: transparent");
 		}
 		
 	}
@@ -181,20 +173,17 @@ public class NavigationMenu implements GUIHandler {
 		rightSideButtons.add((Button) root.lookup("#multButton1"));
 		rightSideButtons.add((Button) root.lookup("#divButton1"));
 		rightSideButtons.add((Button) root.lookup("#settingsButton1"));
-//		for(int i = 0; i< sideButtonNames.length; i++) {
-//			leftSideButtons.add((Button) root.lookup(sideButtonNames[i]));
-//			rightSideButtons.add((Button) root.lookup(sideButtonNames[i]+"1"));
-//		}
+
 		
-		sideBox = (VBox) root.lookup("#sideBox");
-		pane = (AnchorPane) root.lookup("#rootPane");
+		sidePane = (StackPane) root.lookup("#sidePane");
+		pane = (AnchorPane) root.lookup("#scenePane");
+		sideBoxBackground = (AnchorPane) root.lookup("#sideBoxBackground");
 	}
 
+	private void setVisualEffects() {
+//		sideBoxBackground.setEffect(frostEffect);
+	}
 	
-	/***
-	 *  gets the menu button 
-	 * @return returns menubutton 
-	 */
 	
 	/***
 	 *  gets the array of leftPanes
