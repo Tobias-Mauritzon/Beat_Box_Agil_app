@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
@@ -16,10 +15,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane stylesheets="@../CSS/userprofile.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TabPane id="userProfile" fx:id="userProfile" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" rotateGraphic="true" side="LEFT" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane id="userProfile" fx:id="userProfile" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" rotateGraphic="true" side="LEFT" stylesheets="@../CSS/userprofile.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab id="profileTab" fx:id="profileTab" text="">
       		<graphic>
@@ -60,14 +58,22 @@
                <content>
                   <AnchorPane>
                      <children>
-                        <TableView fx:id="history" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <StackPane layoutX="80.0" layoutY="160.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <TableView fx:id="historyTab" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="TOP_LEFT">
       						  <placeholder>
-      							<Label text="No content available!" />
+      							<Label text="" />
       						  </placeholder>
-                           <columnResizePolicy>
-                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                           </columnResizePolicy>
-                        </TableView>
+                                <columns>
+                                  <TableColumn fx:id="historyProblem" prefWidth="75.0" text="Problem" />
+                                  <TableColumn fx:id="historySolution" prefWidth="75.0" text="Solution" />
+                                </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                           </children>
+                        </StackPane>
                      </children>
                   </AnchorPane>
                </content>
@@ -83,9 +89,9 @@
                      <children>
                         <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <TableView fx:id="recordsTab" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" StackPane.alignment="TOP_LEFT">
+                              <TableView fx:id="recordsTab" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="TOP_LEFT">
                                  <placeholder>
-                                    <Label text="No content available!" />
+                                    <Label text="" />
                                  </placeholder>
                                  <columns>
                                     <TableColumn fx:id="recordsCategory" prefWidth="75.0" text="Category" />
@@ -107,8 +113,4 @@
          </opaqueInsets>
       </TabPane>
    </children>
-   <stylesheets>
-      <URL value="@../CSS/userprofile.css" />
-      <URL value="@../CSS/tableview.css" />
-   </stylesheets>
 </AnchorPane>

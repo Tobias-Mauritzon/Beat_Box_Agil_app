@@ -1,38 +1,54 @@
 package model;
-import java.util.Arrays;
+import java.util.*;
 /**
  * Class used to generate random expression depending on different modifiers
  * @author Tobias Mauritzon, Joachim Antfolk
  * @version 2.0
  * @since 2020-09-17
  */
-import java.util.LinkedList;
-import java.util.Random;
 
 public class NumberGenerator implements ProblemGenerator{
-		
-	private LinkedList<String> uniqueness; 
+	private LinkedList<String> uniqueness;
+	private ProblemParameters settings;
+	private Random rand;
 	
 	public NumberGenerator() {
-		this.uniqueness = new LinkedList<String>();
+		uniqueness = new LinkedList<String>();
+		settings = new ProblemParameters();
+		rand = new Random();
+	}
+
+	/**
+	 * Change the settings of the generator.
+	 *
+	 * @see ProblemParameters
+	 * @param settings - the new settings to use in the generation.
+	 */
+	public void setSettings(ProblemParameters settings) {
+		this.settings = settings;
 	}
 	
 	/**
-	 * Used to generate unique problems if there are more than ten possible outcomes with current parameters.
-	 * 		Otherwise ignore uniqueness.
-	 * @param numbers the number of numbers in the expression
-	 * @param numberSize allowed number size {small, big}
-	 * @param modifiers array of enum Operators that can be used to generate expressions 
-	 * @return String array. array[0] = expression, array[1] = awnser
+	 * Used to generate unique problems if there are more than ten possible outcomes with current settings.
+	 * Otherwise ignore uniqueness.
+	 *
+	 * @see ProblemParameters
+	 * @return String array. array[0] = expression, array[1] = answer
 	 */
-	public String[] uniqueGeneration(int terms, int[] numberRange, Operator[] modifiers) {
+	public String[] uniqueGeneration() {
 		boolean unique = false;
 		String[] returnString = new String[2];
+
+		// Get settings
+		List<Operator> modifiers = settings.getOperators();
+		int[] numberRange = settings.getRange();
+		int terms = settings.getTermAmount();
+
 		try {
-			if(10 < (modifiers.length * Math.pow((numberRange[1] - numberRange[0] + 1), terms))) {
+			if(10 < (modifiers.size() * Math.pow((numberRange[1] - numberRange[0] + 1), terms))) {
 				while(!unique) {
 					if(uniqueness.isEmpty()) unique = true;
-					returnString = generate(terms, numberRange, modifiers);
+					returnString = generate();
 					for(String s : uniqueness) {
 						if(s.equals(returnString[0])) {
 							unique = false;
@@ -49,7 +65,7 @@ public class NumberGenerator implements ProblemGenerator{
 				return returnString;
 				
 			}else {
-				return generate(terms, numberRange, modifiers);
+				return generate();
 			}
 		}catch(IllegalArgumentException e) {
 			throw e;
@@ -57,18 +73,19 @@ public class NumberGenerator implements ProblemGenerator{
 	}
 	
 	/**
-	 * Generates a expression and and answer for that expression
-	 * 
-	 * @param numbers the number of numbers in the expression
-	 * @param numberSize allowed number size {small, big}
-	 * @param expressionAndAnswer new String[2]
-	 * @param modifiers array of enum Operators that can be used to generate expressions 
+	 * Generates an expression and and answer for that expression based on the current settings.
+	 *
+	 * @see ProblemParameters
 	 * @return String array. array[0] = expression, array[1] = answer
 	 */
-	public static String[] generate(int terms, int[] numberRange, Operator[] modifiers) {
-		Random rand = new Random();
+	public String[] generate() {
+		// Get settings
+		List<Operator> modifiers = settings.getOperators();
+		int[] numberRange = settings.getRange();
+		int terms = settings.getTermAmount();
+
 		
-		if(Arrays.asList(modifiers).contains(null)) {
+		if(modifiers.contains(null)) {
 			throw new NullPointerException("The operator array can not contain null values!");
 		}
 
@@ -84,18 +101,19 @@ public class NumberGenerator implements ProblemGenerator{
 			throw new IllegalArgumentException("The real interval has to in the format [smaller, bigger]!");
 		}
 		
-		return gen(terms, numberRange, modifiers, rand);
+		return gen(terms, numberRange, modifiers);
 	}
 	
 	/**
-	 * Recursively generates mathematical expressions and calculates their value
-	 * @param numbers the number of numbers in the expression
-	 * @param numberRange allowed number range {small, big}
+	 * Recursively generates mathematical expressions and calculates their value. Only to be called
+	 * by generate().
+	 *
+	 * @param numbers the amount of terms in the expression
+	 * @param numberRange allowed number range {min, max}
 	 * @param modifiers array of enum Operators that can be used to generate expressions
-	 * @param rand random number generator to be used
 	 * @return String array. array[0] = expression, array[1] = answer
 	 */
-	private static String[] gen(int numbers, int[] numberRange, Operator[] modifiers, Random rand) {
+	private String[] gen(int numbers, int[] numberRange, List<Operator> modifiers) {
 		String[] returnVal = new String[2];
 		if(numbers == 1) {
 			int number =  rand.nextInt((numberRange[1] - (numberRange[0]))+1) + (numberRange[0]);
@@ -105,10 +123,10 @@ public class NumberGenerator implements ProblemGenerator{
 		else {
 			int right = numbers/2;
 			int left = numbers - right;
-			String[] rightRet = gen(right, numberRange, modifiers, rand); 
-			String[] leftRet = gen(left, numberRange, modifiers, rand); 
+			String[] rightRet = gen(right, numberRange, modifiers);
+			String[] leftRet = gen(left, numberRange, modifiers);
 			
-			switch(modifiers[rand.nextInt(modifiers.length)]) {
+			switch(modifiers.get(rand.nextInt(modifiers.size()))) {
 			case ADD:
 				returnVal[0] = "(" + rightRet[0] + " + " + leftRet[0] + ")";
 				returnVal[1] = Double.toString(Double.parseDouble(rightRet[1]) + Double.parseDouble(leftRet[1]));
@@ -125,7 +143,7 @@ public class NumberGenerator implements ProblemGenerator{
 						returnVal[1] = Double.toString(Double.parseDouble(rightRet[1]) / Double.parseDouble(leftRet[1]));
 						div = false;
 					}else {
-						leftRet = gen(left, numberRange, modifiers, rand); 
+						leftRet = gen(left, numberRange, modifiers);
 					}
 				}	
 				break;
@@ -144,6 +162,7 @@ public class NumberGenerator implements ProblemGenerator{
 	
 	/**
 	 * Returns the list of the latest ten uniquely generated problems
+	 *
 	 * @return List of math problems
 	 */
 	public LinkedList<String> getList(){

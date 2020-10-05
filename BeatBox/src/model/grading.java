@@ -19,7 +19,6 @@ public class grading {
 	 */
 	public void setAnswer(String a) {
 		answer = a;
-		System.out.println("Answer set;" + a);
 	}
 	
 	/***
@@ -27,6 +26,17 @@ public class grading {
 	 * @param userInput the userInputed String
 	 */
 	public Boolean grade(String userInput) {
-		return answer.equals(userInput);
+		if(userInput.isEmpty()) {
+			return false;
+		}else {
+			Double userDouble = Double.parseDouble(userInput);
+			Double answerDouble = Double.parseDouble(answer);
+			// Rounds to two decimals
+			answerDouble = Math.round(answerDouble * 100.0) / 100.0;
+			userDouble = Math.round(userDouble * 100.0) / 100.0;
+		
+			return (answerDouble.equals(userDouble));
+		}
+		
 	}
 }

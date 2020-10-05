@@ -1,0 +1,77 @@
+.root{
+	-fx-background-color: #212121;
+}	
+
+#title{
+	-fx-text-fill: #FFFFFF; 
+	-fx-font-size: 24.0pt;
+    -fx-font-family: "Rockwell";
+	-fx-font-weight: NORMAL;
+}
+
+.check-box{
+	-fx-text-fill: #FFFFFF; 
+	-fx-font-size: 10.0pt;
+    -fx-font-family: "Rockwell";
+	-fx-font-weight: NORMAL;
+}
+
+.slider .axis{
+	-fx-tick-label-fill: #FFFFFF; 
+}
+
+.label{
+	-fx-text-fill: #FFFFFF; 
+	-fx-font-size: 12.0pt;
+    -fx-font-family: "Rockwell";
+	-fx-font-weight: NORMAL;
+}
+
+.button{
+	-fx-background-color: #FFFFFF;
+	-fx-text-fill: #000000;
+	-fx-font-size: 18pt;
+    -fx-font-family: "Rockwell";
+	-fx-font-weight: NORMAL;
+}
+
+.tab-pane *.tab-header-background {
+    -fx-background-color: #212121;
+   
+}
+
+.tab-pane .tab
+{
+    -fx-background-color: #FFFFFF;
+
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+    
+     -fx-pref-width: 150.0;
+    -fx-text-fill: -fx-text-base-color;
+    -fx-alignment: CENTER;
+}
+
+.scroll-pane{
+	-fx-background-color: #313131;
+}
+
+
+.scroll-pane > .viewport {
+   -fx-background-color: #313131;
+}
+
+#rangeError{
+	-fx-text-fill: #FA1000;
+	-fx-font-size: 10pt;
+    -fx-font-family: "Rockwell";
+	-fx-font-weight: NORMAL;
+}
+
+#opError{
+	-fx-text-fill: #FA1000;
+	-fx-font-size: 10pt;
+    -fx-font-family: "Rockwell";
+	-fx-font-weight: NORMAL;
+}

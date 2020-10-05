@@ -11,129 +11,113 @@ import java.util.List;
 
 /***
  * Gui for customization of ProblemParameter instances.
+ * 
  * @author Andreas Palmqvist
  * @author Seif Bourogaa
  */
-public class CustomParametersGUI {
-    private AnchorPane root;
-    private CheckBox addCheckBox;
-    private CheckBox subCheckBox;
-    private CheckBox mulCheckBox;
-    private CheckBox divCheckBox;
-    private CheckBox timedCheckBox;
-    private Slider termSlider;
-    private Spinner minSpinner;
-    private Spinner maxSpinner;
-    private Button playButton;
-    private Label rangeError;
-    private Label opError;
+public class CustomParametersGUI implements GUIHandler {
+	private AnchorPane root;
+	private CheckBox addCheckBox;
+	private CheckBox subCheckBox;
+	private CheckBox mulCheckBox;
+	private CheckBox divCheckBox;
+	private CheckBox timedCheckBox;
+	private Slider termSlider;
+	private Spinner minSpinner;
+	private Spinner maxSpinner;
+	private Button playButton;
+	private Label rangeError;
+	private Label opError;
 
-    private Delegate delegate;
+	public CustomParametersGUI(AnchorPane root) {
+		this.root = root;
+		getGUIObjects();
+	}
 
-    public CustomParametersGUI() {
-        try {
-            root = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/CustomParametersGUI.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+	public void displayOpError() {
+		opError.setVisible(true);
+	}
 
-        getGUIObjects();
+	public void displayRangeError() {
+		rangeError.setVisible(true);
+	}
 
-        playButton.setOnAction(e -> delegate.play());
-    }
+	public AnchorPane getRoot() {
+		return root;
+	}
 
-    /*
-    * 
-    *
-    */ 
-    public void setDelegate(Delegate delegate) {
-        this.delegate = delegate;
-    }
+	/**
+	 * Get all GUI objects: Buttons, checkboxes, spinners etc. on the scene.
+	 */
+	@Override
+	public void getGUIObjects() {
+		addCheckBox = (CheckBox) root.lookup("#addCheckBox");
+		subCheckBox = (CheckBox) root.lookup("#subCheckBox");
+		mulCheckBox = (CheckBox) root.lookup("#mulCheckBox");
+		divCheckBox = (CheckBox) root.lookup("#divCheckBox");
+		timedCheckBox = (CheckBox) root.lookup("#timedCheckBox");
+		termSlider = (Slider) root.lookup("#termSlider");
+		minSpinner = (Spinner) root.lookup("#minSpinner");
+		maxSpinner = (Spinner) root.lookup("#maxSpinner");
+		playButton = (Button) root.lookup("#playButton");
+		opError = (Label) root.lookup("#opError");
+		rangeError = (Label) root.lookup("#rangeError");
+	}
 
-    public void displayOpError() {
-        opError.setVisible(true);
-    }
+	/**
+	 * Get all chosen Operators.
+	 * 
+	 * @see Operator class.
+	 * @see ProblemParameters class.
+	 */
+	public List<Operator> getOperators() {
+		List<Operator> operators = new ArrayList<>();
+		if (addCheckBox.isSelected()) {
+			operators.add(Operator.ADD);
+		}
+		if (subCheckBox.isSelected()) {
+			operators.add(Operator.SUB);
+		}
+		if (mulCheckBox.isSelected()) {
+			operators.add(Operator.MUL);
+		}
+		if (divCheckBox.isSelected()) {
+			operators.add(Operator.DIV);
+		}
+		return operators;
+	}
 
-    public void displayRangeError() {
-        rangeError.setVisible(true);
-    }
+	/**
+	 * Method to get the range of numbers to generate terms from.
+	 * 
+	 * @see ProblemParameters class.
+	 */
+	public int[] getRange() {
+		int range[] = new int[2];
+		range[0] = (Integer) minSpinner.getValue();
+		range[1] = (Integer) maxSpinner.getValue();
+		return range;
+	}
 
-    public AnchorPane getRoot() {
-        return root;
-    }
+	/**
+	 * Method to get the number of terms for a problem.
+	 * 
+	 * @see ProblemParameters class.
+	 */
+	public int getTermAmount() {
+		return (int) termSlider.getValue();
+	}
 
+	/**
+	 * Method to see if a session is timed or not.
+	 * 
+	 * @see ProblemParameters class.
+	 */
+	public boolean getTimed() {
+		return timedCheckBox.isSelected();
+	}
 
-    /**
-    * Get all GUI objects: Buttons, checkboxes, spinners etc. on the scene. 
-    */
-    private void getGUIObjects() {
-        addCheckBox = (CheckBox) root.lookup("#addCheckBox");
-        subCheckBox = (CheckBox) root.lookup("#subCheckBox");
-        mulCheckBox = (CheckBox) root.lookup("#mulCheckBox");
-        divCheckBox = (CheckBox) root.lookup("#divCheckBox");
-        timedCheckBox = (CheckBox) root.lookup("#timedCheckBox");
-        termSlider = (Slider) root.lookup("#termSlider");
-        minSpinner = (Spinner) root.lookup("#minSpinner");
-        maxSpinner = (Spinner) root.lookup("#maxSpinner");
-        playButton = (Button) root.lookup("#playButton");
-        opError = (Label) root.lookup("#opError");
-        rangeError = (Label) root.lookup("#rangeError");
-    }
-
-    /**
-    * Get all chosen Operators.
-    * 
-    * @see Operator class.
-    * @see ProblemParameters class.
-    */
-    public List<Operator> getOperators() {
-        List<Operator> operators = new ArrayList<>();
-        if (addCheckBox.isSelected()) {
-            operators.add(Operator.ADD);
-        }
-        if (subCheckBox.isSelected()) {
-            operators.add(Operator.SUB);
-        }
-        if (mulCheckBox.isSelected()) {
-            operators.add(Operator.MUL);
-        }
-        if (divCheckBox.isSelected()) {
-            operators.add(Operator.DIV);
-        }
-        return operators;
-    }
-
-    /**
-    * Method to get the range of numbers to generate terms from.
-    * 
-    * @see ProblemParameters class. 
-    */
-    public int[] getRange() {
-        int range[] = new int[2];
-        range[0] = (Integer) minSpinner.getValue();
-        range[1] = (Integer) maxSpinner.getValue();
-        return range;
-    }
-
-    /**
-    * Method to get the number of terms for a problem.
-    * 
-    * @see ProblemParameters class. 
-    */
-    public int getTermAmount() {
-        return (int) termSlider.getValue();
-    }
-
-    /**
-    * Method to see if a session is timed or not. 
-    * 
-    * @see ProblemParameters class. 
-    */
-    public boolean getTimed() {
-        return timedCheckBox.isSelected();
-    }
-
-    public interface Delegate {
-        void play();
-    }
+	public Button getPlayButton() {
+		return playButton;
+	}
 }

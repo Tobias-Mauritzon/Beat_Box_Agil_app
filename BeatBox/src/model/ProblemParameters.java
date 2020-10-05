@@ -27,6 +27,13 @@ public class ProblemParameters {
 	private int termAmount;
 	private boolean timed;
 
+	public ProblemParameters() {
+		this(new ArrayList<Operator>() {{ add(Operator.ADD); }},
+				new int[]{1, 10},
+				2,
+				false);
+	}
+
 	public ProblemParameters(List<Operator> operators, int[] range, int termAmount, boolean timed){
 		this.operators = operators;
 		this.range = range;

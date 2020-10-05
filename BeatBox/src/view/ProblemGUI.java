@@ -32,7 +32,7 @@ import model.testGenerator;
  * @version 1.0
  * @since 2020-09-17
  */
-public class ProblemGUI extends GUIHandler {
+public class ProblemGUI implements GUIHandler {
 
 	/***
 	 * A Delegate used to communicate with the main class without and direct
@@ -45,26 +45,19 @@ public class ProblemGUI extends GUIHandler {
 	 * @version 1.0
 	 * @since 2020-09-17
 	 */
-	public interface Delegate {
-		Boolean grade(String s);
-
-		String getProblem();
-	}
 
 	// Input objects
-	public TextField answerText;
-	public Button button;
+	private TextField answerText;
+	private Button answerButton;
 
 	// Output objects
-	public VBox responseBox;
-	public Text problemText;
-	public Text responseText;
+	private VBox responseBox;
+	private Text problemText;
+	private Text responseText;
 	private String text;
 	private AnchorPane root;
 
 	private LinkedList<Node> inputObjects;
-
-	public Delegate delegate;
 
 	/***
 	 * The constructor of the ProblemGUI class, initializes the GUI elements with
@@ -77,55 +70,59 @@ public class ProblemGUI extends GUIHandler {
 		this.root = root;
 		inputObjects = new LinkedList<Node>();
 		getGUIObjects();
+		addTextInputListener();
+		clearAnswerText();
 	}
 
-	public LinkedList<Node> getInputObjects() {
-		return inputObjects;
-	}
-
-	/***
-	 * Is called on start up to generate the first problem to solve
-	 */
-	public void initProblem() {
-		System.out.println("Delegate:" + delegate);
-
-		if (delegate != null) {
-			text = delegate.getProblem();
-			answerText.clear();
-			answerText.textProperty().addListener(new ChangeListener<String>() {
-				@Override
-				public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-					if (!newValue.matches("^[-+]?[0-9]*[.,]?[0-9]+$")) {
-						System.out.println("JA");
-						answerText.setText(newValue.replaceAll("[^[-+]?[0-9]*[.,]?[0-9]+$]", ""));
-					}
+	private void addTextInputListener() {
+		// Check if userinput is a number.
+		answerText.textProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				if (!newValue.matches("^[-+]?[0-9]*[.,]?[0-9]+$")) {
+					answerText.setText(newValue.replaceAll("[^[-+]?[0-9]*[.,]?[0-9]+$]", ""));
 				}
-			});
-			problemText.setText(text);
-			problemText.setFocusTraversable(false);
-		}
+			}
+		});
+		problemText.setFocusTraversable(false);
+	}
+
+	/**
+	 * Sets the problem text to the inputed string
+	 * 
+	 * @param problem the new string for ProblemText
+	 */
+	public void setProblemText(String problem) {
+		problemText.setText(problem);
+	}
+
+	/**
+	 * Clears the current text in the answer field.
+	 */
+	public void clearAnswerText() {
+		answerText.clear();
 	}
 
 	/***
 	 * if the answer is correct a new problem is generated and the text field is
 	 * cleared, otherwise it stays on the same problem.
 	 */
-	public void answer() {
-		if (delegate != null) {
-			if (delegate.grade(answerText.getText())) {
-				text = delegate.getProblem();
-				problemText.setText(text);
-				showResponse(true);
-			} else {
-				showResponse(false);
-
-				ShakeTransition anim = new ShakeTransition(answerText, t -> System.out.println("test"));
-				anim.playFromStart();
-			}
-			answerText.clear();
-			answerText.requestFocus();
-		}
-	}
+//	public void answer() {
+//	
+//			if (delegate.grade(answerText.getText())) {
+//				text = delegate.getProblem();
+//				problemText.setText(text);
+//				showResponse(true);
+//			} else {
+//				showResponse(false);
+//
+//				ShakeTransition anim = new ShakeTransition(answerText, t -> System.out.println("test"));
+//				anim.playFromStart();
+//			}
+//			answerText.clear();
+//			answerText.requestFocus();
+//		}
+//	}
 
 	/***
 	 * shows a temporary message depending on the in parameter, if it's true it show
@@ -133,7 +130,7 @@ public class ProblemGUI extends GUIHandler {
 	 * 
 	 * @param correct a boolean indicated if the user answered correctly or not
 	 */
-	private void showResponse(boolean correct) {
+	public void showResponse(boolean correct) {
 		if (correct) {
 			responseText.setText("CORRECT!");
 			responseText.setFill(Color.LIMEGREEN);
@@ -152,18 +149,36 @@ public class ProblemGUI extends GUIHandler {
 	 * Initializes the GUI elements so the users can interact with them.
 	 */
 	@Override
-	protected void getGUIObjects() {
+	public void getGUIObjects() {
 		// input objects
 		answerText = (TextField) root.lookup("#answerText");
-		button = (Button) root.lookup("#button");
+		answerButton = (Button) root.lookup("#answerButton");
 		inputObjects.add(answerText);
-		inputObjects.add(button);
-		
+		inputObjects.add(answerButton);
+
 		// output objects
 		responseBox = (VBox) root.lookup("#responseBox");
 		problemText = (Text) root.lookup("#problemText");
 		responseText = (Text) root.lookup("#responseText");
-		
+
 	}
-	
+
+	/**
+	 * gets the answerText field
+	 * 
+	 * @return returns the answertext field.
+	 */
+	public TextField getAnswerText() {
+		return answerText;
+	}
+
+	/**
+	 * gets the answer button
+	 * 
+	 * @return retunrs the answer button
+	 */
+	public Button getAnswerButton() {
+		return answerButton;
+	}
+
 }

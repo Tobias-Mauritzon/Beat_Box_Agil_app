@@ -15,7 +15,6 @@ import java.util.List;
 public class CustomParametersModel {
     private static final String ILLEGAL_STATE_ERROR_MSG = "Class was uninitialized. Call updateModel at least once before use.";
 
-
     /** Data structures used to hold all the problem parameters.
 	*
 	* @see operators   List holding all the seeked Operators.
@@ -27,11 +26,19 @@ public class CustomParametersModel {
     private int[] range;
     private int termAmount;
     private boolean timed;
-
     private boolean initialized;
+    private Delegate delegate;
 
     public CustomParametersModel() {
         initialized = false;
+    }
+
+    /** Setter for delegate.
+     *
+     * @param delegate   The delegate to set.
+     */
+    public void setDelegate(Delegate delegate) {
+        this.delegate = delegate;
     }
 
 	/** Method to update the model if it is not initiazed. 
@@ -52,14 +59,14 @@ public class CustomParametersModel {
     }
 
     /**
-    * Method to generate Problem parameters. 
+    * Method to generate Problem parameters based on the current state of this model. This ProblemParameters instance
+    * is then transmitted out of this class.
     *
     * @see checkInitialization()
     */
     public void generateProblemParameters() {
         checkInitialization();
-        ProblemParameters p = new ProblemParameters(operators, range, termAmount, timed);
-        debugPrint(p);
+        delegate.transmitProblemParameters(new ProblemParameters(operators, range, termAmount, timed));
     }
 
      /**
@@ -83,7 +90,7 @@ public class CustomParametersModel {
         return (range[0] <= range[1]);
     }
 
-      /**
+    /**
     * Method to check if it has been initialized. 
     */
     private void checkInitialization() {
@@ -93,16 +100,9 @@ public class CustomParametersModel {
     }
 
     /**
-    * Debugging information.
-    */
-    private void debugPrint(ProblemParameters p) {
-        System.out.println("-----------------------------------------------");
-        for (Operator o : p.getOperators()) {
-            System.out.println(o.toString());
-        }
-        System.out.println(p.getRange()[0]);
-        System.out.println(p.getRange()[1]);
-        System.out.println(p.getTermAmount());
-        System.out.println(p.getTimed());
+     * A delegate for transmitting problem parameters out of this class.
+     */
+    public interface Delegate {
+        void transmitProblemParameters(ProblemParameters p);
     }
 }

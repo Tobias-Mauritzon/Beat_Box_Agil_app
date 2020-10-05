@@ -6,20 +6,26 @@ import java.util.LinkedList;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.effect.Effect;
+import javafx.scene.effect.GaussianBlur;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
-
 /**
- * This class initializes and manipulates GUI objects from the StartWindow.fxml file.
+ * This class initializes and manipulates GUI objects from the StartWindow.fxml
+ * file.
+ * 
  * @author Philip
  * @version 1.0
  * @since 2020-09-28
  */
-public class NavigationMenu extends GUIHandler {
-	
+public class NavigationMenu implements GUIHandler {
+
 	/***
 	 * All GUI Objects used to build up the NavigationMenu GUI.
 	 * 
@@ -41,154 +47,205 @@ public class NavigationMenu extends GUIHandler {
 	 */
 	private AnchorPane root;
 	private AnchorPane pane;
-	public AnchorPane[] leftPanes;
-	public AnchorPane[] rightPanes;
-	private int amountOfPanes;
-	private VBox sideBox;
-	public Button menuButton;
-	public AnchorPane menuButtonPane;
-	private Button[] leftSideButtons;
-	private Button[] rightSideButtons;
-	
-	public String enteredColor = "#505050";
-    public String exitedColor = " #303030";
-    
-    private TranslateTransition openNav;
-    private TranslateTransition closeNav;
-	private String[] sideButtonNames;
-    
-	
+	private LinkedList<AnchorPane> leftPanes;
+	private LinkedList<AnchorPane> rightPanes;
+	private StackPane sidePane;
+	private LinkedList<Button> leftSideButtons;
+	private LinkedList<Button> rightSideButtons;
+
+	private String enteredColor = "#505050";
+	private String exitedColor = "#000000";
+
+	private TranslateTransition openNav;
+	private TranslateTransition closeNav;
+
+	private final Effect frostEffect = new GaussianBlur();
+
+	private AnchorPane sideBoxBackground;
+
 	/***
 	 * Constructor for NavigationMenu
 	 * 
-	 * @param root the main scenes root
+	 * @param root          the main scenes root
 	 * @param amountOfPanes the amount of subscenes NavigationMenu has.
 	 */
-	public NavigationMenu(AnchorPane root, int amountOfPanes) {
+	public NavigationMenu(AnchorPane root) {
 		this.root = root;
-		this.amountOfPanes = amountOfPanes;
-		setSideButtonNames();
 		getGUIObjects();
-		initSlideEffect();     
+		initSlideEffect();
+		sidePane.setTranslateX(-sidePane.getWidth()); // start with closed sidebox
+		sidePane.setPrefWidth(0.0);
+		setVisualEffects();
 	}
-	
-	/***
-	 * Sets the name of the sideButton in an array called sideButtonsNames
-	 */
-	private void setSideButtonNames() {
-		sideButtonNames = new String[6];
-		sideButtonNames[0] = ("#homeButton");
-		sideButtonNames[1] = ("#plusButton");
-		sideButtonNames[2] = ("#minusButton");
-		sideButtonNames[3] = ("#multButton");
-		sideButtonNames[4] = ("#divButton");
-		sideButtonNames[5] = ("#settingsButton");
-	}
-	
-	/***
-	 *  gets the LeftSideButtons array
-	 * @return returns the LeftSideButtons array
-	 */
-	public Button[] getLeftSideButtons() {
-		return leftSideButtons;
-	}
-	
-	/***
-	 *  gets the RightSideButtons array
-	 * @return returns the RightSideButtons array
-	 */
-	public Button[] getRightSideButtons() {
-		return rightSideButtons;
-	}
-	
-	/***
-	 *  gets the root pane of the sub scene
-	 * @return returns the AnchorPane which is the root for the sub scene
-	 */
-	public AnchorPane getBasePane() {
-		return pane;
-	}
-	
+
 	/***
 	 * initializes the translate-transition.
 	 */
 	private void initSlideEffect() {
-		openNav=new TranslateTransition(new Duration(350), sideBox);
-        openNav.setToX(0.0);
-        closeNav=new TranslateTransition(new Duration(350), sideBox);
-        closeNav.setToX(-(sideBox.getWidth()));
+		openNav = new TranslateTransition(new Duration(350), sidePane);
+		openNav.setToX(0.0);
+		closeNav = new TranslateTransition(new Duration(350), sidePane);
+		closeNav.setToX(-(sidePane.getWidth()));
 	}
-	
+
 	/***
 	 * Starts the translate-transition which makes the sideBox slide.
 	 */
 	public void slidePanel() {
-		if(sideBox.getTranslateX()!=0.0){
+		if (sidePane.getTranslateX() != 0.0) {
 			openNav.play();
-			sideBox.setPrefWidth(150.0);
-			
-        }else{
-            closeNav.play();
-            closeNav.setOnFinished(e->{sideBox.setPrefWidth(0.0);});
-            
-        }
+			sidePane.setPrefWidth(150.0);
+
+		} else {
+			closeNav.play();
+			closeNav.setOnFinished(e -> {
+				sidePane.setPrefWidth(0.0);
+			});
+
+		}
 	}
-	
+
 	/***
 	 * Sets the color on the left- and right panes to a lighter color
+	 * 
 	 * @param lPane the left pane to highlight.
 	 * @param rPane the right pane to highlight.
 	 */
 	public void focusOn(AnchorPane lPane, AnchorPane rPane) {
 		lPane.setStyle("-fx-background-color:" + enteredColor);
-		rPane.setStyle("-fx-background-color:" + enteredColor);
+		if (rPane != null) {
+			rPane.setStyle("-fx-background-color:" + enteredColor);
+		}
+
 	}
-	
+
 	/***
 	 * Sets the color on the left- and right panes to default color
+	 * 
 	 * @param lPane the left pane to set to default color.
 	 * @param rPane the right pane to set to default color.
 	 */
 	public void focusOff(AnchorPane lPane, AnchorPane rPane) {
-		lPane.setStyle("-fx-background-color:" + exitedColor);
-		rPane.setStyle("-fx-background-color:" + exitedColor);
+		lPane.setStyle("-fx-background-color: transparent");
+		if (rPane != null) {
+			rPane.setStyle("-fx-background-color: transparent");
+		}
+
 	}
-	
+
 	/***
-	 * Initialize the GUI elements
-	 * Sets up the Panes and the Buttons with the corresponding text.
+	 * Initialize the GUI elements Sets up the Panes and the Buttons with the
+	 * corresponding text.
 	 */
 	@Override
-	protected void getGUIObjects() {
-		
-		leftPanes = new AnchorPane[amountOfPanes];
-		leftPanes[0] = (AnchorPane) root.lookup("#homeButtonPane");
-		leftPanes[1] = (AnchorPane) root.lookup("#plusButtonPane");
-		leftPanes[2] = (AnchorPane) root.lookup("#minusButtonPane");
-		leftPanes[3] = (AnchorPane) root.lookup("#multButtonPane");
-		leftPanes[4] = (AnchorPane) root.lookup("#divButtonPane");
-		leftPanes[5] = (AnchorPane) root.lookup("#settingsButtonPane");
-		
-		rightPanes = new AnchorPane[amountOfPanes];
-		rightPanes[0] = (AnchorPane) root.lookup("#homeButtonPane1");
-		rightPanes[1] = (AnchorPane) root.lookup("#plusButtonPane1");
-		rightPanes[2] = (AnchorPane) root.lookup("#minusButtonPane1");
-		rightPanes[3] = (AnchorPane) root.lookup("#multButtonPane1");
-		rightPanes[4] = (AnchorPane) root.lookup("#divButtonPane1");
-		rightPanes[5] = (AnchorPane) root.lookup("#settingsButtonPane1");
-		
-		leftSideButtons = new Button[amountOfPanes];
-		rightSideButtons = new Button[amountOfPanes];
-		for(int i = 0; i< leftSideButtons.length; i++) {
-			leftSideButtons[i] = (Button) root.lookup(sideButtonNames[i]);
-			rightSideButtons[i] = (Button) root.lookup(sideButtonNames[i]+"1");
-		}
-		
-		sideBox = (VBox) root.lookup("#sideBox");
-		menuButtonPane = (AnchorPane) root.lookup("#menuButtonPane");
-		menuButton = (Button) root.lookup("#menuButton");
-		pane = (AnchorPane) root.lookup("#rootPane");
+	public void getGUIObjects() {
+
+		leftPanes = new LinkedList<AnchorPane>();
+		leftPanes.add((AnchorPane) root.lookup("#slideButtonPane"));
+		leftPanes.add((AnchorPane) root.lookup("#homeButtonPane"));
+		leftPanes.add((AnchorPane) root.lookup("#plusButtonPane"));
+		leftPanes.add((AnchorPane) root.lookup("#minusButtonPane"));
+		leftPanes.add((AnchorPane) root.lookup("#multButtonPane"));
+		leftPanes.add((AnchorPane) root.lookup("#divButtonPane"));
+		leftPanes.add((AnchorPane) root.lookup("#settingsButtonPane"));
+
+		leftSideButtons = new LinkedList<Button>();
+		leftSideButtons.add((Button) root.lookup("#slideButton"));
+		leftSideButtons.add((Button) root.lookup("#homeButton"));
+		leftSideButtons.add((Button) root.lookup("#plusButton"));
+		leftSideButtons.add((Button) root.lookup("#minusButton"));
+		leftSideButtons.add((Button) root.lookup("#multButton"));
+		leftSideButtons.add((Button) root.lookup("#divButton"));
+		leftSideButtons.add((Button) root.lookup("#settingsButton"));
+
+		rightPanes = new LinkedList<AnchorPane>();
+		rightPanes.add(null);
+		rightPanes.add((AnchorPane) root.lookup("#homeButtonPane1"));
+		rightPanes.add((AnchorPane) root.lookup("#plusButtonPane1"));
+		rightPanes.add((AnchorPane) root.lookup("#minusButtonPane1"));
+		rightPanes.add((AnchorPane) root.lookup("#multButtonPane1"));
+		rightPanes.add((AnchorPane) root.lookup("#divButtonPane1"));
+		rightPanes.add((AnchorPane) root.lookup("#settingsButtonPane1"));
+
+		rightSideButtons = new LinkedList<Button>();
+		rightSideButtons.add(null);
+		rightSideButtons.add((Button) root.lookup("#homeButton1"));
+		rightSideButtons.add((Button) root.lookup("#plusButton1"));
+		rightSideButtons.add((Button) root.lookup("#minusButton1"));
+		rightSideButtons.add((Button) root.lookup("#multButton1"));
+		rightSideButtons.add((Button) root.lookup("#divButton1"));
+		rightSideButtons.add((Button) root.lookup("#settingsButton1"));
+
+		sidePane = (StackPane) root.lookup("#sidePane");
+		pane = (AnchorPane) root.lookup("#scenePane");
+		sideBoxBackground = (AnchorPane) root.lookup("#sideBoxBackground");
 	}
-	
-	
+
+	private void setVisualEffects() {
+//		sideBoxBackground.setEffect(frostEffect);
+	}
+
+	/***
+	 * gets the array of leftPanes
+	 * 
+	 * @return returns leftPanes array
+	 */
+	public LinkedList<AnchorPane> getLeftPanes() {
+		return leftPanes;
+	}
+
+	/***
+	 * gets the array of rightPanes
+	 * 
+	 * @return returns rightPanes array
+	 */
+	public LinkedList<AnchorPane> getRightPanes() {
+		return rightPanes;
+	}
+
+	/***
+	 * gets the enter color
+	 * 
+	 * @return returns color string
+	 */
+	public String getEnteredColor() {
+		return enteredColor;
+	}
+
+	/***
+	 * gets the exited color
+	 * 
+	 * @return returns color string
+	 */
+	public String getExitedColor() {
+		return exitedColor;
+	}
+
+	/***
+	 * gets the LeftSideButtons array
+	 * 
+	 * @return returns the LeftSideButtons array
+	 */
+	public LinkedList<Button> getLeftSideButtons() {
+		return leftSideButtons;
+	}
+
+	/***
+	 * gets the RightSideButtons array
+	 * 
+	 * @return returns the RightSideButtons array
+	 */
+	public LinkedList<Button> getRightSideButtons() {
+		return rightSideButtons;
+	}
+
+	/***
+	 * gets the root pane of the sub scene
+	 * 
+	 * @return returns the AnchorPane which is the root for the sub scene
+	 */
+	public AnchorPane getBasePane() {
+		return pane;
+	}
+
 }

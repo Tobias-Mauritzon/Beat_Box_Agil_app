@@ -28,7 +28,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="70.0" prefWidth="226.0" GridPane.rowIndex="1">
                      <children>
-                        <Text fx:id="problemText" fill="WHITE" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="4 + 8 =" textAlignment="CENTER" wrappingWidth="165.6000370979309">
+                        <Text fx:id="problemText" fill="WHITE" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="1+2=" textAlignment="CENTER" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="Rockwell" size="50.0" />
                            </font>
@@ -43,7 +43,7 @@
                         </TextField>
                      </children>
                   </HBox>
-                  <Button fx:id="button" alignment="CENTER" mnemonicParsing="false" prefHeight="28.0" prefWidth="184.0" style="-fx-background-radius: 100; -fx-background-color: White;" text="Answer" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Button fx:id="answerButton" alignment="CENTER" mnemonicParsing="false" prefHeight="28.0" prefWidth="184.0" style="-fx-background-radius: 100; -fx-background-color: White;" text="Answer" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <font>
                         <Font name="Rockwell" size="30.0" />
                      </font>
