@@ -5,7 +5,9 @@ import java.util.LinkedList;
 import javafx.scene.Node;
 
 /***
- * An interface class for all GUI for easier communcation between GUI and controllers.
+ * An interface class for all GUI for easier communcation between GUI and
+ * controllers.
+ * 
  * @author Greppe
  * @author Philip
  * @version 1.0

@@ -19,10 +19,13 @@ import view.ProblemGUI;
  * @author Greppe
  * @author Philip
  * @version 1.0
- * @since 2020-09-28
+ * @since 2020-10-01
+ *
  */
 public interface ControllerInterface {
-
+	/***
+	 * A prototype functions for interfaces is used to set all their actions.
+	 */
 	public void setActions();
 	
 }

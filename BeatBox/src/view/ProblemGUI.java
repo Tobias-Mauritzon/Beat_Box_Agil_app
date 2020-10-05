@@ -59,7 +59,6 @@ public class ProblemGUI implements GUIHandler {
 
 	private LinkedList<Node> inputObjects;
 
-
 	/***
 	 * The constructor of the ProblemGUI class, initializes the GUI elements with
 	 * initGUI and sets the root of the main application to the problem gui:s root.
@@ -87,11 +86,19 @@ public class ProblemGUI implements GUIHandler {
 		});
 		problemText.setFocusTraversable(false);
 	}
-	
+
+	/**
+	 * Sets the problem text to the inputed string
+	 * 
+	 * @param problem the new string for ProblemText
+	 */
 	public void setProblemText(String problem) {
 		problemText.setText(problem);
 	}
-	
+
+	/**
+	 * Clears the current text in the answer field.
+	 */
 	public void clearAnswerText() {
 		answerText.clear();
 	}
@@ -156,10 +163,20 @@ public class ProblemGUI implements GUIHandler {
 
 	}
 
+	/**
+	 * gets the answerText field
+	 * 
+	 * @return returns the answertext field.
+	 */
 	public TextField getAnswerText() {
 		return answerText;
 	}
 
+	/**
+	 * gets the answer button
+	 * 
+	 * @return retunrs the answer button
+	 */
 	public Button getAnswerButton() {
 		return answerButton;
 	}

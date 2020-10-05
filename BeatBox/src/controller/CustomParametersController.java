@@ -7,8 +7,13 @@ import model.CustomParametersModel;
  * A simple controller for the custom parameters gui. WILL BE FUSED WITH
  * CONTROLLER NEXT SPRINT!
  * 
+
+ * @version 1.0
+ * @since 2020-10-01
  * @author Andreas Palmqvist
  * @author Seif Bourogaa
+ * @author Greppe
+ * @author Philip
  */
 public class CustomParametersController implements ControllerInterface {
 	CustomParametersGUI cpGUI;

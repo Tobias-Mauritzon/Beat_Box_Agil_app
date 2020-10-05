@@ -10,7 +10,14 @@ import view.NavigationMenu;
 import model.ProblemParameters;
 
 import java.util.ArrayList;
-
+/***
+ * The controller for the navigation menu sets the actions for all the buttons so the user can interact with the navigation menu.
+* @author Greppe
+* @author Philip
+* @version 1.0
+* @since 2020-10-03
+*
+*/
 public class NavigationMenuController implements ControllerInterface{
 	
 	
@@ -21,6 +28,11 @@ public class NavigationMenuController implements ControllerInterface{
 	public Delegate delegate;
 	
 	
+	/**
+	 * The constructor for the navigationMenuController takes a navigationMenu, SceneHandler
+	 * @param navigationMenu the navgiationMenu model
+	 * @param sceneHandler the sceneHandler instance.
+	 */
 	public NavigationMenuController(NavigationMenu navigationMenu, SceneHandler sceneHandler) {
 		this.navigationMenu = navigationMenu;
 		this.sceneHandler = sceneHandler;
