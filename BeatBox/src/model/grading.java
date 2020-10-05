@@ -26,12 +26,17 @@ public class grading {
 	 * @param userInput the userInputed String
 	 */
 	public Boolean grade(String userInput) {
-		Double userDouble = Double.parseDouble(userInput);
-		Double answerDouble = Double.parseDouble(answer);
-		// Rounds to two decimals
-		answerDouble = Math.round(answerDouble * 100.0) / 100.0;
-		userDouble = Math.round(userDouble * 100.0) / 100.0;
-	
-		return (answerDouble.equals(userDouble));
+		if(userInput.isEmpty()) {
+			return false;
+		}else {
+			Double userDouble = Double.parseDouble(userInput);
+			Double answerDouble = Double.parseDouble(answer);
+			// Rounds to two decimals
+			answerDouble = Math.round(answerDouble * 100.0) / 100.0;
+			userDouble = Math.round(userDouble * 100.0) / 100.0;
+		
+			return (answerDouble.equals(userDouble));
+		}
+		
 	}
 }
