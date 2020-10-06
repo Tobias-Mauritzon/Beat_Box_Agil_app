@@ -1,11 +1,12 @@
-package model;
-
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
 
+import model.Operator;
+import model.SaveManager;
+import model.UserProfile;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,4 +1,3 @@
-package model;
 /**
  * Class used to generate random expression depending on different modifiers
  * @author Tobias Mauritzon, Joachim Antfolk
@@ -10,6 +9,10 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+
+import model.NumberGenerator;
+import model.Operator;
+import model.ProblemParameters;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

@@ -9,7 +9,7 @@ package model;
  * @version 1.0
  * @since 2020-09-17
  */
-public class grading {
+public class Grading {
 
 	String answer;
 	

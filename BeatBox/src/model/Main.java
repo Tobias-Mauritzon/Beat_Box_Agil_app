@@ -44,7 +44,7 @@ public class Main extends Application {
 	private SceneHandler sceneHandler;
 
 	private NumberGenerator generator;
-	private grading grade;
+	private Grading grade;
 	
 	// Controller
 	private ProglemGUIController problemController;
@@ -98,7 +98,7 @@ public class Main extends Application {
 		customParameters = new CustomParametersModel();
 		sceneHandler = new SceneHandler(sceneList, navigationMenu.getBasePane());
 		generator = new NumberGenerator();
-		grade = new grading();
+		grade = new Grading();
 		userProfile = new UserProfile("TestProfile");
 	}
 

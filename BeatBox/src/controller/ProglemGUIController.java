@@ -1,8 +1,7 @@
 package controller;
 
 import model.NumberGenerator;
-import model.grading;
-import model.testGenerator;
+import model.Grading;
 import view.ProblemGUI;
 import view.ShakeTransition;
 
@@ -17,11 +16,11 @@ import view.ShakeTransition;
 public class ProglemGUIController implements ControllerInterface{
 	
 	private ProblemGUI pg;
-	private grading g;
+	private Grading g;
 	private NumberGenerator gen;
 	private String[] problemString;
 	
-	public ProglemGUIController(ProblemGUI pg, grading g, NumberGenerator gen) {
+	public ProglemGUIController(ProblemGUI pg, Grading g, NumberGenerator gen) {
 		this.pg = pg;
 		this.g = g;
 		this.gen = gen;
