@@ -21,7 +21,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.testGenerator;
 
 /***
  * The view class that creates the GUI for the Problem solving scene of the
