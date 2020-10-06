@@ -140,20 +140,20 @@ public class NavigationMenuController implements ControllerInterface{
 		navigationMenu.getLeftSideButtons().get(1).setOnAction(toUser);
 		navigationMenu.getRightSideButtons().get(1).setOnAction(toUser);
 		
-		navigationMenu.getLeftSideButtons().get(2).setOnAction(toAddition);
-		navigationMenu.getRightSideButtons().get(2).setOnAction(toAddition);
+		navigationMenu.getLeftSideButtons().get(3).setOnAction(toAddition);
+		navigationMenu.getRightSideButtons().get(3).setOnAction(toAddition);
 		
-		navigationMenu.getLeftSideButtons().get(3).setOnAction(toSubtraction);
-		navigationMenu.getRightSideButtons().get(3).setOnAction(toSubtraction);
+		navigationMenu.getLeftSideButtons().get(4).setOnAction(toSubtraction);
+		navigationMenu.getRightSideButtons().get(4).setOnAction(toSubtraction);
 		
-		navigationMenu.getLeftSideButtons().get(4).setOnAction(toMultiplication);
-		navigationMenu.getRightSideButtons().get(4).setOnAction(toMultiplication);
+		navigationMenu.getLeftSideButtons().get(5).setOnAction(toMultiplication);
+		navigationMenu.getRightSideButtons().get(5).setOnAction(toMultiplication);
 		
-		navigationMenu.getLeftSideButtons().get(5).setOnAction(toDivision);
-		navigationMenu.getRightSideButtons().get(5).setOnAction(toDivision);
+		navigationMenu.getLeftSideButtons().get(6).setOnAction(toDivision);
+		navigationMenu.getRightSideButtons().get(6).setOnAction(toDivision);
 		
-		navigationMenu.getLeftSideButtons().get(6).setOnAction(toCustomParameters);
-		navigationMenu.getRightSideButtons().get(6).setOnAction(toCustomParameters);
+		navigationMenu.getLeftSideButtons().get(7).setOnAction(toCustomParameters);
+		navigationMenu.getRightSideButtons().get(7).setOnAction(toCustomParameters);
 	}
 
 	// TEMP

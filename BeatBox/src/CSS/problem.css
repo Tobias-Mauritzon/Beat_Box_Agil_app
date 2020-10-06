@@ -1,0 +1,13 @@
+
+@import "theme1.css";
+
+.button{
+	-fx-background-color:-buttonColor;
+	-fx-text-fill: -buttonTextColor;
+	-fx-background-radius: 100;
+	-fx-pref-width: 200;
+	-fx-pref-height: 25;
+	
+	-fx-border-color: transparent;
+	-fx-background-insets: 0;
+}

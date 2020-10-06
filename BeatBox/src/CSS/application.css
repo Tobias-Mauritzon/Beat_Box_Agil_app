@@ -1,17 +1,28 @@
+@import "theme1.css";
+
+/*
+ * General GUI settings for the application
+ * Author: Philip
+ * 
+ */
+
+
+/*
+ * Settngs for NavigationMenuGUI
+ * 
+ */
 #rootPane{
-	-fx-background-color: #212121;
+	-fx-background-color: -baseColor1;
 }	
 
-#sideBoxBackground {
-	
-	-fx-background-color: #303030;
+#slideMenuBackground {
+	-fx-background-color: -baseColor2;
 }
 
 #menuBar {
-	
-	-fx-background-color: #303030;
+	-fx-background-color: -baseColor2;
 }
 
 #scenePane{
-	-fx-background-color: #212121;
+	-fx-background-color: -baseColor1;
 }

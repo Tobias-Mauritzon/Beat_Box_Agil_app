@@ -180,7 +180,7 @@
                     </rowConstraints>
                      <children>
                         <CheckBox fx:id="timedCheckBox" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Timed?" textAlignment="CENTER" GridPane.halignment="LEFT" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
-                        <Button fx:id="playButton" mnemonicParsing="false" text="Play" GridPane.columnIndex="1" />
+                        <Button fx:id="playButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="Play" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                </children>

@@ -1,0 +1,65 @@
+.root{
+	-baseColor1: #303030;
+	-baseColor2: #1A1A1A;
+	-baseColor3: BLACK;
+	
+	-fx-background-color: -baseColor1;
+	-fx-font-size: 12.0pt;
+    -fx-font-family: "Rockwell";
+	-fx-font-weight: NORMAL;
+	
+	-fx-focus-color: transparent;
+	-fx-faint-focus-color: transparent;
+	/*
+ 	* Text Colors:
+ 	*/
+	-buttonTextColor: BLACK;
+	-labelTextColor: WHITE;
+	-checkBoxTextColor: WHITE;
+	-sliderTextColor: WHITE;
+	-spinnerBackgroundColor: WHITE; 
+	
+	/*
+ 	* Background Colors:
+ 	*/
+	-buttonColor: WHITE;
+	-checkBoxColor: WHITE;
+	-spinnerColor: WHITE;
+	
+	
+	/*
+ 	* Other Colors:
+ 	*/
+	-slderKnobColor: WHITE;
+	-checkBoxMarkColor: BLACK;
+	-spinnerButtonColor: GREY;
+	-spinnerArrowColor: WHITE;
+	
+	/*
+ 	* Error Colors:
+ 	*/
+	-errorTextColor: #FA1000;
+
+}
+
+
+.label{
+	-fx-text-fill: WHITE;
+	-fx-alignment: CENTER;
+}
+
+
+.button{
+	-fx-background-color:-buttonColor;
+	-fx-text-fill: -buttonTextColor;
+	-fx-background-radius: 100;
+	-fx-pref-width: 140;
+	-fx-pref-height: 25;
+	
+	-fx-border-color: transparent;
+	-fx-background-insets: 0;
+}
+
+.button:hover{
+	-fx-background-color: derive(black, 95%);
+}

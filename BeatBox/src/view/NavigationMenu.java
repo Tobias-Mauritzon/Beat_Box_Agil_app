@@ -53,15 +53,13 @@ public class NavigationMenu implements GUIHandler {
 	private LinkedList<Button> leftSideButtons;
 	private LinkedList<Button> rightSideButtons;
 
-	private String enteredColor = "#505050";
-	private String exitedColor = "#000000";
-
 	private TranslateTransition openNav;
 	private TranslateTransition closeNav;
 
 	private final Effect frostEffect = new GaussianBlur();
 
-	private AnchorPane sideBoxBackground;
+	private AnchorPane slideMenuBackground;
+	
 
 	/***
 	 * Constructor for NavigationMenu
@@ -76,6 +74,7 @@ public class NavigationMenu implements GUIHandler {
 		sidePane.setTranslateX(-sidePane.getWidth()); // start with closed sidebox
 		sidePane.setPrefWidth(0.0);
 		setVisualEffects();
+//		System.out.println( "TEST " + slideMenuBackground.getCssMetaData().toString());
 	}
 
 	/***
@@ -112,9 +111,11 @@ public class NavigationMenu implements GUIHandler {
 	 * @param rPane the right pane to highlight.
 	 */
 	public void focusOn(AnchorPane lPane, AnchorPane rPane) {
-		lPane.setStyle("-fx-background-color:" + enteredColor);
+		lPane.setOpacity(0.2);
+		lPane.setStyle("-fx-background-color: white");
 		if (rPane != null) {
-			rPane.setStyle("-fx-background-color:" + enteredColor);
+			rPane.setOpacity(0.2);
+			rPane.setStyle("-fx-background-color: white");
 		}
 
 	}
@@ -126,8 +127,10 @@ public class NavigationMenu implements GUIHandler {
 	 * @param rPane the right pane to set to default color.
 	 */
 	public void focusOff(AnchorPane lPane, AnchorPane rPane) {
+		lPane.setOpacity(0);
 		lPane.setStyle("-fx-background-color: transparent");
 		if (rPane != null) {
+			rPane.setOpacity(0);
 			rPane.setStyle("-fx-background-color: transparent");
 		}
 
@@ -142,6 +145,7 @@ public class NavigationMenu implements GUIHandler {
 
 		leftPanes = new LinkedList<AnchorPane>();
 		leftPanes.add((AnchorPane) root.lookup("#slideButtonPane"));
+		leftPanes.add((AnchorPane) root.lookup("#userButtonPane"));
 		leftPanes.add((AnchorPane) root.lookup("#homeButtonPane"));
 		leftPanes.add((AnchorPane) root.lookup("#plusButtonPane"));
 		leftPanes.add((AnchorPane) root.lookup("#minusButtonPane"));
@@ -151,6 +155,7 @@ public class NavigationMenu implements GUIHandler {
 
 		leftSideButtons = new LinkedList<Button>();
 		leftSideButtons.add((Button) root.lookup("#slideButton"));
+		leftSideButtons.add((Button) root.lookup("#userButton"));
 		leftSideButtons.add((Button) root.lookup("#homeButton"));
 		leftSideButtons.add((Button) root.lookup("#plusButton"));
 		leftSideButtons.add((Button) root.lookup("#minusButton"));
@@ -160,6 +165,7 @@ public class NavigationMenu implements GUIHandler {
 
 		rightPanes = new LinkedList<AnchorPane>();
 		rightPanes.add(null);
+		rightPanes.add((AnchorPane) root.lookup("#userButtonPane1"));
 		rightPanes.add((AnchorPane) root.lookup("#homeButtonPane1"));
 		rightPanes.add((AnchorPane) root.lookup("#plusButtonPane1"));
 		rightPanes.add((AnchorPane) root.lookup("#minusButtonPane1"));
@@ -169,6 +175,7 @@ public class NavigationMenu implements GUIHandler {
 
 		rightSideButtons = new LinkedList<Button>();
 		rightSideButtons.add(null);
+		rightSideButtons.add((Button) root.lookup("#userButton1"));
 		rightSideButtons.add((Button) root.lookup("#homeButton1"));
 		rightSideButtons.add((Button) root.lookup("#plusButton1"));
 		rightSideButtons.add((Button) root.lookup("#minusButton1"));
@@ -177,8 +184,8 @@ public class NavigationMenu implements GUIHandler {
 		rightSideButtons.add((Button) root.lookup("#settingsButton1"));
 
 		sidePane = (StackPane) root.lookup("#sidePane");
+		slideMenuBackground = (AnchorPane) root.lookup("slideMenuBackground");
 		pane = (AnchorPane) root.lookup("#scenePane");
-		sideBoxBackground = (AnchorPane) root.lookup("#sideBoxBackground");
 	}
 
 	private void setVisualEffects() {
@@ -203,24 +210,7 @@ public class NavigationMenu implements GUIHandler {
 		return rightPanes;
 	}
 
-	/***
-	 * gets the enter color
-	 * 
-	 * @return returns color string
-	 */
-	public String getEnteredColor() {
-		return enteredColor;
-	}
-
-	/***
-	 * gets the exited color
-	 * 
-	 * @return returns color string
-	 */
-	public String getExitedColor() {
-		return exitedColor;
-	}
-
+	
 	/***
 	 * gets the LeftSideButtons array
 	 * 
