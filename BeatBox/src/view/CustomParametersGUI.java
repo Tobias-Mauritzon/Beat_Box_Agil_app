@@ -120,4 +120,12 @@ public class CustomParametersGUI implements GUIHandler {
 	public Button getPlayButton() {
 		return playButton;
 	}
+
+	public Spinner<Integer> getMinSpinner() {
+		return minSpinner;
+	}
+
+	public Spinner<Integer> getMaxSpinner() {
+		return maxSpinner;
+	}
 }

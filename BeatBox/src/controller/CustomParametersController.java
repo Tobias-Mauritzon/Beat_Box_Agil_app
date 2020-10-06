@@ -1,7 +1,10 @@
 package controller;
 
+import javafx.scene.control.TextFormatter;
 import view.CustomParametersGUI;
 import model.CustomParametersModel;
+
+import java.util.function.UnaryOperator;
 
 /***
  * A simple controller for the custom parameters gui. WILL BE FUSED WITH
@@ -43,15 +46,31 @@ public class CustomParametersController implements ControllerInterface {
 	@Override
 	public void setActions() {
 		cpGUI.getPlayButton().setOnAction(e -> {
+			boolean error = false;
 			cpModel.updateModel(cpGUI.getOperators(), cpGUI.getRange(), cpGUI.getTermAmount(), cpGUI.getTimed());
+
 			if (!cpModel.operatorsIsValid()) {
 				cpGUI.displayOpError();
+				error = true;
 			}
 			if (!cpModel.rangeIsValid()) {
 				cpGUI.displayRangeError();
+				error = true;
+			}
+			if (error) {
+				return;
 			}
 			cpModel.generateProblemParameters();
 		});
 
+		UnaryOperator<TextFormatter.Change> filter = change -> {
+			if (change.getText().matches("[0-9]*")) {
+				return change;
+			}
+			return null;
+		};
+
+		cpGUI.getMinSpinner().getEditor().setTextFormatter(new TextFormatter<>(filter));
+		cpGUI.getMinSpinner().getEditor().setTextFormatter(new TextFormatter<>(filter));
 	}
 }

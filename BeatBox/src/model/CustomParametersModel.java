@@ -41,7 +41,7 @@ public class CustomParametersModel {
         this.delegate = delegate;
     }
 
-	/** Method to update the model if it is not initiazed. 
+	/** Method to update the model. Must be called at least once.
 	*
 	* @param operators   List holding all the seeked Operators.
 	* @param range 	   Array holding the range of numbers to create.
@@ -87,7 +87,7 @@ public class CustomParametersModel {
     */
     public boolean rangeIsValid() {
         checkInitialization();
-        return (range[0] <= range[1]);
+        return (range[0] < range[1]);
     }
 
     /**
