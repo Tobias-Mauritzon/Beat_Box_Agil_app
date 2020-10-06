@@ -3,15 +3,22 @@
 */
 
 /*
-	Sets the base color, font-size, the backgroung color and font used by everything else
+	Sets the base color, font-size, the background color and font used by everything else
 */
 .root{
 	-fx-base: #111111;
+	-fx-default-button: #111111;
 	-fx-font-size: 12pt;
     -fx-font-family: "Rockwell";
 	-fx-font-weight: NORMAL;
-	-fx-background-color: -fx-base;
 }	
+
+/*
+	Sets background in tab-pane
+*/
+.tab-pane{
+	-fx-background-color: -fx-base;
+}
 
 /*
 	Sets the tab size, color and border style
@@ -25,7 +32,8 @@
 	-fx-padding: 0 0 0 13;
     -fx-background-radius: 0;
 	
-	-fx-border-width: 0 0 2 0; 
+	-fx-border-style: hidden hidden solid hidden; 
+	-fx-border-width: 2; 
 	-fx-border-color: derive(-fx-base, 20%);
 }
 
@@ -36,36 +44,6 @@
 	-fx-padding: 0 0 0 0;
 }
 
-/*
-	Sets apprerance for show hidden tabs button
-*/
-.tab-pane:left .tab-header-area .control-buttons-tab .container .tab-down-button{
-	-fx-background-color: derive(-fx-base, 20%);
-	-fx-background-radius: 0;
-	-fx-border-width: 0 0 0 1;
-	-fx-border-color: -fx-base;
-}
-
-/*
-	Sets the background color of  the hidden tabs context menu
-*/
-.tab-pane:left .tab-header-area .control-buttons-tab .container .tab-down-button .context-menu{
-	-fx-background-color: derive(-fx-base, 20%);
-}
-
-/*
-	Sets the color of the focused hidden tabs context menu item
-*/
-.tab-pane:left .tab-header-area .control-buttons-tab .container .tab-down-button .context-menu .menu-item:focused{
-	-fx-background-color: derive(-fx-base, 30%);
-}
-
-/*
-	Sets the color of the hidden tabs context menu item hovering on
-*/
-.tab-pane:left .tab-header-area .control-buttons-tab .container .tab-down-button .context-menu .menu-item:hover{
-	-fx-background-color: derive(-fx-base, 30%);
-}
 
 /*
 	Sets the color of tab when hovering
@@ -108,10 +86,12 @@
 	Sets button shape, size and color
 */
 .button{
-	-fx-background-radius: 0 0 0 0;
+	-fx-background-radius: 0;
 	-fx-pref-height: 50;
     -fx-pref-width: 150;
 	-fx-background-color: derive(-fx-base, 20%);
+	-fx-border-color: transparent;
+	-fx-background-insets: 0;
 }
 
 /*
@@ -119,6 +99,42 @@
 */
 .button:hover{
 	-fx-background-color: derive(-fx-base, 30%);
+}
+
+/*
+	Sets background in table
+*/
+.table-view{
+	-fx-background-color: -fx-base;
+}
+
+/*
+	Sets background color in table header
+*/
+.table-view .column-header{
+    -fx-background-color: derive(-fx-base, 20%);
+}
+
+/*
+	Sets text color for table header
+*/
+.table-view .column-header .label {
+    -fx-text-fill: #ffffff; 
+	-fx-font-weight: NORMAL; 
+}
+
+/*
+	Sets background for odd cells
+*/
+.table-row-cell:odd {
+    -fx-background-color: derive(-fx-base, 30%);
+}
+
+/*
+	Sets background for even cells
+*/
+.table-row-cell:even {
+    -fx-background-color: derive(-fx-base, 40%);
 }
 
 /*
