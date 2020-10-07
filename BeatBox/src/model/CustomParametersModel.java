@@ -69,27 +69,6 @@ public class CustomParametersModel {
         delegate.transmitProblemParameters(new ProblemParameters(operators, range, termAmount, timed));
     }
 
-     /**
-    * Method to check if the Operators are valid. 
-    *
-    * @see checkInitialization()
-    * @see Operator class. 
-    */
-    public boolean operatorsIsValid() {
-        checkInitialization();
-        return (operators.size() > 0);
-    }
-
-  	/**
-    * Method to check if the range is valid. 
-    *
-    * @see checkInitialization()
-    */
-    public boolean rangeIsValid() {
-        checkInitialization();
-        return (range[0] < range[1]);
-    }
-
     /**
     * Method to check if it has been initialized. 
     */

@@ -1,11 +1,9 @@
 package view;
 
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import model.Operator;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +21,8 @@ public class CustomParametersGUI implements GUIHandler {
 	private CheckBox divCheckBox;
 	private CheckBox timedCheckBox;
 	private Slider termSlider;
-	private Spinner minSpinner;
-	private Spinner maxSpinner;
+	private TextField minInput;
+	private TextField maxInput;
 	private Button playButton;
 	private Label rangeError;
 	private Label opError;
@@ -34,8 +32,28 @@ public class CustomParametersGUI implements GUIHandler {
 		getGUIObjects();
 	}
 
+	public Button getPlayButton() {
+		return playButton;
+	}
+
+	public TextField[] getRangeInputs() {
+		return new TextField[]{minInput, maxInput};
+	}
+
+	public CheckBox[] getOpCheckBoxes() {
+		return new CheckBox[]{addCheckBox, subCheckBox, mulCheckBox, divCheckBox};
+	}
+
+	public void hideOpError() {
+		opError.setVisible(false);
+	}
+
 	public void displayOpError() {
 		opError.setVisible(true);
+	}
+
+	public void hideRangeError() {
+		rangeError.setVisible(false);
 	}
 
 	public void displayRangeError() {
@@ -57,8 +75,8 @@ public class CustomParametersGUI implements GUIHandler {
 		divCheckBox = (CheckBox) root.lookup("#divCheckBox");
 		timedCheckBox = (CheckBox) root.lookup("#timedCheckBox");
 		termSlider = (Slider) root.lookup("#termSlider");
-		minSpinner = (Spinner) root.lookup("#minSpinner");
-		maxSpinner = (Spinner) root.lookup("#maxSpinner");
+		minInput = (TextField) root.lookup("#minInput");
+		maxInput = (TextField) root.lookup("#maxInput");
 		playButton = (Button) root.lookup("#playButton");
 		opError = (Label) root.lookup("#opError");
 		rangeError = (Label) root.lookup("#rangeError");
@@ -94,8 +112,8 @@ public class CustomParametersGUI implements GUIHandler {
 	 */
 	public int[] getRange() {
 		int range[] = new int[2];
-		range[0] = (Integer) minSpinner.getValue();
-		range[1] = (Integer) maxSpinner.getValue();
+		range[0] = Integer.parseInt(minInput.getText());
+		range[1] = Integer.parseInt(maxInput.getText());
 		return range;
 	}
 
@@ -115,17 +133,5 @@ public class CustomParametersGUI implements GUIHandler {
 	 */
 	public boolean getTimed() {
 		return timedCheckBox.isSelected();
-	}
-
-	public Button getPlayButton() {
-		return playButton;
-	}
-
-	public Spinner<Integer> getMinSpinner() {
-		return minSpinner;
-	}
-
-	public Spinner<Integer> getMaxSpinner() {
-		return maxSpinner;
 	}
 }
