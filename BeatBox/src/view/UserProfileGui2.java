@@ -16,7 +16,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXMLLoader;
-import model.UserProfile2;
+import model.UserProfile;
 import model.History;
 import model.Operator;
 import model.SaveManager;
@@ -34,10 +34,10 @@ public class UserProfileGui2 /* implements GUIHandler */ {
 	private Button profileNew;
 	private Button profileSwitch;
 	private Button profileDelete;
-	private UserProfile2 profile;
+	private UserProfile profile;
 	private TableView<History> history;
 
-	public void UserProfileGUI2(UserProfile2 profile) {
+	public void UserProfileGUI2(UserProfile profile) {
 		try {
 			this.profile = profile;
 			this.root = (AnchorPane) FXMLLoader.load(getClass().getResource("/FXML/UserProfile.fxml"));
@@ -77,7 +77,7 @@ public class UserProfileGui2 /* implements GUIHandler */ {
 	 * 
 	 * @param profile new profile
 	 */
-	public void setProfile(UserProfile2 profile) {
+	public void setProfile(UserProfile profile) {
 		this.profile = profile;
 	}
 
@@ -165,7 +165,7 @@ public class UserProfileGui2 /* implements GUIHandler */ {
 
 					SaveManager.saveFile(profile, profile.getName() + "Profile.Save");
 
-					profile = new UserProfile2(name.get());
+					profile = new UserProfile(name.get());
 					userName.setText(name.get());
 					history.setItems(FXCollections.observableArrayList(profile.getHistory()));
 
@@ -183,7 +183,7 @@ public class UserProfileGui2 /* implements GUIHandler */ {
 					profile.toArrayList();
 					SaveManager.saveFile(profile, profile.getName() + "Profile.Save");
 
-					profile = (UserProfile2) SaveManager.loadFile(name.get() + "Profile.Save");
+					profile = (UserProfile) SaveManager.loadFile(name.get() + "Profile.Save");
 					profile.toObservableList();
 
 					userName.setText(profile.getName());

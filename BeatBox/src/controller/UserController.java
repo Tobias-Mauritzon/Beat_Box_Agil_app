@@ -4,12 +4,16 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Optional;
 
+import javafx.collections.FXCollections;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
+import model.ProfileHandler;
 import model.SaveManager;
 import model.UserProfile;
+import model.UserProfile;
+import view.Operator;
 import view.UserProfileGUI;
 
 /***
@@ -24,7 +28,7 @@ import view.UserProfileGUI;
 public class UserController implements ControllerInterface {
 
 	private UserProfileGUI userProfileGUI;
-	private UserProfile userProfile;
+	private ProfileHandler profileHandler;
 
 	/***
 	 * Constructor for the UserController.
@@ -32,9 +36,10 @@ public class UserController implements ControllerInterface {
 	 * @param userProfileGUI the UserProfileGUI instance
 	 * @param userProfile    the UserProfile model instance.
 	 */
-	public UserController(UserProfileGUI userProfileGUI, UserProfile userProfile) {
+	public UserController(UserProfileGUI userProfileGUI, ProfileHandler profileHandler) {
 		this.userProfileGUI = userProfileGUI;
-		this.userProfile = userProfile;
+		this.profileHandler = profileHandler;
+		userProfileGUI.setUserNameLabel(profileHandler.getCurrentProfile().getName());
 		setActions();
 	}
 
@@ -43,36 +48,87 @@ public class UserController implements ControllerInterface {
 	 * Sets the actions for the userController GUI.
 	 */
 	public void setActions() {
-//		System.out.println("test: " + userProfileGUI.getInput("Switch Profile"));
-		System.out.println("test2: " + userProfileGUI.getPSwitchButton());
-
+		//System.out.println("test2: " + userProfileGUI.getPSwitchButton());
+		
+		// Sets the actions for the profile switch button
 		userProfileGUI.getPSwitchButton().setOnAction((event) -> {
 			try {
-				Optional<String> name = userProfileGUI.getInput("Switch Profile");
+					Optional<String> name = userProfileGUI.getInput("Switch Profile", "Profile name:");
+					if(profileHandler.switchProfile(name)) {
+						userProfileGUI.setUserNameLabel(profileHandler.getCurrentProfile().getName());
+						userProfileGUI.getHistory().setItems(FXCollections.observableArrayList(profileHandler.getCurrentProfile().getHistory()));
+					}
+					else {
+						
+						throw new IOException("");
+					}
 
-				if (name.isPresent() && name.get().length() > 0) {
-					SaveManager.saveFile(userProfile, userProfile.getName() + "Profile.Save");
-					userProfile = (UserProfile) SaveManager.loadFile(name.get() + "Profile.Save");
-
-					userProfileGUI.setUserNameLabel(userProfile.getName());
-				}
-			} catch (IOException | ClassNotFoundException e) {
+			}
+			catch (IOException | ClassNotFoundException e) {
 				userProfileGUI.errorMessage("Could not switch profile!");
 			}
 		});
-
+		
+		// Sets the actions for the profile Delete Button.
 		userProfileGUI.getPDeleteButton().setOnAction((event) -> {
+			String deleteProfile = "";
 			try {
-				Optional<String> name = userProfileGUI.getInput("Delete Profile");
-
-				if (name.isPresent() && name.get().length() > 0) {
-					SaveManager.deleteFile(name.get() + "Profile.Save");
+				
+				Optional<String> name = userProfileGUI.getInput("Delete Profile", "Profile name:");
+				deleteProfile = name.get();
+				if(!profileHandler.deleteProfile(name)) 
+				{
+					throw new IOException("");
 				}
-			} catch (IOException e) {
-				userProfileGUI.errorMessage("Could not delete profile: " + userProfile.getName() + "!");
+			} 
+			
+			catch (IOException e) {
+				
+				userProfileGUI.errorMessage("Could not delete profile: " + deleteProfile + "!");
+			}
+		});
+		
+		// Sets the action for the new profile button.
+		userProfileGUI.getPNewButton().setOnAction((event) -> {
+			String newProfile = "";
+			try {
+					Optional<String> name = userProfileGUI.getInput("New Profile", "Profile name:");
+					newProfile = name.get();
+					
+					if(profileHandler.addProfile(name)) {
+						
+						userProfileGUI.setUserNameLabel(profileHandler.getCurrentProfile().getName());
+						userProfileGUI.getHistory().setItems(FXCollections.observableArrayList(profileHandler.getCurrentProfile().getHistory()));
+					}
+					else {
+						
+						throw new IOException("");
+					}
+
+
+			}
+			catch (IOException e) {
+				userProfileGUI.errorMessage("Could not save profile: " + newProfile + "!");
 			}
 		});
 
 	}
+	
+//	/***
+//	 * Temporary testing function for initialzing the table with values.
+//	 */
+//	private void Testing() 
+//	{
+//			for (int i = 0; i < 10; i++) {
+//			userProfile.addProblemToHistory("1 + " + i, "" + i, "" + (1 + i), 4, 3, new model.Operator[] { model.Operator.ADD, model.Operator.SUB });
+//			userProfile.addProblemToHistory("2 + " + i, "" + 2 * i, "" + (2 + i), 4, 3, new model.Operator[] { model.Operator.ADD });
+//			userProfile.addProblemToHistory("3 + " + i, "" + 3 * i, "" + (3 + i), 4, 3, new model.Operator[] { model.Operator.ADD });
+//			userProfile.addProblemToHistory("4 - " + i, "" + 4 * i, "" + (4 + i), 4, 3, new model.Operator[] { model.Operator.ADD });
+//			userProfile.addProblemToHistory("5 * " + i, "" + 5 * i, "" + (5 * 1), 4, 3, new model.Operator[] { model.Operator.ADD });
+//		}
+//			
+//			userProfileGUI.getHistory().setItems(userProfile.getHistory());
+//		
+//	}
 
 }

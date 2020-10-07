@@ -42,7 +42,7 @@ public class Main extends Application {
 	private CustomParametersModel customParameters;
 	private UserProfile userProfile;
 	private SceneHandler sceneHandler;
-
+	private ProfileHandler profileHandler;
 	private NumberGenerator generator;
 	private Grading grade;
 	
@@ -100,13 +100,14 @@ public class Main extends Application {
 		generator = new NumberGenerator();
 		grade = new Grading();
 		userProfile = new UserProfile("TestProfile");
+		profileHandler = new ProfileHandler(userProfile);
 	}
 
 	/**
 	 * Creates instances of controller classes.
 	 */
 	private void createControllerObjects() {
-		new UserController(userProfileGUI, userProfile);
+		new UserController(userProfileGUI, profileHandler);
 		navigationMenuController = new NavigationMenuController(navigationMenu, sceneHandler);
 		problemController = new ProglemGUIController(problemGUI,grade,generator);
 		new CustomParametersController(customParametersGUI,customParameters);
