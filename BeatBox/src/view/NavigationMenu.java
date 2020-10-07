@@ -61,6 +61,7 @@ public class NavigationMenu implements GUIHandler {
 	private AnchorPane slideMenuBackground;
 	
 
+	private double focusOnOpacity = 0.08;
 	/***
 	 * Constructor for NavigationMenu
 	 * 
@@ -111,10 +112,10 @@ public class NavigationMenu implements GUIHandler {
 	 * @param rPane the right pane to highlight.
 	 */
 	public void focusOn(AnchorPane lPane, AnchorPane rPane) {
-		lPane.setOpacity(0.2);
+		lPane.setOpacity(focusOnOpacity);
 		lPane.setStyle("-fx-background-color: white");
 		if (rPane != null) {
-			rPane.setOpacity(0.2);
+			rPane.setOpacity(focusOnOpacity);
 			rPane.setStyle("-fx-background-color: white");
 		}
 

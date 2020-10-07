@@ -1,6 +1,5 @@
 @import "theme1.css";
 
-
 .button{
 	-fx-background-color: -buttonColor;
 	-fx-text-fill: -buttonTextColor;
@@ -8,8 +7,21 @@
 }
 
 .label{
-	-fx-alignment: CENTER;
-	-fx-text-fill: -labelTextColor; 	
+	-fx-alignment: CENTER-LEFT;
+	-fx-text-fill: -labelTextColor; 
+}
+
+.acnhor-pane{
+	-fx-background-color: transparent;
+}
+
+#topPane{
+	-fx-background-color: -baseColor1;
+	-fx-pref-height: 50;
+}
+
+#rootPane{
+	-fx-background-color: -baseColor1;
 }
 
 .check-box{
@@ -57,9 +69,16 @@
 
 #title{
 	-fx-text-fill: -labelTextColor; 
-	-fx-font-size: 24.0pt;
-    -fx-font-family: "Rockwell";
+	-fx-alignment: CENTER-LEFT;
+	-fx-text-fill: -labelTextColor; 
+	-fx-padding: 0 0 0 10;
+	-fx-font-size: 15.0pt;	
+	-fx-font-family: "Rockwell";
 	-fx-font-weight: NORMAL;
+}
+#mainBox{
+	-fx-background-color: -baseColor2;
+	
 }
 
 #rangeError{

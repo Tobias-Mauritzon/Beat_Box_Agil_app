@@ -9,23 +9,21 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="rootPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox fx:id="topPane" prefHeight="50.0" prefWidth="200.0">
+            <HBox fx:id="topPane" prefHeight="50.0" prefWidth="200.0" VBox.vgrow="NEVER">
                <children>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                  <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="200.0">
                      <children>
-                        <Label prefHeight="100.0" prefWidth="200.0" text="User Name" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label fx:id="titleUserName" graphicTextGap="0.0" text="User Name" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font size="28.0" />
                            </font>
@@ -47,11 +45,7 @@
                            <children>
                               <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="150.0" spacing="10.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
                                  <children>
-                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../frameIcons/profile-icon.png" />
-                                       </image>
-                                    </ImageView>
+                                    <AnchorPane fx:id="profilePicPane" prefHeight="150.0" prefWidth="150.0" />
                                     <Label id="profileName" fx:id="profileName" prefWidth="150.0" text="User Name">
                                        <font>
                                           <Font size="26.0" />

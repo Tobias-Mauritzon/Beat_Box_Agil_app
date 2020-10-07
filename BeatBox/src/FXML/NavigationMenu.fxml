@@ -143,10 +143,19 @@
                            </children>
                         </StackPane>
                      </children>
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin>
                   </VBox>
                </children>
             </StackPane>
-          <AnchorPane fx:id="scenePane" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="400.0" HBox.hgrow="ALWAYS" />
+          <AnchorPane fx:id="scenePane" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="400.0" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets left="-1.0" />
+               </padding></AnchorPane>
          </children>
       </HBox>
       <VBox fx:id="menuBar" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -167,16 +176,12 @@
             </StackPane>
             <StackPane prefHeight="50.0" prefWidth="50.0">
                <children>
+                  <AnchorPane fx:id="profilePic" prefHeight="200.0" prefWidth="200.0" />
                   <AnchorPane fx:id="userButtonPane" prefHeight="50.0" prefWidth="50.0">
                      <children>
                         <Button fx:id="userButton" mnemonicParsing="false" opacity="0.0" prefHeight="50.0" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
-                  <ImageView disable="true" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../menuIcons/user-icon.png" />
-                     </image>
-                  </ImageView>
                </children>
             </StackPane>
             <StackPane prefHeight="50.0" prefWidth="50.0">

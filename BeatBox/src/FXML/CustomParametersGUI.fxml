@@ -13,19 +13,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="900.0" stylesheets="@../CSS/customParameters.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="900.0" stylesheets="@../CSS/customParameters.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="750.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox fx:id="mainBox" alignment="CENTER" fillWidth="false" prefHeight="750.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
          <children>
-            <AnchorPane prefHeight="200.0" prefWidth="600.0">
-               <children>
-                  <Label id="title" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" prefHeight="200.0" prefWidth="600.0" text="Custom Parameters" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <font>
-                        <Font size="32.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
             <GridPane alignment="CENTER" prefHeight="402.0" prefWidth="900.0" VBox.vgrow="NEVER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -185,8 +176,16 @@
                   </GridPane>
                </children>
             </GridPane>
-            <AnchorPane prefHeight="200.0" prefWidth="900.0" />
          </children>
       </VBox>
+      <AnchorPane fx:id="topPane" prefHeight="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="title" contentDisplay="CENTER" graphicTextGap="0.0" prefHeight="200.0" prefWidth="600.0" text="Custom Parameters" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

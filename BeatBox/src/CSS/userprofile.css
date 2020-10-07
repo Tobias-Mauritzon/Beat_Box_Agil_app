@@ -1,5 +1,5 @@
-
 @import "theme1.css";
+
 /*  Settings for table views
     Author: Joachim Atfolk
 */
@@ -7,8 +7,14 @@
   /*
 	Sets background in tab-pane
 */
+
+#rootPane{
+	-fx-background-color: transparent;
+}
+
 .tab-pane{
-	-fx-background-color: -baseColor1;
+	-fx-background-color: -baseColor2;
+	
 }
 
 
@@ -20,14 +26,16 @@
 	-fx-pref-height: 25;
 	-fx-pref-width: 150;
 	
-    -fx-background-color: derive(-baseColor1, 20%);
+    -fx-background-color: derive(-baseColor2, 20%);
 	
 	-fx-padding: 0 0 0 13;
-    -fx-background-radius: 0;
+    -fx-border-radius: 10 10 0 0;
+ 	-fx-background-radius: 10 10 0 0;
 	
 	-fx-border-style: hidden hidden solid hidden; 
 	-fx-border-width: 2; 
-	-fx-border-color: derive(-baseColor1, 20%);
+	-fx-border-color: derive(-baseColor2, 20%);
+	
 }
 
 /*
@@ -42,8 +50,8 @@
 	Sets the color of tab when hovering
 */
 .tab-pane .tab-header-area .headers-region .tab:hover{
-    -fx-background-color:  derive(-baseColor1, 10%);
-	-fx-border-color: derive(-baseColor1, 10%);
+    -fx-background-color:  derive(-baseColor2, 10%);
+	-fx-border-color: derive(-baseColor2, 10%);
 }
 
 /*
@@ -51,13 +59,15 @@
 */
 .tab-pane .tab-header-area .headers-region .tab:selected{
 	 -fx-border-color: white;
+	 -fx-background-color: derive(-baseColor2, 10%);
+	
 }
 
 /*
 	Sets background color in tab header
 */
 .tab-pane .tab-header-area .tab-header-background{
-    -fx-background-color: -baseColor2;
+    -fx-background-color: -baseColor1;
 }
 
 
@@ -66,6 +76,7 @@
 */
 .tab-pane .tab-header-area .headers-region .tab .tab-container .tab-label{
     -fx-text-fill: WHITE;
+    -fx-align: CENTER;
 }
 
 /*
@@ -78,15 +89,27 @@
 
 
 #profilePane{
-	-fx-background-color: -baseColor3;
-}
-
-#topPane{
 	-fx-background-color: -baseColor2;
 }
 
+#topPane{
+	-fx-background-color: -baseColor1;
+	-fx-pref-height: 50;
+}
 
+#titleUserName{
+	-fx-alignment: CENTER-LEFT;
+	-fx-text-fill: -labelTextColor; 
+	-fx-font-size: 15.0pt;
+	-fx-padding: 0 0 0 10;	
+	
+}
 
-
+#profilePicPane{
+	-fx-background-radius: 100;
+	-fx-background-image: url("/menuIcons/Avatar1.png");
+    -fx-background-size: stretch;
+    -fx-background-position: center;
+}
 
 

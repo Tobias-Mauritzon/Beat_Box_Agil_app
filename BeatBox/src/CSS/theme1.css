@@ -1,13 +1,23 @@
 .root{
-	-baseColor1: #303030;
-	-baseColor2: #1A1A1A;
-	-baseColor3: #808080;
+	-baseColor1: #1A2226;
+	-baseColor2: #303A40;
+	-baseColor3: #5C6A73;
+	
+	
+	/*
+	 * Nice color scheme:
+ 	*https://color.adobe.com/sv/search?q=dark
+ 	*/
+	/*
+ 	*-baseColor3: linear-gradient(from 0% 10% to 0% 100%, #1A2226, #5C6A73);
+ 	*/
+
+
+
 	/*
  	*-baseColor2: linear-gradient(from 0% 10% to 0% 100%, #303030, WHITE);
  	*/
-	
-	
-	-fx-background-color: -baseColor1;
+	-fx-background-color: -baseColor2;
 	-fx-font-size: 12.0pt;
     -fx-font-family: "Rockwell";
 	-fx-font-weight: NORMAL;
@@ -30,7 +40,6 @@
 	-checkBoxColor: WHITE;
 	-spinnerColor: WHITE;
 	
-	
 	/*
  	* Other Colors:
  	*/
@@ -50,6 +59,9 @@
 .label{
 	-fx-text-fill: WHITE;
 	-fx-alignment: CENTER;
+	-fx-font-size: 12.0pt;
+	-fx-font-family: "Rockwell";
+	-fx-font-weight: NORMAL;
 }
 
 
