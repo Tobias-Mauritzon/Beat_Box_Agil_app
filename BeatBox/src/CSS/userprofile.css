@@ -57,7 +57,7 @@
 	Sets background color in tab header
 */
 .tab-pane .tab-header-area .tab-header-background{
-    -fx-background-color: -baseColor1;
+    -fx-background-color: -baseColor2;
 }
 
 
@@ -77,22 +77,13 @@
 
 
 
-/*
-	Sets background for odd cells
-*/
-.table-row-cell:odd {
-    -fx-background-color: derive(-baseColor1, 30%);
-}
-/*
-	Sets text color for table header
-*/
-.table-view .column-header .label {
-   -fx-text-fill: WHITE; 
-	-fx-font-size: 11pt;
-	-fx-font-weight: NORMAL; 
+#profilePane{
+	-fx-background-color: -baseColor3;
 }
 
-
+#topPane{
+	-fx-background-color: -baseColor2;
+}
 
 
 

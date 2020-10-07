@@ -17,7 +17,7 @@
          <children>
             <StackPane fx:id="sidePane" alignment="TOP_LEFT" maxWidth="150.0" minWidth="-Infinity" prefWidth="150.0">
                <children>
-                  <AnchorPane fx:id="slideMenuBackground" prefHeight="200.0" prefWidth="200.0" />
+                  <AnchorPane fx:id="slideMenuBackground" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="CENTER" />
                   <VBox fillWidth="false" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="150.0">
                      <children>
                         <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="150.0" />

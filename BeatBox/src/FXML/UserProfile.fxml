@@ -21,7 +21,7 @@
    <children>
       <VBox prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox prefHeight="50.0" prefWidth="200.0">
+            <HBox fx:id="topPane" prefHeight="50.0" prefWidth="200.0">
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
@@ -34,7 +34,7 @@
                   </AnchorPane>
                </children>
             </HBox>
-            <TabPane id="userProfile" fx:id="userProfile" prefHeight="450.0" prefWidth="600.0" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE">
+            <TabPane id="userProfile" fx:id="userProfile" prefWidth="600.0" rotateGraphic="true" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
               <tabs>
                 <Tab id="profileTab" fx:id="profileTab" text="">
             		<graphic>
@@ -43,7 +43,7 @@
                         </Group>
                     </graphic>
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane fx:id="profilePane" prefHeight="200.0" prefWidth="200.0">
                            <children>
                               <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="150.0" spacing="10.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
                                  <children>

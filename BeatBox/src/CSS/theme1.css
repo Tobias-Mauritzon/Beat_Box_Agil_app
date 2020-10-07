@@ -1,7 +1,11 @@
 .root{
 	-baseColor1: #303030;
 	-baseColor2: #1A1A1A;
-	-baseColor3: BLACK;
+	-baseColor3: #808080;
+	/*
+ 	*-baseColor2: linear-gradient(from 0% 10% to 0% 100%, #303030, WHITE);
+ 	*/
+	
 	
 	-fx-background-color: -baseColor1;
 	-fx-font-size: 12.0pt;
