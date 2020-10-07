@@ -1,14 +1,26 @@
 package model;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
+
+import javax.swing.JLabel;
+
+import org.scilab.forge.jlatexmath.TeXConstants;
+import org.scilab.forge.jlatexmath.TeXFormula;
+import org.scilab.forge.jlatexmath.TeXIcon;
+
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.ImageView;
 
 /**The internal class Problem was created to enable easy sorting 
  * and categorization of problems
  * 
  * @author Tobias Mauritzon, Joachim Antfolk
- * @since 2020-10-02
+ * @since 2020-10-07
  */
 public class History implements Serializable{
 	
@@ -70,6 +82,26 @@ public class History implements Serializable{
 	 */
 	public String getProblem() {
 		return problem;
+	}
+	
+	/**
+	 * Returns the problem as a LaTex formulated ImageView
+	 * @return The ImageView of the problem
+	 */
+	public ImageView getProblemImage() {
+		TeXFormula formula = new TeXFormula(problem);
+		TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 18);
+		icon.setForeground(Color.white); // White text
+		
+		BufferedImage image = new BufferedImage(icon.getIconWidth(),icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2 = image.createGraphics();
+		g2.setColor(new Color(0, 0, 0, 1)); // Transparent background
+		g2.fillRect(0, 0, icon.getIconWidth(), icon.getIconHeight());
+		JLabel jl = new JLabel();
+		jl.setForeground(new Color(0, 0, 0));
+		icon.paintIcon(jl, g2, 0, 0);
+		
+		return new ImageView(SwingFXUtils.toFXImage(image, null));
 	}
 	
 	/**
