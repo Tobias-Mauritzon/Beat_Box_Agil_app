@@ -21,11 +21,10 @@ import java.math.BigInteger;
  * @author Philip
  */
 public class CustomParametersController implements ControllerInterface {
-	CustomParametersGUI cpGUI;
-	CustomParametersModel cpModel;
-
-	boolean errorNoOpSelected;
-	boolean errorInvalidRange;
+	private CustomParametersGUI cpGUI;
+	private CustomParametersModel cpModel;
+	private boolean errorNoOpSelected;
+	private boolean errorInvalidRange;
 
 	/**
 	 * Constructor for CustomParameter controller.
@@ -49,13 +48,13 @@ public class CustomParametersController implements ControllerInterface {
 	}
 
 	/**
-	 * Method to define the delegate for the GUI.
+	 * Method to define what happens when the gui is interacted with.
 	 */
-
 	@Override
 	public void setActions() {
 		cpGUI.getPlayButton().setOnAction(e -> {
-			cpModel.updateModel(cpGUI.getOperators(), cpGUI.getRange(), cpGUI.getTermAmount(), cpGUI.getTimed());
+			cpModel.updateModel(cpGUI.getOperatorsData(), cpGUI.getRangeData(),
+					cpGUI.getTermAmountData(), cpGUI.getTimedData());
 			cpModel.generateProblemParameters();
 		});
 
@@ -100,54 +99,68 @@ public class CustomParametersController implements ControllerInterface {
 	 * @param str	the string to parse and fit into an int.
 	 * @return String	the value fitted into an int as a String, is empty if the input was.
 	 */
-	private String fitStrValueToInt(String newStr) {
+	private String fitStrValueToInt(String str) {
 		BigInteger val;
 
 		// If the there is no content in the new string, replace it with a 0.
-		if (newStr.equals("")) {
-			newStr = "0";
+		if (str.equals("")) {
+			str = "0";
 		}
 
 		// Used to make sure any expression does not start with 0. Fixes an exception
 		// that gets thrown if a string starts with too many zeroes when converting to
 		// int.
-		if (newStr.charAt(0) == '0' && newStr.length() > 1) {
-			newStr = newStr.substring(1);
+		if (str.charAt(0) == '0' && str.length() > 1) {
+			str = str.substring(1);
 		}
 
 		// Makes sure it is impossible to enter a value larger than what fits in an int.
-		val = new BigInteger(newStr);
+		val = new BigInteger(str);
 		if (val.compareTo(BigInteger.valueOf(Integer.MAX_VALUE)) >= 0) {
-			newStr = String.valueOf(Integer.MAX_VALUE);
+			str = String.valueOf(Integer.MAX_VALUE);
 		}
 
-		return newStr;
+		return str;
 	}
 
+	/***
+	 * Checks whether at least one operator is selected or not.
+	 *
+	 * @return boolean	whether the validation succeeded or not.
+	 */
 	private boolean operatorsIsValid() {
-		return cpGUI.getOperators().size() > 0;
+		return cpGUI.getOperatorsData().size() > 0;
 	}
 
+	/***
+	 * Checks whether minRange is smaller than maxRange or not.
+	 *
+	 * @return boolean	whether the validation succeeded or not.
+	 */
 	private boolean rangeIsValid() {
-		int[] range = cpGUI.getRange();
+		int[] range = cpGUI.getRangeData();
 		return range[0] < range[1];
 	}
 
+	/***
+	 * Checks if there are errors in the input. If there is it makes sure to display the
+	 * corresponding error and deactivates the play button.
+	 */
 	private void handleErrors() {
 		boolean errorsPresent = false;
 
 		if (errorNoOpSelected) {
 			errorsPresent = true;
-			cpGUI.displayOpError();
+			cpGUI.displayOpError(true);
 		} else {
-			cpGUI.hideOpError();
+			cpGUI.displayOpError(false);
 		}
 
 		if (errorInvalidRange) {
 			errorsPresent = true;
-			cpGUI.displayRangeError();
+			cpGUI.displayRangeError(true);
 		} else {
-			cpGUI.hideRangeError();
+			cpGUI.displayRangeError(false);
 		}
 
 		if (errorsPresent) {

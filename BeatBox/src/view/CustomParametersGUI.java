@@ -32,36 +32,40 @@ public class CustomParametersGUI implements GUIHandler {
 		getGUIObjects();
 	}
 
+	/**
+	 * Get the root of the scene.
+	 *
+	 * @return AnchorPane	the root of the scene.
+	 */
+	public AnchorPane getRoot() {
+		return root;
+	}
+
+	/**
+	 * Get play button.
+	 *
+	 * @return Button	the play button.
+	 */
 	public Button getPlayButton() {
 		return playButton;
 	}
 
+	/**
+	 * Get an array of the range text fields.
+	 *
+	 * @return TextField[]	the text fields.
+	 */
 	public TextField[] getRangeInputs() {
 		return new TextField[]{minInput, maxInput};
 	}
 
+	/**
+	 * Get an array of the operator check boxes.
+	 *
+	 * @return CheckBox[] 	the check boxes.
+	 */
 	public CheckBox[] getOpCheckBoxes() {
 		return new CheckBox[]{addCheckBox, subCheckBox, mulCheckBox, divCheckBox};
-	}
-
-	public void hideOpError() {
-		opError.setVisible(false);
-	}
-
-	public void displayOpError() {
-		opError.setVisible(true);
-	}
-
-	public void hideRangeError() {
-		rangeError.setVisible(false);
-	}
-
-	public void displayRangeError() {
-		rangeError.setVisible(true);
-	}
-
-	public AnchorPane getRoot() {
-		return root;
 	}
 
 	/**
@@ -83,12 +87,15 @@ public class CustomParametersGUI implements GUIHandler {
 	}
 
 	/**
-	 * Get all chosen Operators.
-	 * 
+	 * Get the data from the operator check boxes in a format that can be understood
+	 * by the ProblemParameters class.
+	 *
 	 * @see Operator class.
 	 * @see ProblemParameters class.
+	 *
+	 * @return List<Operator>	the operator data.
 	 */
-	public List<Operator> getOperators() {
+	public List<Operator> getOperatorsData() {
 		List<Operator> operators = new ArrayList<>();
 		if (addCheckBox.isSelected()) {
 			operators.add(Operator.ADD);
@@ -106,11 +113,14 @@ public class CustomParametersGUI implements GUIHandler {
 	}
 
 	/**
-	 * Method to get the range of numbers to generate terms from.
+	 * Get the data from the range text fields in a format that can be understood
+	 * by the ProblemParameters class.
 	 * 
 	 * @see ProblemParameters class.
+	 *
+	 * @return int[]	the range data.
 	 */
-	public int[] getRange() {
+	public int[] getRangeData() {
 		int range[] = new int[2];
 		range[0] = Integer.parseInt(minInput.getText());
 		range[1] = Integer.parseInt(maxInput.getText());
@@ -118,20 +128,44 @@ public class CustomParametersGUI implements GUIHandler {
 	}
 
 	/**
-	 * Method to get the number of terms for a problem.
-	 * 
+	 * Get the data from the term amount slider in a format that can be understood
+	 * by the ProblemParameters class.
+	 *
 	 * @see ProblemParameters class.
+	 *
+	 * @return int	the term amount data.
 	 */
-	public int getTermAmount() {
+	public int getTermAmountData() {
 		return (int) termSlider.getValue();
 	}
 
 	/**
-	 * Method to see if a session is timed or not.
-	 * 
+	 * Get the data from the timed check box in a format that can be understood
+	 * by the ProblemParameters class.
+	 *
 	 * @see ProblemParameters class.
+	 *
+	 * @return int	the timed data.
 	 */
-	public boolean getTimed() {
+	public boolean getTimedData() {
 		return timedCheckBox.isSelected();
+	}
+
+	/**
+	 * Displays the operator error or hides it.
+	 *
+	 * @param display	whether to display the error or not.
+	 */
+	public void displayOpError(boolean display) {
+		opError.setVisible(display);
+	}
+
+	/**
+	 * Displays the range error or hides it.
+	 *
+	 * @param display	whether to display the error or not.
+	 */
+	public void displayRangeError(boolean display) {
+		rangeError.setVisible(display);
 	}
 }
