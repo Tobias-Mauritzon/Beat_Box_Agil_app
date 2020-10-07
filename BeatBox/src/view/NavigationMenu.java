@@ -152,6 +152,7 @@ public class NavigationMenu implements GUIHandler {
 		leftPanes.add((AnchorPane) root.lookup("#minusButtonPane"));
 		leftPanes.add((AnchorPane) root.lookup("#multButtonPane"));
 		leftPanes.add((AnchorPane) root.lookup("#divButtonPane"));
+		leftPanes.add((AnchorPane) root.lookup("#customParButtonPane"));
 		leftPanes.add((AnchorPane) root.lookup("#settingsButtonPane"));
 
 		leftSideButtons = new LinkedList<Button>();
@@ -162,6 +163,7 @@ public class NavigationMenu implements GUIHandler {
 		leftSideButtons.add((Button) root.lookup("#minusButton"));
 		leftSideButtons.add((Button) root.lookup("#multButton"));
 		leftSideButtons.add((Button) root.lookup("#divButton"));
+		leftSideButtons.add((Button) root.lookup("#customParButton"));
 		leftSideButtons.add((Button) root.lookup("#settingsButton"));
 
 		rightPanes = new LinkedList<AnchorPane>();
@@ -172,6 +174,7 @@ public class NavigationMenu implements GUIHandler {
 		rightPanes.add((AnchorPane) root.lookup("#minusButtonPane1"));
 		rightPanes.add((AnchorPane) root.lookup("#multButtonPane1"));
 		rightPanes.add((AnchorPane) root.lookup("#divButtonPane1"));
+		rightPanes.add((AnchorPane) root.lookup("#customParButtonPane1"));
 		rightPanes.add((AnchorPane) root.lookup("#settingsButtonPane1"));
 
 		rightSideButtons = new LinkedList<Button>();
@@ -182,6 +185,7 @@ public class NavigationMenu implements GUIHandler {
 		rightSideButtons.add((Button) root.lookup("#minusButton1"));
 		rightSideButtons.add((Button) root.lookup("#multButton1"));
 		rightSideButtons.add((Button) root.lookup("#divButton1"));
+		rightSideButtons.add((Button) root.lookup("#customParButton1"));
 		rightSideButtons.add((Button) root.lookup("#settingsButton1"));
 
 		sidePane = (StackPane) root.lookup("#sidePane");
