@@ -111,6 +111,9 @@ public class ProfileHandler {
 		return false;
 	}
 	
+	/***
+	 * Adds some sample problems / answers to the history tabell for testing purposes.
+	 */
 	public void HistoryTest() {
 		
 		for (int i = 0; i < 10; i++) {

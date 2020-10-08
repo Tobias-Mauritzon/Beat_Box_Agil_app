@@ -39,7 +39,10 @@ public class UserController implements ControllerInterface {
 	public UserController(UserProfileGUI userProfileGUI, ProfileHandler profileHandler) {
 		this.userProfileGUI = userProfileGUI;
 		this.profileHandler = profileHandler;
+		// Updates the UserProfileGUi with the name of the testprofile, this will most likely be replaced with the start window / loggin windows profile
 		userProfileGUI.setUserNameLabel(profileHandler.getCurrentProfile().getName());
+		// Updates the history tabell with the pregenerated sample history for the testprofile.
+		userProfileGUI.getHistory().setItems(profileHandler.getCurrentProfile().getHistory());
 		setActions();
 	}
 
@@ -113,22 +116,5 @@ public class UserController implements ControllerInterface {
 		});
 
 	}
-	
-//	/***
-//	 * Temporary testing function for initialzing the table with values.
-//	 */
-//	private void Testing() 
-//	{
-//			for (int i = 0; i < 10; i++) {
-//			userProfile.addProblemToHistory("1 + " + i, "" + i, "" + (1 + i), 4, 3, new model.Operator[] { model.Operator.ADD, model.Operator.SUB });
-//			userProfile.addProblemToHistory("2 + " + i, "" + 2 * i, "" + (2 + i), 4, 3, new model.Operator[] { model.Operator.ADD });
-//			userProfile.addProblemToHistory("3 + " + i, "" + 3 * i, "" + (3 + i), 4, 3, new model.Operator[] { model.Operator.ADD });
-//			userProfile.addProblemToHistory("4 - " + i, "" + 4 * i, "" + (4 + i), 4, 3, new model.Operator[] { model.Operator.ADD });
-//			userProfile.addProblemToHistory("5 * " + i, "" + 5 * i, "" + (5 * 1), 4, 3, new model.Operator[] { model.Operator.ADD });
-//		}
-//			
-//			userProfileGUI.getHistory().setItems(userProfile.getHistory());
-//		
-//	}
 
 }
