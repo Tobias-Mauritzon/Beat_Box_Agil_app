@@ -117,7 +117,6 @@ public class ProblemGUI implements GUIHandler {
 		problemText.setText(problem);
 	}
 
-	
 	/**
 	 * Clears the current text in the answer field.
 	 */
