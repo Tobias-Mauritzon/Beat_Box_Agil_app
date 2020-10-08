@@ -4,7 +4,7 @@ import java.util.*;
  * Class used to generate random expression depending on different modifiers
  * @author Tobias Mauritzon, Joachim Antfolk
  * @version 2.0
- * @since 2020-10-07
+ * @since 2020-10-08
  */
 
 public class NumberGenerator implements ProblemGenerator{
@@ -37,7 +37,7 @@ public class NumberGenerator implements ProblemGenerator{
 	 */
 	public String[] uniqueGeneration() {
 		boolean unique = false;
-		String[] returnString = new String[3];
+		String[] returnString = new String[2];
 
 		// Get settings
 		List<Operator> modifiers = settings.getOperators();
@@ -114,12 +114,11 @@ public class NumberGenerator implements ProblemGenerator{
 	 * @return String array. array[0] = expression, array[1] = answer
 	 */
 	private String[] gen(int numbers, int[] numberRange, List<Operator> modifiers) {
-		String[] returnVal = new String[3];
+		String[] returnVal = new String[2];
 		if(numbers == 1) {
 			int number =  rand.nextInt((numberRange[1] - (numberRange[0]))+1) + (numberRange[0]);
 			returnVal[0] = "" + number;
 			returnVal[1] = "" + number;
-			returnVal[2] = "" + number;
 		}
 		else {
 			int right = numbers/2;
@@ -129,18 +128,16 @@ public class NumberGenerator implements ProblemGenerator{
 			
 			switch(modifiers.get(rand.nextInt(modifiers.size()))) {
 			case ADD:
-				returnVal[0] = "(" + rightRet[0] + " + " + leftRet[0] + ")";
-				returnVal[2] = rightRet[2] + " + " + leftRet[2];
+				returnVal[0] = rightRet[0] + " + " + leftRet[0];
 				returnVal[1] = Double.toString(Double.parseDouble(rightRet[1]) + Double.parseDouble(leftRet[1]));
 				break;
 				
 			case SUB:
-				if(leftRet[2].contains(" ")) {
-					returnVal[2] = rightRet[2] + " - (" + leftRet[2] + ")";
+				if(leftRet[0].contains(" ")) {
+					returnVal[0] = rightRet[0] + " - (" + leftRet[0] + ")";
 				}else {
-					returnVal[2] = rightRet[2] + " - " + leftRet[2];
+					returnVal[0] = rightRet[0] + " - " + leftRet[0];
 				}
-				returnVal[0] = "(" + rightRet[0] + " - " + leftRet[0] + ")";
 				returnVal[1] = Double.toString(Double.parseDouble(rightRet[1]) - Double.parseDouble(leftRet[1]));
 				break;
 				
@@ -148,8 +145,7 @@ public class NumberGenerator implements ProblemGenerator{
 				boolean div = true;
 				while(div) {						
 					if(Double.parseDouble(leftRet[1]) != 0.0) {//Division by zero 
-						returnVal[2] = String.format("\\fraq{%s}{%s}", rightRet[2], leftRet[2]);
-						returnVal[0] = "(" + rightRet[0] + " / " + leftRet[0] + ")";
+						returnVal[0] = String.format("\\fraq{%s}{%s}", rightRet[0], leftRet[0]);
 						returnVal[1] = Double.toString(Double.parseDouble(rightRet[1]) / Double.parseDouble(leftRet[1]));
 						div = false;
 					}else {
@@ -159,14 +155,13 @@ public class NumberGenerator implements ProblemGenerator{
 				break;
 				
 			case MUL:
-				if(leftRet[2].contains(" ")) {
-					leftRet[2] = "(" + leftRet[2] + ")";
+				if(leftRet[0].contains(" ")) {
+					leftRet[0] = "(" + leftRet[0] + ")";
 				}
-				if(rightRet[2].contains(" ")) {
-					rightRet[2] = "(" + rightRet[2] + ")";
+				if(rightRet[0].contains(" ")) {
+					rightRet[0] = "(" + rightRet[0] + ")";
 				}
-				returnVal[2] = rightRet[2] + " \\times " + leftRet[2];
-				returnVal[0] = "(" + rightRet[0] + " * " + leftRet[0] + ")";
+				returnVal[0] = rightRet[0] + " \\times " + leftRet[0];
 				returnVal[1] = Double.toString(Double.parseDouble(rightRet[1]) * Double.parseDouble(leftRet[1]));
 				break;
 				
@@ -177,8 +172,7 @@ public class NumberGenerator implements ProblemGenerator{
 				if(rightRet[0].contains(" ")) {
 					rightRet[0] = "(" + rightRet[0] + ")";
 				}
-				returnVal[0] = "(" + rightRet[0] + " ^ " + leftRet[0] + ")";
-				returnVal[2] = rightRet[2] + " ^ " + leftRet[2];
+				returnVal[0] = rightRet[0] + " ^ " + leftRet[0];
 				returnVal[1] = Double.toString(Math.pow(Double.parseDouble(rightRet[1]), Double.parseDouble(leftRet[1])));
 				break;
 			}
