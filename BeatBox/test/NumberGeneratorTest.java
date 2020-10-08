@@ -2,7 +2,7 @@
  * Class used to generate random expression depending on different modifiers
  * @author Tobias Mauritzon, Joachim Antfolk
  * @version 1.0
- * @since 2020-09-17
+ * @since 2020-10-08
  */
 
 import static org.junit.Assert.*;
