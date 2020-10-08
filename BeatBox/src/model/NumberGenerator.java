@@ -134,8 +134,9 @@ public class NumberGenerator implements ProblemGenerator{
 				
 			case SUB:
 				if(leftRet[0].contains(" ")) {
-					returnVal[0] = rightRet[0] + " - (" + leftRet[0] + ")";
-				}else {
+					returnVal[0] = rightRet[0] + " - \\left(" + leftRet[0] + "\\right)";
+				}
+				else {
 					returnVal[0] = rightRet[0] + " - " + leftRet[0];
 				}
 				returnVal[1] = Double.toString(Double.parseDouble(rightRet[1]) - Double.parseDouble(leftRet[1]));
@@ -156,10 +157,10 @@ public class NumberGenerator implements ProblemGenerator{
 				
 			case MUL:
 				if(leftRet[0].contains(" ")) {
-					leftRet[0] = "(" + leftRet[0] + ")";
+					leftRet[0] = "\\left(" + leftRet[0] + "\\right)";
 				}
 				if(rightRet[0].contains(" ")) {
-					rightRet[0] = "(" + rightRet[0] + ")";
+					rightRet[0] = "\\left(" + rightRet[0] + "\\right)";
 				}
 				returnVal[0] = rightRet[0] + " \\times " + leftRet[0];
 				returnVal[1] = Double.toString(Double.parseDouble(rightRet[1]) * Double.parseDouble(leftRet[1]));
@@ -167,10 +168,10 @@ public class NumberGenerator implements ProblemGenerator{
 				
 			case EXP:
 				if(leftRet[0].contains(" ")) {
-					leftRet[0] = "(" + leftRet[0] + ")";
+					leftRet[0] = "\\left(" + leftRet[0] + "\\right)";
 				}
 				if(rightRet[0].contains(" ")) {
-					rightRet[0] = "(" + rightRet[0] + ")";
+					rightRet[0] = "\\left(" + rightRet[0] + "\\right)";
 				}
 				returnVal[0] = rightRet[0] + " ^ " + leftRet[0];
 				returnVal[1] = Double.toString(Math.pow(Double.parseDouble(rightRet[1]), Double.parseDouble(leftRet[1])));

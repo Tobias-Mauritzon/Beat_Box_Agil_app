@@ -102,7 +102,7 @@ public class ProblemGUI implements GUIHandler {
 	 */
 	public void setProblemText(String problem) {
 		TeXFormula formula = new TeXFormula(problem);
-		TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 30);
+		TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 50);
 		icon.setForeground(java.awt.Color.WHITE); // White text
 		
 		//BufferedImage image = new BufferedImage(icon.getIconWidth(),icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
