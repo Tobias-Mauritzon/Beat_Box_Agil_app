@@ -92,12 +92,12 @@ public class ProblemGUI implements GUIHandler {
 				}
 			}
 		});
-		
+
 	}
 
 	/**
-	 * Converts the given LaTex string to a FXImge and sets the 
-	 * image in problemImageView to the converted LaTex FXImage 
+	 * Converts the given LaTex string to a FXImge and sets the image in
+	 * problemImageView to the converted LaTex FXImage
 	 * 
 	 * @param problem the new string for ProblemText
 	 */
@@ -105,15 +105,15 @@ public class ProblemGUI implements GUIHandler {
 		TeXFormula formula = new TeXFormula(problem);
 		TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 50);// Here you can change text size
 		icon.setForeground(java.awt.Color.WHITE); // White text
-		
-		BufferedImage image = new BufferedImage(icon.getIconWidth(),icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+
+		BufferedImage image = new BufferedImage(icon.getIconWidth(), icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2 = image.createGraphics();
 		g2.setColor(new java.awt.Color(0, 0, 0, 1)); // Transparent background
 		g2.fillRect(0, 0, icon.getIconWidth(), icon.getIconHeight());
 		JLabel jl = new JLabel();
 		jl.setForeground(new java.awt.Color(0, 0, 0));
 		icon.paintIcon(jl, g2, 0, 0);
-		
+
 		problemImageView.setImage(SwingFXUtils.toFXImage(image, null));
 		problemImageView.setFitHeight(icon.getIconHeight());
 		problemImageView.setFitWidth(icon.getIconWidth());
