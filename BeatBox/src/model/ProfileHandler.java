@@ -207,4 +207,13 @@ public class ProfileHandler {
 	public UserProfile getCurrentProfile() {
 		return currentProfile;
 	}
+	
+	/***
+	 * Get the profiles list size
+	 * @return the size of the profiles list
+	 */
+	public int profileAmount() 
+	{
+		return profiles.size();
+	}
 }
