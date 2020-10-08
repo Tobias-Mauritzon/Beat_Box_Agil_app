@@ -88,10 +88,11 @@ public class NumberGeneratorTest{
 		);
 
 		String[] output = numG.generate();
-		assertTrue(contains(output[0],'/'));
+		System.out.println(output[0]);
+		assertTrue(output[0].contains("frac"));
 		
 		output = numG.uniqueGeneration();
-		assertTrue(contains(output[0],'/'));
+		assertTrue(output[0].contains("frac"));
 	}
 	
 	/**
@@ -107,10 +108,10 @@ public class NumberGeneratorTest{
 		);
 
 		String[] output = numG.generate();
-		assertTrue(contains(output[0],'*'));
+		assertTrue(output[0].contains("times"));
 		
 		output = numG.uniqueGeneration();
-		assertTrue(contains(output[0],'*'));
+		assertTrue(output[0].contains("times"));
 	}
 	
 	/**
