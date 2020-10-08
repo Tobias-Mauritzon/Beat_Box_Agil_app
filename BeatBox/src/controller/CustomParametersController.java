@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
@@ -80,8 +81,13 @@ public class CustomParametersController implements ControllerInterface {
 				// Only call this method again if there still is changes that needs to be done before
 				// updating the model.
 				String editedValue = fitStrValueToInt(newValue);
+
 				if (!editedValue.equals(newValue)) {
-					tf.setText(editedValue);
+					// Calls this change action function again. Need to use Platform.runLater() because
+					// the text can not be modified directly in this function.
+					Platform.runLater(() -> {
+						tf.setText(editedValue);
+					});
 					return;
 				}
 
