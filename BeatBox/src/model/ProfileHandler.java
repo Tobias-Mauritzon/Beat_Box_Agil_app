@@ -26,10 +26,10 @@ public class ProfileHandler {
 	 * 
 	 * @param profile
 	 */
-	public ProfileHandler(UserProfile profile) {
+	public ProfileHandler(String profile) {
 		profiles = new ArrayList<UserProfile>();
-		profiles.add(profile);
-		currentProfile = profile;
+		Optional<String> profileName = Optional.of(profile);
+		addProfile(profileName);
 		HistoryTest();
 	}
 

@@ -1,4 +1,4 @@
-package model;
+
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,6 +11,8 @@ import java.util.Optional;
 import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import model.ProfileHandler;
 
 /***
  * Testing class for the profile handler
@@ -31,7 +33,7 @@ class ProfileHandlerTest {
 	 */
 	@BeforeEach
 	public void setup() {
-		this.ph = new ProfileHandler(new UserProfile("TestUser1"));
+		this.ph = new ProfileHandler("TestUser1");
 	}
 	
 	//Tests so that we can't remove our current profile.
@@ -46,13 +48,16 @@ class ProfileHandlerTest {
 	//Adds 10 profiles and checks the size of the profiles list and then removed the 10 added profiles and tests the size again-
 	@Test
 	public void addNdelete() {
-		ProfileHandler ph = new ProfileHandler(new UserProfile("TestUser1"));
 		for (int i = 0; i < 9; i++) {
 			String Pname = "profile" + i;
 			Optional<String> optional = Optional.of(Pname);
 			ph.addProfile(optional);
 		}
-		assertTrue(ph.profileAmount() == 11 );
+		assertTrue(ph.profileAmount() == 10 );
+
+		Optional<String> test = Optional.of("TestUser1");
+		ph.switchProfile(test);
+		
 		for (int i = 0; i < 9; i++) {
 			String Pname = "profile" + i;
 			Optional<String> optional = Optional.of(Pname);
@@ -65,9 +70,9 @@ class ProfileHandlerTest {
 	@Test
 	public void SwitchProfile() 
 	{
-		String Pname1 = "profile1";
+		String Pname1 = "profile0";
 		Optional<String> optional1 = Optional.of(Pname1);
-		String Pname2 = "profile2";
+		String Pname2 = "profile1";
 		Optional<String> optional2 = Optional.of(Pname2);
 		
 		for (int i = 0; i < 2; i++) {
@@ -77,9 +82,9 @@ class ProfileHandlerTest {
 		}
 		
 		ph.switchProfile(optional1);
-		assertEquals(ph.getCurrentProfile().getName(), ph.getProfile(optional1.get()));
+		assertEquals(ph.getCurrentProfile().getName(), ph.getProfile(optional1.get()).getName());
 		ph.switchProfile(optional2);
-		assertEquals(ph.getCurrentProfile().getName(), ph.getProfile(optional2.get()));
+		assertEquals(ph.getCurrentProfile().getName(), ph.getProfile(optional2.get()).getName());
 	}
 	
 	// Tests so switchProfile retunrs false if we try to switch to an invalid profile.

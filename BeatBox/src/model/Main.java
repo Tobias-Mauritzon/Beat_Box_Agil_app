@@ -99,8 +99,7 @@ public class Main extends Application {
 		sceneHandler = new SceneHandler(sceneList, navigationMenu.getBasePane());
 		generator = new NumberGenerator();
 		grade = new Grading();
-		userProfile = new UserProfile("TestProfile");
-		profileHandler = new ProfileHandler(userProfile);
+		profileHandler = new ProfileHandler("test profile");
 	}
 
 	/**
