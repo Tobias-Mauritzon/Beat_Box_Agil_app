@@ -13,6 +13,8 @@ import org.scilab.forge.jlatexmath.TeXIcon;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.ObjectBinding;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingFXUtils;
@@ -25,6 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Bounds;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -61,11 +64,13 @@ public class ProblemGUI implements GUIHandler {
 
 	// Output objects
 	private VBox responseBox;
+	private VBox imageBox;
 	private ImageView problemImageView;
 	private Text responseText;
 	private AnchorPane root;
 
 	private LinkedList<Node> inputObjects;
+
 
 	/***
 	 * The constructor of the ProblemGUI class, initializes the GUI elements with
@@ -80,6 +85,13 @@ public class ProblemGUI implements GUIHandler {
 		getGUIObjects();
 		addTextInputListener();
 		clearAnswerText();
+
+		imageBox.setMinHeight(0);
+		imageBox.setMinWidth(0);
+		problemImageView.fitHeightProperty().bind(imageBox.heightProperty());
+		problemImageView.fitWidthProperty().bind(imageBox.widthProperty());
+		problemImageView.setPreserveRatio(true);
+
 	}
 
 	private void addTextInputListener() {
@@ -103,7 +115,9 @@ public class ProblemGUI implements GUIHandler {
 	 */
 	public void setProblemText(String problem) {
 		TeXFormula formula = new TeXFormula(problem);
-		TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 50);// Here you can change text size
+
+		float textSize = (float) root.getHeight() / 10;
+		TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 200);// Here you can change text size
 		icon.setForeground(java.awt.Color.WHITE); // White text
 
 		BufferedImage image = new BufferedImage(icon.getIconWidth(), icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
@@ -115,8 +129,6 @@ public class ProblemGUI implements GUIHandler {
 		icon.paintIcon(jl, g2, 0, 0);
 
 		problemImageView.setImage(SwingFXUtils.toFXImage(image, null));
-		problemImageView.setFitHeight(icon.getIconHeight());
-		problemImageView.setFitWidth(icon.getIconWidth());
 	}
 
 	/**
@@ -181,7 +193,8 @@ public class ProblemGUI implements GUIHandler {
 
 		// output objects
 		responseBox = (VBox) root.lookup("#responseBox");
-		problemImageView = (ImageView) root.lookup("#problemText");
+		imageBox = (VBox) root.lookup("#imageBox");
+		problemImageView = (ImageView) root.lookup("#problemImage");
 		responseText = (Text) root.lookup("#responseText");
 
 	}
