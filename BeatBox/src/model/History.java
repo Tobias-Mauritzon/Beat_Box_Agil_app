@@ -85,26 +85,6 @@ public class History implements Serializable{
 	}
 	
 	/**
-	 * Returns the problem as a LaTex formulated ImageView
-	 * @return The ImageView of the problem
-	 */
-	public ImageView getProblemImage() {
-		TeXFormula formula = new TeXFormula(problem);
-		TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 18);
-		icon.setForeground(Color.white); // White text
-		
-		BufferedImage image = new BufferedImage(icon.getIconWidth(),icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
-		Graphics2D g2 = image.createGraphics();
-		g2.setColor(new Color(0, 0, 0, 1)); // Transparent background
-		g2.fillRect(0, 0, icon.getIconWidth(), icon.getIconHeight());
-		JLabel jl = new JLabel();
-		jl.setForeground(new Color(0, 0, 0));
-		icon.paintIcon(jl, g2, 0, 0);
-		
-		return new ImageView(SwingFXUtils.toFXImage(image, null));
-	}
-	
-	/**
 	 * Gets user answer
 	 * @return String users answer
 	 */

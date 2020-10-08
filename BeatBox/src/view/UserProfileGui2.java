@@ -1,11 +1,22 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.Optional;
 
+import javax.swing.JLabel;
+
+import org.scilab.forge.jlatexmath.TeXConstants;
+import org.scilab.forge.jlatexmath.TeXFormula;
+import org.scilab.forge.jlatexmath.TeXIcon;
+
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,6 +25,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXMLLoader;
 import model.UserProfile2;
@@ -132,28 +144,38 @@ public class UserProfileGui2 /* implements GUIHandler */ {
 	@SuppressWarnings("unchecked")
 	private void setup() {
 		userName.setText(profile.getName());
-
-//		for (int i = 0; i < 10; i++) {
-//			profile.addProblemToHistory("1 + " + i, "" + i, "" + (1 + i), 4, 3, new Operator[] { Operator.ADD, Operator.SUB });
-//			profile.addProblemToHistory("2 + " + i, "" + 2 * i, "" + (2 + i), 4, 3, new Operator[] { Operator.ADD });
-//			profile.addProblemToHistory("3 + " + i, "" + 3 * i, "" + (3 + i), 4, 3, new Operator[] { Operator.ADD });
-//			profile.addProblemToHistory("4 - " + i, "" + 4 * i, "" + (4 + i), 4, 3, new Operator[] { Operator.ADD });
-//			profile.addProblemToHistory("5 * " + i, "" + 5 * i, "" + (5 * 1), 4, 3, new Operator[] { Operator.ADD });
-//		}
-
+		
 		TableColumn<History, String> dateCol = new TableColumn<History, String>("Date");
-		TableColumn<History, String> problemCol = new TableColumn<History, String>("Problem");
 		TableColumn<History, Double> userSolutionCol = new TableColumn<History, Double>("User Solution");
 		TableColumn<History, Double> rightSolutionCol = new TableColumn<History, Double>("Correct Solution");
+		
+		
+		TableColumn<History, ImageView> problemCol = new TableColumn<History, ImageView>("Problem");
 
 		history.getColumns().setAll(dateCol, problemCol, userSolutionCol, rightSolutionCol);
 		history.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
 
 		dateCol.setCellValueFactory(new PropertyValueFactory<History, String>("date"));
-		problemCol.setCellValueFactory(new PropertyValueFactory<History, String>("problem"));
 		userSolutionCol.setCellValueFactory(new PropertyValueFactory<History, Double>("userAnswer"));
 		rightSolutionCol.setCellValueFactory(new PropertyValueFactory<History, Double>("correctAnswer"));
 
+		problemCol.setCellValueFactory(c -> {
+			TeXFormula formula = new TeXFormula(c.getValue().getProblem());
+			TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 18);
+			icon.setForeground(Color.white); // White text
+
+			BufferedImage image = new BufferedImage(icon.getIconWidth(), icon.getIconHeight(),
+					BufferedImage.TYPE_INT_ARGB);
+			Graphics2D g2 = image.createGraphics();
+			g2.setColor(new Color(0, 0, 0, 1)); // Transparent background
+			g2.fillRect(0, 0, icon.getIconWidth(), icon.getIconHeight());
+			JLabel jl = new JLabel();
+			jl.setForeground(new Color(0, 0, 0));
+			icon.paintIcon(jl, g2, 0, 0);
+
+			return new SimpleObjectProperty<ImageView>(new ImageView(SwingFXUtils.toFXImage(image, null)));
+		});
+		
 		history.setItems(profile.getHistory());
 
 		profileNew.setOnAction((event) -> {
