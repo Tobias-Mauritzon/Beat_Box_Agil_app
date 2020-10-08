@@ -106,7 +106,7 @@ public class NumberGenerator implements ProblemGenerator{
 	
 	/**
 	 * Recursively generates mathematical expressions and calculates their value. Only to be called
-	 * by generate().
+	 * by generate(). The expressions are in LaTex string format.
 	 *
 	 * @param numbers the amount of terms in the expression
 	 * @param numberRange allowed number range {min, max}
@@ -115,26 +115,26 @@ public class NumberGenerator implements ProblemGenerator{
 	 */
 	private String[] gen(int numbers, int[] numberRange, List<Operator> modifiers) {
 		String[] returnVal = new String[2];
-		if(numbers == 1) {
+		if(numbers == 1) { 
 			int number =  rand.nextInt((numberRange[1] - (numberRange[0]))+1) + (numberRange[0]);
 			returnVal[0] = "" + number;
 			returnVal[1] = "" + number;
 		}
 		else {
-			int right = numbers/2;
-			int left = numbers - right;
+			int right = numbers/2; // Number of number to generate in the right branch
+			int left = numbers - right; // Number of number to generate in the left branch
 			String[] rightRet = gen(right, numberRange, modifiers);
 			String[] leftRet = gen(left, numberRange, modifiers);
 			
 			switch(modifiers.get(rand.nextInt(modifiers.size()))) {
 			case ADD:
-				returnVal[0] = rightRet[0] + " + " + leftRet[0];
-				returnVal[1] = Double.toString(Double.parseDouble(rightRet[1]) + Double.parseDouble(leftRet[1]));
-				break;
+				returnVal[0] = rightRet[0] + " + " + leftRet[0]; //Combines the branches to one string with the Add modifier
+				returnVal[1] = Double.toString(Double.parseDouble(rightRet[1]) + Double.parseDouble(leftRet[1])); //Calculates the final answer
+				break;																							
 				
 			case SUB:
 				if(leftRet[0].contains(" ")) {
-					returnVal[0] = rightRet[0] + " - \\left(" + leftRet[0] + "\\right)";
+					returnVal[0] = rightRet[0] + " - \\left(" + leftRet[0] + "\\right)"; // Nicer looking parentheses
 				}
 				else {
 					returnVal[0] = rightRet[0] + " - " + leftRet[0];
@@ -146,11 +146,11 @@ public class NumberGenerator implements ProblemGenerator{
 				boolean div = true;
 				while(div) {						
 					if(Double.parseDouble(leftRet[1]) != 0.0) {//Division by zero 
-						returnVal[0] = String.format("\\frac{%s}{%s}", rightRet[0], leftRet[0]);
+						returnVal[0] = String.format("\\frac{%s}{%s}", rightRet[0], leftRet[0]); // LaTex string format for division
 						returnVal[1] = Double.toString(Double.parseDouble(rightRet[1]) / Double.parseDouble(leftRet[1]));
 						div = false;
 					}else {
-						leftRet = gen(left, numberRange, modifiers);
+						leftRet = gen(left, numberRange, modifiers); // if division by zero occur we generate again with the same number
 					}
 				}	
 				break;
@@ -162,7 +162,7 @@ public class NumberGenerator implements ProblemGenerator{
 				if(rightRet[0].contains(" ")) {
 					rightRet[0] = "\\left(" + rightRet[0] + "\\right)";
 				}
-				returnVal[0] = rightRet[0] + " \\times " + leftRet[0];
+				returnVal[0] = rightRet[0] + " \\times " + leftRet[0]; // LaTex string format multiplication
 				returnVal[1] = Double.toString(Double.parseDouble(rightRet[1]) * Double.parseDouble(leftRet[1]));
 				break;
 				
