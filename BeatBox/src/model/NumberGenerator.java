@@ -145,7 +145,7 @@ public class NumberGenerator implements ProblemGenerator{
 				boolean div = true;
 				while(div) {						
 					if(Double.parseDouble(leftRet[1]) != 0.0) {//Division by zero 
-						returnVal[0] = String.format("\\fraq{%s}{%s}", rightRet[0], leftRet[0]);
+						returnVal[0] = String.format("\\frac{%s}{%s}", rightRet[0], leftRet[0]);
 						returnVal[1] = Double.toString(Double.parseDouble(rightRet[1]) / Double.parseDouble(leftRet[1]));
 						div = false;
 					}else {

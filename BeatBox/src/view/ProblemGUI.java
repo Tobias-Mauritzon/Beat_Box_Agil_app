@@ -1,18 +1,28 @@
 package view;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.LinkedList;
+
+import javax.swing.JLabel;
+
+import org.scilab.forge.jlatexmath.TeXConstants;
+import org.scilab.forge.jlatexmath.TeXFormula;
+import org.scilab.forge.jlatexmath.TeXIcon;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -21,7 +31,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.testGenerator;
 
 /***
  * The view class that creates the GUI for the Problem solving scene of the
@@ -52,9 +61,8 @@ public class ProblemGUI implements GUIHandler {
 
 	// Output objects
 	private VBox responseBox;
-	private Text problemText;
+	private ImageView problemBox;
 	private Text responseText;
-	private String text;
 	private AnchorPane root;
 
 	private LinkedList<Node> inputObjects;
@@ -84,7 +92,7 @@ public class ProblemGUI implements GUIHandler {
 				}
 			}
 		});
-		problemText.setFocusTraversable(false);
+		
 	}
 
 	/**
@@ -93,7 +101,19 @@ public class ProblemGUI implements GUIHandler {
 	 * @param problem the new string for ProblemText
 	 */
 	public void setProblemText(String problem) {
-		problemText.setText(problem);
+		TeXFormula formula = new TeXFormula(problem);
+		TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 30);
+		icon.setForeground(java.awt.Color.WHITE); // White text
+		
+		BufferedImage image = new BufferedImage(icon.getIconWidth(),icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2 = image.createGraphics();
+		g2.setColor(new java.awt.Color(0, 0, 0, 1)); // Transparent background
+		g2.fillRect(0, 0, icon.getIconWidth(), icon.getIconHeight());
+		JLabel jl = new JLabel();
+		jl.setForeground(new java.awt.Color(0, 0, 0));
+		icon.paintIcon(jl, g2, 0, 0);
+		
+		problemBox.setImage(SwingFXUtils.toFXImage(image, null));
 	}
 
 	/**
@@ -158,7 +178,8 @@ public class ProblemGUI implements GUIHandler {
 
 		// output objects
 		responseBox = (VBox) root.lookup("#responseBox");
-		problemText = (Text) root.lookup("#problemText");
+		//problemBox = (ImageView) root.lookup("#problemText");
+		problemBox = new ImageView();
 		responseText = (Text) root.lookup("#responseText");
 
 	}
