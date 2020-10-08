@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Optional;
-
 import javafx.collections.FXCollections;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -13,7 +12,6 @@ import model.ProfileHandler;
 import model.SaveManager;
 import model.UserProfile;
 import model.UserProfile;
-import view.Operator;
 import view.UserProfileGUI;
 
 /***
@@ -55,64 +53,46 @@ public class UserController implements ControllerInterface {
 		
 		// Sets the actions for the profile switch button
 		userProfileGUI.getPSwitchButton().setOnAction((event) -> {
-			try {
-					Optional<String> name = userProfileGUI.getInput("Switch Profile", "Profile name:");
-					if(profileHandler.switchProfile(name)) {
-						userProfileGUI.setUserNameLabel(profileHandler.getCurrentProfile().getName());
-						userProfileGUI.getHistory().setItems(FXCollections.observableArrayList(profileHandler.getCurrentProfile().getHistory()));
-					}
-					else {
-						
-						throw new IOException("");
-					}
 
-			}
-			catch (IOException | ClassNotFoundException e) {
-				userProfileGUI.errorMessage("Could not switch profile!");
-			}
+			Optional<String> name = userProfileGUI.getInput("Switch Profile", "Profile name:");
+				if(profileHandler.switchProfile(name)) {
+					userProfileGUI.setUserNameLabel(profileHandler.getCurrentProfile().getName());
+					userProfileGUI.getHistory().setItems(FXCollections.observableArrayList(profileHandler.getCurrentProfile().getHistory()));
+				}
+				else {
+					
+					userProfileGUI.errorMessage("Could not switch profile!");
+				}
 		});
 		
 		// Sets the actions for the profile Delete Button.
 		userProfileGUI.getPDeleteButton().setOnAction((event) -> {
-			String deleteProfile = "";
-			try {
-				
-				Optional<String> name = userProfileGUI.getInput("Delete Profile", "Profile name:");
-				deleteProfile = name.get();
-				if(!profileHandler.deleteProfile(name)) 
-				{
-					throw new IOException("");
-				}
-			} 
-			
-			catch (IOException e) {
-				
-				userProfileGUI.errorMessage("Could not delete profile: " + deleteProfile + "!");
+
+			Optional<String> name = userProfileGUI.getInput("Delete Profile", "Profile name:");
+			if(!profileHandler.deleteProfile(name)) 
+			{
+				userProfileGUI.errorMessage("Could not delete profile: " + name.get() + "!");
 			}
+
 		});
 		
 		// Sets the action for the new profile button.
 		userProfileGUI.getPNewButton().setOnAction((event) -> {
-			String newProfile = "";
-			try {
-					Optional<String> name = userProfileGUI.getInput("New Profile", "Profile name:");
-					newProfile = name.get();
-					
-					if(profileHandler.addProfile(name)) {
-						
-						userProfileGUI.setUserNameLabel(profileHandler.getCurrentProfile().getName());
-						userProfileGUI.getHistory().setItems(FXCollections.observableArrayList(profileHandler.getCurrentProfile().getHistory()));
-					}
-					else {
-						
-						throw new IOException("");
-					}
 
+			Optional<String> name = userProfileGUI.getInput("New Profile", "Profile name:");
 
+			
+			if(profileHandler.addProfile(name)) {
+				
+				userProfileGUI.setUserNameLabel(profileHandler.getCurrentProfile().getName());
+				userProfileGUI.getHistory().setItems(FXCollections.observableArrayList(profileHandler.getCurrentProfile().getHistory()));
 			}
-			catch (IOException e) {
-				userProfileGUI.errorMessage("Could not save profile: " + newProfile + "!");
+			
+			else {
+				
+				userProfileGUI.errorMessage("Could not save profile: " + name.get() + "!");
 			}
+
 		});
 
 	}
