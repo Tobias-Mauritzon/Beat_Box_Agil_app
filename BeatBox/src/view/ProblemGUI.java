@@ -61,7 +61,7 @@ public class ProblemGUI implements GUIHandler {
 
 	// Output objects
 	private VBox responseBox;
-	private ImageView problemBox;
+	private Text problemText;
 	private Text responseText;
 	private AnchorPane root;
 
@@ -101,19 +101,20 @@ public class ProblemGUI implements GUIHandler {
 	 * @param problem the new string for ProblemText
 	 */
 	public void setProblemText(String problem) {
-		TeXFormula formula = new TeXFormula(problem);
-		TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 30);
-		icon.setForeground(java.awt.Color.WHITE); // White text
-		
-		BufferedImage image = new BufferedImage(icon.getIconWidth(),icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
-		Graphics2D g2 = image.createGraphics();
-		g2.setColor(new java.awt.Color(0, 0, 0, 1)); // Transparent background
-		g2.fillRect(0, 0, icon.getIconWidth(), icon.getIconHeight());
-		JLabel jl = new JLabel();
-		jl.setForeground(new java.awt.Color(0, 0, 0));
-		icon.paintIcon(jl, g2, 0, 0);
-		
-		problemBox.setImage(SwingFXUtils.toFXImage(image, null));
+//		TeXFormula formula = new TeXFormula(problem);
+//		TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 30);
+//		icon.setForeground(java.awt.Color.WHITE); // White text
+//		
+//		BufferedImage image = new BufferedImage(icon.getIconWidth(),icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+//		Graphics2D g2 = image.createGraphics();
+//		g2.setColor(new java.awt.Color(0, 0, 0, 1)); // Transparent background
+//		g2.fillRect(0, 0, icon.getIconWidth(), icon.getIconHeight());
+//		JLabel jl = new JLabel();
+//		jl.setForeground(new java.awt.Color(0, 0, 0));
+//		icon.paintIcon(jl, g2, 0, 0);
+//		
+//		problemBox.setImage(SwingFXUtils.toFXImage(image, null));
+		problemText.setText(problem);
 	}
 
 	/**
@@ -178,8 +179,7 @@ public class ProblemGUI implements GUIHandler {
 
 		// output objects
 		responseBox = (VBox) root.lookup("#responseBox");
-		//problemBox = (ImageView) root.lookup("#problemText");
-		problemBox = new ImageView();
+		problemText = (Text) root.lookup("#problemText");
 		responseText = (Text) root.lookup("#responseText");
 
 	}
