@@ -51,8 +51,9 @@ public class ProfileHandler {
 			System.out.println("Added :" + name.get());
 			currentProfile = new UserProfile(name.get());
 			profiles.add(currentProfile);
+			currentProfile.toArrayList();
 			SaveManager.saveFile(currentProfile, currentProfile.getName() + "Profile.Save");
-			
+			currentProfile.toObservableList();
 			return true;
 		}
 		return false;
@@ -73,8 +74,10 @@ public class ProfileHandler {
 				if(profile.getName().equals(name.get())) {
 					
 					System.out.println("Switched To :" + name.get());
+					currentProfile.toArrayList();
 					SaveManager.saveFile(currentProfile, currentProfile.getName() + "Profile.Save");
 					currentProfile = (UserProfile) SaveManager.loadFile(name.get() + "Profile.Save");
+					currentProfile.toObservableList();
 					
 					return true;
 				}
