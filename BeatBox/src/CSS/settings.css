@@ -1,0 +1,37 @@
+@import "theme1.css";
+
+/*
+ * 
+ * Author: Philip
+ * 
+ */
+
+
+/*
+ * Settngs for settings.fxml
+ * 
+ */
+#rootPane{
+-fx-background-color: transparent;
+   
+}	
+
+#mainFrame{
+	-fx-background-color: -baseColor3;
+	-fx-background-radius: 25;
+}
+
+#title{
+	-fx-alignment: CENTER;
+	-fx-text-fill: -labelTextColor; 
+	-fx-font-size: 20.0pt;
+}
+#topPane{
+	-fx-background-color: -baseColor1;
+	-fx-background-radius: 25 25 0 0;
+}
+
+#bottomPane{
+	-fx-background-color: -baseColor1;
+	-fx-background-radius: 0 0 25 25;
+}

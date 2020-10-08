@@ -1,7 +1,45 @@
 .root{
+	
+	
 	-baseColor1: #1A2226;
 	-baseColor2: #303A40;
 	-baseColor3: #5C6A73;
+	 
+	/*
+	 * Default:
+	 * -baseColor1: #1A2226;
+	 * -baseColor2: #303A40;
+	 * -baseColor3: #5C6A73;
+ 	*/
+ 	
+ 	/*
+	 * Light:
+	 * -baseColor1: #3A3940;
+	 * -baseColor2: #F0F0F2;
+	 * -baseColor3: #D7D7D9;
+ 	*/
+ 	
+ 	/*
+	 * ForestTheme:
+	 * -baseColor1: #0E2226;
+	 * -baseColor2: #4EA696;
+	 * -baseColor3: #9FF288;
+ 	*/
+ 	
+ 	/*
+	 * SandTheme:
+	 * -baseColor1: #402312;
+	 * -baseColor2: #BF926B;
+	 * -baseColor3: #8C6645;
+ 	*/
+ 	
+ 	/*
+	 * KidTheme:
+	 * -baseColor1: #0477BF;
+	 * -baseColor2: #F2E205;
+	 * -baseColor3: #0477BF;
+ 	*/
+ 	
 	
 	
 	/*

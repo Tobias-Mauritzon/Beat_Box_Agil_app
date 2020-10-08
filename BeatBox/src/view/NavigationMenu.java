@@ -46,7 +46,9 @@ public class NavigationMenu implements GUIHandler {
 	 * @see sideButtonNames Array containing strings with name of the Buttons
 	 */
 	private AnchorPane root;
-	private AnchorPane pane;
+	private AnchorPane sideScenepane;
+	private AnchorPane backPane;
+	private AnchorPane frontPane;
 	private LinkedList<AnchorPane> leftPanes;
 	private LinkedList<AnchorPane> rightPanes;
 	private StackPane sidePane;
@@ -190,7 +192,9 @@ public class NavigationMenu implements GUIHandler {
 
 		sidePane = (StackPane) root.lookup("#sidePane");
 		slideMenuBackground = (AnchorPane) root.lookup("slideMenuBackground");
-		pane = (AnchorPane) root.lookup("#scenePane");
+		sideScenepane = (AnchorPane) root.lookup("#scenePane");
+		backPane = (AnchorPane) root.lookup("#backPane");
+		frontPane = (AnchorPane) root.lookup("#frontPane");
 	}
 
 	private void setVisualEffects() {
@@ -239,8 +243,16 @@ public class NavigationMenu implements GUIHandler {
 	 * 
 	 * @return returns the AnchorPane which is the root for the sub scene
 	 */
-	public AnchorPane getBasePane() {
-		return pane;
+	public AnchorPane getSideScenePane() {
+		return sideScenepane;
+	}
+
+	public AnchorPane getBackPane() {
+		return backPane;
+	}
+	
+	public AnchorPane getFrontPane() {
+		return frontPane;
 	}
 
 }

@@ -83,6 +83,7 @@ public class NavigationMenuController implements ControllerInterface{
 		EventHandler<ActionEvent> slidePanel = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {navigationMenu.slidePanel();}};
 		EventHandler<ActionEvent> toUser = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sceneHandler.changeScene(0);}};
 		EventHandler<ActionEvent> toCustomParameters = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sceneHandler.changeScene(2);}};//test
+		EventHandler<ActionEvent> toSettings = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sceneHandler.applyScene(3);}};//test
 
 		//TEMP
 		EventHandler<ActionEvent> toAddition = new EventHandler<ActionEvent>() {
@@ -154,6 +155,9 @@ public class NavigationMenuController implements ControllerInterface{
 		
 		navigationMenu.getLeftSideButtons().get(7).setOnAction(toCustomParameters);
 		navigationMenu.getRightSideButtons().get(7).setOnAction(toCustomParameters);
+		
+		navigationMenu.getLeftSideButtons().get(8).setOnAction(toSettings);
+		navigationMenu.getRightSideButtons().get(8).setOnAction(toSettings);
 	}
 
 	// TEMP

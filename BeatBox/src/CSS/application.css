@@ -30,7 +30,7 @@
 
 #profilePic{
 	-fx-background-radius: 100;
-	-fx-background-image: url("/menuIcons/Avatar1.png");
+	-fx-background-image: url("/menuIcons/Avatar4.png");
     -fx-background-size: stretch;
     -fx-background-position: center;
 }
