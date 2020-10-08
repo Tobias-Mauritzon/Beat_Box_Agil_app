@@ -83,7 +83,7 @@ public class CustomParametersController implements ControllerInterface {
 				String editedValue = fitStrValueToInt(newValue);
 
 				if (!editedValue.equals(newValue)) {
-					// Calls this change action function again. Need to use Platform.runLater() because
+					// Calls this change action function again if needed. Need to use Platform.runLater() because
 					// the text can not be modified directly in this function.
 					Platform.runLater(() -> {
 						tf.setText(editedValue);
