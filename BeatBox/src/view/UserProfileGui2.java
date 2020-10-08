@@ -158,7 +158,7 @@ public class UserProfileGui2 /* implements GUIHandler */ {
 		dateCol.setCellValueFactory(new PropertyValueFactory<History, String>("date"));
 		userSolutionCol.setCellValueFactory(new PropertyValueFactory<History, Double>("userAnswer"));
 		rightSolutionCol.setCellValueFactory(new PropertyValueFactory<History, Double>("correctAnswer"));
-
+ 
 		problemCol.setCellValueFactory(c -> {
 			TeXFormula formula = new TeXFormula(c.getValue().getProblem());
 			TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 18);

@@ -99,7 +99,7 @@ public class History implements Serializable{
 	public double getCorrectAnswer() {
 		return correctAnswer;
 	}
-	
+	 
 	/**
 	 * Gets date of the problem
 	 * @return Date of problem
