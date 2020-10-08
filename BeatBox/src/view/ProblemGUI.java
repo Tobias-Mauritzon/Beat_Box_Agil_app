@@ -61,7 +61,7 @@ public class ProblemGUI implements GUIHandler {
 
 	// Output objects
 	private VBox responseBox;
-	private ImageView problemText;
+	private ImageView problemImageView;
 	private Text responseText;
 	private AnchorPane root;
 
@@ -96,16 +96,16 @@ public class ProblemGUI implements GUIHandler {
 	}
 
 	/**
-	 * Sets the problem text to the inputed string
+	 * Converts the given LaTex string to a FXImge and sets the 
+	 * image in problemImageView to the converted LaTex FXImage 
 	 * 
 	 * @param problem the new string for ProblemText
 	 */
 	public void setProblemText(String problem) {
 		TeXFormula formula = new TeXFormula(problem);
-		TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 50);
+		TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 50);// Here you can change text size
 		icon.setForeground(java.awt.Color.WHITE); // White text
 		
-		//BufferedImage image = new BufferedImage(icon.getIconWidth(),icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
 		BufferedImage image = new BufferedImage(icon.getIconWidth(),icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2 = image.createGraphics();
 		g2.setColor(new java.awt.Color(0, 0, 0, 1)); // Transparent background
@@ -114,10 +114,9 @@ public class ProblemGUI implements GUIHandler {
 		jl.setForeground(new java.awt.Color(0, 0, 0));
 		icon.paintIcon(jl, g2, 0, 0);
 		
-		problemText.setImage(SwingFXUtils.toFXImage(image, null));
-		problemText.setFitHeight(icon.getIconHeight());
-		problemText.setFitWidth(icon.getIconWidth());
-		//problemText.setText(problem);
+		problemImageView.setImage(SwingFXUtils.toFXImage(image, null));
+		problemImageView.setFitHeight(icon.getIconHeight());
+		problemImageView.setFitWidth(icon.getIconWidth());
 	}
 
 	/**
@@ -182,7 +181,7 @@ public class ProblemGUI implements GUIHandler {
 
 		// output objects
 		responseBox = (VBox) root.lookup("#responseBox");
-		problemText = (ImageView) root.lookup("#problemText");
+		problemImageView = (ImageView) root.lookup("#problemText");
 		responseText = (Text) root.lookup("#responseText");
 
 	}
