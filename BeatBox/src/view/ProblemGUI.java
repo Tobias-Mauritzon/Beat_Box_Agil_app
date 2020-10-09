@@ -175,7 +175,7 @@ public class ProblemGUI implements GUIHandler {
 	/**
 	 * gets the answer button
 	 * 
-	 * @return retunrs the answer button
+	 * @return returns the answer button
 	 */
 	public Button getAnswerButton() {
 		return answerButton;
