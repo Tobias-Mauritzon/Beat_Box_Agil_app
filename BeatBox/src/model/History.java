@@ -1,23 +1,11 @@
 package model;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 
-import javax.swing.JLabel;
-
-import org.scilab.forge.jlatexmath.TeXConstants;
-import org.scilab.forge.jlatexmath.TeXFormula;
-import org.scilab.forge.jlatexmath.TeXIcon;
-
-import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.image.ImageView;
-
-/**The internal class Problem was created to enable easy sorting 
- * and categorization of problems
+/**
+ * The internal class Problem was created to enable easy sorting and
+ * categorization of problems
  * 
  * @author Tobias Mauritzon, Joachim Antfolk
  * @since 2020-10-07

@@ -2,7 +2,6 @@ package view;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.LinkedList;
 
 import javax.swing.JLabel;
@@ -12,27 +11,17 @@ import org.scilab.forge.jlatexmath.TeXFormula;
 import org.scilab.forge.jlatexmath.TeXIcon;
 
 import javafx.animation.FadeTransition;
-import javafx.application.Application;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.ObjectBinding;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.event.ActionEvent;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Bounds;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /***
@@ -51,9 +40,8 @@ import javafx.util.Duration;
  */
 public class ProblemGUI implements GUIHandler {
 
-	
 	// Vilket Delegate ?
-	
+
 	/***
 	 * A Delegate used to communicate with the main class without and direct
 	 * contact. has two methods grade that take a string and compares it to the
@@ -78,7 +66,6 @@ public class ProblemGUI implements GUIHandler {
 	private AnchorPane root;
 
 	private LinkedList<Node> inputObjects;
-
 
 	/***
 	 * The constructor of the ProblemGUI class, initializes the GUI elements with
@@ -124,8 +111,7 @@ public class ProblemGUI implements GUIHandler {
 	public void setProblemText(String problem) {
 		TeXFormula formula = new TeXFormula(problem);
 
-		float textSize = (float) root.getHeight() / 10;
-		TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 200);// Here you can change text size
+		TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 300);// Here you can change text size
 		icon.setForeground(java.awt.Color.WHITE); // White text
 
 		BufferedImage image = new BufferedImage(icon.getIconWidth(), icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);

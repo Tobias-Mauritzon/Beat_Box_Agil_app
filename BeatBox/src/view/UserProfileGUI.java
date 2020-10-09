@@ -1,45 +1,45 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 /**
  * Class that creates a a prototype for the user profile gui
  * @author Joachim Antfolk, Tobias Mauritzon, Philip AxenHamn, Andreas Greppe
- * @since 2020-10-01.
+ * @since 2020-10-09.
  */
-import java.io.IOException;
-import java.util.LinkedList;
 import java.util.Locale;
 import java.util.Optional;
 
-import javafx.application.Application;
+import javax.swing.JLabel;
+
+import org.scilab.forge.jlatexmath.TeXConstants;
+import org.scilab.forge.jlatexmath.TeXFormula;
+import org.scilab.forge.jlatexmath.TeXIcon;
+
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
-import javafx.scene.Node;
-import javafx.scene.Scene;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.AnchorPane;
-import javafx.fxml.FXMLLoader;
-import javafx.stage.Stage;
-import model.UserProfile;
-import model.UserProfile;
 import model.History;
-import model.SaveManager;
 
 public class UserProfileGUI implements GUIHandler {
-	
+
 	private AnchorPane root;
 	private Label userName;
 	private Button profileNew;
 	private Button profileSwitch;
 	private Button profileDelete;
 	private TableView<History> history;
-
 
 	/**
 	 * the constructor for the GUIHandler.
@@ -56,6 +56,7 @@ public class UserProfileGUI implements GUIHandler {
 	/**
 	 * Initializes the GUI elements so the users can interact with them.
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void getGUIObjects() {
 		userName = (Label) root.lookup("#profileName");
@@ -109,16 +110,16 @@ public class UserProfileGUI implements GUIHandler {
 	public Button getPDeleteButton() {
 		return profileDelete;
 	}
-	
+
 	/**
 	 * Gets the History TabelView
+	 * 
 	 * @return the History TabelView.
 	 */
-	public TableView<History> getHistory()
-	{
+	public TableView<History> getHistory() {
 		return history;
 	}
-	
+
 	/**
 	 * Opens an error dialog with an error message
 	 * 
@@ -132,7 +133,7 @@ public class UserProfileGUI implements GUIHandler {
 		alert.setContentText(error);
 		alert.showAndWait();
 	}
-	
+
 	/**
 	 * Opens a dialog that gets user input
 	 * 
@@ -149,24 +150,42 @@ public class UserProfileGUI implements GUIHandler {
 
 		return dialog.showAndWait();
 	}
-	
+
 	/***
-	 * Inits the history table with the correct titles, and catagories.
+	 * Initiates the history table with the correct titles, and categories.
 	 */
-	public void init() 
-	{
-			TableColumn<History, String> dateCol = new TableColumn<History, String>("Date");
-			TableColumn<History, String> problemCol = new TableColumn<History, String>("Problem");
-			TableColumn<History, Double> userSolutionCol = new TableColumn<History, Double>("User Solution");
-			TableColumn<History, Double> rightSolutionCol = new TableColumn<History, Double>("Correct Solution");
-		
-			history.getColumns().setAll(dateCol, problemCol, userSolutionCol, rightSolutionCol);
-			history.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
-		
-			dateCol.setCellValueFactory(new PropertyValueFactory<History, String>("date"));
-			problemCol.setCellValueFactory(new PropertyValueFactory<History, String>("problem"));
-			userSolutionCol.setCellValueFactory(new PropertyValueFactory<History, Double>("userAnswer"));
-			rightSolutionCol.setCellValueFactory(new PropertyValueFactory<History, Double>("correctAnswer"));
+	@SuppressWarnings("unchecked")
+	public void init() {
+		TableColumn<History, String> dateCol = new TableColumn<History, String>("Date");
+		TableColumn<History, ImageView> problemCol = new TableColumn<History, ImageView>("Problem");
+		TableColumn<History, Double> userSolutionCol = new TableColumn<History, Double>("User Solution");
+		TableColumn<History, Double> rightSolutionCol = new TableColumn<History, Double>("Correct Solution");
+
+		history.getColumns().setAll(problemCol, userSolutionCol, rightSolutionCol, dateCol);
+		history.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+
+		dateCol.setCellValueFactory(new PropertyValueFactory<History, String>("date"));
+		userSolutionCol.setCellValueFactory(new PropertyValueFactory<History, Double>("userAnswer"));
+		rightSolutionCol.setCellValueFactory(new PropertyValueFactory<History, Double>("correctAnswer"));
+
+		// Under here we convert the History object Problem string into a LaTex formated
+		// image
+		problemCol.setCellValueFactory(c -> {
+			TeXFormula formula = new TeXFormula(c.getValue().getProblem());
+			TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 18);
+			icon.setForeground(Color.white); // White text
+
+			BufferedImage image = new BufferedImage(icon.getIconWidth(), icon.getIconHeight(),
+					BufferedImage.TYPE_INT_ARGB);
+			Graphics2D g2 = image.createGraphics();
+			g2.setColor(new Color(0, 0, 0, 1)); // Transparent background
+			g2.fillRect(0, 0, icon.getIconWidth(), icon.getIconHeight());
+			JLabel jl = new JLabel();
+			jl.setForeground(new Color(0, 0, 0));
+			icon.paintIcon(jl, g2, 0, 0);
+
+			return new SimpleObjectProperty<ImageView>(new ImageView(SwingFXUtils.toFXImage(image, null)));
+		});
 	}
 
 }
