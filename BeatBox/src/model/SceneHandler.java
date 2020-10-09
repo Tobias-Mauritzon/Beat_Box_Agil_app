@@ -21,7 +21,7 @@ import view.NavigationMenu;
  * @since 2020-09-28
  */
 public class SceneHandler {
-	
+
 	private LinkedList<Scene> sceneList;
 	private Scene currentScene;
 	private AnchorPane backPane;
@@ -52,19 +52,17 @@ public class SceneHandler {
 		if (currentScene != null) {
 			// stage.hide();
 			AnchorPane currentPane = (AnchorPane) currentScene.getRoot();
-			
+
 			AnchorPane.setTopAnchor(currentPane, 0.0);
 			AnchorPane.setRightAnchor(currentPane, 0.0);
 			AnchorPane.setLeftAnchor(currentPane, 0.0);
 			AnchorPane.setBottomAnchor(currentPane, 0.0);
-			
-		
+
 			FadeTransition ft = new FadeTransition(Duration.millis(800), sideScenePane);
 			ft.setFromValue(0.0);
 			ft.setToValue(1);
 			ft.play();
-			
-			
+
 			sideScenePane.getChildren().clear();
 			sideScenePane.getChildren().add(currentPane);
 			currentPane.applyCss();
@@ -75,23 +73,23 @@ public class SceneHandler {
 	 * Sets the scene on top of the whole application.
 	 * 
 	 * @param i the index of the scene we want to change to in the sceneList
-	 */	
+	 */
 	public void applyScene(int i) {
 		currentScene = sceneList.get(i);
 		if (currentScene != null) {
 			// stage.hide();
 			AnchorPane currentPane = (AnchorPane) currentScene.getRoot();
-			
+
 			AnchorPane.setTopAnchor(currentPane, 0.0);
 			AnchorPane.setRightAnchor(currentPane, 0.0);
 			AnchorPane.setLeftAnchor(currentPane, 0.0);
 			AnchorPane.setBottomAnchor(currentPane, 0.0);
-			
+
 			FadeTransition ft = new FadeTransition(Duration.millis(800), frontPane);
 			ft.setFromValue(0.0);
 			ft.setToValue(1);
 			ft.play();
-			
+
 			backPane.setEffect(new GaussianBlur(8));
 			frontPane.getChildren().clear();
 			frontPane.getChildren().add(currentPane);
@@ -99,6 +97,6 @@ public class SceneHandler {
 			frontPane.setDisable(false);
 			currentPane.applyCss();
 		}
-		
+
 	}
 }

@@ -1,5 +1,13 @@
+/*
+ * This css-file contains sets all colors that are used within the application.
+ * It has 3 base-colors, baseColor1,baseColor2 and baseColor 3.
+ * This css-file is used by all other css-files.
+ * 
+ * Author: Philip
+ * 
+ */
+
 .root{
-	
 	
 	-baseColor1: #1A2226;
 	-baseColor2: #303A40;
@@ -41,20 +49,15 @@
  	*/
  	
 	
-	
 	/*
-	 * Nice color scheme:
+	 * Nice color schemes:
  	*https://color.adobe.com/sv/search?q=dark
  	*/
-	/*
+ 	
+	/*Linear gradient test:
  	*-baseColor3: linear-gradient(from 0% 10% to 0% 100%, #1A2226, #5C6A73);
  	*/
 
-
-
-	/*
- 	*-baseColor2: linear-gradient(from 0% 10% to 0% 100%, #303030, WHITE);
- 	*/
 	-fx-background-color: -baseColor2;
 	-fx-font-size: 12.0pt;
     -fx-font-family: "Rockwell";
@@ -62,6 +65,7 @@
 	
 	-fx-focus-color: transparent;
 	-fx-faint-focus-color: transparent;
+	
 	/*
  	* Text Colors:
  	*/
@@ -93,7 +97,9 @@
 
 }
 
-
+/*
+ * Settings for all labels in the application
+ */
 .label{
 	-fx-text-fill: WHITE;
 	-fx-alignment: CENTER;
@@ -102,7 +108,9 @@
 	-fx-font-weight: NORMAL;
 }
 
-
+/*
+ * Settings for all buttons in the application
+ */
 .button{
 	-fx-background-color:-buttonColor;
 	-fx-text-fill: -buttonTextColor;
@@ -114,6 +122,11 @@
 	-fx-background-insets: 0;
 }
 
+/*
+ * Sets hover background color of all buttons in the application
+ */
 .button:hover{
 	-fx-background-color: derive(black, 95%);
 }
+
+

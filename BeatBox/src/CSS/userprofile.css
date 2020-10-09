@@ -1,26 +1,27 @@
 @import "theme1.css";
 
-/*  Settings for table views
-    Author: Joachim Atfolk
+/* Settings for table views
+ * Author: Joachim Atfolk
+ * Author: Philip
 */
 
-  /*
-	Sets background in tab-pane
+/* 
+ * Settings for the root pane 
 */
-
 #rootPane{
 	-fx-background-color: transparent;
 }
 
+/* 
+ * Settings for all tab-panes 
+*/
 .tab-pane{
 	-fx-background-color: -baseColor2;
 	
 }
 
-
-
-/*
-	Sets the tab size, color and border style
+/* 
+ * Sets the tab size, color and border style
 */
 .tab-pane .tab-header-area .headers-region .tab {
 	-fx-pref-height: 25;
@@ -39,7 +40,7 @@
 }
 
 /*
-	Removes empty space around tabs
+ * Removes empty space around tabs
 */
 .tab-pane .tab-header-area {
 	-fx-padding: 0 0 0 0;
@@ -47,7 +48,7 @@
 }
 
 /*
-	Sets the color of tab when hovering
+ * Sets the color of tab when hovering
 */
 .tab-pane .tab-header-area .headers-region .tab:hover{
     -fx-background-color:  derive(-baseColor2, 10%);
@@ -55,7 +56,7 @@
 }
 
 /*
-	Makes the border visible when tab selected
+ * Makes the border visible when tab selected
 */
 .tab-pane .tab-header-area .headers-region .tab:selected{
 	 -fx-border-color: white;
@@ -64,15 +65,14 @@
 }
 
 /*
-	Sets background color in tab header
+ * Sets background color in tab header
 */
 .tab-pane .tab-header-area .tab-header-background{
     -fx-background-color: -baseColor1;
 }
 
-
 /*
-	Sets text color in tabs
+ * Sets text color in tabs
 */
 .tab-pane .tab-header-area .headers-region .tab .tab-container .tab-label{
     -fx-text-fill: WHITE;
@@ -80,23 +80,30 @@
 }
 
 /*
-	Sets the button color when hovering over
+ * Sets the button color when hovering over
 */
 .button:hover{
 	-fx-background-color: derive(BLACK, 95%);
 }
 
-
-
+/*
+ * Sets the color of the profile pane 
+*/
 #profilePane{
 	-fx-background-color: -baseColor2;
 }
 
+/*
+ * Sets the color of the color and height of the top pane 
+*/
 #topPane{
 	-fx-background-color: -baseColor1;
 	-fx-pref-height: 50;
 }
 
+/*
+ * Settings for the title
+*/
 #titleUserName{
 	-fx-alignment: CENTER-LEFT;
 	-fx-text-fill: -labelTextColor; 
@@ -105,6 +112,13 @@
 	
 }
 
+/*
+ * Settings for the profile-pic
+ * Makes the pane circular
+ * Gets the pic
+ * Makes the pic stretch, to fill the whole circle
+ * Centers the pane
+*/
 #profilePicPane{
 	-fx-background-radius: 100;
 	-fx-background-image: url("/menuIcons/Avatar4.png");

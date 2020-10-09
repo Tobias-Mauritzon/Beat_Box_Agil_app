@@ -1,4 +1,5 @@
 @import "theme1.css";
+
 /*  Settings for table views
     Author: Joachim Atfolk
 */
@@ -20,7 +21,6 @@
 	-fx-border-color: -baseColor1;
 	-fx-pref-height: 40;
 }
-
 
 /*
 	Sets the filler color in the top of table
@@ -73,7 +73,6 @@
 	8.42868 -8.42868,8.42868z"; 															
 }
 
-
 /*
 	Sets background for odd cells
 */
@@ -102,7 +101,6 @@
 	-fx-font-size: 11pt;
     -fx-text-fill: WHITE;
 }
-
 
 /*
 	Sets table cell border width and color
@@ -161,8 +159,6 @@
 .scroll-bar .decrement-button {
     -fx-background-color: transparent;
 }
-
-
 
 /*
 	Sets the background color for the scroll buttons when hovering

@@ -61,9 +61,9 @@ public class NavigationMenu implements GUIHandler {
 	private final Effect frostEffect = new GaussianBlur();
 
 	private AnchorPane slideMenuBackground;
-	
 
 	private double focusOnOpacity = 0.08;
+
 	/***
 	 * Constructor for NavigationMenu
 	 * 
@@ -219,7 +219,6 @@ public class NavigationMenu implements GUIHandler {
 		return rightPanes;
 	}
 
-	
 	/***
 	 * gets the LeftSideButtons array
 	 * 
@@ -247,10 +246,20 @@ public class NavigationMenu implements GUIHandler {
 		return sideScenepane;
 	}
 
+	/***
+	 * gets the back pane
+	 * 
+	 * @return returns the back pane
+	 */
 	public AnchorPane getBackPane() {
 		return backPane;
 	}
-	
+
+	/***
+	 * gets the front pane
+	 * 
+	 * @return returns the front pane
+	 */
 	public AnchorPane getFrontPane() {
 		return frontPane;
 	}

@@ -1,14 +1,14 @@
 @import "theme1.css";
 
 /*
- * 
+ * Settings for the settings menu
  * Author: Philip
  * 
  */
 
 
 /*
- * Settngs for settings.fxml
+ * Settings for the root pane
  * 
  */
 #rootPane{
@@ -16,22 +16,40 @@
    
 }	
 
+/*
+ * Settings for the main "frame"
+ * 
+ */
 #mainFrame{
 	-fx-background-color: -baseColor3;
 	-fx-background-radius: 25;
 }
 
+/*
+ * Settings for the title
+ * 
+ */
 #title{
 	-fx-alignment: CENTER;
 	-fx-text-fill: -labelTextColor; 
 	-fx-font-size: 20.0pt;
 }
+
+/*
+ * Settings for the top pane
+ *  
+ */
 #topPane{
 	-fx-background-color: -baseColor1;
 	-fx-background-radius: 25 25 0 0;
 }
 
+/*
+ * Settings for the bottom pane
+ */
 #bottomPane{
 	-fx-background-color: -baseColor1;
 	-fx-background-radius: 0 0 25 25;
 }
+
+

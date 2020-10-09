@@ -45,15 +45,15 @@ public class Main extends Application {
 
 	private NumberGenerator generator;
 	private Grading grade;
-	
+
 	// Controller
 	private ProglemGUIController problemController;
 	private NavigationMenuController navigationMenuController;
-	
+
 	public static void main(String[] args) {
 		Application.launch(args);
 	}
-	
+
 	@Override
 	public void start(Stage primaryStage) {
 		// Setup for main scene
@@ -67,7 +67,7 @@ public class Main extends Application {
 		primaryStage.setHeight(550);
 		primaryStage.show();
 
-		// Create a list of scenes that is used in the sceneHandler 
+		// Create a list of scenes that is used in the sceneHandler
 		sceneList = new LinkedList<Scene>();
 		sceneList.add(createScene("/FXML/UserProfile.fxml")); // [0]
 		sceneList.add(createScene("/FXML/ProblemGUI.fxml")); // [1]
@@ -109,8 +109,8 @@ public class Main extends Application {
 	private void createControllerObjects() {
 		new UserController(userProfileGUI, userProfile);
 		navigationMenuController = new NavigationMenuController(navigationMenu, sceneHandler);
-		problemController = new ProglemGUIController(problemGUI,grade,generator);
-		new CustomParametersController(customParametersGUI,customParameters);
+		problemController = new ProglemGUIController(problemGUI, grade, generator);
+		new CustomParametersController(customParametersGUI, customParameters);
 	}
 
 	/**
