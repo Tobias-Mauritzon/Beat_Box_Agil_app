@@ -1,11 +1,9 @@
 package view;
 
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import model.Operator;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +21,8 @@ public class CustomParametersGUI implements GUIHandler {
 	private CheckBox divCheckBox;
 	private CheckBox timedCheckBox;
 	private Slider termSlider;
-	private Spinner minSpinner;
-	private Spinner maxSpinner;
+	private TextField minInput;
+	private TextField maxInput;
 	private Button playButton;
 	private Label rangeError;
 	private Label opError;
@@ -34,16 +32,40 @@ public class CustomParametersGUI implements GUIHandler {
 		getGUIObjects();
 	}
 
-	public void displayOpError() {
-		opError.setVisible(true);
-	}
-
-	public void displayRangeError() {
-		rangeError.setVisible(true);
-	}
-
+	/**
+	 * Get the root of the scene.
+	 *
+	 * @return AnchorPane	the root of the scene.
+	 */
 	public AnchorPane getRoot() {
 		return root;
+	}
+
+	/**
+	 * Get play button.
+	 *
+	 * @return Button	the play button.
+	 */
+	public Button getPlayButton() {
+		return playButton;
+	}
+
+	/**
+	 * Get an array of the range text fields.
+	 *
+	 * @return TextField[]	the text fields.
+	 */
+	public TextField[] getRangeInputs() {
+		return new TextField[]{minInput, maxInput};
+	}
+
+	/**
+	 * Get an array of the operator check boxes.
+	 *
+	 * @return CheckBox[] 	the check boxes.
+	 */
+	public CheckBox[] getOpCheckBoxes() {
+		return new CheckBox[]{addCheckBox, subCheckBox, mulCheckBox, divCheckBox};
 	}
 
 	/**
@@ -57,20 +79,23 @@ public class CustomParametersGUI implements GUIHandler {
 		divCheckBox = (CheckBox) root.lookup("#divCheckBox");
 		timedCheckBox = (CheckBox) root.lookup("#timedCheckBox");
 		termSlider = (Slider) root.lookup("#termSlider");
-		minSpinner = (Spinner) root.lookup("#minSpinner");
-		maxSpinner = (Spinner) root.lookup("#maxSpinner");
+		minInput = (TextField) root.lookup("#minInput");
+		maxInput = (TextField) root.lookup("#maxInput");
 		playButton = (Button) root.lookup("#playButton");
 		opError = (Label) root.lookup("#opError");
 		rangeError = (Label) root.lookup("#rangeError");
 	}
 
 	/**
-	 * Get all chosen Operators.
-	 * 
+	 * Get the data from the operator check boxes in a format that can be understood
+	 * by the ProblemParameters class.
+	 *
 	 * @see Operator class.
 	 * @see ProblemParameters class.
+	 *
+	 * @return List<Operator>	the operator data.
 	 */
-	public List<Operator> getOperators() {
+	public List<Operator> getOperatorsData() {
 		List<Operator> operators = new ArrayList<>();
 		if (addCheckBox.isSelected()) {
 			operators.add(Operator.ADD);
@@ -88,36 +113,59 @@ public class CustomParametersGUI implements GUIHandler {
 	}
 
 	/**
-	 * Method to get the range of numbers to generate terms from.
+	 * Get the data from the range text fields in a format that can be understood
+	 * by the ProblemParameters class.
 	 * 
 	 * @see ProblemParameters class.
+	 *
+	 * @return int[]	the range data.
 	 */
-	public int[] getRange() {
+	public int[] getRangeData() {
 		int range[] = new int[2];
-		range[0] = (Integer) minSpinner.getValue();
-		range[1] = (Integer) maxSpinner.getValue();
+		range[0] = Integer.parseInt(minInput.getText());
+		range[1] = Integer.parseInt(maxInput.getText());
 		return range;
 	}
 
 	/**
-	 * Method to get the number of terms for a problem.
-	 * 
+	 * Get the data from the term amount slider in a format that can be understood
+	 * by the ProblemParameters class.
+	 *
 	 * @see ProblemParameters class.
+	 *
+	 * @return int	the term amount data.
 	 */
-	public int getTermAmount() {
+	public int getTermAmountData() {
 		return (int) termSlider.getValue();
 	}
 
 	/**
-	 * Method to see if a session is timed or not.
-	 * 
+	 * Get the data from the timed check box in a format that can be understood
+	 * by the ProblemParameters class.
+	 *
 	 * @see ProblemParameters class.
+	 *
+	 * @return int	the timed data.
 	 */
-	public boolean getTimed() {
+	public boolean getTimedData() {
 		return timedCheckBox.isSelected();
 	}
 
-	public Button getPlayButton() {
-		return playButton;
+	/**
+	 * Displays the operator error or hides it.
+	 *
+	 * @param display	whether to display the error or not.
+	 */
+	public void displayOpError(boolean display) {
+		opError.setVisible(display);
+	}
+
+	/**
+	 * Displays the range error or hides it.
+	 *
+	 * @param display	whether to display the error or not.
+	 */
+	public void displayRangeError(boolean display) {
+		rangeError.setVisible(display);
 	}
 }

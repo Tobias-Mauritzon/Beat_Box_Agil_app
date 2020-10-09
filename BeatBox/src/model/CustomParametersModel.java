@@ -41,7 +41,7 @@ public class CustomParametersModel {
         this.delegate = delegate;
     }
 
-	/** Method to update the model if it is not initiazed. 
+	/** Method to update the model. Must be called at least once.
 	*
 	* @param operators   List holding all the seeked Operators.
 	* @param range 	   Array holding the range of numbers to create.
@@ -67,27 +67,6 @@ public class CustomParametersModel {
     public void generateProblemParameters() {
         checkInitialization();
         delegate.transmitProblemParameters(new ProblemParameters(operators, range, termAmount, timed));
-    }
-
-     /**
-    * Method to check if the Operators are valid. 
-    *
-    * @see checkInitialization()
-    * @see Operator class. 
-    */
-    public boolean operatorsIsValid() {
-        checkInitialization();
-        return (operators.size() > 0);
-    }
-
-  	/**
-    * Method to check if the range is valid. 
-    *
-    * @see checkInitialization()
-    */
-    public boolean rangeIsValid() {
-        checkInitialization();
-        return (range[0] <= range[1]);
     }
 
     /**
