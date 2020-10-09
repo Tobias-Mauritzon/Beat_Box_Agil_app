@@ -67,7 +67,8 @@ public class ProglemGUIController implements ControllerInterface{
 	private void nextProblem() {
 		problemString = gen.generate();
 		g.setAnswer(problemString[1]);
-		pg.setProblemText(problemString[0] + " = ");
+		//pg.setProblemText(problemString[0] + " = ");
+		pg.setProblemText(problemString[0]);
 	}
 	
 	/***
