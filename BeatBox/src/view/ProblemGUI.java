@@ -43,9 +43,17 @@ import javafx.util.Duration;
  * @author Philip
  * @version 1.0
  * @since 2020-09-17
+ * 
+ * @author Joachim Antfolk
+ * @author Tobias Mauritzon
+ * @version 2.0
+ * @since 2020-10-09
  */
 public class ProblemGUI implements GUIHandler {
 
+	
+	// Vilket Delegate ?
+	
 	/***
 	 * A Delegate used to communicate with the main class without and direct
 	 * contact. has two methods grade that take a string and compares it to the

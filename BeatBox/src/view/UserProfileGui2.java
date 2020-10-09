@@ -37,7 +37,7 @@ import model.SaveManager;
  * Class that creates a a prototype for the user profile gui
  * 
  * @author Joachim Antfolk, Tobias Mauritzon
- * @since 2020-10-02
+ * @since 2020-10-09
  */
 public class UserProfileGui2 /* implements GUIHandler */ {
 
@@ -149,9 +149,15 @@ public class UserProfileGui2 /* implements GUIHandler */ {
 		TableColumn<History, Double> userSolutionCol = new TableColumn<History, Double>("User Solution");
 		TableColumn<History, Double> rightSolutionCol = new TableColumn<History, Double>("Correct Solution");
 		
-		
+		/*
+		 * This should be moved to the actual UserProfileGui
+		 * 
+		 */
 		TableColumn<History, ImageView> problemCol = new TableColumn<History, ImageView>("Problem");
-
+		/*
+		 * 
+		 * 
+		 */
 		history.getColumns().setAll(dateCol, problemCol, userSolutionCol, rightSolutionCol);
 		history.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
 
@@ -159,6 +165,10 @@ public class UserProfileGui2 /* implements GUIHandler */ {
 		userSolutionCol.setCellValueFactory(new PropertyValueFactory<History, Double>("userAnswer"));
 		rightSolutionCol.setCellValueFactory(new PropertyValueFactory<History, Double>("correctAnswer"));
  
+		/*
+		 * This should be moved to the actual UserProfileGui
+		 * 
+		 */
 		problemCol.setCellValueFactory(c -> {
 			TeXFormula formula = new TeXFormula(c.getValue().getProblem());
 			TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 18);
@@ -175,6 +185,10 @@ public class UserProfileGui2 /* implements GUIHandler */ {
 
 			return new SimpleObjectProperty<ImageView>(new ImageView(SwingFXUtils.toFXImage(image, null)));
 		});
+		/*
+		 * 
+		 * 
+		 */
 		
 		history.setItems(profile.getHistory());
 
