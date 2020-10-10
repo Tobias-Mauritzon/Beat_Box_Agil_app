@@ -28,18 +28,17 @@ public class DifficultyPresets {
         List<Operator> operator = new ArrayList<>();
         operator.add(op);
 
-        int[] range = {20, 50};
+        int[] range = {10, 20};
         int termAmount = 3;
         ProblemParameters pb = new ProblemParameters(operator, range, termAmount, false);
 
     }
 
-    public void hardProblem(Operator op)
-    {
+    public void hardProblem(Operator op){
         List<Operator> operator = new ArrayList<>();
         operator.add(op);
 
-        int[] range = {50, 100};
+        int[] range = {20, 30};
         int termAmount = 4;
         ProblemParameters pb = new ProblemParameters(operator, range, termAmount, false);
     }
