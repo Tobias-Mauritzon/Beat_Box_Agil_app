@@ -20,9 +20,9 @@ public class DifficultyPresetsController implements ControllerInterface{
      *
      * @see #operator Temporary. How will we know what Operator the User is viewing?
      */
-    DifficultyPresets difficultyPresets;
-    DifficultyGUI difficultyGUI;
-    Operator operator;
+    private DifficultyPresets difficultyPresets;
+    private DifficultyGUI difficultyGUI;
+    private Operator operator;
 
     /**
      * Constructor for DifficultyPresetsController.
