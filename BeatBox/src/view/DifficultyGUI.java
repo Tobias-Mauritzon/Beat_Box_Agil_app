@@ -4,10 +4,18 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import model.Operator;
 
+/***
+ * A simple placeholder GUI for Difficulty for every Operator.
+ *
+ * @version 1.0
+ * @since 2020-10-11
+ * @author Andreas Palmqvist
+ * @author Seif Bourogaa
+ */
 public class DifficultyGUI implements GUIHandler{
 
     private AnchorPane root;
-    //Hur ska vi veta vilken Operator det är?
+    //How do we know what Operator we are setting the difficulty for? Placeholder.
     private Operator operator;
     private Button easyButton;
     private Button mediumButton;
@@ -18,7 +26,9 @@ public class DifficultyGUI implements GUIHandler{
         this.operator = operator;
     }
 
-    @Override
+    /**
+     * Method to get all objects on the current GUI.
+     */
     public void getGUIObjects() {
 
         easyButton = (Button) root.lookup("#easyButton");
@@ -26,7 +36,6 @@ public class DifficultyGUI implements GUIHandler{
         hardButton = (Button) root.lookup("#hardButton");
 
     }
-
 
     /**
      * Get Easy button.
