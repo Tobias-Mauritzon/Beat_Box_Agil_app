@@ -1,0 +1,67 @@
+@import "theme1.css";
+
+/*
+ * Settings for difficulty menu
+ * Author: Philip
+ * 
+ */
+
+/*
+ * Settings for the root Pane
+ * 
+ */
+#rootPane{
+	-fx-background-color: -baseColor1;
+	
+}	
+
+/*
+ * Settings for the easy-button
+ * 
+ */
+#easyButton{
+	-fx-background-color: #1C9D43;
+	-fx-background-radius: 20;
+	-fx-text-fill: WHITE;
+	-fx-font-size: 20.0pt;
+	-fx-font-family: "Rockwell";
+	-fx-font-weight: NORMAL;
+}
+
+/*
+ * Settings for the medium-button
+ * 
+ */
+#mediumButton{
+	-fx-background-color: #E8820B;
+	-fx-background-radius: 20;
+	-fx-text-fill: WHITE;
+	-fx-font-size: 20.0pt;
+	-fx-font-family: "Rockwell";
+	-fx-font-weight: NORMAL;
+}
+
+/*
+ * Settings for the hard-button
+ * 
+ */
+#hardButton{
+	-fx-background-color: #D13629;
+	-fx-background-radius: 20;
+	-fx-text-fill: WHITE;
+	-fx-font-size: 20.0pt;
+	-fx-font-family: "Rockwell";
+	-fx-font-weight: NORMAL;
+}
+
+/*
+ * Settings for all labels in the difficulty menu
+ * 
+ */
+.label{
+	-fx-text-fill: WHITE;
+	-fx-alignment: CENTER;
+	-fx-font-size: 12.0pt;
+	-fx-font-family: "Rockwell";
+	-fx-font-weight: NORMAL;
+}

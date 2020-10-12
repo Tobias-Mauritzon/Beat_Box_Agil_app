@@ -1,0 +1,64 @@
+@import "theme1.css";
+
+/*
+ * Settings for the settings menu
+ * Author: Philip
+ * 
+ */
+
+
+/*
+ * Settings for the root pane
+ * 
+ */
+#rootPane{
+-fx-background-color: transparent;
+   
+}	
+
+
+/*
+ * Settings for the settings pane
+ * 
+ */
+#settingsBackPane{
+	-fx-background-color: transparent;
+	-fx-background-radius: 25;
+	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,10) , 20, 0, 0 , 0 );
+}
+
+/*
+ * Settings for the settings pane
+ * 
+ */
+#settingsMainPane{
+	-fx-background-color: -baseColor3;
+}
+/*
+ * Settings for the title
+ * 
+ */
+#title{
+	-fx-alignment: CENTER;
+	-fx-text-fill: -labelTextColor; 
+	-fx-font-size: 20.0pt;
+}
+
+/*
+ * Settings for the top pane
+ *  
+ */
+#topPane{
+	-fx-background-color: -baseColor1;
+	-fx-background-radius: 25 25 0 0;
+}
+
+/*
+ * Settings for the bottom pane
+ */
+#bottomPane{
+	-fx-background-color: -baseColor1;
+	-fx-background-radius: 0 0 25 25;
+}
+
+
