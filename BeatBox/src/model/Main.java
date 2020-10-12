@@ -61,7 +61,7 @@ public class Main extends Application {
 		primaryStage.setScene(mainScene);
 		primaryStage.getIcons().add(new Image("/frameIcons/app-icon2.png"));
 		primaryStage.setTitle("Mathematics");
-		primaryStage.setMinWidth(900);
+		primaryStage.setMinWidth(550);
 		primaryStage.setMinHeight(550);
 		primaryStage.setWidth(900);
 		primaryStage.setHeight(550);
@@ -72,6 +72,7 @@ public class Main extends Application {
 		sceneList.add(createScene("/FXML/UserProfile.fxml")); // [0]
 		sceneList.add(createScene("/FXML/ProblemGUI.fxml")); // [1]
 		sceneList.add(createScene("/FXML/CustomParametersGUI.fxml")); // [2]
+		sceneList.add(createScene("/FXML/SettingsMenu.fxml")); // [3]
 
 		// Instantiate all objects for the application
 		createViewObjects();
@@ -96,7 +97,7 @@ public class Main extends Application {
 	 */
 	private void createModelObjects() {
 		customParameters = new CustomParametersModel();
-		sceneHandler = new SceneHandler(sceneList, navigationMenu.getBasePane());
+		sceneHandler = new SceneHandler(sceneList, navigationMenu);
 		generator = new NumberGenerator();
 		grade = new Grading();
 		profileHandler = new ProfileHandler("test profile");

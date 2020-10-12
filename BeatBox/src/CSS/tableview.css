@@ -1,7 +1,7 @@
 @import "theme1.css";
 
 /*  Settings for table views
-    Author: Joachim Atfolk
+    Author: Joachim Antfolk
 */
 
 /*
@@ -9,7 +9,6 @@
 */
 .table-view{
 	-fx-background-color: transparent;
-	
 }
 
 /*

@@ -1,16 +1,16 @@
 @import "theme1.css";
 
 /*  Settings for dialog gui
-    Author: Joachim Atfolk
+    Author: Joachim Antfolk
 */
 
 /*
-	Sets the base color, font-size, the backgroung color and font used by everything else
+	Sets the base color, font-size, the background color and font used by everything else
 */
 
 
 /*
-	Sets bagcground color in dialog window
+	Sets background color in dialog window
 */
 .dialog-pane{
     -fx-background-color: -baseColor1;
