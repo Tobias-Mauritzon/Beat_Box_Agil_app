@@ -16,8 +16,6 @@ import java.util.List;
 public class DifficultyPresets {
 
     private Operator operator;
-    private int[] range;
-    private int termAmount;
     private Delegate delegate;
     /**
      * Constructor for DifficultyPresets
@@ -41,8 +39,8 @@ public class DifficultyPresets {
         List<Operator> operator = new ArrayList<>();
         operator.add(op);
 
-        range = new int[]{1, 10};
-        termAmount = 2;
+        int[] range = new int[]{1, 10};
+        int termAmount = 2;
         delegate.transmitProblemParameters(new ProblemParameters(operator, range, termAmount, false));
     }
 
@@ -56,8 +54,8 @@ public class DifficultyPresets {
         List<Operator> operator = new ArrayList<>();
         operator.add(op);
 
-        range = new int[]{10, 20};
-        termAmount = 3;
+        int[] range = new int[]{10, 20};
+        int termAmount = 3;
         delegate.transmitProblemParameters(new ProblemParameters(operator, range, termAmount, false));
     }
 
@@ -70,8 +68,8 @@ public class DifficultyPresets {
         List<Operator> operator = new ArrayList<>();
         operator.add(op);
 
-        range = new int[]{20, 30};
-        termAmount = 4;
+        int[] range = new int[]{20, 30};
+        int termAmount = 4;
         delegate.transmitProblemParameters(new ProblemParameters(operator, range, termAmount, false));
     }
 
