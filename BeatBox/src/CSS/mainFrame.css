@@ -1,0 +1,61 @@
+@import "theme1.css";
+
+/*
+ * General GUI settings for the application
+ * Author: Philip
+ *
+ */
+
+/*
+ * Settngs for NavigationMenuGUI
+ *
+ */
+#topBar{
+-fx-background-color: -baseColor1;
+
+}
+
+#rootPane{
+-fx-background-color: transparent;
+
+
+}
+
+#scenePane{
+-fx-background-color: transparent;
+
+}
+
+#mainScenePane{
+-fx-background-color: -baseColor2;
+
+}
+
+.button{
+	-fx-background-color: transparent;
+	-fx-background-radius: 0;
+	-fx-padding: 0 0 0 0;
+	-fx-focus-color: transparent;
+	-fx-border-color: transparent;
+
+
+}
+
+
+
+
+/*
+ * CAN BE REMOVED AFTER IMPLEMENTING BUTTON(USED TO GET RID OF RESIZE BUG)
+ */
+#closeButton: pressed{
+	-fx-background-color: transparent;
+}
+
+#fullScreenButton: hover{
+	-fx-background-color: derive(-baseColor1, 40%);
+}
+
+#minimizeButton: hover{
+	-fx-background-color: derive(-baseColor1, 40%);
+}
+

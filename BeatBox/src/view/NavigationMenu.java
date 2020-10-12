@@ -58,6 +58,8 @@ public class NavigationMenu implements GUIHandler {
 	private AnchorPane slideMenuBackground;
 
 	private double focusOnOpacity = 0.08;
+
+	private double sidePaneMaxWidth = 0.0;
 	/***
 	 * Constructor for NavigationMenu
 	 * 
@@ -68,8 +70,6 @@ public class NavigationMenu implements GUIHandler {
 		this.root = root;
 		getGUIObjects();
 		initSlideEffect();
-		sidePane.setTranslateX(-sidePane.getWidth()); // start with closed sidebox
-		sidePane.setPrefWidth(0.0);
 		setVisualEffects();
 	}
 
@@ -77,10 +77,14 @@ public class NavigationMenu implements GUIHandler {
 	 * initializes the translate-transition.
 	 */
 	private void initSlideEffect() {
+		sidePaneMaxWidth = sidePane.getPrefWidth();
+		sidePane.setTranslateX(-(sidePaneMaxWidth)); // start with closed sidebox
+		sidePane.setPrefWidth(0.0);
+
 		openNav = new TranslateTransition(new Duration(350), sidePane);
-		openNav.setToX(0.0);
+		openNav.setToX(0);
 		closeNav = new TranslateTransition(new Duration(350), sidePane);
-		closeNav.setToX(-(sidePane.getWidth()));
+		closeNav.setToX(-(sidePaneMaxWidth));
 	}
 
 	/***
@@ -89,14 +93,12 @@ public class NavigationMenu implements GUIHandler {
 	public void slidePanel() {
 		if (sidePane.getTranslateX() != 0.0) {
 			openNav.play();
-			sidePane.setPrefWidth(150.0);
-
+			sidePane.setPrefWidth(sidePaneMaxWidth);
 		} else {
 			closeNav.play();
 			closeNav.setOnFinished(e -> {
 				sidePane.setPrefWidth(0.0);
 			});
-
 		}
 	}
 

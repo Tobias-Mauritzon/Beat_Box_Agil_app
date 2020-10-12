@@ -3,17 +3,23 @@
 /*
  * General GUI settings for the application
  * Author: Philip
- * 
+ *
  */
 
 /*
  * Settngs for NavigationMenuGUI
- * 
+ *
  */
+
+.button{
+	-fx-background-color: transparent;
+ 	-fx-text-fill: transparent;
+}
+
 #rootPane{
 -fx-background-color: -baseColor1;
-   
-}	
+
+}
 
 #slideMenuBackground {
 	-fx-background-color: -baseColor1;
@@ -33,5 +39,3 @@
     -fx-background-size: stretch;
     -fx-background-position: center;
 }
-
-

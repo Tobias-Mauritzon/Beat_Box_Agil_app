@@ -1,22 +1,17 @@
 package model;
 
-import java.io.IOException;
-import java.util.LinkedList;
-
-import controller.CustomParametersController;
-import controller.NavigationMenuController;
-import controller.ProblemGUIController;
-import controller.UserController;
+import controller.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import view.CustomParametersGUI;
-import view.NavigationMenu;
-import view.ProblemGUI;
-import view.UserProfileGUI;
+import javafx.stage.StageStyle;
+import view.*;
+
+import java.io.IOException;
+import java.util.LinkedList;
 
 /***
  * The Main class of the application, creates most classes and communicates
@@ -37,6 +32,7 @@ public class Main extends Application {
 	private ProblemGUI problemGUI;
 	private UserProfileGUI userProfileGUI;
 	private CustomParametersGUI customParametersGUI;
+	private MainFrame mainFrame;
 
 	// Model
 	private CustomParametersModel customParameters;
@@ -57,7 +53,14 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		// Setup for main scene
-		mainScene = createScene("/FXML/NavigationMenu.fxml");
+		AnchorPane root=null;
+		try {
+			root = (AnchorPane) FXMLLoader.load(getClass().getResource("/FXML/mainFrame.fxml"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mainScene = new Scene(root, root.getWidth(), root.getHeight());
 		primaryStage.setScene(mainScene);
 		primaryStage.getIcons().add(new Image("/frameIcons/app-icon2.png"));
 		primaryStage.setTitle("Mathematics");
@@ -65,31 +68,36 @@ public class Main extends Application {
 		primaryStage.setMinHeight(550);
 		primaryStage.setWidth(900);
 		primaryStage.setHeight(550);
+		primaryStage.initStyle(StageStyle.UNDECORATED);
+		primaryStage.initStyle(StageStyle.TRANSPARENT);
 		primaryStage.show();
 
 		// Create a list of scenes that is used in the sceneHandler 
 		sceneList = new LinkedList<Scene>();
-		sceneList.add(createScene("/FXML/UserProfile.fxml")); // [0]
-		sceneList.add(createScene("/FXML/ProblemGUI.fxml")); // [1]
-		sceneList.add(createScene("/FXML/CustomParametersGUI.fxml")); // [2]
-		sceneList.add(createScene("/FXML/SettingsMenu.fxml")); // [3]
+		sceneList.add(createScene("/FXML/NavigationMenu.fxml")); // [0]
+		sceneList.add(createScene("/FXML/UserProfile.fxml")); // [1]
+		sceneList.add(createScene("/FXML/ProblemGUI.fxml")); // [2]
+		sceneList.add(createScene("/FXML/CustomParametersGUI.fxml")); // [3]
+		sceneList.add(createScene("/FXML/SettingsMenu.fxml")); // [4]
 
 		// Instantiate all objects for the application
 		createViewObjects();
 		createModelObjects();
 		createControllerObjects();
+		new MainFrameController(primaryStage,mainFrame);
 		setDelegates();
-
+		mainFrame.addScene((AnchorPane)sceneList.get(0).getRoot());
 	}
 
 	/**
 	 * Creates instances of view classes.
 	 */
 	private void createViewObjects() {
-		navigationMenu = new NavigationMenu((AnchorPane) mainScene.getRoot());
-		problemGUI = new ProblemGUI((AnchorPane) sceneList.get(1).getRoot());
-		userProfileGUI = new UserProfileGUI((AnchorPane) sceneList.get(0).getRoot());
-		customParametersGUI = new CustomParametersGUI((AnchorPane) sceneList.get(2).getRoot());
+		mainFrame = new MainFrame((AnchorPane)mainScene.getRoot());
+		navigationMenu = new NavigationMenu((AnchorPane) sceneList.get(0).getRoot());
+		userProfileGUI = new UserProfileGUI((AnchorPane) sceneList.get(1).getRoot());
+		problemGUI = new ProblemGUI((AnchorPane) sceneList.get(2).getRoot());
+		customParametersGUI = new CustomParametersGUI((AnchorPane) sceneList.get(3).getRoot());
 	}
 
 	/**
@@ -111,6 +119,7 @@ public class Main extends Application {
 		navigationMenuController = new NavigationMenuController(navigationMenu, sceneHandler);
 		problemController = new ProblemGUIController(problemGUI,grade,generator);
 		new CustomParametersController(customParametersGUI,customParameters);
+
 	}
 
 	/**

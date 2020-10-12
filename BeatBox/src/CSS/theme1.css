@@ -2,58 +2,58 @@
  * This css-file contains sets all colors that are used within the application.
  * It has 3 base-colors, baseColor1,baseColor2 and baseColor 3.
  * This css-file is used by all other css-files.
- * 
+ *
  * Author: Philip
- * 
+ *
  */
 
 .root{
-	
+
 	-baseColor1: #1A2226;
 	-baseColor2: #303A40;
 	-baseColor3: #5C6A73;
-	 
+
 	/*
 	 * Default:
 	 * -baseColor1: #1A2226;
 	 * -baseColor2: #303A40;
 	 * -baseColor3: #5C6A73;
  	*/
- 	
+
  	/*
 	 * Light:
 	 * -baseColor1: #3A3940;
 	 * -baseColor2: #F0F0F2;
 	 * -baseColor3: #D7D7D9;
  	*/
- 	
+
  	/*
 	 * ForestTheme:
-	 * -baseColor1: #172126;
-	 * -baseColor2: #2D5938;
-	 * -baseColor3: #6C8C54;
+	 * -baseColor1: #0E2226;
+	 * -baseColor2: #4EA696;
+	 * -baseColor3: #9FF288;
  	*/
- 	
+
  	/*
 	 * SandTheme:
 	 * -baseColor1: #402312;
 	 * -baseColor2: #BF926B;
 	 * -baseColor3: #8C6645;
  	*/
- 	
+
  	/*
 	 * KidTheme:
 	 * -baseColor1: #0477BF;
 	 * -baseColor2: #F2E205;
 	 * -baseColor3: #0477BF;
  	*/
- 	
-	
+
+
 	/*
 	 * Nice color schemes:
  	*https://color.adobe.com/sv/search?q=dark
  	*/
- 	
+
 	/*Linear gradient test:
  	*-baseColor3: linear-gradient(from 0% 10% to 0% 100%, #1A2226, #5C6A73);
  	*/
@@ -62,10 +62,10 @@
 	-fx-font-size: 12.0pt;
     -fx-font-family: "Rockwell";
 	-fx-font-weight: NORMAL;
-	
+
 	-fx-focus-color: transparent;
 	-fx-faint-focus-color: transparent;
-	
+
 	/*
  	* Text Colors:
  	*/
@@ -73,15 +73,15 @@
 	-labelTextColor: WHITE;
 	-checkBoxTextColor: WHITE;
 	-sliderTextColor: WHITE;
-	-spinnerBackgroundColor: WHITE; 
-	
+	-spinnerBackgroundColor: WHITE;
+
 	/*
  	* Background Colors:
  	*/
 	-buttonColor: WHITE;
 	-checkBoxColor: WHITE;
 	-spinnerColor: WHITE;
-	
+
 	/*
  	* Other Colors:
  	*/
@@ -89,7 +89,7 @@
 	-checkBoxMarkColor: BLACK;
 	-spinnerButtonColor: GREY;
 	-spinnerArrowColor: WHITE;
-	
+
 	/*
  	* Error Colors:
  	*/
@@ -97,6 +97,9 @@
 
 }
 
+* :disabled{
+  -fx-opacity: 1.0 ;
+}
 /*
  * Settings for all labels in the application
  */
@@ -117,16 +120,9 @@
 	-fx-background-radius: 100;
 	-fx-pref-width: 140;
 	-fx-pref-height: 25;
-	
+
 	-fx-border-color: transparent;
 	-fx-background-insets: 0;
-}
-
-/*
- * Sets hover background color of all buttons in the application
- */
-.button:hover{
-	-fx-background-color: derive(black, 95%);
 }
 
 

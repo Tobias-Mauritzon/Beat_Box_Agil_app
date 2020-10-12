@@ -80,9 +80,9 @@ public class NavigationMenuController implements ControllerInterface{
 		
 		// Create action events that is used for each button on the navigationMenu
 		EventHandler<ActionEvent> slidePanel = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {navigationMenu.slidePanel();}};
-		EventHandler<ActionEvent> toUser = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sceneHandler.changeScene(0);}};
-		EventHandler<ActionEvent> toCustomParameters = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sceneHandler.changeScene(2);}};//test
-		EventHandler<ActionEvent> toSettings = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sceneHandler.applyScene(3);}};//test
+		EventHandler<ActionEvent> toUser = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sceneHandler.changeScene(1);}};
+		EventHandler<ActionEvent> toCustomParameters = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sceneHandler.changeScene(3);}};//test
+		EventHandler<ActionEvent> toSettings = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sceneHandler.applyScene(4);}};//test
 
 		//TEMP
 		EventHandler<ActionEvent> toAddition = new EventHandler<ActionEvent>() {
@@ -93,7 +93,7 @@ public class NavigationMenuController implements ControllerInterface{
 						3,
 						false)
 				);
-				sceneHandler.changeScene(1);
+				sceneHandler.changeScene(2);
 			}
 		};
 
@@ -105,7 +105,7 @@ public class NavigationMenuController implements ControllerInterface{
 						3,
 						false)
 				);
-				sceneHandler.changeScene(1);
+				sceneHandler.changeScene(2);
 			}
 		};
 
@@ -117,7 +117,7 @@ public class NavigationMenuController implements ControllerInterface{
 						3,
 						false)
 				);
-				sceneHandler.changeScene(1);
+				sceneHandler.changeScene(2);
 			}
 		};
 
@@ -129,7 +129,7 @@ public class NavigationMenuController implements ControllerInterface{
 						3,
 						false)
 				);
-				sceneHandler.changeScene(1);
+				sceneHandler.changeScene(2);
 			}
 		};
 		// END TEMP
