@@ -45,15 +45,15 @@ public class Main extends Application {
 	private ProfileHandler profileHandler;
 	private NumberGenerator generator;
 	private Grading grade;
-
+	
 	// Controller
 	private ProglemGUIController problemController;
 	private NavigationMenuController navigationMenuController;
-
+	
 	public static void main(String[] args) {
 		Application.launch(args);
 	}
-
+	
 	@Override
 	public void start(Stage primaryStage) {
 		// Setup for main scene
@@ -61,18 +61,17 @@ public class Main extends Application {
 		primaryStage.setScene(mainScene);
 		primaryStage.getIcons().add(new Image("/frameIcons/app-icon2.png"));
 		primaryStage.setTitle("Mathematics");
-		primaryStage.setMinWidth(550);
+		primaryStage.setMinWidth(900);
 		primaryStage.setMinHeight(550);
 		primaryStage.setWidth(900);
 		primaryStage.setHeight(550);
 		primaryStage.show();
 
-		// Create a list of scenes that is used in the sceneHandler
+		// Create a list of scenes that is used in the sceneHandler 
 		sceneList = new LinkedList<Scene>();
 		sceneList.add(createScene("/FXML/UserProfile.fxml")); // [0]
 		sceneList.add(createScene("/FXML/ProblemGUI.fxml")); // [1]
 		sceneList.add(createScene("/FXML/CustomParametersGUI.fxml")); // [2]
-		sceneList.add(createScene("/FXML/SettingsMenu.fxml")); // [3]
 
 		// Instantiate all objects for the application
 		createViewObjects();
@@ -97,7 +96,7 @@ public class Main extends Application {
 	 */
 	private void createModelObjects() {
 		customParameters = new CustomParametersModel();
-		sceneHandler = new SceneHandler(sceneList, navigationMenu);
+		sceneHandler = new SceneHandler(sceneList, navigationMenu.getBasePane());
 		generator = new NumberGenerator();
 		grade = new Grading();
 		profileHandler = new ProfileHandler("test profile");
@@ -109,8 +108,8 @@ public class Main extends Application {
 	private void createControllerObjects() {
 		new UserController(userProfileGUI, profileHandler);
 		navigationMenuController = new NavigationMenuController(navigationMenu, sceneHandler);
-		problemController = new ProglemGUIController(problemGUI, grade, generator);
-		new CustomParametersController(customParametersGUI, customParameters);
+		problemController = new ProglemGUIController(problemGUI,grade,generator);
+		new CustomParametersController(customParametersGUI,customParameters);
 	}
 
 	/**

@@ -22,7 +22,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-
 /***
  * The view class that creates the GUI for the Problem solving scene of the
  * application. Handles Input through the SampleController.
@@ -104,27 +103,6 @@ public class ProblemGUI implements GUIHandler {
 	}
 
 	/***
-	 * if the answer is correct a new problem is generated and the text field is
-	 * cleared, otherwise it stays on the same problem.
-	 */
-//	public void answer() {
-//	
-//			if (delegate.grade(answerText.getText())) {
-//				text = delegate.getProblem();
-//				problemText.setText(text);
-//				showResponse(true);
-//			} else {
-//				showResponse(false);
-//
-//				ShakeTransition anim = new ShakeTransition(answerText, t -> System.out.println("test"));
-//				anim.playFromStart();
-//			}
-//			answerText.clear();
-//			answerText.requestFocus();
-//		}
-//	}
-
-	/***
 	 * shows a temporary message depending on the in parameter, if it's true it show
 	 * the correct message otherwise it will show wrong.
 	 * 
@@ -175,7 +153,7 @@ public class ProblemGUI implements GUIHandler {
 	/**
 	 * gets the answer button
 	 * 
-	 * @return returns the answer button
+	 * @return retunrs the answer button
 	 */
 	public Button getAnswerButton() {
 		return answerButton;

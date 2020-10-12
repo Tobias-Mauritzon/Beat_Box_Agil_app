@@ -1,155 +1,77 @@
-@import "theme1.css";
+.root{
+	-fx-background-color: #212121;
+}	
 
-/*
- * Settings for customParameters
- * Author: Philip
- * 
- */
-
-/*
- * Settings for all buttons in customParameters
- */
-.button{
-	-fx-background-color: -buttonColor;
-	-fx-text-fill: -buttonTextColor;
-	-fx-background-radius: 100.0;
-}
-
-/*
- * Settings for all labels in customParameters
- */
-.label{
-	-fx-alignment: CENTER-LEFT;
-	-fx-text-fill: -labelTextColor; 
-}
-
-/*
- * Settings for the top pane in customParameters
- */
-#topPane{
-	-fx-background-color: -baseColor1;
-	-fx-pref-height: 50.0;
-}
-
-/*
- * Settings for the root pane in customParameters
- */
-#rootPane{
-	-fx-background-color: -baseColor1;
-}
-
-/*
- * Settings for all check-boxes in customParameters
- */
-.check-box{
-	-fx-text-fill: -checkBoxTextColor; 
-	
-}
-
-/*
- * Sets the background color of all check-boxes in customParameters
- */
-.check-box .box{
-	-fx-background-color: -checkBoxColor;
-}
-
-/*
- * Sets the color of the marker of all check-boxes in customParameters
- */
-.check-box:selected .box .mark{
-	-fx-background-color: -checkBoxMarkColor;
-}
-
-/*
- * Sets the text color of all sliders in customParameters
- */
-.slider .axis{
-	-fx-tick-label-fill: -sliderTextColor; 
-}
-
-/*
- * Sets the color of the knob in all sliders in customParameters
- */
-.slider .thumb{
-	-fx-background-color: -slderKnobColor;
-}
-
-/*
- * Sets background color of the text-field in all sliders in customParameters
- */
-.spinner{
-	-fx-base: -spinnerBackgroundColor;
-	-fx-background-color: transparent;
-
-}
-
-/*
- * Sets the color of the background of all up-arrows in sliders in customParameters
- */
-.spinner .increment-arrow-button  {
-    -fx-background-color: -spinnerButtonColor;
-}
-
-/*
- * Sets the color of all up-arrows in sliders in customParameters
- */
-.spinner .increment-arrow-button .increment-arrow {
-    -fx-background-color: -spinnerArrowColor;
-}
-
-/*
- * Sets the color of the background of all down-arrows in sliders in customParameters
- */
-.spinner .decrement-arrow-button  {
-    -fx-background-color: -spinnerButtonColor;
-}
-
-/*
- * Sets the color of all down-arrows in sliders in customParameters
- */
-.spinner .decrement-arrow-button .decrement-arrow {
-    -fx-background-color: -spinnerArrowColor;
-}
-
-/*
- * Settings for the title in customParameters
- */
 #title{
-	-fx-text-fill: -labelTextColor; 
-	-fx-alignment: CENTER-LEFT;
-	-fx-text-fill: -labelTextColor; 
-	-fx-padding: 0.0 0.0 0.0 10.0;
-	-fx-font-size: 15.0pt;	
-	-fx-font-family: "Rockwell";
+	-fx-text-fill: #FFFFFF; 
+	-fx-font-size: 24.0pt;
+    -fx-font-family: "Rockwell";
 	-fx-font-weight: NORMAL;
 }
 
-/*
- * Settings for the main box in customParameters
- */
-#mainBox{
-	-fx-background-color: -baseColor2;
-	
+.check-box{
+	-fx-text-fill: #FFFFFF; 
+	-fx-font-size: 10.0pt;
+    -fx-font-family: "Rockwell";
+	-fx-font-weight: NORMAL;
 }
 
-/*
- * Settings for the range-error label in customParameters
- */
+.slider .axis{
+	-fx-tick-label-fill: #FFFFFF; 
+}
+
+.label{
+	-fx-text-fill: #FFFFFF; 
+	-fx-font-size: 12.0pt;
+    -fx-font-family: "Rockwell";
+	-fx-font-weight: NORMAL;
+}
+
+.button{
+	-fx-background-color: #FFFFFF;
+	-fx-text-fill: #000000;
+	-fx-font-size: 18pt;
+    -fx-font-family: "Rockwell";
+	-fx-font-weight: NORMAL;
+}
+
+.tab-pane *.tab-header-background {
+    -fx-background-color: #212121;
+   
+}
+
+.tab-pane .tab
+{
+    -fx-background-color: #FFFFFF;
+
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+    
+     -fx-pref-width: 150.0;
+    -fx-text-fill: -fx-text-base-color;
+    -fx-alignment: CENTER;
+}
+
+.scroll-pane{
+	-fx-background-color: #313131;
+}
+
+
+.scroll-pane > .viewport {
+   -fx-background-color: #313131;
+}
+
 #rangeError{
-	-fx-text-fill: -errorTextColor;
-	-fx-font-size: 10.0pt;
+	-fx-text-fill: #FA1000;
+	-fx-font-size: 10pt;
     -fx-font-family: "Rockwell";
 	-fx-font-weight: NORMAL;
 }
 
-/*
- * Settings for the operation-error label in customParameters
- */
 #opError{
-	-fx-text-fill: -errorTextColor;
-	-fx-font-size: 10.0pt;
+	-fx-text-fill: #FA1000;
+	-fx-font-size: 10pt;
     -fx-font-family: "Rockwell";
 	-fx-font-weight: NORMAL;
 }
-
-

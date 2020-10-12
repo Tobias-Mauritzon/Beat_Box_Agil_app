@@ -1,37 +1,17 @@
-@import "theme1.css";
-
-/*
- * General GUI settings for the application
- * Author: Philip
- * 
- */
-
-/*
- * Settngs for NavigationMenuGUI
- * 
- */
 #rootPane{
--fx-background-color: -baseColor1;
-   
+	-fx-background-color: #212121;
 }	
 
-#slideMenuBackground {
-	-fx-background-color: -baseColor1;
+#sideBoxBackground {
+	
+	-fx-background-color: #303030;
 }
 
 #menuBar {
-	-fx-background-color: -baseColor1;
+	
+	-fx-background-color: #303030;
 }
 
 #scenePane{
-	-fx-background-color: -baseColor2;
+	-fx-background-color: #212121;
 }
-
-#profilePic{
-	-fx-background-radius: 100;
-	-fx-background-image: url("/menuIcons/Avatar4.png");
-    -fx-background-size: stretch;
-    -fx-background-position: center;
-}
-
-

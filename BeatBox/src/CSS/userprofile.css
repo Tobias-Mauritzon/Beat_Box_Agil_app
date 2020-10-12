@@ -1,129 +1,155 @@
-@import "theme1.css";
-
-/* Settings for table views
- * Author: Joachim Atfolk
- * Author: Philip
+/*  Settings for user profile gui
+    Author: Joachim Atfolk
 */
 
-/* 
- * Settings for the root pane 
+/*
+	Sets the base color, font-size, the background color and font used by everything else
 */
-#rootPane{
-	-fx-background-color: transparent;
-}
+.root{
+	-fx-base: #111111;
+	-fx-default-button: #111111;
+	-fx-font-size: 12pt;
+    -fx-font-family: "Rockwell";
+	-fx-font-weight: NORMAL;
+}	
 
-/* 
- * Settings for all tab-panes 
+/*
+	Sets background in tab-pane
 */
 .tab-pane{
-	-fx-background-color: -baseColor2;
-	
+	-fx-background-color: -fx-base;
 }
 
-/* 
- * Sets the tab size, color and border style
+/*
+	Sets the tab size, color and border style
 */
 .tab-pane .tab-header-area .headers-region .tab {
-	-fx-pref-height: 25;
-	-fx-pref-width: 150;
+	-fx-pref-height: 150;
+	-fx-pref-width: 50;
 	
-    -fx-background-color: derive(-baseColor2, 20%);
+    -fx-background-color: derive(-fx-base, 20%);
 	
 	-fx-padding: 0 0 0 13;
-    -fx-border-radius: 10 10 0 0;
- 	-fx-background-radius: 10 10 0 0;
+    -fx-background-radius: 0;
 	
 	-fx-border-style: hidden hidden solid hidden; 
 	-fx-border-width: 2; 
-	-fx-border-color: derive(-baseColor2, 20%);
-	
+	-fx-border-color: derive(-fx-base, 20%);
 }
 
 /*
- * Removes empty space around tabs
+	Removes empty space around tabs
 */
 .tab-pane .tab-header-area {
 	-fx-padding: 0 0 0 0;
-	
 }
 
+
 /*
- * Sets the color of tab when hovering
+	Sets the color of tab when hovering
 */
 .tab-pane .tab-header-area .headers-region .tab:hover{
-    -fx-background-color:  derive(-baseColor2, 10%);
-	-fx-border-color: derive(-baseColor2, 10%);
+    -fx-background-color:  derive(-fx-base, 30%);
+	-fx-border-color: derive(-fx-base, 30%);
 }
 
 /*
- * Makes the border visible when tab selected
+	Makes the border visible when tab selected
 */
 .tab-pane .tab-header-area .headers-region .tab:selected{
-	 -fx-border-color: white;
-	 -fx-background-color: derive(-baseColor2, 10%);
-	
+	 -fx-border-color: #ffffff;
 }
 
 /*
- * Sets background color in tab header
+	Removes focus indicator on selected tab 
+*/
+.tab-pane:focused .tab-header-area .headers-region .tab:selected .focus-indicator {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+/*
+	Sets background color in tab header
 */
 .tab-pane .tab-header-area .tab-header-background{
-    -fx-background-color: -baseColor1;
+    -fx-background-color: derive(-fx-base, 10%);
 }
 
 /*
- * Sets text color in tabs
+	Sets text color in tabs
 */
 .tab-pane .tab-header-area .headers-region .tab .tab-container .tab-label{
-    -fx-text-fill: WHITE;
-    -fx-align: CENTER;
+    -fx-text-fill: #ffffff;
 }
 
 /*
- * Sets the button color when hovering over
+	Sets button shape, size and color
+*/
+.button{
+	-fx-background-radius: 0;
+	-fx-pref-height: 50;
+    -fx-pref-width: 150;
+	-fx-background-color: derive(-fx-base, 20%);
+	-fx-border-color: transparent;
+	-fx-background-insets: 0;
+}
+
+/*
+	Sets the button color when hovering over
 */
 .button:hover{
-	-fx-background-color: derive(BLACK, 95%);
+	-fx-background-color: derive(-fx-base, 30%);
 }
 
 /*
- * Sets the color of the profile pane 
+	Sets background in table
 */
-#profilePane{
-	-fx-background-color: -baseColor2;
+.table-view{
+	-fx-background-color: -fx-base;
 }
 
 /*
- * Sets the color of the color and height of the top pane 
+	Sets background color in table header
 */
-#topPane{
-	-fx-background-color: -baseColor1;
-	-fx-pref-height: 50;
+.table-view .column-header{
+    -fx-background-color: derive(-fx-base, 20%);
 }
 
 /*
- * Settings for the title
+	Sets text color for table header
 */
-#titleUserName{
-	-fx-alignment: CENTER-LEFT;
-	-fx-text-fill: -labelTextColor; 
-	-fx-font-size: 15.0pt;
-	-fx-padding: 0 0 0 10;	
-	
+.table-view .column-header .label {
+    -fx-text-fill: #ffffff; 
+	-fx-font-weight: NORMAL; 
 }
 
 /*
- * Settings for the profile-pic
- * Makes the pane circular
- * Gets the pic
- * Makes the pic stretch, to fill the whole circle
- * Centers the pane
+	Sets background for odd cells
 */
-#profilePicPane{
-	-fx-background-radius: 100;
-	-fx-background-image: url("/menuIcons/Avatar4.png");
-    -fx-background-size: stretch;
-    -fx-background-position: center;
+.table-row-cell:odd {
+    -fx-background-color: derive(-fx-base, 30%);
 }
+
+/*
+	Sets background for even cells
+*/
+.table-row-cell:even {
+    -fx-background-color: derive(-fx-base, 40%);
+}
+
+/*
+	Sets text alignment and color in label
+*/
+.label{
+	-fx-alignment: CENTER;
+	-fx-text-fill: #ffffff;
+}
+
+
+
+
+
+
+
 
 
