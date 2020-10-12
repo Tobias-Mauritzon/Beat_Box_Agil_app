@@ -1,3 +1,5 @@
+@import "theme1.css";
+
 /*  Settings for table views
     Author: Joachim Atfolk
 */
@@ -7,103 +9,89 @@
 */
 .table-view{
 	-fx-background-color: transparent;
-}
-
-/*
-	Sets color for table header
-*/
-.table-view .column-header{
-    -fx-background-color: derive(-fx-base, 20%);
-	-fx-border-width: 0 1 0 0;
-	-fx-border-color: -fx-base;
+	
 }
 
 /*
 	Sets background color in table header
 */
-.table-view .column-header-background{
-    -fx-background-color: derive(-fx-base, 20%);
+.table-view .column-header{
+    -fx-background-color: derive(-baseColor2, -30%);
+	-fx-border-width: 0 2 0 0;
+	-fx-border-color: -baseColor1;
+	-fx-pref-height: 40;
 }
 
 /*
 	Sets the filler color in the top of table
 */
 .table-view .column-header-background .filler {
-    -fx-background-color: derive(-fx-base, 20%);
-}
-
-/*
-	Sets text color for table header
-*/
-.table-view .column-header .label {
-    -fx-text-fill: #ffffff; 
-	-fx-font-size: 11pt;
-	-fx-font-weight: NORMAL; 
+    -fx-background-color: derive(-baseColor2, -30%);
 }
 
 /*
 	Sets the context menu buttons color and border
 */
 .table-view .column-header-background .show-hide-columns-button{
-	-fx-background-color: derive(-fx-base, 20%);
+	-fx-background-color: derive(-baseColor1, 20%);
 	-fx-border-width: 0 0 0 1;
-	-fx-border-color: -fx-base;
+	-fx-border-color: -baseColor1;
 }
 
 /*
 	Sets the background color of  the visibility context menu
 */
 .table-view .column-header-background .show-hide-columns-button .context-menu{
-	-fx-background-color: derive(-fx-base, 20%);
+	-fx-background-color: derive(-baseColor1, 20%);
 }
 
 /*
 	Sets the color of the focused context menu item
 */
 .table-view .column-header-background .show-hide-columns-button .context-menu .menu-item:focused{
-	-fx-background-color: derive(-fx-base, 30%);
+	-fx-background-color: derive(-baseColor1, 30%);
 }
 
 /*
 	Sets the color of the context menu item hovering on
 */
 .table-view .column-header-background .show-hide-columns-button .context-menu .menu-item:hover{
-	-fx-background-color: derive(-fx-base, 30%);
+	-fx-background-color: derive(-baseColor1, 30%);
 }
 
 /*
 	Sets the visibility buttons color and shape
 */
 .table-view .column-header-background .show-hide-columns-button .show-hide-column-image{
-	-fx-background-color: #ffffff;
+	-fx-background-color: WHITE;
 	-fx-padding: 4 5 4 6;
 	
 	-fx-shape: "m25,11.47326c-13.23129,0 -23.67114,13.52586 -23.67114,13.52586s10.43985,
 	13.52762 23.67114,13.52762c10.11897,0 23.67114,-13.52762 23.67114,-13.52762s-13.55217,
 	-13.52586 -23.67114,-13.52586zm0,21.95454c-4.6448,0 -8.42868,-3.78212 -8.42868,
 	-8.42868s3.78388,-8.42867 8.42868,-8.42867s8.42868,3.78387 8.42868,8.42867s-3.78388,
-	8.42868 -8.42868,8.42868z"; 															//Vector path for eye symbol
+	8.42868 -8.42868,8.42868z"; 															
 }
 
 /*
 	Sets background for odd cells
 */
 .table-row-cell:odd {
-    -fx-background-color: derive(-fx-base, 30%);
+    -fx-background-color: derive(-baseColor1, 30%);
 }
 
 /*
 	Sets background for even cells
 */
 .table-row-cell:even {
-    -fx-background-color: derive(-fx-base, 40%);
+    -fx-background-color: derive(-baseColor1, 40%);
 }
 
 /*
 	Sets the bottom right corner color when two scrollbars are active
 */
 .table-view .corner {    
-    -fx-background-color: derive(-fx-base, 10%);
+    -fx-background-color: derive(-baseColor1, 10%);
 }
 
 /*
@@ -111,41 +99,41 @@
 */
 .table-cell {
 	-fx-font-size: 11pt;
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: WHITE;
 }
 
 /*
 	Sets table cell border width and color
 */
 .table-row-cell {
-	-fx-table-cell-border-color: -fx-base;
+	-fx-table-cell-border-color: -baseColor1;
 	-fx-border-width: 1 0 0 0 ;
-	-fx-border-color: -fx-base;
+	-fx-border-color: -baseColor1;
 }
 
 /*
 	Sets table cell background and border color when hovering
 */
 .table-row-cell:hover {
-    -fx-background-color:  -fx-base;
-	-fx-table-cell-border-color: #ffffff;
+    -fx-background-color:  -baseColor1;
+	-fx-table-cell-border-color: WHITE;
 }
 
 /*
 	Sets table cell background and border color when selected
 */
 .table-row-cell:selected {
-	-fx-background-color:  -fx-base;
-	-fx-table-cell-border-color: #ffffff;
+	-fx-background-color:  -baseColor1;
+	-fx-table-cell-border-color: WHITE;
 	-fx-border-width: 1 0 1 0;
-	-fx-border-color: #ffffff;
+	-fx-border-color: WHITE;
 }
 
 /*
 	Sets scroll-bar background color
 */
 .scroll-bar{
-	-fx-background-color: derive(-fx-base, 10%);
+	-fx-background-color: derive(-baseColor1, 10%);
 }
 
 /*
@@ -153,7 +141,7 @@
 */
 .scroll-bar .thumb{
 	-fx-padding: 1;
-	-fx-background-color: #ffffff;
+	-fx-background-color: WHITE;
 	-fx-background-radius: 0;
 }
 
@@ -161,7 +149,7 @@
 	Sets the scroll-bar thumb color when hovering
 */
 .scroll-bar .thumb:hover {
-	-fx-background-color: #ffffff;
+	-fx-background-color: WHITE;
 }
 
 /*
@@ -183,31 +171,34 @@
 /*
 	The four paragraphs below set the increment arrows shape and color
 */
+
+/*
+	Arrow-up
+*/
 .scroll-bar:vertical .increment-button .increment-arrow {
-	-fx-background-color: #ffffff;
-	-fx-shape: "m14.84375,7.75l-4.84375,4.5l-4.84375,-4.5l9.6875,0z"; //Arrow down
+	-fx-background-color: WHITE;
+	-fx-shape: "m14.84375,7.75l-4.84375,4.5l-4.84375,-4.5l9.6875,0z"; 
 }
-
+/*
+	Arrow-down
+*/
 .scroll-bar:vertical .decrement-button .decrement-arrow{
-	-fx-background-color: #ffffff;
-	-fx-shape: "m5.15625,12.25l4.84375,-4.5l4.84375,4.5l-9.6875,0z"; //Arrow up
+	-fx-background-color: WHITE;
+	-fx-shape: "m5.15625,12.25l4.84375,-4.5l4.84375,4.5l-9.6875,0z"; 
 }
-
+/*
+	Arrow-right
+*/
 .scroll-bar:horizontal .increment-button .increment-arrow {
-	-fx-background-color: #ffffff;
-	-fx-shape: "m7.75,5.15625l4.5,4.84375l-4.5,4.84375l0,-9.6875z";	//Arrow right
+	-fx-background-color: WHITE;
+	-fx-shape: "m7.75,5.15625l4.5,4.84375l-4.5,4.84375l0,-9.6875z";	
 }
-
+/*
+	Arrow-left
+*/
 .scroll-bar:horizontal .decrement-button .decrement-arrow{
-	-fx-background-color: #ffffff;
-	-fx-shape: "m12.25,14.84375l-4.5,-4.84375l4.5,-4.84375l0,9.6875z"; //Arrow left
+	-fx-background-color: WHITE;
+	-fx-shape: "m12.25,14.84375l-4.5,-4.84375l4.5,-4.84375l0,9.6875z"; 
 }
-
-
-
-
-
-
-
 
 
