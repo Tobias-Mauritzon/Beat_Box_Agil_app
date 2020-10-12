@@ -2,65 +2,69 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
- 
+
 // HEJ
 /**
- * Stores the users information. 
- * Such as name, previous problems, and records for different categories
+ * Stores the users information. Such as name, previous problems, and records
+ * for different categories
+ * 
  * @author Tobias Mauritzon, Joachim Antfolk
  * @version 1.0
- * @since 2020-09-28
+ * @since 2020-10-09
  */
-public class UserProfile implements Serializable{
+public class UserProfile implements Serializable {
 
-	private static final long serialVersionUID = 1L; //used for saving the profile
+	private static final long serialVersionUID = 1L; // used for saving the profile
 	private String name;
 	private List<History> history; // all problems stored as they come in
-	private HashMap<String,Integer> records; //maybe <recordType(as String), Problem>
+	private HashMap<String, Integer> records; // maybe <recordType(as String), Problem>
 
-	/**Constructor for UserProfile. A UserProfile is initialized with 
-	 * the given name, an empty List History and an empty HashMap records
+	/**
+	 * Constructor for UserProfile. A UserProfile is initialized with the given
+	 * name, an empty List History and an empty HashMap records
 	 * 
 	 * @param name
 	 */
 	public UserProfile(String name) {
 		this.name = name;
 		this.history = FXCollections.observableArrayList();
-		this.records = new HashMap<String,Integer>();
+		this.records = new HashMap<String, Integer>();
 	}
-	
+
 	/**
 	 * Gets profile name
+	 * 
 	 * @return
 	 */
 	public String getName() {
 		return name;
 	}
-	
+
 	/**
 	 * Gets history
+	 * 
 	 * @return List of problem history
 	 */
-	public ObservableList<History> getHistory(){
+	public ObservableList<History> getHistory() {
 		return (ObservableList<History>) history;
 	}
-	
+
 	/**
 	 * Gets records
+	 * 
 	 * @return hashmap of records
 	 */
-	public HashMap<String,Integer> getRecords(){
+	public HashMap<String, Integer> getRecords() {
 		return records;
 	}
-	
-	/**Adds a Problem last in UserProfile local LinkedList history
+
+	/**
+	 * Adds a Problem last in UserProfile local LinkedList history
 	 * 
 	 * @param problem
 	 * @param userAnswer
@@ -69,21 +73,22 @@ public class UserProfile implements Serializable{
 	 * @param timeRequierd
 	 * @param modifiers
 	 */
-	public void addProblemToHistory(String problem, String userAnswer, String correctAnswer, int points, int timeRequierd, Operator[] modifiers) {
-		history.add(new History(problem, userAnswer, correctAnswer, points, timeRequierd, modifiers));	
+	public void addProblemToHistory(String problem, String userAnswer, String correctAnswer, int points,
+			int timeRequierd, Operator[] modifiers) {
+		history.add(new History(problem, userAnswer, correctAnswer, points, timeRequierd, modifiers));
 	}
-	
+
 	/**
 	 * Makes the list serializable
 	 */
 	public void toArrayList() {
 		ArrayList<History> temp = new ArrayList<History>();
-		for(History h : history) {
+		for (History h : history) {
 			temp.add(h);
 		}
 		this.history = temp;
 	}
-	
+
 	/**
 	 * Makes the list observable
 	 */

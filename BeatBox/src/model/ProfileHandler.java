@@ -69,7 +69,7 @@ public class ProfileHandler {
 		}
 
 		if (success && (ProfileToAdd != null)) {
-			
+
 			currentProfile.toObservableList();
 			profiles.add(currentProfile);
 
@@ -173,6 +173,8 @@ public class ProfileHandler {
 					new Operator[] { Operator.ADD });
 			currentProfile.addProblemToHistory("5 * " + i, "" + 5 * i, "" + (5 * 1), 4, 3,
 					new Operator[] { Operator.ADD });
+			currentProfile.addProblemToHistory("\\frac{5}{" + i + "}", "" + 5 * i, "" + (5 * 1), 4, 3,
+					new Operator[] { Operator.ADD });
 
 		}
 
@@ -207,13 +209,13 @@ public class ProfileHandler {
 	public UserProfile getCurrentProfile() {
 		return currentProfile;
 	}
-	
+
 	/***
 	 * Get the profiles list size
+	 * 
 	 * @return the size of the profiles list
 	 */
-	public int profileAmount() 
-	{
+	public int profileAmount() {
 		return profiles.size();
 	}
 }

@@ -1,25 +1,27 @@
 package view;
 
-import java.io.IOException;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
+import javax.swing.JLabel;
+
+import org.scilab.forge.jlatexmath.TeXConstants;
+import org.scilab.forge.jlatexmath.TeXFormula;
+import org.scilab.forge.jlatexmath.TeXIcon;
+
 import javafx.animation.FadeTransition;
-import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /***
@@ -30,8 +32,15 @@ import javafx.util.Duration;
  * @author Philip
  * @version 1.0
  * @since 2020-09-17
+ * 
+ * @author Joachim Antfolk
+ * @author Tobias Mauritzon
+ * @version 2.0
+ * @since 2020-10-09
  */
 public class ProblemGUI implements GUIHandler {
+
+	// Vilket Delegate ?
 
 	/***
 	 * A Delegate used to communicate with the main class without and direct
@@ -51,9 +60,9 @@ public class ProblemGUI implements GUIHandler {
 
 	// Output objects
 	private VBox responseBox;
-	private Text problemText;
+	private VBox imageBox;
+	private ImageView problemImageView;
 	private Text responseText;
-	private String text;
 	private AnchorPane root;
 
 	private LinkedList<Node> inputObjects;
@@ -71,6 +80,13 @@ public class ProblemGUI implements GUIHandler {
 		getGUIObjects();
 		addTextInputListener();
 		clearAnswerText();
+
+		imageBox.setMinHeight(0);
+		imageBox.setMinWidth(0);
+		problemImageView.fitHeightProperty().bind(imageBox.heightProperty());
+		problemImageView.fitWidthProperty().bind(imageBox.widthProperty());
+		problemImageView.setPreserveRatio(true);
+
 	}
 
 	private void addTextInputListener() {
@@ -83,16 +99,30 @@ public class ProblemGUI implements GUIHandler {
 				}
 			}
 		});
-		problemText.setFocusTraversable(false);
+
 	}
 
 	/**
-	 * Sets the problem text to the inputed string
+	 * Converts the given LaTex string to a FXImge and sets the image in
+	 * problemImageView to the converted LaTex FXImage
 	 * 
 	 * @param problem the new string for ProblemText
 	 */
 	public void setProblemText(String problem) {
-		problemText.setText(problem);
+		TeXFormula formula = new TeXFormula(problem);
+
+		TeXIcon icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 300);// Here you can change text size
+		icon.setForeground(java.awt.Color.WHITE); // White text
+
+		BufferedImage image = new BufferedImage(icon.getIconWidth(), icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2 = image.createGraphics();
+		g2.setColor(new java.awt.Color(0, 0, 0, 1)); // Transparent background
+		g2.fillRect(0, 0, icon.getIconWidth(), icon.getIconHeight());
+		JLabel jl = new JLabel();
+		jl.setForeground(new java.awt.Color(0, 0, 0));
+		icon.paintIcon(jl, g2, 0, 0);
+
+		problemImageView.setImage(SwingFXUtils.toFXImage(image, null));
 	}
 
 	/**
@@ -136,7 +166,8 @@ public class ProblemGUI implements GUIHandler {
 
 		// output objects
 		responseBox = (VBox) root.lookup("#responseBox");
-		problemText = (Text) root.lookup("#problemText");
+		imageBox = (VBox) root.lookup("#imageBox");
+		problemImageView = (ImageView) root.lookup("#problemImage");
 		responseText = (Text) root.lookup("#responseText");
 
 	}

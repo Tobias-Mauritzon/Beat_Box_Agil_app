@@ -2,13 +2,13 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 
-/**The internal class Problem was created to enable easy sorting 
- * and categorization of problems
+/**
+ * The internal class Problem was created to enable easy sorting and
+ * categorization of problems
  * 
  * @author Tobias Mauritzon, Joachim Antfolk
- * @since 2020-10-02
+ * @since 2020-10-07
  */
 public class History implements Serializable{
 	
@@ -87,7 +87,7 @@ public class History implements Serializable{
 	public double getCorrectAnswer() {
 		return correctAnswer;
 	}
-	
+	 
 	/**
 	 * Gets date of the problem
 	 * @return Date of problem
