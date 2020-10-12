@@ -13,14 +13,14 @@ import view.ShakeTransition;
  * @since 2020-10-03
  *
  */
-public class ProglemGUIController implements ControllerInterface{
+public class ProblemGUIController implements ControllerInterface{
 	
 	private ProblemGUI pg;
 	private Grading g;
 	private NumberGenerator gen;
 	private String[] problemString;
 	
-	public ProglemGUIController(ProblemGUI pg, Grading g, NumberGenerator gen) {
+	public ProblemGUIController(ProblemGUI pg, Grading g, NumberGenerator gen) {
 		this.pg = pg;
 		this.g = g;
 		this.gen = gen;
