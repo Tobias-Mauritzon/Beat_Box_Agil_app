@@ -14,7 +14,7 @@ import java.util.List;
  * @author Seif Bourogaa
  */
 public class CustomParametersGUI implements GUIHandler {
-	private AnchorPane root;
+	private final AnchorPane root;
 	private CheckBox addCheckBox;
 	private CheckBox subCheckBox;
 	private CheckBox mulCheckBox;
@@ -121,7 +121,7 @@ public class CustomParametersGUI implements GUIHandler {
 	 * @return int[]	the range data.
 	 */
 	public int[] getRangeData() {
-		int range[] = new int[2];
+		int[] range = new int[2];
 		range[0] = Integer.parseInt(minInput.getText());
 		range[1] = Integer.parseInt(maxInput.getText());
 		return range;

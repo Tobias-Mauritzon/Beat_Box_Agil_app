@@ -130,7 +130,7 @@ public class Main extends Application {
 			@Override
 			public void transmitProblemParameters(ProblemParameters p) {
 				generator.setSettings(p);
-				sceneHandler.changeScene(1);
+				sceneHandler.changeScene(2);
 				problemController.ResetGUI();
 			}
 		});

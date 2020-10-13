@@ -22,8 +22,8 @@ import java.math.BigInteger;
  * @author Philip
  */
 public class CustomParametersController implements ControllerInterface {
-	private CustomParametersGUI cpGUI;
-	private CustomParametersModel cpModel;
+	private final CustomParametersGUI cpGUI;
+	private final CustomParametersModel cpModel;
 	private boolean errorNoOpSelected;
 	private boolean errorInvalidRange;
 

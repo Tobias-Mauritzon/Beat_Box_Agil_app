@@ -1,26 +1,23 @@
 package controller;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
-import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import view.MainFrame;
+
+import java.util.HashMap;
+import java.util.LinkedList;
 
 public class MainFrameController implements ControllerInterface {
 
@@ -95,28 +92,17 @@ public class MainFrameController implements ControllerInterface {
 
     @Override
     public void setActions() {
-        LinkedList<Button> buttons = new LinkedList<Button>();
+        LinkedList<Button> buttons;
         buttons = MAINFRAME.getButtons();
 
-        LinkedList<AnchorPane> panes = new LinkedList<AnchorPane>();
+        LinkedList<AnchorPane> panes;
         panes = MAINFRAME.getPanes();
 
-        EventHandler<ActionEvent> close = new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent e) {
-
-                closeTransition.play();
-            }
-        };
-        EventHandler<ActionEvent> fullScreen = new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent e) {
-                setFullScreen();
-            }
-        };
-        EventHandler<ActionEvent> minimize = new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent e) {
-                shrinkTransition.play();
-                minimizeTransition.play();
-            }
+        EventHandler<ActionEvent> close = e -> closeTransition.play();
+        EventHandler<ActionEvent> fullScreen = e -> setFullScreen();
+        EventHandler<ActionEvent> minimize = e -> {
+            shrinkTransition.play();
+            minimizeTransition.play();
         };
 
         buttons.get(0).setOnAction(close);
