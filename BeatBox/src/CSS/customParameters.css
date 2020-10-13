@@ -64,7 +64,7 @@
  * Sets the text color of all sliders in customParameters
  */
 .slider .axis{
-	-fx-tick-label-fill: -sliderTextColor; 
+	-fx-tick-label-fill: -sliderTextColor;
 }
 
 /*
@@ -80,7 +80,6 @@
 .spinner{
 	-fx-base: -spinnerBackgroundColor;
 	-fx-background-color: transparent;
-
 }
 
 /*

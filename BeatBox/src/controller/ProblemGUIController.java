@@ -1,9 +1,8 @@
 package controller;
 
-import model.NumberGenerator;
 import model.Grading;
+import model.NumberGenerator;
 import view.ProblemGUI;
-import view.ShakeTransition;
 
 /***
  * The controller for the problem GUI connects the Problem GUI to both the grading and Number Generator.
@@ -56,8 +55,6 @@ public class ProblemGUIController implements ControllerInterface{
 			nextProblem();
 		}else {
 			pg.showResponse(false);
-			ShakeTransition anim = new ShakeTransition(pg.getAnswerText(), t -> System.out.println("test"));
-			anim.playFromStart();
 		}
 	}
 	

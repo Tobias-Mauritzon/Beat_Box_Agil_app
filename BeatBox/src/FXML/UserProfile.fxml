@@ -43,19 +43,26 @@
                      <content>
                         <AnchorPane fx:id="profilePane" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="150.0" spacing="10.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
+                              <HBox prefHeight="550.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <AnchorPane fx:id="profilePicPane" prefHeight="150.0" prefWidth="150.0" />
-                                    <Label id="profileName" fx:id="profileName" prefWidth="150.0" text="User Name">
-                                       <font>
-                                          <Font size="26.0" />
-                                       </font>
-                                    </Label>
-                                    <Button id="profileNew" fx:id="profileNew" mnemonicParsing="false" text="New Profile" textFill="WHITE" />
-                                    <Button id="profileSwitch" fx:id="profileSwitch" mnemonicParsing="false" text="Switch Profile" textFill="WHITE" />
-                                    <Button id="profileDelete" fx:id="profileDelete" mnemonicParsing="false" text="Delete Profile" textFill="WHITE" />
+                                    <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="150.0" spacing="10.0">
+                                       <children>
+                                          <AnchorPane fx:id="profilePicPane" prefHeight="150.0" prefWidth="150.0" />
+                                          <Label id="profileName" fx:id="profileName" prefWidth="150.0" text="User Name">
+                                             <font>
+                                                <Font size="26.0" />
+                                             </font>
+                                          </Label>
+                                          <Button id="profileNew" fx:id="profileNew" mnemonicParsing="false" text="New Profile" textFill="WHITE" />
+                                          <Button id="profileSwitch" fx:id="profileSwitch" mnemonicParsing="false" text="Switch Profile" textFill="WHITE" />
+                                          <Button id="profileDelete" fx:id="profileDelete" mnemonicParsing="false" text="Delete Profile" textFill="WHITE" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                                       </HBox.margin>
+                                    </VBox>
                                  </children>
-                              </VBox>
+                              </HBox>
                            </children>
                         </AnchorPane>
                      </content>

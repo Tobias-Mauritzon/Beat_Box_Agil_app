@@ -1,15 +1,5 @@
 package view;
 
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.util.LinkedList;
-
-import javax.swing.JLabel;
-
-import org.scilab.forge.jlatexmath.TeXConstants;
-import org.scilab.forge.jlatexmath.TeXFormula;
-import org.scilab.forge.jlatexmath.TeXIcon;
-
 import javafx.animation.FadeTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -23,8 +13,16 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import org.scilab.forge.jlatexmath.TeXConstants;
+import org.scilab.forge.jlatexmath.TeXFormula;
+import org.scilab.forge.jlatexmath.TeXIcon;
 
-/***
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.LinkedList;
+
+/**
  * The view class that creates the GUI for the Problem solving scene of the
  * application. Handles Input through the SampleController.
  * 
@@ -40,20 +38,6 @@ import javafx.util.Duration;
  */
 public class ProblemGUI implements GUIHandler {
 
-	// Vilket Delegate ?
-
-	/***
-	 * A Delegate used to communicate with the main class without and direct
-	 * contact. has two methods grade that take a string and compares it to the
-	 * answer of the problem and getProblem which generates a new problem and
-	 * returns it.
-	 * 
-	 * @author Greppe
-	 * @author Philip
-	 * @version 1.0
-	 * @since 2020-09-17
-	 */
-
 	// Input objects
 	private TextField answerText;
 	private Button answerButton;
@@ -63,11 +47,11 @@ public class ProblemGUI implements GUIHandler {
 	private VBox imageBox;
 	private ImageView problemImageView;
 	private Text responseText;
-	private AnchorPane root;
+	private final AnchorPane root;
 
-	private LinkedList<Node> inputObjects;
+	private final LinkedList<Node> inputObjects;
 
-	/***
+	/**
 	 * The constructor of the ProblemGUI class, initializes the GUI elements with
 	 * initGUI and sets the root of the main application to the problem gui:s root.
 	 * 
@@ -89,6 +73,9 @@ public class ProblemGUI implements GUIHandler {
 
 	}
 
+	/**
+	 * Adds a listener to the answer so that the user only can input integers.
+	 */
 	private void addTextInputListener() {
 		// Check if userinput is a number.
 		answerText.textProperty().addListener(new ChangeListener<String>() {
@@ -132,8 +119,8 @@ public class ProblemGUI implements GUIHandler {
 		answerText.clear();
 	}
 
-	/***
-	 * shows a temporary message depending on the in parameter, if it's true it show
+	/**
+	 * Shows a temporary message depending on the in parameter, if it's true it show
 	 * the correct message otherwise it will show wrong.
 	 * 
 	 * @param correct a boolean indicated if the user answered correctly or not
@@ -142,9 +129,11 @@ public class ProblemGUI implements GUIHandler {
 		if (correct) {
 			responseText.setText("CORRECT!");
 			responseText.setFill(Color.LIMEGREEN);
+			responseText.setOpacity(1);
 		} else {
 			responseText.setText("WRONG!");
 			responseText.setFill(Color.RED);
+			responseText.setOpacity(1);
 		}
 		responseBox.setVisible(true);
 		FadeTransition ft = new FadeTransition(Duration.millis(1500), responseBox);
@@ -169,7 +158,6 @@ public class ProblemGUI implements GUIHandler {
 		imageBox = (VBox) root.lookup("#imageBox");
 		problemImageView = (ImageView) root.lookup("#problemImage");
 		responseText = (Text) root.lookup("#responseText");
-
 	}
 
 	/**
@@ -184,7 +172,7 @@ public class ProblemGUI implements GUIHandler {
 	/**
 	 * gets the answer button
 	 * 
-	 * @return retunrs the answer button
+	 * @return returns the answer button
 	 */
 	public Button getAnswerButton() {
 		return answerButton;

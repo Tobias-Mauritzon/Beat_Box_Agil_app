@@ -19,4 +19,8 @@
 	-fx-background-insets: 0;
 }
 
+#responseText{
+    -fx-opacity: 0.0;
+}
+
 
