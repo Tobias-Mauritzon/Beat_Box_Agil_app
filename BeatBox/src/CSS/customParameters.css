@@ -73,43 +73,6 @@
 .slider .thumb{
 	-fx-background-color: -slderKnobColor;
 }
-
-/*
- * Sets background color of the text-field in all sliders in customParameters
- */
-.spinner{
-	-fx-base: -spinnerBackgroundColor;
-	-fx-background-color: transparent;
-}
-
-/*
- * Sets the color of the background of all up-arrows in sliders in customParameters
- */
-.spinner .increment-arrow-button  {
-    -fx-background-color: -spinnerButtonColor;
-}
-
-/*
- * Sets the color of all up-arrows in sliders in customParameters
- */
-.spinner .increment-arrow-button .increment-arrow {
-    -fx-background-color: -spinnerArrowColor;
-}
-
-/*
- * Sets the color of the background of all down-arrows in sliders in customParameters
- */
-.spinner .decrement-arrow-button  {
-    -fx-background-color: -spinnerButtonColor;
-}
-
-/*
- * Sets the color of all down-arrows in sliders in customParameters
- */
-.spinner .decrement-arrow-button .decrement-arrow {
-    -fx-background-color: -spinnerArrowColor;
-}
-
 /*
  * Settings for the title in customParameters
  */

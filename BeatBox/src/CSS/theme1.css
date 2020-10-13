@@ -98,8 +98,9 @@
 }
 
 * :disabled{
-  -fx-opacity: 1.0 ;
+  -fx-opacity: 1.0;
 }
+
 /*
  * Settings for all labels in the application
  */

@@ -64,7 +64,7 @@ public class Main extends Application {
 		primaryStage.setScene(mainScene);
 		primaryStage.getIcons().add(new Image("/frameIcons/app-icon2.png"));
 		primaryStage.setTitle("Mathematics");
-		primaryStage.setMinWidth(550);
+		primaryStage.setMinWidth(800);
 		primaryStage.setMinHeight(550);
 		primaryStage.setWidth(900);
 		primaryStage.setHeight(550);
