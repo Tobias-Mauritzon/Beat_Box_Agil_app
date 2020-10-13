@@ -143,6 +143,13 @@ public class Main extends Application {
 				problemController.ResetGUI();
 			}
 		};
+
+		grade.delegate = new Grading.Delegate() {
+			@Override
+			public void setHistory(String p, String a, String u) {
+				profileHandler.getCurrentProfile().addProblemToHistory(p, a, u,4,3, null );
+			}
+		};
 	}
 
 	/**

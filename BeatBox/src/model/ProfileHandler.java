@@ -30,7 +30,7 @@ public class ProfileHandler {
 		profiles = new ArrayList<UserProfile>();
 		Optional<String> profileName = Optional.of(profile);
 		addProfile(profileName);
-		HistoryTest();
+		//HistoryTest();
 	}
 
 	/***

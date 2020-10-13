@@ -33,8 +33,8 @@ public class History implements Serializable{
 	 */
 	public History(String problem, String userAnswer, String correctAnswer, int points, int timeRequired, Operator[] modifiers) {
 		this.problem = problem;
-		this.userAnswer = Double.valueOf(userAnswer);
-		this.correctAnswer = Double.valueOf(correctAnswer);
+		this.userAnswer = Double.parseDouble(userAnswer);
+		this.correctAnswer = Double.parseDouble(correctAnswer);
 		LocalDateTime now = LocalDateTime.now();
 		
 		
