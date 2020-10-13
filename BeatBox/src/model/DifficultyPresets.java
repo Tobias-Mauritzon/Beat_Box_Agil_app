@@ -18,7 +18,7 @@ public class DifficultyPresets {
     private Operator operator;
     private Delegate delegate;
     /**
-     * Constructor for DifficultyPresets
+     * Constructor for DifficultyPresets.
      *
      * @param operator the Operator we are using.
      *

@@ -27,7 +27,7 @@ public class DifficultyGUI implements GUIHandler{
     }
 
     /**
-     * Method to get all objects on the current GUI.
+     * Method to get all objects on the current GUI .
      */
     public void getGUIObjects() {
 

@@ -15,7 +15,7 @@ import view.DifficultyGUI;
 public class DifficultyPresetsController implements ControllerInterface{
 
     /**
-     * @see #difficultyPresets  model part of the controller.
+     * @see #difficultyPresets  model part of the  controller.
      * @see #difficultyGUI  view part of the controller.
      *
      * @see #operator Temporary. How will we know what Operator the User is viewing?

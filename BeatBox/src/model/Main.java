@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 import controller.CustomParametersController;
 import controller.NavigationMenuController;
-import controller.ProglemGUIController;
+import controller.ProblemGUIController;
 import controller.UserController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -47,7 +47,7 @@ public class Main extends Application {
 	private Grading grade;
 	
 	// Controller
-	private ProglemGUIController problemController;
+	private ProblemGUIController problemController;
 	private NavigationMenuController navigationMenuController;
 	
 	public static void main(String[] args) {
@@ -108,7 +108,7 @@ public class Main extends Application {
 	private void createControllerObjects() {
 		new UserController(userProfileGUI, profileHandler);
 		navigationMenuController = new NavigationMenuController(navigationMenu, sceneHandler);
-		problemController = new ProglemGUIController(problemGUI,grade,generator);
+		problemController = new ProblemGUIController(problemGUI,grade,generator);
 		new CustomParametersController(customParametersGUI,customParameters);
 	}
 
