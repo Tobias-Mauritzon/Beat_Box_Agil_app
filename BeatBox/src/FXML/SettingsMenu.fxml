@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -9,7 +13,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="600.0" stylesheets="@../CSS/settings.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="CENTER" fillWidth="false" layoutX="200.0" layoutY="50.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <opaqueInsets>
@@ -23,7 +27,7 @@
                      <top>
                         <AnchorPane fx:id="topPane" prefHeight="50.0" prefWidth="400.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" prefHeight="500.0" prefWidth="400.0" text="Settings" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" text="Settings" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                      </top>
@@ -31,29 +35,180 @@
                         <AnchorPane fx:id="bottomPane" prefHeight="50.0" prefWidth="400.0" BorderPane.alignment="CENTER" />
                      </bottom>
                      <center>
-                        <AnchorPane fx:id="settingsMainPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                        <AnchorPane fx:id="settingsMainPane" BorderPane.alignment="CENTER">
                            <children>
-                              <VBox alignment="BOTTOM_CENTER" prefHeight="400.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <VBox alignment="BOTTOM_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <HBox prefHeight="30.0" prefWidth="200.0">
+                                    <AnchorPane fx:id="backPane" prefHeight="355.0">
                                        <children>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <Label prefHeight="31.333333333333332" prefWidth="200.0" text="Full Screen" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                             <children>
-                                                <ToggleButton layoutX="70.0" layoutY="3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" />
-                                             </children>
-                                          </AnchorPane>
+                                          <TabPane fx:id="myTabPane" layoutX="80.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <tabs>
+                                              <Tab text="General">
+                                                <content>
+                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tabPanes">
+                                                         <children>
+                                                            <VBox alignment="TOP_CENTER" prefHeight="328.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                                                               <children>
+                                                                  <StackPane prefHeight="40.0" prefWidth="200.0" styleClass="stackPane">
+                                                                     <children>
+                                                                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="360.0">
+                                                                           <children>
+                                                                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                                                 <children>
+                                                                                    <Label prefHeight="100.0" prefWidth="200.0" text="Fulll Screen" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                                 </children>
+                                                                              </AnchorPane>
+                                                                              <ToggleButton fx:id="toggleButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="50.0">
+                                                                                 <HBox.margin>
+                                                                                    <Insets right="20.0" />
+                                                                                 </HBox.margin>
+                                                                              </ToggleButton>
+                                                                           </children>
+                                                                        </HBox>
+                                                                     </children>
+                                                                     <VBox.margin>
+                                                                        <Insets left="100.0" right="100.0" />
+                                                                     </VBox.margin>
+                                                                  </StackPane>
+                                                               </children>
+                                                            </VBox>
+                                                         </children>
+                                                      </AnchorPane>
+                                                </content>
+                                              </Tab>
+                                              <Tab text="Themes">
+                                                <content>
+                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tabPanes">
+                                                         <children>
+                                                            <VBox alignment="CENTER" layoutX="150.0" layoutY="64.0" prefHeight="327.2" prefWidth="400.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <StackPane prefHeight="40.0" prefWidth="200.0" styleClass="stackPane">
+                                                                     <children>
+                                                                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="360.0">
+                                                                           <children>
+                                                                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                                                 <children>
+                                                                                    <Label prefHeight="100.0" prefWidth="200.0" text="Default" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                                 </children>
+                                                                              </AnchorPane>
+                                                                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                                                 <children>
+                                                                                    <AnchorPane fx:id="defaultColor1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" />
+                                                                                    <AnchorPane fx:id="defaultColor2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" />
+                                                                                    <AnchorPane fx:id="defaultColor3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" />
+                                                                                 </children>
+                                                                              </HBox>
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                                           <children>
+                                                                              <Button fx:id="defaultThemeButton" alignment="CENTER" mnemonicParsing="false" opacity="0.0" prefHeight="40.0" prefWidth="200.0" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                           </children>
+                                                                        </AnchorPane>
+                                                                     </children>
+                                                                     <VBox.margin>
+                                                                        <Insets left="100.0" right="100.0" />
+                                                                     </VBox.margin>
+                                                                  </StackPane>
+                                                                  <StackPane prefHeight="40.0" prefWidth="200.0" styleClass="stackPane">
+                                                                     <children>
+                                                                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="360.0">
+                                                                           <children>
+                                                                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                                                 <children>
+                                                                                    <Label prefHeight="100.0" prefWidth="200.0" text="Light" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                                 </children>
+                                                                              </AnchorPane>
+                                                                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                                                 <children>
+                                                                                    <AnchorPane fx:id="lightColor1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" />
+                                                                                    <AnchorPane fx:id="lightColor2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" />
+                                                                                    <AnchorPane fx:id="lightColor3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" />
+                                                                                 </children>
+                                                                              </HBox>
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                                           <children>
+                                                                              <Button fx:id="lightThemeButton" alignment="CENTER" mnemonicParsing="false" opacity="0.0" prefHeight="40.0" prefWidth="200.0" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                           </children>
+                                                                        </AnchorPane>
+                                                                     </children>
+                                                                     <VBox.margin>
+                                                                        <Insets left="100.0" right="100.0" />
+                                                                     </VBox.margin>
+                                                                  </StackPane>
+                                                                  <StackPane prefHeight="40.0" prefWidth="200.0" styleClass="stackPane">
+                                                                     <children>
+                                                                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="360.0">
+                                                                           <children>
+                                                                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                                                 <children>
+                                                                                    <Label prefHeight="100.0" prefWidth="200.0" text="Forest" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                                 </children>
+                                                                              </AnchorPane>
+                                                                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                                                 <children>
+                                                                                    <AnchorPane fx:id="forestColor1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" />
+                                                                                    <AnchorPane fx:id="forestColor2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" />
+                                                                                    <AnchorPane fx:id="forestColor3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" />
+                                                                                 </children>
+                                                                              </HBox>
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                                           <children>
+                                                                              <Button fx:id="forestThemeButton" alignment="CENTER" mnemonicParsing="false" opacity="0.0" prefHeight="40.0" prefWidth="200.0" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                           </children>
+                                                                        </AnchorPane>
+                                                                     </children>
+                                                                     <VBox.margin>
+                                                                        <Insets left="100.0" right="100.0" />
+                                                                     </VBox.margin>
+                                                                  </StackPane>
+                                                                  <StackPane prefHeight="40.0" prefWidth="200.0" styleClass="stackPane">
+                                                                     <children>
+                                                                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="360.0">
+                                                                           <children>
+                                                                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                                                 <children>
+                                                                                    <Label prefHeight="100.0" prefWidth="200.0" text="Sand" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                                 </children>
+                                                                              </AnchorPane>
+                                                                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                                                 <children>
+                                                                                    <AnchorPane fx:id="sandColor1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" />
+                                                                                    <AnchorPane fx:id="sandColor2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" />
+                                                                                    <AnchorPane fx:id="sandColor3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" />
+                                                                                 </children>
+                                                                              </HBox>
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                                           <children>
+                                                                              <Button fx:id="sandThemeButton" alignment="CENTER" mnemonicParsing="false" opacity="0.0" prefHeight="40.0" prefWidth="200.0" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                           </children>
+                                                                        </AnchorPane>
+                                                                     </children>
+                                                                     <VBox.margin>
+                                                                        <Insets left="100.0" right="100.0" />
+                                                                     </VBox.margin>
+                                                                  </StackPane>
+                                                               </children>
+                                                            </VBox>
+                                                         </children>
+                                                      </AnchorPane>
+                                                </content>
+                                              </Tab>
+                                            </tabs>
+                                          </TabPane>
                                        </children>
-                                       <VBox.margin>
-                                          <Insets top="50.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                                    <AnchorPane prefHeight="172.0" prefWidth="400.0" />
-                                    <AnchorPane prefHeight="119.0" prefWidth="400.0" />
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="50.0" prefWidth="400.0">
+                                       <children>
+                                          <Button fx:id="backButton" layoutX="130.0" layoutY="7.0" mnemonicParsing="false" text="Back" AnchorPane.bottomAnchor="7.666666666666664" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="7.0" />
+                                       </children>
+                                    </AnchorPane>
                                  </children>
                               </VBox>
                            </children></AnchorPane>
@@ -64,4 +219,9 @@
          </children>
       </VBox>
    </children>
+   <stylesheets>
+      <URL value="@../CSS/settings.css" />
+      <URL value="@../CSS/defaultTheme.css" />
+      <URL value="@../CSS/mainFrame.css" />
+   </stylesheets>
 </AnchorPane>

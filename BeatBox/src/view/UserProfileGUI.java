@@ -1,36 +1,32 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-/**
- * Class that creates a a prototype for the user profile gui
- * @author Joachim Antfolk, Tobias Mauritzon, Philip AxenHamn, Andreas Greppe
- * @since 2020-10-09.
- */
-import java.util.Locale;
-import java.util.Optional;
-
-import javax.swing.JLabel;
-
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import model.History;
 import org.scilab.forge.jlatexmath.TeXConstants;
 import org.scilab.forge.jlatexmath.TeXFormula;
 import org.scilab.forge.jlatexmath.TeXIcon;
 
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.ObservableList;
-import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextInputDialog;
-import javafx.scene.layout.AnchorPane;
-import model.History;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.Locale;
+import java.util.Optional;
+
+/**
+ * Class that creates a a prototype for the user profile gui
+ *
+ * @author Joachim Antfolk, Tobias Mauritzon, Philip AxenHamn, Andreas Greppe
+ * @since 2020-10-09.
+ */
 
 public class UserProfileGUI implements GUIHandler {
 
@@ -187,5 +183,6 @@ public class UserProfileGUI implements GUIHandler {
 			return new SimpleObjectProperty<ImageView>(new ImageView(SwingFXUtils.toFXImage(image, null)));
 		});
 	}
+	
 
 }

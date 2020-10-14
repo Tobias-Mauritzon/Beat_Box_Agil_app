@@ -84,7 +84,7 @@ public class SceneHandler {
 			AnchorPane.setLeftAnchor(currentPane, 0.0);
 			AnchorPane.setBottomAnchor(currentPane, 0.0);
 
-			FadeTransition ft = new FadeTransition(Duration.millis(800), frontPane);
+			FadeTransition ft = new FadeTransition(Duration.millis(600), frontPane);
 			ft.setFromValue(0.0);
 			ft.setToValue(1);
 			ft.play();
@@ -96,6 +96,20 @@ public class SceneHandler {
 			frontPane.setDisable(false);
 			currentPane.applyCss();
 		}
+	}
+
+	public void closeScene(){
+		FadeTransition ft = new FadeTransition(Duration.millis(200), frontPane);
+		ft.setFromValue(1);
+		ft.setToValue(0.0);
+		ft.play();
+		ft.setOnFinished(e->{
+			backPane.setEffect(null);
+			frontPane.getChildren().clear();
+			backPane.setDisable(false);
+			frontPane.setDisable(true);
+		});
 
 	}
+
 }

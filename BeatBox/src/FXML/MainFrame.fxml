@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Button?>
@@ -8,14 +9,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane fx:id="rootPane" prefHeight="600.0" stylesheets="@../CSS/mainFrame.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="rootPane" prefHeight="600.0" styleClass="root" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <AnchorPane fx:id="scenePane" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0" />
+        <AnchorPane fx:id="scenePane" prefWidth="600.0" styleClass="defaultTheme" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+         <stylesheets>
+            <URL value="@../CSS/mainFrame.css" />
+            <URL value="@../CSS/defaultTheme.css" />
+         </stylesheets></AnchorPane>
         <HBox fx:id="topBar" alignment="CENTER_RIGHT" fillHeight="false" prefHeight="30.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <AnchorPane fx:id="minimizePane" prefWidth="60.0">
+                <AnchorPane fx:id="minimizePane" prefWidth="60.0" styleClass="frameButtonPanes">
                     <children>
-                        <Button fx:id="minimizeButton" mnemonicParsing="false" prefWidth="60.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Button fx:id="minimizeButton" mnemonicParsing="false" opacity="0.0" prefWidth="60.0" styleClass="frameButtonPanes" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <rotationAxis>
                                 <Point3D />
                             </rotationAxis>
@@ -30,9 +35,9 @@
                         <Insets />
                     </HBox.margin>
                 </AnchorPane>
-                <AnchorPane fx:id="fullScreenPane" prefWidth="60.0">
+                <AnchorPane fx:id="fullScreenPane" prefWidth="60.0" styleClass="frameButtonPanes">
                     <children>
-                        <Button fx:id="fullScreenButton" mnemonicParsing="false" prefWidth="60.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button fx:id="fullScreenButton" mnemonicParsing="false" opacity="0.0" prefWidth="60.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                         <ImageView disable="true" fitHeight="15.0" fitWidth="15.0" layoutX="22.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="9.333333333333336" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="9.0">
                             <image>
                                 <Image url="@../frameIcons/fullScreen.png" />
@@ -40,9 +45,9 @@
                         </ImageView>
                     </children>
                 </AnchorPane>
-                <AnchorPane fx:id="closePane" prefWidth="60.0">
+                <AnchorPane fx:id="closePane" prefWidth="60.0" styleClass="frameButtonPanes">
                     <children>
-                        <Button fx:id="closeButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutY="4.0" mnemonicParsing="false" prefWidth="60.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button fx:id="closeButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutY="4.0" mnemonicParsing="false" opacity="0.0" prefWidth="60.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                         <ImageView disable="true" fitHeight="15.0" fitWidth="15.0" layoutX="22.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="9.333333333333336" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="9.0">
                             <image>
                                 <Image url="@../frameIcons/x.png" />
@@ -56,4 +61,8 @@
             </children>
         </HBox>
     </children>
+   <stylesheets>
+      <URL value="@../CSS/defaultTheme.css" />
+      <URL value="@../CSS/mainFrame.css" />
+   </stylesheets>
 </AnchorPane>

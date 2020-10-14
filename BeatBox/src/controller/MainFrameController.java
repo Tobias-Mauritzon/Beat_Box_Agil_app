@@ -144,7 +144,7 @@ public class MainFrameController implements ControllerInterface {
         oldY = STAGE.getY();
     }
 
-    private void setFullScreen() {
+    public void setFullScreen() {
         for (Screen screen : Screen.getScreens()) {
             Rectangle2D monitor = screen.getVisualBounds();
             Rectangle2D stageRec = new Rectangle2D(STAGE.getX(), STAGE.getY(), STAGE.getWidth(), STAGE.getHeight());

@@ -1,4 +1,3 @@
-@import "theme1.css";
 
 /*
  * Settings for the settings menu
@@ -15,6 +14,77 @@
 -fx-background-color: transparent;
 }	
 
+/*
+ * Settings for all tab-panes
+*/
+.tab-pane{
+	-fx-background-color: -baseColor1;
+
+}
+.tabPanes{
+-fx-background-color: -baseColor2;
+-fx-border-size: 0;
+-fx-padding: 0;
+}
+
+/*
+ * Sets the tab size, color and border style
+*/
+.tab-pane .tab-header-area .headers-region .tab {
+	-fx-pref-height: 25;
+	-fx-pref-width: 150;
+
+    -fx-background-color: derive(-baseColor2, 20%);
+
+	-fx-padding: 0 0 0 13;
+    -fx-border-radius: 10 10 0 0;
+ 	-fx-background-radius: 10 10 0 0;
+
+	-fx-border-style: hidden hidden solid hidden;
+	-fx-border-width: 2;
+	-fx-border-color: derive(-baseColor2, 20%);
+
+}
+
+/*
+ * Removes empty space around tabs
+*/
+.tab-pane .tab-header-area {
+	-fx-padding: 0 0 0 0;
+
+}
+
+/*
+ * Sets the color of tab when hovering
+*/
+.tab-pane .tab-header-area .headers-region .tab:hover{
+    -fx-background-color:  derive(-baseColor2, 10%);
+	-fx-border-color: derive(-baseColor2, 10%);
+}
+
+/*
+ * Makes the border visible when tab selected
+*/
+.tab-pane .tab-header-area .headers-region .tab:selected{
+	 -fx-border-color: -color1;
+	 -fx-background-color: derive(-baseColor2, 10%);
+
+}
+
+/*
+ * Sets background color in tab header
+*/
+.tab-pane .tab-header-area .tab-header-background{
+    -fx-background-color: -baseColor1;
+}
+
+/*
+ * Sets text color in tabs
+*/
+.tab-pane .tab-header-area .headers-region .tab .tab-container .tab-label{
+    -fx-text-fill: -color1;
+    -fx-align: CENTER;
+}
 
 /*
  * Settings for the settings pane
@@ -31,7 +101,13 @@
  * 
  */
 #settingsMainPane{
-	-fx-background-color: -baseColor3;
+	-fx-background-color: -baseColor2;
+	-fx-border-size: 0;
+}
+
+.stackPane{
+    -fx-background-color: derive(-baseColor2, -20%);
+    -fx-background-radius:20;
 }
 /*
  * Settings for the title
@@ -39,7 +115,7 @@
  */
 #title{
 	-fx-alignment: CENTER;
-	-fx-text-fill: -labelTextColor; 
+	-fx-text-fill: -color2;
 	-fx-font-size: 20.0pt;
 }
 
@@ -59,5 +135,64 @@
 	-fx-background-color: -baseColor1;
 	-fx-background-radius: 0 0 25 25;
 }
+#backPane{
+	-fx-background-color: -baseColor1;
+}
 
+#backButton{
+    -fx-background-color: derive(-baseColor2, -20%);
+	-fx-background-radius: 10;
+	-fx-text-fill: -color1;
+}
 
+/*
+ * Default colors
+ */
+#defaultColor1{
+    -fx-background-color: #1A2226;
+}
+#defaultColor2{
+    -fx-background-color:#303A40;
+}
+#defaultColor3{
+    -fx-background-color:#5C6A73;
+}
+
+/*
+ * Light colors
+ */
+#lightColor1{
+    -fx-background-color: #3A3940;
+}
+#lightColor2{
+    -fx-background-color:#F0F0F2;
+}
+#lightColor3{
+    -fx-background-color:#D7D7D9;
+}
+
+/*
+ * Forest colors
+ */
+#forestColor1{
+    -fx-background-color: #0E2226;
+}
+#forestColor2{
+    -fx-background-color: #4EA696;
+}
+#forestColor3{
+    -fx-background-color: #9FF288;
+}
+
+/*
+ * Sand colors
+ */
+#sandColor1{
+    -fx-background-color: #402312;
+}
+#sandColor2{
+    -fx-background-color: #BF926B;
+}
+#sandColor3{
+    -fx-background-color: #8C6645;
+}

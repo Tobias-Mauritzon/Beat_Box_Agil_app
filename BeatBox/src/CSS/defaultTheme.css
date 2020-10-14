@@ -1,0 +1,20 @@
+/*
+ * This css-file contains all colors that are used within the application.
+ * It has 3 base-colors, baseColor1,baseColor2 and baseColor3.
+ * This css-file is used by all other css-files.
+ *
+ * Author: Philip
+ *
+ */
+* {
+    -base1: #1A2226;
+    -base2: #303A40;
+ 	-base3: #5C6A73;
+
+ 	 -color1: WHITE;
+     -color2: WHITE;
+
+ }
+
+
+

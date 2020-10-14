@@ -25,6 +25,7 @@ import java.util.LinkedList;
 public class Main extends Application {
 
 	private Scene mainScene;
+	private Stage mainStage;
 	private LinkedList<Scene> sceneList;
 
 	// View
@@ -33,6 +34,8 @@ public class Main extends Application {
 	private UserProfileGUI userProfileGUI;
 	private CustomParametersGUI customParametersGUI;
 	private MainFrame mainFrame;
+	private SettingsGUI settingsGUI;
+	private ThemeHandler themeHandler;
 
 	// Model
 	private CustomParametersModel customParameters;
@@ -41,10 +44,13 @@ public class Main extends Application {
 	private ProfileHandler profileHandler;
 	private NumberGenerator generator;
 	private Grading grade;
+
 	
 	// Controller
 	private ProblemGUIController problemController;
 	private NavigationMenuController navigationMenuController;
+	private MainFrameController mainFrameController;
+	private SettingsController settingsController;
 	
 	public static void main(String[] args) {
 		Application.launch(args);
@@ -72,6 +78,7 @@ public class Main extends Application {
 		primaryStage.initStyle(StageStyle.TRANSPARENT);
 		primaryStage.show();
 
+		mainStage = primaryStage;
 		// Create a list of scenes that is used in the sceneHandler 
 		sceneList = new LinkedList<Scene>();
 		sceneList.add(createScene("/FXML/NavigationMenu.fxml")); // [0]
@@ -84,8 +91,9 @@ public class Main extends Application {
 		createViewObjects();
 		createModelObjects();
 		createControllerObjects();
-		new MainFrameController(primaryStage,mainFrame);
 		setDelegates();
+
+
 		mainFrame.addScene((AnchorPane)sceneList.get(0).getRoot());
 	}
 
@@ -98,6 +106,7 @@ public class Main extends Application {
 		userProfileGUI = new UserProfileGUI((AnchorPane) sceneList.get(1).getRoot());
 		problemGUI = new ProblemGUI((AnchorPane) sceneList.get(2).getRoot());
 		customParametersGUI = new CustomParametersGUI((AnchorPane) sceneList.get(3).getRoot());
+		settingsGUI = new SettingsGUI((AnchorPane) sceneList.get(4).getRoot());
 	}
 
 	/**
@@ -115,11 +124,13 @@ public class Main extends Application {
 	 * Creates instances of controller classes.
 	 */
 	private void createControllerObjects() {
+		mainFrameController = new MainFrameController(mainStage,mainFrame);
 		new UserController(userProfileGUI, profileHandler);
 		navigationMenuController = new NavigationMenuController(navigationMenu, sceneHandler);
 		problemController = new ProblemGUIController(problemGUI,grade,generator);
 		new CustomParametersController(customParametersGUI,customParameters);
-
+		themeHandler = new ThemeHandler(mainScene);
+		new SettingsController(settingsGUI,themeHandler,sceneHandler,mainStage);
 	}
 
 	/**
