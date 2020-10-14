@@ -13,6 +13,10 @@ import view.UserProfileGUI;
  * @author Philip
  * @version 1.0
  * @since 2020-10-09
+ * 
+ * @author Joachim Antfolk
+ * @version 2.0
+ * @since 2020-10-14
  */
 public class UserController implements ControllerInterface {
 
@@ -48,13 +52,15 @@ public class UserController implements ControllerInterface {
 		userProfileGUI.getPSwitchButton().setOnAction((event) -> {
 
 			Optional<String> name = userProfileGUI.getInput("Switch Profile", "Profile name:");
-			if (profileHandler.switchProfile(name)) {
-				userProfileGUI.setUserNameLabel(profileHandler.getCurrentProfile().getName());
-				userProfileGUI.getHistory()
-						.setItems(FXCollections.observableArrayList(profileHandler.getCurrentProfile().getHistory()));
-			} else {
+			if (name.isPresent()) {
+				if (profileHandler.switchProfile(name)) {
+					userProfileGUI.setUserNameLabel(profileHandler.getCurrentProfile().getName());
+					userProfileGUI.getHistory().setItems(
+							FXCollections.observableArrayList(profileHandler.getCurrentProfile().getHistory()));
+				} else {
 
-				userProfileGUI.errorMessage("Could not switch profile!");
+					userProfileGUI.errorMessage("Could not switch profile!");
+				}
 			}
 		});
 
@@ -62,29 +68,26 @@ public class UserController implements ControllerInterface {
 		userProfileGUI.getPDeleteButton().setOnAction((event) -> {
 
 			Optional<String> name = userProfileGUI.getInput("Delete Profile", "Profile name:");
-			if (!profileHandler.deleteProfile(name)) {
-				userProfileGUI.errorMessage("Could not delete profile: " + name.get() + "!");
+			if (name.isPresent()) {
+				if (!profileHandler.deleteProfile(name)) {
+					userProfileGUI.errorMessage("Could not delete profile: " + name.get() + "!");
+				}
 			}
-
 		});
 
 		// Sets the action for the new profile button.
 		userProfileGUI.getPNewButton().setOnAction((event) -> {
 
 			Optional<String> name = userProfileGUI.getInput("New Profile", "Profile name:");
-
-			if (profileHandler.addProfile(name)) {
-
-				userProfileGUI.setUserNameLabel(profileHandler.getCurrentProfile().getName());
-				userProfileGUI.getHistory()
-						.setItems(FXCollections.observableArrayList(profileHandler.getCurrentProfile().getHistory()));
+			if (name.isPresent()) {
+				if (profileHandler.addProfile(name)) {
+					userProfileGUI.setUserNameLabel(profileHandler.getCurrentProfile().getName());
+					userProfileGUI.getHistory().setItems(
+							FXCollections.observableArrayList(profileHandler.getCurrentProfile().getHistory()));
+				} else {
+					userProfileGUI.errorMessage("Could not save profile: " + name.get() + "!"); // name is non existence
+				}
 			}
-
-			else {
-
-				userProfileGUI.errorMessage("Could not save profile: " + name.get() + "!");
-			}
-
 		});
 
 	}
