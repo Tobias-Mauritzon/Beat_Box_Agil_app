@@ -23,7 +23,7 @@ public class UserController implements ControllerInterface {
 	 * Constructor for the UserController.
 	 * 
 	 * @param userProfileGUI the UserProfileGUI instance
-	 * @param userProfile    the UserProfile model instance.
+	 * @param profileHandler    the UserProfile model instance.
 	 */
 	public UserController(UserProfileGUI userProfileGUI, ProfileHandler profileHandler) {
 		this.userProfileGUI = userProfileGUI;
@@ -50,8 +50,7 @@ public class UserController implements ControllerInterface {
 			Optional<String> name = userProfileGUI.getInput("Switch Profile", "Profile name:");
 			if (profileHandler.switchProfile(name)) {
 				userProfileGUI.setUserNameLabel(profileHandler.getCurrentProfile().getName());
-				userProfileGUI.getHistory()
-						.setItems(FXCollections.observableArrayList(profileHandler.getCurrentProfile().getHistory()));
+				userProfileGUI.getHistory().setItems(profileHandler.getCurrentProfile().getHistory());
 			} else {
 
 				userProfileGUI.errorMessage("Could not switch profile!");
@@ -76,8 +75,7 @@ public class UserController implements ControllerInterface {
 			if (profileHandler.addProfile(name)) {
 
 				userProfileGUI.setUserNameLabel(profileHandler.getCurrentProfile().getName());
-				userProfileGUI.getHistory()
-						.setItems(FXCollections.observableArrayList(profileHandler.getCurrentProfile().getHistory()));
+				userProfileGUI.getHistory().setItems(profileHandler.getCurrentProfile().getHistory());
 			}
 
 			else {
@@ -86,7 +84,6 @@ public class UserController implements ControllerInterface {
 			}
 
 		});
-
 	}
 
 }

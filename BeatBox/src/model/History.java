@@ -25,7 +25,7 @@ public class History implements Serializable{
 	/**Initialises the History class with required values
 	 * 
 	 * @param problem as a Stirng
-	 * @param awnser to the problem as a String
+	 * @param userAnswer to the problem as a String
 	 * @param points for the solve or failiure
 	 * @param timeRequired to solve the problem
 	 * @param modifiers used to create the problem, modifiers can 
@@ -119,4 +119,5 @@ public class History implements Serializable{
 	public Operator[] getModifiers() {
 		return modifiers;
 	}
+
 }
