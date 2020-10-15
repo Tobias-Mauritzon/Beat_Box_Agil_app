@@ -96,7 +96,10 @@ public class Main extends Application {
 
 		mainFrame.addScene((AnchorPane)sceneList.get(0).getRoot());
 	}
-
+	@Override
+	public void stop() {
+		System.out.println("OFF");
+	}
 	/**
 	 * Creates instances of view classes.
 	 */

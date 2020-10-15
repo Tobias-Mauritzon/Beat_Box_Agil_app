@@ -35,7 +35,7 @@
                         <AnchorPane fx:id="bottomPane" prefHeight="50.0" prefWidth="400.0" BorderPane.alignment="CENTER" />
                      </bottom>
                      <center>
-                        <AnchorPane fx:id="settingsMainPane" BorderPane.alignment="CENTER">
+                        <AnchorPane fx:id="settingsMainPane" style="-fx-background-color: -baseColor2;" BorderPane.alignment="CENTER">
                            <children>
                               <VBox alignment="BOTTOM_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
@@ -55,7 +55,7 @@
                                                                            <children>
                                                                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                                                  <children>
-                                                                                    <Label prefHeight="100.0" prefWidth="200.0" text="Fulll Screen" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                                    <Label prefHeight="100.0" prefWidth="200.0" text="Full Screen" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                                                  </children>
                                                                               </AnchorPane>
                                                                               <ToggleButton fx:id="toggleButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="20.0" prefWidth="50.0">
