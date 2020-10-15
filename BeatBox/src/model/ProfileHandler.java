@@ -35,7 +35,6 @@ public class ProfileHandler {
 
 			Optional<String> profileName = Optional.of(profile);
 			addProfile(profileName);
-			System.out.println("no file found, created a new one");
 		}
 		else {
 			currentProfile = profiles.get(0);
@@ -63,11 +62,9 @@ public class ProfileHandler {
 				for (UserProfile profile : profiles) {
 
 					if (profile.getName().equals(name.get())) {
-						System.out.println("Inputed Name: " + name.get() + "  Duplicate Name :" + profile.getName());
 						return false;
 					}
 				}
-				System.out.println("Added :" + name.get());
 				currentProfile = new UserProfile(name.get());
 				ProfileToAdd = currentProfile;
 				currentProfile.toArrayList();
@@ -107,7 +104,6 @@ public class ProfileHandler {
 
 					if (profile.getName().equals(name.get())) {
 
-						System.out.println("Switched To :" + name.get());
 						currentProfile.toArrayList();
 						SaveManager.saveFile(currentProfile, currentProfile.getName() + ".Save");
 						SwitchToThis = (UserProfile) SaveManager.loadFile(name.get() + ".Save");
@@ -121,7 +117,6 @@ public class ProfileHandler {
 		}
 
 		if (success && (SwitchToThis != null)) {
-			System.out.println("Success");
 			currentProfile = SwitchToThis;
 			currentProfile.toObservableList();
 		}
@@ -148,7 +143,6 @@ public class ProfileHandler {
 					if (profile.getName().equals(name.get()) && (currentProfile != profile)) {
 
 						SaveManager.deleteFile(name.get() + ".Save");
-						System.out.println("Deleted To :" + name.get());
 						deleteThis = profile;
 						success = true;
 					}
@@ -234,9 +228,24 @@ public class ProfileHandler {
 		try {
 			loadprofile = (UserProfile) SaveManager.loadFile(name + ".Save");
 			profiles.add(loadprofile);
-			System.out.println("loaded :" + name);
 		}
 		catch (ClassNotFoundException | IOException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	/***
+	 *
+	 */
+	public void saveCurrentProfile()
+	{
+		try {
+
+			currentProfile.toArrayList();
+			SaveManager.saveFile(currentProfile, currentProfile.getName() + ".Save");
+		}
+		catch (IOException e)
+		{
 			System.out.println(e.getMessage());
 		}
 	}

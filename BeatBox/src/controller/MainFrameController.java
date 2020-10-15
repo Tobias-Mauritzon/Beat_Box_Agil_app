@@ -66,7 +66,7 @@ public class MainFrameController implements ControllerInterface {
         closeTransition.setFromValue(1);
         closeTransition.setToValue(0.0);
         closeTransition.setOnFinished(event -> {
-            System.exit(0);
+            STAGE.close();
         });
     }
 
