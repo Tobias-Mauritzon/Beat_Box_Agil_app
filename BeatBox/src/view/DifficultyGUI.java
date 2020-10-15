@@ -1,6 +1,7 @@
 package view;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import model.Operator;
 
@@ -15,26 +16,24 @@ import model.Operator;
 public class DifficultyGUI implements GUIHandler{
 
     private AnchorPane root;
-    //How do we know what Operator we are setting the difficulty for? Placeholder.
-    private Operator operator;
     private Button easyButton;
     private Button mediumButton;
     private Button hardButton;
+    private Label categoryLabel;
 
-    public DifficultyGUI(AnchorPane root, Operator operator){
+    public DifficultyGUI(AnchorPane root){
         this.root = root;
-        this.operator = operator;
+        getGUIObjects();
     }
 
     /**
      * Method to get all objects on the current GUI .
      */
     public void getGUIObjects() {
-
         easyButton = (Button) root.lookup("#easyButton");
         mediumButton = (Button) root.lookup("#mediumButton");
         hardButton = (Button) root.lookup("#hardButton");
-
+        categoryLabel = (Label) root.lookup("#categoryLabel");
     }
 
     /**
@@ -66,6 +65,14 @@ public class DifficultyGUI implements GUIHandler{
         return hardButton;
     }
 
+    /**
+     * Get category label.
+     *
+     * @return Button	the Hard button.
+     */
+    public Label getCategoryLabel() {
+        return categoryLabel;
+    }
 
     /**
      * Get the root of the scene.

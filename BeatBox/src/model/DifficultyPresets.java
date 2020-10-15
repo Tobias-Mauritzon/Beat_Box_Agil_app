@@ -14,9 +14,9 @@ import java.util.List;
  * @author Seif Bourogaa
  */
 public class DifficultyPresets {
-
     private Operator operator;
     private Delegate delegate;
+
     /**
      * Constructor for DifficultyPresets.
      *
@@ -25,8 +25,8 @@ public class DifficultyPresets {
      * @see DifficultyGUI
      * @see controller.DifficultyPresetsController
      */
-    public DifficultyPresets(Operator operator) {
-        this.operator = operator;
+    public DifficultyPresets() {
+        this.operator = Operator.ADD;
     }
 
     /**
@@ -34,14 +34,15 @@ public class DifficultyPresets {
      *
      * @param op Operator we are generating problems with.
      */
-    public void easyProblem(Operator op){
-
-        List<Operator> operator = new ArrayList<>();
-        operator.add(op);
+    public void easyProblem() {
+        List<Operator> operators = new ArrayList<>();
+        operators.add(operator);
 
         int[] range = new int[]{1, 10};
         int termAmount = 2;
-        delegate.transmitProblemParameters(new ProblemParameters(operator, range, termAmount, false));
+        // KOMMENTERA UT NÄR DU ÄR KLAR SEIF
+        // delegate.transmitProblemParameters(new ProblemParameters(operators, range, termAmount, false));
+        System.out.println("op: " + operator.toString() + " | EASY"); // TA BORT
     }
 
     /**
@@ -49,14 +50,15 @@ public class DifficultyPresets {
      *
      * @param op Operator we are generating problems with.
      */
-    public void mediumProblem(Operator op){
-
-        List<Operator> operator = new ArrayList<>();
-        operator.add(op);
+    public void mediumProblem() {
+        List<Operator> operators = new ArrayList<>();
+        operators.add(operator);
 
         int[] range = new int[]{10, 20};
         int termAmount = 3;
-        delegate.transmitProblemParameters(new ProblemParameters(operator, range, termAmount, false));
+        // KOMMENTERA UT NÄR DU ÄR KLAR SEIF
+        // delegate.transmitProblemParameters(new ProblemParameters(operators, range, termAmount, false));
+        System.out.println("op: " + operator.toString() + " | MEDIUM"); // TA BORT
     }
 
     /**
@@ -64,13 +66,15 @@ public class DifficultyPresets {
      *
      * @param op Operator we are generating problems with.
      */
-    public void hardProblem(Operator op){
-        List<Operator> operator = new ArrayList<>();
-        operator.add(op);
+    public void hardProblem() {
+        List<Operator> operators = new ArrayList<>();
+        operators.add(operator);
 
         int[] range = new int[]{20, 30};
         int termAmount = 4;
-        delegate.transmitProblemParameters(new ProblemParameters(operator, range, termAmount, false));
+        // KOMMENTERA UT NÄR DU ÄR KLAR SEIF
+        // delegate.transmitProblemParameters(new ProblemParameters(operators, range, termAmount, false));
+        System.out.println("op: " + operator.toString() + " | HARD"); // TA BORT
     }
 
     /** Setter for delegate.
@@ -81,11 +85,18 @@ public class DifficultyPresets {
         this.delegate = delegate;
     }
 
+    /** Setter for operator.
+     *
+     * @param operator   The operator to set.
+     */
+    public void setOperator(Operator operator) {
+        this.operator = operator;
+    }
+
     /**
      * A delegate for transmitting problem parameters out of this class.
      */
     public interface Delegate {
         void transmitProblemParameters(ProblemParameters problemParameters);
     }
-
 }

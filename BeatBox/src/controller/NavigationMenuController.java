@@ -87,49 +87,29 @@ public class NavigationMenuController implements ControllerInterface{
 		//TEMP
 		EventHandler<ActionEvent> toAddition = new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				delegate.transmitProblemParameters(new ProblemParameters(
-						new ArrayList<Operator>() {{ add(Operator.ADD); }},
-						new int[]{0, 10},
-						3,
-						false)
-				);
-				sceneHandler.changeScene(2);
+				delegate.setCategory(Operator.ADD);
+				sceneHandler.changeScene(5);
 			}
 		};
 
 		EventHandler<ActionEvent> toSubtraction = new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				delegate.transmitProblemParameters(new ProblemParameters(
-						new ArrayList<Operator>() {{ add(Operator.SUB); }},
-						new int[]{0, 10},
-						3,
-						false)
-				);
-				sceneHandler.changeScene(2);
+				delegate.setCategory(Operator.SUB);
+				sceneHandler.changeScene(5);
 			}
 		};
 
 		EventHandler<ActionEvent> toMultiplication = new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				delegate.transmitProblemParameters(new ProblemParameters(
-						new ArrayList<Operator>() {{ add(Operator.MUL); }},
-						new int[]{0, 10},
-						3,
-						false)
-				);
-				sceneHandler.changeScene(2);
+				delegate.setCategory(Operator.MUL);
+				sceneHandler.changeScene(5);
 			}
 		};
 
 		EventHandler<ActionEvent> toDivision = new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				delegate.transmitProblemParameters(new ProblemParameters(
-						new ArrayList<Operator>() {{ add(Operator.DIV); }},
-						new int[]{0, 10},
-						3,
-						false)
-				);
-				sceneHandler.changeScene(2);
+				delegate.setCategory(Operator.DIV);
+				sceneHandler.changeScene(5);
 			}
 		};
 		// END TEMP
@@ -161,7 +141,7 @@ public class NavigationMenuController implements ControllerInterface{
 
 	// TEMP
 	public interface Delegate {
-		void transmitProblemParameters(ProblemParameters p);
+		void setCategory(Operator op);
 	}
 	
 }
