@@ -14,7 +14,6 @@ import javafx.scene.Node;
 import javafx.util.Duration;
 
 public class ShakeTransition extends Transition {
-
 	private final Interpolator WEB_EASE = Interpolator.SPLINE(0.25, 0.1, 0.25, 1);
 	private final Timeline timeline;
 	private final Node node;
@@ -45,7 +44,6 @@ public class ShakeTransition extends Transition {
 		});
 
 		this.timeline = new Timeline(
-
 				new KeyFrame(Duration.millis(100), new KeyValue(x, -shakeFactor, WEB_EASE)),
 				new KeyFrame(Duration.millis(200), new KeyValue(x, shakeFactor, WEB_EASE)),
 				new KeyFrame(Duration.millis(300), new KeyValue(x, -shakeFactor, WEB_EASE)),
@@ -55,7 +53,8 @@ public class ShakeTransition extends Transition {
 				new KeyFrame(Duration.millis(700), new KeyValue(x, -shakeFactor, WEB_EASE)),
 				new KeyFrame(Duration.millis(800), new KeyValue(x, shakeFactor, WEB_EASE)),
 				new KeyFrame(Duration.millis(900), new KeyValue(x, -shakeFactor, WEB_EASE)),
-				new KeyFrame(Duration.millis(1000), new KeyValue(x, 0, WEB_EASE)));
+				new KeyFrame(Duration.millis(1000), new KeyValue(x, 0, WEB_EASE))
+		);
 
 		x.addListener((ob, n, n1) -> node.setTranslateX(n1.doubleValue()));
 		System.out.println("shake");

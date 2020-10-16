@@ -3,7 +3,6 @@ package view;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import model.Operator;
 
 /***
  * A simple placeholder GUI for Difficulty for every Operator.
@@ -14,7 +13,6 @@ import model.Operator;
  * @author Seif Bourogaa
  */
 public class DifficultyGUI implements GUIHandler{
-
     private AnchorPane root;
     private Button easyButton;
     private Button mediumButton;
@@ -82,5 +80,4 @@ public class DifficultyGUI implements GUIHandler{
     public AnchorPane getRoot() {
         return root;
     }
-
 }

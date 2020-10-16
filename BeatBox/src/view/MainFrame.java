@@ -6,8 +6,6 @@ import javafx.scene.layout.AnchorPane;
 import java.util.LinkedList;
 
 public class MainFrame implements GUIHandler{
-
-
     private Button closeButton;
     private Button fullScreenButton;
     private Button minimizeButton;
@@ -24,7 +22,6 @@ public class MainFrame implements GUIHandler{
     public MainFrame(AnchorPane root) {
         this.root = root;
         getGUIObjects();
-
     }
 
     @Override
@@ -66,7 +63,6 @@ public class MainFrame implements GUIHandler{
 
             scenePane.getChildren().clear();
             scenePane.getChildren().add(pane);
-
 
             pane.applyCss();
         }
