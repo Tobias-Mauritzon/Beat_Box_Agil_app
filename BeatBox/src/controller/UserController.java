@@ -40,8 +40,6 @@ public class UserController implements ControllerInterface {
 		setActions();
 	}
 
-
-
 	@Override
 	/***
 	 * Sets the actions for the userController GUI.
@@ -59,7 +57,6 @@ public class UserController implements ControllerInterface {
 				}else {
 					return false;
 				}
-
 			}
 
 			@Override
@@ -80,8 +77,8 @@ public class UserController implements ControllerInterface {
 				}else{
 					return false;
 				}
-			}
-		});
+			}});
+
 		// Sets the actions for the profile switch button
 		userProfileGUI.getPSwitchButton().setOnAction((event) -> {
 			dialogMenuController.open("Switch");

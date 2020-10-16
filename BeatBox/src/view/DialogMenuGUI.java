@@ -20,6 +20,7 @@ public class DialogMenuGUI implements GUIHandler{
     private TextField textField;
     private Button confirmButton;
     private Button backButton;
+    private Label infoLabel;
 
     /**
      * The constructor of the SettingsGUI class, gets the root of the SettingsGUI fxml-file.
@@ -36,6 +37,7 @@ public class DialogMenuGUI implements GUIHandler{
         textField = (TextField) root.lookup("#textField");
         confirmButton = (Button) root.lookup("#confirmButton");
         backButton = (Button) root.lookup("#backButton");
+        infoLabel = (Label) root.lookup("#infoLabel");
     }
 
     /**
@@ -63,11 +65,22 @@ public class DialogMenuGUI implements GUIHandler{
         return backButton;
     }
 
-    public void showErrorMessage(String error) {
-        switch (error){
-            case "newProfileError": System.out.println("NEW PROFILE ERROR"); break;
-            case "switchError": System.out.println("SWITCH ERROR"); break;
-            case "deleteError": System.out.println("DELETE ERROR"); break;
+
+
+    public void printInfoText(String s,boolean error) {
+        infoLabel.setText(s);
+        if(error){
+            infoLabel.setStyle("-fx-text-fill: red;");
+        }else{
+            infoLabel.setStyle("-fx-text-fill: -color1;");
         }
+        infoLabel.setOpacity(1);
+    }
+
+
+    public void resetInfoLabel(){
+        infoLabel.setText("");
+        infoLabel.setOpacity(0);
+        infoLabel.setStyle("-fx-text-fill: -color1;");
     }
 }

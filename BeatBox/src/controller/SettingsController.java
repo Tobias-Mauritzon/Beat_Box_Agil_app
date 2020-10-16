@@ -11,6 +11,7 @@ public class SettingsController implements ControllerInterface{
     private final ThemeHandler themeHandler;
     private final SceneHandler sceneHandler;
     private final Stage stage;
+
     public SettingsController(SettingsGUI settingsGUI, ThemeHandler themeHandler, SceneHandler sceneHandler, Stage stage){
         this.settingsGUI = settingsGUI;
         this.themeHandler = themeHandler;
@@ -38,16 +39,15 @@ public class SettingsController implements ControllerInterface{
         });
 
         settingsGUI.getBackButton().setOnAction(e->{
-            sceneHandler.closeScene();
+            sceneHandler.closeScene(200);
         });
+
         settingsGUI.getToggleButton().setOnAction(e->{
             if(settingsGUI.getToggleButton().isSelected()){
                 stage.setFullScreen(true);
             }else{
                 stage.setFullScreen(false);
             }
-
         });
-
     }
 }

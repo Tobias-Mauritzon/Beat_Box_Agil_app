@@ -12,7 +12,6 @@ public class DialogMenuController implements ControllerInterface{
     private final DialogMenuGUI dialogMenuGUI;
     private final SceneHandler sceneHandler;
     private Delegate delegate;
-    private String operation;
 
     EventHandler<ActionEvent> newProfile;
     EventHandler<ActionEvent> switchProfile;
@@ -35,45 +34,62 @@ public class DialogMenuController implements ControllerInterface{
     }
 
     public void open(String operation){
-        this.operation = operation;
-
-        switch (operation){
-            case "New": dialogMenuGUI.setTitle("New Profile"); dialogMenuGUI.setButtonText("Add"); setOperationAction(newProfile); break;
-            case "Switch":dialogMenuGUI.setTitle("Switch Profile"); dialogMenuGUI.setButtonText(operation); setOperationAction(switchProfile); break;
-            case "Delete": dialogMenuGUI.setTitle("Delete Profile"); dialogMenuGUI.setButtonText(operation); setOperationAction(deleteProfile); break;
+        dialogMenuGUI.resetInfoLabel();
+        switch (operation) {
+            case "New" -> {
+                dialogMenuGUI.setTitle("New Profile");
+                dialogMenuGUI.setButtonText("Add");
+                setOperationAction(newProfile);
+            }
+            case "Switch" -> {
+                dialogMenuGUI.setTitle("Switch Profile");
+                dialogMenuGUI.setButtonText(operation);
+                setOperationAction(switchProfile);
+            }
+            case "Delete" -> {
+                dialogMenuGUI.setTitle("Delete Profile");
+                dialogMenuGUI.setButtonText(operation);
+                setOperationAction(deleteProfile);
+            }
         }
         setActions();
         sceneHandler.applyScene(5);
     }
 
-
     @Override
     public void setActions() {
-        dialogMenuGUI.getBackButton().setOnAction(e->{
-            sceneHandler.closeScene();
-        });
+        dialogMenuGUI.getBackButton().setOnAction(e-> sceneHandler.closeScene(400));
 
         newProfile = e -> {
             if (delegate.newProfile(Optional.ofNullable(dialogMenuGUI.getTextField().getText()))) {
-                System.out.println("new profile added");
-            } else {
-                dialogMenuGUI.showErrorMessage("newProfileError");
+                dialogMenuGUI.printInfoText(dialogMenuGUI.getTextField().getText() + " was added.",false);
+                sceneHandler.closeScene(800);
+            } else if(dialogMenuGUI.getTextField().getText().isEmpty()){
+                dialogMenuGUI.printInfoText("Error: no name entered.",true);
+            }else{
+
             }
         };
 
         switchProfile = e -> {
             if (delegate.switchProfile(Optional.ofNullable(dialogMenuGUI.getTextField().getText()))) {
-                sceneHandler.closeScene();
+                dialogMenuGUI.printInfoText("Switched to: " + dialogMenuGUI.getTextField().getText(),false);
+                sceneHandler.closeScene(800);
+            } else if(dialogMenuGUI.getTextField().getText().isEmpty()){
+                dialogMenuGUI.printInfoText("Error: no name entered.",true);
             } else {
-                dialogMenuGUI.showErrorMessage("switchError");
+                dialogMenuGUI.printInfoText(dialogMenuGUI.getTextField().getText()+" does not exist.",true);
             }
         };
 
         deleteProfile = e -> {
             if (delegate.deleteProfile(Optional.ofNullable(dialogMenuGUI.getTextField().getText()))) {
-                System.out.println("profile deleted");
+                dialogMenuGUI.printInfoText(dialogMenuGUI.getTextField().getText() + " was deleted.",false);
+                sceneHandler.closeScene(800);
+            } else if(dialogMenuGUI.getTextField().getText().isEmpty()) {
+                dialogMenuGUI.printInfoText("Error: no name entered.", true);
             } else {
-                dialogMenuGUI.showErrorMessage("deleteError");
+                dialogMenuGUI.printInfoText(dialogMenuGUI.getTextField().getText()+" does not exist.",true);
             }
         };
     }
@@ -82,6 +98,4 @@ public class DialogMenuController implements ControllerInterface{
         dialogMenuGUI.getTextField().setOnAction(e);
         dialogMenuGUI.getConfirmButton().setOnAction(e);
     }
-
-
 }

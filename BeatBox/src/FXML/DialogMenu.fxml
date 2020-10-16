@@ -38,15 +38,20 @@
                                  <children>
                                     <AnchorPane fx:id="backPane" prefHeight="355.0">
                                        <children>
-                                          <VBox prefWidth="200.0" spacing="5.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="150.0">
+                                          <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="352.6666666666667" prefWidth="400.0" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
                                              <children>
-                                                <Label text="Name" />
-                                                <TextField fx:id="textField" />
-                                                <BorderPane prefHeight="200.0" prefWidth="200.0">
-                                                   <center>
-                                                      <Button fx:id="confirmButton" mnemonicParsing="false" prefWidth="100.0" text="Add" BorderPane.alignment="CENTER" />
-                                                   </center>
-                                                </BorderPane>
+                                                <Label fx:id="infoLabel" opacity="0.0" text="deleted: test user" />
+                                                <VBox fillWidth="false" prefWidth="200.0" spacing="5.0">
+                                                   <children>
+                                                      <Label text="Name:" />
+                                                      <TextField fx:id="textField" />
+                                                      <BorderPane prefHeight="150.0" prefWidth="200.0">
+                                                         <center>
+                                                            <Button fx:id="confirmButton" mnemonicParsing="false" prefWidth="100.0" text="Add" BorderPane.alignment="CENTER" />
+                                                         </center>
+                                                      </BorderPane>
+                                                   </children>
+                                                </VBox>
                                              </children>
                                           </VBox>
                                        </children>

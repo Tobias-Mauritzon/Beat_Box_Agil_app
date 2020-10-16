@@ -98,8 +98,8 @@ public class SceneHandler {
 		}
 	}
 
-	public void closeScene(){
-		FadeTransition ft = new FadeTransition(Duration.millis(200), frontPane);
+	public void closeScene(int delay){
+		FadeTransition ft = new FadeTransition(Duration.millis(delay), frontPane);
 		ft.setFromValue(1);
 		ft.setToValue(0.0);
 		ft.play();
