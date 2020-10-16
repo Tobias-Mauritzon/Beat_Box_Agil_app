@@ -3,7 +3,13 @@ package view;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
-
+/**
+ * The view class that gets all objects from the settings menu.
+ * Contains getters for each object.
+ * @author Philip
+ * @version 1.0
+ * @since 2020-10-16
+ */
 public class SettingsGUI implements GUIHandler{
 
     private final AnchorPane root;
@@ -15,6 +21,10 @@ public class SettingsGUI implements GUIHandler{
     private Button backButton;
     private ToggleButton toggleButton;
 
+    /**
+     * The constructor of the SettingsGUI class, gets the root of the SettingsGUI fxml-file.
+     * @param root the root of the JavaFX application
+     */
     public SettingsGUI(AnchorPane root){
         this.root = root;
         getGUIObjects();
@@ -50,7 +60,5 @@ public class SettingsGUI implements GUIHandler{
         return backButton;
     }
 
-    public ToggleButton getToggleButton() {
-        return toggleButton;
-    }
+    public ToggleButton getToggleButton() { return toggleButton; }
 }

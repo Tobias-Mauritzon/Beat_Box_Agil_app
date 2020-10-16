@@ -1,5 +1,5 @@
 /*
- * General GUI settings for the application
+ * General GUI settings for the application and the main frame
  * Author: Philip
  *
  */
@@ -26,26 +26,37 @@
     -errorTextColor: #FA1000;
 }
 
+/*
+ * Sets the opacity for all object to 1 when disabled
+ */
 * :disabled{
     -fx-opacity: 1.0;
 }
 
+/*
+ * Sets the color of the top bar
+ */
 #topBar{
 -fx-background-color: -baseColor1;
 }
 
+/*
+ * Sets the color of the root pane
+ */
 #rootPane{
 -fx-background-color: transparent;
 }
 
+/*
+ * Sets the color of the scene pane
+ */
 #scenePane{
 -fx-background-color: transparent;
 }
 
-#mainScenePane{
--fx-background-color: -baseColor2;
-}
-
+/*
+ * Settings for frame buttons
+ */
 .frameButtonPanes{
 	-fx-background-color: transparent;
 	-fx-background-radius: 0;

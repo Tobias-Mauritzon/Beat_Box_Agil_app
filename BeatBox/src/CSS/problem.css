@@ -1,4 +1,3 @@
-
 /*
  * Settings for problem menu
  * Author: Philip
@@ -18,8 +17,9 @@
 	-fx-background-insets: 0;
 }
 
+/*
+ * Sets the opacity of response text
+ */
 #responseText{
     -fx-opacity: 0.0;
 }
-
-

@@ -1,4 +1,3 @@
-
 /*  Settings for dialog gui
     Author: Joachim Antfolk
 */
@@ -66,5 +65,3 @@
 .dialog-pane .button-bar .container .button:hover{
 	-fx-background-color: derive(-baseColor1, 30%);
 }
-
-

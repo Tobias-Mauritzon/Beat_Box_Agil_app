@@ -1,8 +1,6 @@
 /*
- * This css-file contains all colors that are used within the application.
- * It has 3 base-colors, baseColor1,baseColor2 and baseColor3.
- * This css-file is used by all other css-files.
- *
+ * Sand theme
+ * Contains 3 base colors and 2 other colors that are used for texts and other objects.
  * Author: Philip
  *
  */
@@ -14,10 +12,6 @@
 
      -color1: WHITE;
      -color2: WHITE;
-
-	/*Linear gradient test:
- 	*-baseColor3: linear-gradient(from 0% 10% to 0% 100%, #1A2226, #5C6A73);
- 	*/
 }
 
 

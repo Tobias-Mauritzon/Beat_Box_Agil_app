@@ -53,9 +53,9 @@ public class ProblemGUI implements GUIHandler {
 
 	/**
 	 * The constructor of the ProblemGUI class, initializes the GUI elements with
-	 * initGUI and sets the root of the main application to the problem gui:s root.
+	 * initGUI and gets the root of the ProblemGUI fxml-file.
 	 * 
-	 * @param root the root of the JavaFX application
+	 * @param root the root of the ProblemGUI fxml-file.
 	 * 
 	 */
 	public ProblemGUI(AnchorPane root) {
@@ -177,5 +177,4 @@ public class ProblemGUI implements GUIHandler {
 	public Button getAnswerButton() {
 		return answerButton;
 	}
-
 }

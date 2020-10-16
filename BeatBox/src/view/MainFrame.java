@@ -4,9 +4,15 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
 import java.util.LinkedList;
-
+/**
+ * The view class that gets all objects from the main frame.
+ * Main frame is a custom made frame that is used instead of the default frame.
+ * Contains getters for each object and a function to add a scene to the application.
+ * @author Philip
+ * @version 1.0
+ * @since 2020-10-16
+ */
 public class MainFrame implements GUIHandler{
-
 
     private Button closeButton;
     private Button fullScreenButton;
@@ -21,10 +27,16 @@ public class MainFrame implements GUIHandler{
     private AnchorPane root;
     private AnchorPane scenePane;
 
+    /**
+     * The constructor of the MainFrame class
+     * Gets the root of the MainFrame fxml-file.
+     * Calls the method getGUIObjects.
+     * @param root the root of the MainFrame fxml-file.
+     *
+     */
     public MainFrame(AnchorPane root) {
         this.root = root;
         getGUIObjects();
-
     }
 
     @Override
@@ -46,7 +58,6 @@ public class MainFrame implements GUIHandler{
         panes.add(minimizePane);
 
         scenePane = (AnchorPane) root.lookup("#scenePane");
-
     }
 
     public LinkedList<Button> getButtons() {
@@ -57,6 +68,13 @@ public class MainFrame implements GUIHandler{
         return panes;
     }
 
+    /**
+     * The constructor of the MainFrame class
+     * Gets the root of the MainFrame fxml-file.
+     * Calls the method getGUIObjects.
+     * @param pane the pane to be added to the application.
+     *
+     */
     public void addScene(AnchorPane pane) {
         if(pane!=null) {
             AnchorPane.setTopAnchor(pane, 0.0);
@@ -66,7 +84,6 @@ public class MainFrame implements GUIHandler{
 
             scenePane.getChildren().clear();
             scenePane.getChildren().add(pane);
-
 
             pane.applyCss();
         }

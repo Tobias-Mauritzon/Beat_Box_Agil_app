@@ -2,8 +2,6 @@ package view;
 
 import javafx.animation.TranslateTransition;
 import javafx.scene.control.Button;
-import javafx.scene.effect.Effect;
-import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
@@ -24,21 +22,20 @@ public class NavigationMenu implements GUIHandler {
 	/***
 	 * All GUI Objects used to build up the NavigationMenu GUI.
 	 * 
-	 * @see root Root of the main scene
-	 * @see pane Root of the subscenes
-	 * @see leftPanes Pane containin the symbol for the buttons (always visible)
-	 * @see rightPanes Pane containing the text for the buttons (can be closed)
-	 * @see amountOfPanes Int containg the amount of sub scenes
-	 * @see sideBox the Sidebox which is the base for the navigation menu.
-	 * @see menuButton The Button for closing and Opening the sideMenu
-	 * @see menuButtonPane The Pane Containg all the menu Buttons
+	 * @see root Root of the main scene.
+	 * @see sideScenepane Root of the subscenes.
+	 * @see backPane Pane that is used to set blur effect when dialog menus are open.
+	 * @see frontPane Pane that is used to set dialog menus on top of the navigation menu.
+	 * @see leftPanes Pane containing the symbol for the buttons (always visible).
+	 * @see rightPanes Pane containing the text for the buttons (can be closed).
+	 * @see sidePane Pane that is used to allow effects on the side menu.
 	 * @see leftSideButtons Array Containing all the Button icons
 	 * @see rightSideButtons Array Contianing all the Button text
-	 * @see enteredColor String ,Color when SideMenu is opened
-	 * @see exitedColor String ,Color when SideMenu is closed
 	 * @see openNav TranslateTransition for when the SideMenu is Opened
 	 * @see closeNav TranslateTransition for when the SideMenu is Closed
-	 * @see sideButtonNames Array containing strings with name of the Buttons
+	 * @see slideMenuBackground Pane that lies behind all objects on the slide menu.
+	 * @see focusOnOpacity double for the opacity when panes are hovered.
+	 * @see sidePaneMaxWidth double for the max width of the side pane.
 	 */
 	private AnchorPane root;
 	private AnchorPane sideScenepane;
@@ -53,8 +50,6 @@ public class NavigationMenu implements GUIHandler {
 	private TranslateTransition openNav;
 	private TranslateTransition closeNav;
 
-	private final Effect frostEffect = new GaussianBlur();
-
 	private AnchorPane slideMenuBackground;
 
 	private double focusOnOpacity = 0.08;
@@ -63,14 +58,12 @@ public class NavigationMenu implements GUIHandler {
 	/***
 	 * Constructor for NavigationMenu
 	 * 
-	 * @param root          the main scenes root
-	 * @param amountOfPanes the amount of subscenes NavigationMenu has.
+	 * @param root the main scenes root
 	 */
 	public NavigationMenu(AnchorPane root) {
 		this.root = root;
 		getGUIObjects();
 		initSlideEffect();
-		setVisualEffects();
 	}
 
 	/***
@@ -187,10 +180,6 @@ public class NavigationMenu implements GUIHandler {
 		sideScenepane = (AnchorPane) root.lookup("#scenePane");
 		backPane = (AnchorPane) root.lookup("#backPane");
 		frontPane = (AnchorPane) root.lookup("#frontPane");
-	}
-
-	private void setVisualEffects() {
-//		sideBoxBackground.setEffect(frostEffect);
 	}
 
 	/***
