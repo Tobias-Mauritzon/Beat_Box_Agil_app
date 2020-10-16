@@ -35,7 +35,6 @@ public class DifficultyPresetsController implements ControllerInterface{
      * @see #setActions()
      */
     public DifficultyPresetsController(DifficultyPresets difficultyPresets, DifficultyGUI difficultyGUI){
-
         this.difficultyPresets = difficultyPresets;
         this.difficultyGUI = difficultyGUI;
 
@@ -45,14 +44,28 @@ public class DifficultyPresetsController implements ControllerInterface{
     /**
      * Method that defines what happens when the GUI is interacted with.
      */
-    public void setActions(){
-
-        difficultyGUI.getEasyButton().setOnAction(e -> difficultyPresets.easyProblem(operator));
-
-        difficultyGUI.getMediumButton().setOnAction(e -> difficultyPresets.mediumProblem(operator));
-
-        difficultyGUI.getHardButton().setOnAction(e -> difficultyPresets.hardProblem(operator));
-
+    public void setActions() {
+        difficultyGUI.getEasyButton().setOnAction(e -> difficultyPresets.easyProblem());
+        difficultyGUI.getMediumButton().setOnAction(e -> difficultyPresets.mediumProblem());
+        difficultyGUI.getHardButton().setOnAction(e -> difficultyPresets.hardProblem());
     }
 
+    public void setCategory(Operator op) {
+        difficultyPresets.setOperator(op);
+
+        switch (op) {
+            case ADD:
+                difficultyGUI.getCategoryLabel().setText("Addition");
+                break;
+            case SUB:
+                difficultyGUI.getCategoryLabel().setText("Subtraction");
+                break;
+            case MUL:
+                difficultyGUI.getCategoryLabel().setText("Multiplication");
+                break;
+            case DIV:
+                difficultyGUI.getCategoryLabel().setText("Division");
+                break;
+        }
+    }
 }

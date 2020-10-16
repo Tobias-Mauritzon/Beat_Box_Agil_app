@@ -1,9 +1,5 @@
 package view;
 
-import java.util.LinkedList;
-
-import javafx.scene.Node;
-
 /***
  * An interface class for all GUI for easier communcation between GUI and
  * controllers.

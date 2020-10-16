@@ -18,16 +18,12 @@ import java.util.ArrayList;
 *
 */
 public class NavigationMenuController implements ControllerInterface{
-	
-	
 	private NavigationMenu navigationMenu;
 	private SceneHandler sceneHandler;
 
-	// TEMP
 	public Delegate delegate;
-	
-	
-	/**
+
+	/***
 	 * The constructor for the navigationMenuController takes a navigationMenu, SceneHandler
 	 * @param navigationMenu the navgiationMenu model
 	 * @param sceneHandler the sceneHandler instance.
@@ -84,55 +80,33 @@ public class NavigationMenuController implements ControllerInterface{
 		EventHandler<ActionEvent> toCustomParameters = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sceneHandler.changeScene(3);}};//test
 		EventHandler<ActionEvent> toSettings = new EventHandler<ActionEvent>() { public void handle(ActionEvent e) {sceneHandler.applyScene(4);}};//test
 
-		//TEMP
 		EventHandler<ActionEvent> toAddition = new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				delegate.transmitProblemParameters(new ProblemParameters(
-						new ArrayList<Operator>() {{ add(Operator.ADD); }},
-						new int[]{0, 10},
-						3,
-						false)
-				);
-				sceneHandler.changeScene(2);
+				delegate.setCategory(Operator.ADD);
+				sceneHandler.changeScene(5);
 			}
 		};
 
 		EventHandler<ActionEvent> toSubtraction = new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				delegate.transmitProblemParameters(new ProblemParameters(
-						new ArrayList<Operator>() {{ add(Operator.SUB); }},
-						new int[]{0, 10},
-						3,
-						false)
-				);
-				sceneHandler.changeScene(2);
+				delegate.setCategory(Operator.SUB);
+				sceneHandler.changeScene(5);
 			}
 		};
 
 		EventHandler<ActionEvent> toMultiplication = new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				delegate.transmitProblemParameters(new ProblemParameters(
-						new ArrayList<Operator>() {{ add(Operator.MUL); }},
-						new int[]{0, 10},
-						3,
-						false)
-				);
-				sceneHandler.changeScene(2);
+				delegate.setCategory(Operator.MUL);
+				sceneHandler.changeScene(5);
 			}
 		};
 
 		EventHandler<ActionEvent> toDivision = new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				delegate.transmitProblemParameters(new ProblemParameters(
-						new ArrayList<Operator>() {{ add(Operator.DIV); }},
-						new int[]{0, 10},
-						3,
-						false)
-				);
-				sceneHandler.changeScene(2);
+				delegate.setCategory(Operator.DIV);
+				sceneHandler.changeScene(5);
 			}
 		};
-		// END TEMP
 		
 		// Set actions on all buttons on the navigationMenu
 		navigationMenu.getLeftSideButtons().get(0).setOnAction(slidePanel);
@@ -140,28 +114,26 @@ public class NavigationMenuController implements ControllerInterface{
 		navigationMenu.getLeftSideButtons().get(1).setOnAction(toUser);
 		navigationMenu.getRightSideButtons().get(1).setOnAction(toUser);
 
-		navigationMenu.getLeftSideButtons().get(3).setOnAction(toAddition);
-		navigationMenu.getRightSideButtons().get(3).setOnAction(toAddition);
+		navigationMenu.getLeftSideButtons().get(2).setOnAction(toAddition);
+		navigationMenu.getRightSideButtons().get(2).setOnAction(toAddition);
 
-		navigationMenu.getLeftSideButtons().get(4).setOnAction(toSubtraction);
-		navigationMenu.getRightSideButtons().get(4).setOnAction(toSubtraction);
+		navigationMenu.getLeftSideButtons().get(3).setOnAction(toSubtraction);
+		navigationMenu.getRightSideButtons().get(3).setOnAction(toSubtraction);
 
-		navigationMenu.getLeftSideButtons().get(5).setOnAction(toMultiplication);
-		navigationMenu.getRightSideButtons().get(5).setOnAction(toMultiplication);
+		navigationMenu.getLeftSideButtons().get(4).setOnAction(toMultiplication);
+		navigationMenu.getRightSideButtons().get(4).setOnAction(toMultiplication);
 
-		navigationMenu.getLeftSideButtons().get(6).setOnAction(toDivision);
-		navigationMenu.getRightSideButtons().get(6).setOnAction(toDivision);
+		navigationMenu.getLeftSideButtons().get(5).setOnAction(toDivision);
+		navigationMenu.getRightSideButtons().get(5).setOnAction(toDivision);
 
-		navigationMenu.getLeftSideButtons().get(7).setOnAction(toCustomParameters);
-		navigationMenu.getRightSideButtons().get(7).setOnAction(toCustomParameters);
+		navigationMenu.getLeftSideButtons().get(6).setOnAction(toCustomParameters);
+		navigationMenu.getRightSideButtons().get(6).setOnAction(toCustomParameters);
 
-		navigationMenu.getLeftSideButtons().get(8).setOnAction(toSettings);
-		navigationMenu.getRightSideButtons().get(8).setOnAction(toSettings);
+		navigationMenu.getLeftSideButtons().get(7).setOnAction(toSettings);
+		navigationMenu.getRightSideButtons().get(7).setOnAction(toSettings);
 	}
 
-	// TEMP
 	public interface Delegate {
-		void transmitProblemParameters(ProblemParameters p);
+		void setCategory(Operator op);
 	}
-	
 }

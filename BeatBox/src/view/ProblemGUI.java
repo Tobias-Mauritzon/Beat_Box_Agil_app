@@ -37,7 +37,6 @@ import java.util.LinkedList;
  * @since 2020-10-09
  */
 public class ProblemGUI implements GUIHandler {
-
 	// Input objects
 	private TextField answerText;
 	private Button answerButton;
@@ -70,7 +69,6 @@ public class ProblemGUI implements GUIHandler {
 		problemImageView.fitHeightProperty().bind(imageBox.heightProperty());
 		problemImageView.fitWidthProperty().bind(imageBox.widthProperty());
 		problemImageView.setPreserveRatio(true);
-
 	}
 
 	/**
@@ -86,7 +84,6 @@ public class ProblemGUI implements GUIHandler {
 				}
 			}
 		});
-
 	}
 
 	/**
@@ -177,5 +174,4 @@ public class ProblemGUI implements GUIHandler {
 	public Button getAnswerButton() {
 		return answerButton;
 	}
-
 }

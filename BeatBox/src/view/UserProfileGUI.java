@@ -1,13 +1,15 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 /**
  * Class that creates a a prototype for the user profile gui
  * @author Joachim Antfolk, Tobias Mauritzon, Philip AxenHamn, Andreas Greppe
  * @since 2020-10-09.
  */
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+
 import java.util.Locale;
 import java.util.Optional;
 
@@ -33,7 +35,6 @@ import javafx.scene.layout.AnchorPane;
 import model.History;
 
 public class UserProfileGUI implements GUIHandler {
-
 	private AnchorPane root;
 	private Label userName;
 	private Button profileNew;
@@ -187,5 +188,4 @@ public class UserProfileGUI implements GUIHandler {
 			return new SimpleObjectProperty<ImageView>(new ImageView(SwingFXUtils.toFXImage(image, null)));
 		});
 	}
-
 }

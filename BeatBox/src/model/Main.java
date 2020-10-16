@@ -35,6 +35,7 @@ public class Main extends Application {
 	private ProblemGUI problemGUI;
 	private UserProfileGUI userProfileGUI;
 	private CustomParametersGUI customParametersGUI;
+	private DifficultyGUI diffGUI;
 	private MainFrame mainFrame;
 
 	// Model
@@ -44,10 +45,12 @@ public class Main extends Application {
 	private ProfileHandler profileHandler;
 	private NumberGenerator generator;
 	private Grading grade;
+	private DifficultyPresets diffPresets;
 	
 	// Controller
 	private ProblemGUIController problemController;
 	private NavigationMenuController navigationMenuController;
+	private DifficultyPresetsController diffPresetsController;
 	
 	public static void main(String[] args) {
 		Application.launch(args);
@@ -82,6 +85,7 @@ public class Main extends Application {
 		sceneList.add(createScene("/FXML/ProblemGUI.fxml")); // [2]
 		sceneList.add(createScene("/FXML/CustomParametersGUI.fxml")); // [3]
 		sceneList.add(createScene("/FXML/SettingsMenu.fxml")); // [4]
+		sceneList.add(createScene("/FXML/Difficulty.fxml")); // [5]
 
 		// Instantiate all objects for the application
 		createViewObjects();
@@ -101,6 +105,7 @@ public class Main extends Application {
 		userProfileGUI = new UserProfileGUI((AnchorPane) sceneList.get(1).getRoot());
 		problemGUI = new ProblemGUI((AnchorPane) sceneList.get(2).getRoot());
 		customParametersGUI = new CustomParametersGUI((AnchorPane) sceneList.get(3).getRoot());
+		diffGUI = new DifficultyGUI((AnchorPane) sceneList.get(5).getRoot());
 	}
 
 	/**
@@ -112,6 +117,7 @@ public class Main extends Application {
 		generator = new NumberGenerator();
 		grade = new Grading();
 		profileHandler = new ProfileHandler("test profile");
+		diffPresets = new DifficultyPresets();
 	}
 
 	/**
@@ -122,6 +128,7 @@ public class Main extends Application {
 		navigationMenuController = new NavigationMenuController(navigationMenu, sceneHandler);
 		problemController = new ProblemGUIController(problemGUI,grade,generator);
 		new CustomParametersController(customParametersGUI,customParameters);
+		diffPresetsController = new DifficultyPresetsController(diffPresets, diffGUI);
 
 	}
 
@@ -140,10 +147,8 @@ public class Main extends Application {
 
 		navigationMenuController.delegate = new NavigationMenuController.Delegate() {
 			@Override
-			public void transmitProblemParameters(ProblemParameters p) {
-				generator.setSettings(p);
-				sceneHandler.changeScene(1);
-				problemController.ResetGUI();
+			public void setCategory(Operator op) {
+				diffPresetsController.setCategory(op);
 			}
 		};
 
