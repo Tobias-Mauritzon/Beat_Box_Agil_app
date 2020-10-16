@@ -11,8 +11,19 @@ package model;
  */
 public class Grading {
 
-	String answer;
-	
+	/***
+	 * A simple delegate to communicate the main class with less connection in the code
+	 */
+	public interface Delegate
+	{
+		public void setHistory(String p, String a, String u);
+	}
+
+	public Delegate delegate;
+	private String answer;
+	private String problem;
+
+
 	/***
 	 * Sets the value of the answer string to the parameters value
 	 * @param a the new value for answer
@@ -20,7 +31,13 @@ public class Grading {
 	public void setAnswer(String a) {
 		answer = a;
 	}
-	
+
+	/***
+	 * Sets the value of the problem string to the parameters value
+	 * @param p the new value for problem
+	 */
+	public void setProblem(String p) { problem = p; }
+
 	/***
 	 * Compares userInput with answer and returns false if they are the same and false otherwsie
 	 * @param userInput the userInputed String
@@ -28,15 +45,30 @@ public class Grading {
 	public Boolean grade(String userInput) {
 		if(userInput.isEmpty()) {
 			return false;
-		}else {
+		}
+		else {
+
 			Double userDouble = Double.parseDouble(userInput);
 			Double answerDouble = Double.parseDouble(answer);
 			// Rounds to two decimals
 			answerDouble = Math.round(answerDouble * 100.0) / 100.0;
 			userDouble = Math.round(userDouble * 100.0) / 100.0;
-		
+			//boolean isEqual = answerDouble.equals(userDouble);
+			setHistory(problem, answer, userInput);
 			return (answerDouble.equals(userDouble));
 		}
-		
+	}
+
+	/***
+	 * Calls the function setHistory from the delegate if it exists with the same parameters.
+	 * @param a the correct answer string for the problem
+	 * @param p the the problem string
+	 * @param u the user inputted answer string.
+	 */
+	public void setHistory(String p, String a, String u) {
+
+		if(delegate != null) {
+				delegate.setHistory(p,a,u);
+		}
 	}
 }

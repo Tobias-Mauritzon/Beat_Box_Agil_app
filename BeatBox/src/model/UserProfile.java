@@ -96,4 +96,5 @@ public class UserProfile implements Serializable {
 		ObservableList<History> temp = FXCollections.observableArrayList(history);
 		this.history = temp;
 	}
+
 }
