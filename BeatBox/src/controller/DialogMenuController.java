@@ -66,8 +66,8 @@ public class DialogMenuController implements ControllerInterface{
                 sceneHandler.closeScene(800);
             } else if(dialogMenuGUI.getTextField().getText().isEmpty()){
                 dialogMenuGUI.printInfoText("Error: no name entered.",true);
-            }else{
-
+            } else{
+                dialogMenuGUI.printInfoText("Error: " + dialogMenuGUI.getTextField().getText()+" already exists.",true);
             }
         };
 
@@ -78,7 +78,7 @@ public class DialogMenuController implements ControllerInterface{
             } else if(dialogMenuGUI.getTextField().getText().isEmpty()){
                 dialogMenuGUI.printInfoText("Error: no name entered.",true);
             } else {
-                dialogMenuGUI.printInfoText(dialogMenuGUI.getTextField().getText()+" does not exist.",true);
+                dialogMenuGUI.printInfoText("Error: " + dialogMenuGUI.getTextField().getText()+" does not exist.",true);
             }
         };
 
@@ -89,7 +89,7 @@ public class DialogMenuController implements ControllerInterface{
             } else if(dialogMenuGUI.getTextField().getText().isEmpty()) {
                 dialogMenuGUI.printInfoText("Error: no name entered.", true);
             } else {
-                dialogMenuGUI.printInfoText(dialogMenuGUI.getTextField().getText()+" does not exist.",true);
+                dialogMenuGUI.printInfoText("Error: " + dialogMenuGUI.getTextField().getText()+" does not exist.",true);
             }
         };
     }
