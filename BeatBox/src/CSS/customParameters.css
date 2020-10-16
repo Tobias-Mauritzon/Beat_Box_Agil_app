@@ -56,7 +56,7 @@
  * Sets the color of the marker of all check-boxes in customParameters
  */
 .check-box:selected .box .mark{
-	-fx-background-color: -color1;
+	-fx-background-color: BLACK;
 }
 
 /*
