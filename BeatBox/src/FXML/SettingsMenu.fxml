@@ -45,7 +45,7 @@
                                             <tabs>
                                               <Tab text="General">
                                                 <content>
-                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tabPanes">
+                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="400.0" styleClass="tabPanes">
                                                          <children>
                                                             <VBox alignment="TOP_CENTER" prefHeight="328.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
                                                                <children>
@@ -102,7 +102,7 @@
                                                                         </HBox>
                                                                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                                            <children>
-                                                                              <Button fx:id="defaultThemeButton" alignment="CENTER" mnemonicParsing="false" opacity="0.0" prefHeight="40.0" prefWidth="200.0" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                              <Button fx:id="defaultThemeButton" alignment="CENTER" mnemonicParsing="false" opacity="0.0" prefHeight="40.0" prefWidth="200.0" styleClass="themeButtons" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                                            </children>
                                                                         </AnchorPane>
                                                                      </children>
@@ -130,7 +130,7 @@
                                                                         </HBox>
                                                                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                                            <children>
-                                                                              <Button fx:id="lightThemeButton" alignment="CENTER" mnemonicParsing="false" opacity="0.0" prefHeight="40.0" prefWidth="200.0" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                              <Button fx:id="lightThemeButton" alignment="CENTER" mnemonicParsing="false" opacity="0.0" prefHeight="40.0" prefWidth="200.0" styleClass="themeButtons" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                                            </children>
                                                                         </AnchorPane>
                                                                      </children>
@@ -158,7 +158,7 @@
                                                                         </HBox>
                                                                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                                            <children>
-                                                                              <Button fx:id="forestThemeButton" alignment="CENTER" mnemonicParsing="false" opacity="0.0" prefHeight="40.0" prefWidth="200.0" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                              <Button fx:id="forestThemeButton" alignment="CENTER" mnemonicParsing="false" opacity="0.0" prefHeight="40.0" prefWidth="200.0" styleClass="themeButtons" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                                            </children>
                                                                         </AnchorPane>
                                                                      </children>
@@ -186,7 +186,7 @@
                                                                         </HBox>
                                                                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                                                            <children>
-                                                                              <Button fx:id="sandThemeButton" alignment="CENTER" mnemonicParsing="false" opacity="0.0" prefHeight="40.0" prefWidth="200.0" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                              <Button fx:id="sandThemeButton" alignment="CENTER" mnemonicParsing="false" opacity="0.0" prefHeight="40.0" prefWidth="200.0" styleClass="themeButtons" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                                            </children>
                                                                         </AnchorPane>
                                                                      </children>

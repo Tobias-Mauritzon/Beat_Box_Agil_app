@@ -1,9 +1,10 @@
 package controller;
 
-import java.util.Optional;
 import javafx.collections.FXCollections;
 import model.ProfileHandler;
 import view.UserProfileGUI;
+
+import java.util.Optional;
 
 /***
  * A controller for the userProfiler so the userGUI can interact with the
@@ -18,6 +19,7 @@ public class UserController implements ControllerInterface {
 
 	private UserProfileGUI userProfileGUI;
 	private ProfileHandler profileHandler;
+	private DialogMenuController dialogMenuController;
 
 	/***
 	 * Constructor for the UserController.
@@ -25,9 +27,10 @@ public class UserController implements ControllerInterface {
 	 * @param userProfileGUI the UserProfileGUI instance
 	 * @param userProfile    the UserProfile model instance.
 	 */
-	public UserController(UserProfileGUI userProfileGUI, ProfileHandler profileHandler) {
+	public UserController(UserProfileGUI userProfileGUI, ProfileHandler profileHandler, DialogMenuController dialogMenuController) {
 		this.userProfileGUI = userProfileGUI;
 		this.profileHandler = profileHandler;
+		this.dialogMenuController = dialogMenuController;
 		// Updates the UserProfileGUi with the name of the testprofile, this will most
 		// likely be replaced with the start window / loggin windows profile
 		userProfileGUI.setUserNameLabel(profileHandler.getCurrentProfile().getName());
@@ -37,6 +40,8 @@ public class UserController implements ControllerInterface {
 		setActions();
 	}
 
+
+
 	@Override
 	/***
 	 * Sets the actions for the userController GUI.
@@ -44,49 +49,52 @@ public class UserController implements ControllerInterface {
 	public void setActions() {
 		// System.out.println("test2: " + userProfileGUI.getPSwitchButton());
 
+		dialogMenuController.setDelegate(new DialogMenuController.Delegate() {
+			@Override
+			public boolean newProfile(Optional<String> name) {
+				if (profileHandler.addProfile(name)) {
+					userProfileGUI.setUserNameLabel(profileHandler.getCurrentProfile().getName());
+					userProfileGUI.getHistory().setItems(FXCollections.observableArrayList(profileHandler.getCurrentProfile().getHistory()));
+					return true;
+				}else {
+					return false;
+				}
+
+			}
+
+			@Override
+			public boolean switchProfile(Optional<String> name) {
+				if (profileHandler.switchProfile(name)) {
+					userProfileGUI.setUserNameLabel(profileHandler.getCurrentProfile().getName());
+					userProfileGUI.getHistory().setItems(FXCollections.observableArrayList(profileHandler.getCurrentProfile().getHistory()));
+					return true;
+				}
+				return false;
+			}
+
+			@Override
+			public boolean deleteProfile(Optional<String> name) {
+				if (profileHandler.deleteProfile(name)) {
+					System.out.println("profile deleted");
+					return true;
+				}else{
+					return false;
+				}
+			}
+		});
 		// Sets the actions for the profile switch button
 		userProfileGUI.getPSwitchButton().setOnAction((event) -> {
-
-			Optional<String> name = userProfileGUI.getInput("Switch Profile", "Profile name:");
-			if (profileHandler.switchProfile(name)) {
-				userProfileGUI.setUserNameLabel(profileHandler.getCurrentProfile().getName());
-				userProfileGUI.getHistory()
-						.setItems(FXCollections.observableArrayList(profileHandler.getCurrentProfile().getHistory()));
-			} else {
-
-				userProfileGUI.errorMessage("Could not switch profile!");
-			}
+			dialogMenuController.open("Switch");
 		});
 
 		// Sets the actions for the profile Delete Button.
 		userProfileGUI.getPDeleteButton().setOnAction((event) -> {
-
-			Optional<String> name = userProfileGUI.getInput("Delete Profile", "Profile name:");
-			if (!profileHandler.deleteProfile(name)) {
-				userProfileGUI.errorMessage("Could not delete profile: " + name.get() + "!");
-			}
-
+			dialogMenuController.open("Delete");
 		});
 
 		// Sets the action for the new profile button.
 		userProfileGUI.getPNewButton().setOnAction((event) -> {
-
-			Optional<String> name = userProfileGUI.getInput("New Profile", "Profile name:");
-
-			if (profileHandler.addProfile(name)) {
-
-				userProfileGUI.setUserNameLabel(profileHandler.getCurrentProfile().getName());
-				userProfileGUI.getHistory()
-						.setItems(FXCollections.observableArrayList(profileHandler.getCurrentProfile().getHistory()));
-			}
-
-			else {
-
-				userProfileGUI.errorMessage("Could not save profile: " + name.get() + "!");
-			}
-
+			dialogMenuController.open("New");
 		});
-
 	}
-
 }

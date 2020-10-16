@@ -57,7 +57,7 @@
 /*
  * Settings for frame buttons
  */
-.frameButtonPanes{
+.frameButtons{
 	-fx-background-color: transparent;
 	-fx-background-radius: 0;
 	-fx-padding: 0 0 0 0;
@@ -74,18 +74,5 @@
 	-fx-font-size: 12.0pt;
 	-fx-font-family: "Rockwell";
 	-fx-font-weight: NORMAL;
-}
-
-/*
- * Settings for all buttons in the application
- */
-.button{
-	-fx-background-color: transparent;
-    -fx-text-fill: transparent;
-	-fx-background-radius: 100;
-	-fx-pref-width: 140;
-	-fx-pref-height: 25;
-	-fx-border-color: transparent;
-	-fx-background-insets: 0;
 }
 

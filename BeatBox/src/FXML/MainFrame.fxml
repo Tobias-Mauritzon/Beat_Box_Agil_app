@@ -20,7 +20,7 @@
             <children>
                 <AnchorPane fx:id="minimizePane" prefWidth="60.0" styleClass="frameButtonPanes">
                     <children>
-                        <Button fx:id="minimizeButton" mnemonicParsing="false" opacity="0.0" prefWidth="60.0" styleClass="frameButtonPanes" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Button fx:id="minimizeButton" mnemonicParsing="false" opacity="0.0" prefWidth="60.0" styleClass="frameButtons" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <rotationAxis>
                                 <Point3D />
                             </rotationAxis>
@@ -37,7 +37,7 @@
                 </AnchorPane>
                 <AnchorPane fx:id="fullScreenPane" prefWidth="60.0" styleClass="frameButtonPanes">
                     <children>
-                        <Button fx:id="fullScreenButton" mnemonicParsing="false" opacity="0.0" prefWidth="60.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button fx:id="fullScreenButton" mnemonicParsing="false" opacity="0.0" prefWidth="60.0" styleClass="frameButtons" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                         <ImageView disable="true" fitHeight="15.0" fitWidth="15.0" layoutX="22.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="9.333333333333336" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="9.0">
                             <image>
                                 <Image url="@../frameIcons/fullScreen.png" />
@@ -47,7 +47,7 @@
                 </AnchorPane>
                 <AnchorPane fx:id="closePane" prefWidth="60.0" styleClass="frameButtonPanes">
                     <children>
-                        <Button fx:id="closeButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutY="4.0" mnemonicParsing="false" opacity="0.0" prefWidth="60.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button fx:id="closeButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutY="4.0" mnemonicParsing="false" opacity="0.0" prefWidth="60.0" styleClass="frameButtons" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                         <ImageView disable="true" fitHeight="15.0" fitWidth="15.0" layoutX="22.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="9.333333333333336" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="9.0">
                             <image>
                                 <Image url="@../frameIcons/x.png" />

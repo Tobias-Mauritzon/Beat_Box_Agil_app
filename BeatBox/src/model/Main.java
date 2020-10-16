@@ -36,6 +36,7 @@ public class Main extends Application {
 	private MainFrame mainFrame;
 	private SettingsGUI settingsGUI;
 	private ThemeHandler themeHandler;
+	private DialogMenuGUI dialogMenuGUI;
 
 	// Model
 	private CustomParametersModel customParameters;
@@ -49,6 +50,7 @@ public class Main extends Application {
 	// Controller
 	private ProblemGUIController problemController;
 	private NavigationMenuController navigationMenuController;
+	private DialogMenuController dialogMenuController;
 	private MainFrameController mainFrameController;
 	private SettingsController settingsController;
 	
@@ -86,6 +88,7 @@ public class Main extends Application {
 		sceneList.add(createScene("/FXML/ProblemGUI.fxml")); // [2]
 		sceneList.add(createScene("/FXML/CustomParametersGUI.fxml")); // [3]
 		sceneList.add(createScene("/FXML/SettingsMenu.fxml")); // [4]
+		sceneList.add(createScene("/FXML/DialogMenu.fxml")); // [5]
 
 		// Instantiate all objects for the application
 		createViewObjects();
@@ -96,10 +99,7 @@ public class Main extends Application {
 
 		mainFrame.addScene((AnchorPane)sceneList.get(0).getRoot());
 	}
-	@Override
-	public void stop() {
-		System.out.println("OFF");
-	}
+
 	/**
 	 * Creates instances of view classes.
 	 */
@@ -110,6 +110,7 @@ public class Main extends Application {
 		problemGUI = new ProblemGUI((AnchorPane) sceneList.get(2).getRoot());
 		customParametersGUI = new CustomParametersGUI((AnchorPane) sceneList.get(3).getRoot());
 		settingsGUI = new SettingsGUI((AnchorPane) sceneList.get(4).getRoot());
+		dialogMenuGUI = new DialogMenuGUI((AnchorPane) sceneList.get(5).getRoot());
 	}
 
 	/**
@@ -128,12 +129,14 @@ public class Main extends Application {
 	 */
 	private void createControllerObjects() {
 		mainFrameController = new MainFrameController(mainStage,mainFrame);
-		new UserController(userProfileGUI, profileHandler);
+		dialogMenuController = new DialogMenuController(dialogMenuGUI,sceneHandler);
+		new UserController(userProfileGUI, profileHandler, dialogMenuController);
 		navigationMenuController = new NavigationMenuController(navigationMenu, sceneHandler);
 		problemController = new ProblemGUIController(problemGUI,grade,generator);
 		new CustomParametersController(customParametersGUI,customParameters);
 		themeHandler = new ThemeHandler(mainScene);
 		new SettingsController(settingsGUI,themeHandler,sceneHandler,mainStage);
+
 	}
 
 	/**

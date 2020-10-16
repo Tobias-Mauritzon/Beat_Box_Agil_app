@@ -139,7 +139,7 @@
  * Settings for the back pane
  */
 #backPane{
-	-fx-background-color: -baseColor1;
+	-fx-background-color: -baseColor2;
 }
 
 /*
@@ -151,62 +151,5 @@
 	-fx-text-fill: -color1;
 }
 
-.themeButtons: disabled{
-    -fx-opacity: 0;
-}
 
-/*
- * Default colors
- * Used to display the colors that are used for this theme
- */
-#defaultColor1{
-    -fx-background-color: #1A2226;
-}
-#defaultColor2{
-    -fx-background-color:#303A40;
-}
-#defaultColor3{
-    -fx-background-color:#5C6A73;
-}
 
-/*
- * Light colors
- * Used to display the colors that are used for this theme
- */
-#lightColor1{
-    -fx-background-color: #3A3940;
-}
-#lightColor2{
-    -fx-background-color:#F0F0F2;
-}
-#lightColor3{
-    -fx-background-color:#D7D7D9;
-}
-
-/*
- * Forest colors
- * Used to display the colors that are used for this theme
- */
-#forestColor1{
-    -fx-background-color: #0E2226;
-}
-#forestColor2{
-    -fx-background-color: #4EA696;
-}
-#forestColor3{
-    -fx-background-color: #9FF288;
-}
-
-/*
- * Sand colors
- * Used to display the colors that are used for this theme
- */
-#sandColor1{
-    -fx-background-color: #402312;
-}
-#sandColor2{
-    -fx-background-color: #BF926B;
-}
-#sandColor3{
-    -fx-background-color: #8C6645;
-}
