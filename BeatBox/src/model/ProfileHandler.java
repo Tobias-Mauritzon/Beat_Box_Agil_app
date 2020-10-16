@@ -235,7 +235,7 @@ public class ProfileHandler {
 	}
 
 	/***
-	 *
+	 * Saves the current save file to the file Name.Save so that it can be loaded.
 	 */
 	public void saveCurrentProfile()
 	{
