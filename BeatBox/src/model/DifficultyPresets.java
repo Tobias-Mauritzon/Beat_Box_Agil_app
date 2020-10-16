@@ -1,6 +1,7 @@
 package model;
 
-import view.DifficultyGUI;
+//Varför har du importerat denna?
+//import view.DifficultyGUI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,7 @@ public class DifficultyPresets {
      * @see controller.DifficultyPresetsController
      */
     public DifficultyPresets() {
+
         this.operator = Operator.ADD;
     }
 
@@ -40,9 +42,7 @@ public class DifficultyPresets {
 
         int[] range = new int[]{1, 10};
         int termAmount = 2;
-        // KOMMENTERA UT NÄR DU ÄR KLAR SEIF
-        // delegate.transmitProblemParameters(new ProblemParameters(operators, range, termAmount, false));
-        System.out.println("op: " + operator.toString() + " | EASY"); // TA BORT
+        delegate.transmitProblemParameters(new ProblemParameters(operators, range, termAmount, false));
     }
 
     /**
@@ -56,9 +56,7 @@ public class DifficultyPresets {
 
         int[] range = new int[]{10, 20};
         int termAmount = 3;
-        // KOMMENTERA UT NÄR DU ÄR KLAR SEIF
-        // delegate.transmitProblemParameters(new ProblemParameters(operators, range, termAmount, false));
-        System.out.println("op: " + operator.toString() + " | MEDIUM"); // TA BORT
+        delegate.transmitProblemParameters(new ProblemParameters(operators, range, termAmount, false));
     }
 
     /**
@@ -72,9 +70,7 @@ public class DifficultyPresets {
 
         int[] range = new int[]{20, 30};
         int termAmount = 4;
-        // KOMMENTERA UT NÄR DU ÄR KLAR SEIF
-        // delegate.transmitProblemParameters(new ProblemParameters(operators, range, termAmount, false));
-        System.out.println("op: " + operator.toString() + " | HARD"); // TA BORT
+        delegate.transmitProblemParameters(new ProblemParameters(operators, range, termAmount, false));
     }
 
     /** Setter for delegate.

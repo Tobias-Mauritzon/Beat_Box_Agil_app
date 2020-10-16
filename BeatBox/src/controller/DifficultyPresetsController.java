@@ -50,6 +50,10 @@ public class DifficultyPresetsController implements ControllerInterface{
         difficultyGUI.getHardButton().setOnAction(e -> difficultyPresets.hardProblem());
     }
 
+    /**
+     * Method to set Operator.
+     * @param op operator to use.
+     */
     public void setCategory(Operator op) {
         difficultyPresets.setOperator(op);
 

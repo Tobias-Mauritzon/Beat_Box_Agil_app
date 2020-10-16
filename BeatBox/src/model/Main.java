@@ -145,6 +145,15 @@ public class Main extends Application {
 			}
 		});
 
+		diffPresets.setDelegate(new DifficultyPresets.Delegate() {
+			@Override
+			public void transmitProblemParameters(ProblemParameters problemParameters) {
+				generator.setSettings(problemParameters);
+				sceneHandler.changeScene(2);
+				problemController.ResetGUI();
+			}
+		});
+
 		navigationMenuController.delegate = new NavigationMenuController.Delegate() {
 			@Override
 			public void setCategory(Operator op) {
@@ -158,6 +167,7 @@ public class Main extends Application {
 				profileHandler.getCurrentProfile().addProblemToHistory(p, u, a,4,3, null );
 			}
 		};
+
 	}
 
 	/**
