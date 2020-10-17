@@ -6,9 +6,9 @@ import view.UserProfileGUI;
 
 import java.util.Optional;
 
-/***
+/**
  * A controller for the userProfiler so the userGUI can interact with the
- * UserprofileModell.
+ * UserprofileModel.
  * 
  * @author Greppe
  * @author Philip
@@ -21,7 +21,7 @@ public class UserController implements ControllerInterface {
 	private ProfileHandler profileHandler;
 	private DialogMenuController dialogMenuController;
 
-	/***
+	/**
 	 * Constructor for the UserController.
 	 * 
 	 * @param userProfileGUI the UserProfileGUI instance
@@ -38,47 +38,14 @@ public class UserController implements ControllerInterface {
 		// testprofile.
 		userProfileGUI.getHistory().setItems(profileHandler.getCurrentProfile().getHistory());
 		setActions();
+		setDelegate();
 	}
 
 	@Override
-	/***
+	/**
 	 * Sets the actions for the userController GUI.
 	 */
 	public void setActions() {
-		// System.out.println("test2: " + userProfileGUI.getPSwitchButton());
-
-		dialogMenuController.setDelegate(new DialogMenuController.Delegate() {
-			@Override
-			public boolean newProfile(Optional<String> name) {
-				if (profileHandler.addProfile(name)) {
-					userProfileGUI.setUserNameLabel(profileHandler.getCurrentProfile().getName());
-					userProfileGUI.getHistory().setItems(FXCollections.observableArrayList(profileHandler.getCurrentProfile().getHistory()));
-					return true;
-				}else {
-					return false;
-				}
-			}
-
-			@Override
-			public boolean switchProfile(Optional<String> name) {
-				if (profileHandler.switchProfile(name)) {
-					userProfileGUI.setUserNameLabel(profileHandler.getCurrentProfile().getName());
-					userProfileGUI.getHistory().setItems(FXCollections.observableArrayList(profileHandler.getCurrentProfile().getHistory()));
-					return true;
-				}
-				return false;
-			}
-
-			@Override
-			public boolean deleteProfile(Optional<String> name) {
-				if (profileHandler.deleteProfile(name)) {
-					System.out.println("profile deleted");
-					return true;
-				}else{
-					return false;
-				}
-			}});
-
 		// Sets the actions for the profile switch button
 		userProfileGUI.getPSwitchButton().setOnAction((event) -> {
 			dialogMenuController.open("Switch");
@@ -93,5 +60,35 @@ public class UserController implements ControllerInterface {
 		userProfileGUI.getPNewButton().setOnAction((event) -> {
 			dialogMenuController.open("New");
 		});
+	}
+
+	/**
+	 * Sets delegate for dialogMenuController
+	 */
+	private void setDelegate(){
+		dialogMenuController.setDelegate(new DialogMenuController.Delegate() {
+			@Override
+			public boolean newProfile(Optional<String> name) {
+				if (profileHandler.addProfile(name)) {
+					userProfileGUI.setUserNameLabel(profileHandler.getCurrentProfile().getName());
+					userProfileGUI.getHistory().setItems(FXCollections.observableArrayList(profileHandler.getCurrentProfile().getHistory()));
+					return true;
+				}
+				return false;
+
+			}
+
+			@Override
+			public boolean switchProfile(Optional<String> name) {
+				if (profileHandler.switchProfile(name)) {
+					userProfileGUI.setUserNameLabel(profileHandler.getCurrentProfile().getName());
+					userProfileGUI.getHistory().setItems(FXCollections.observableArrayList(profileHandler.getCurrentProfile().getHistory()));
+					return true;
+				}
+				return false;
+			}
+
+			@Override
+			public boolean deleteProfile(Optional<String> name) { return (profileHandler.deleteProfile(name));}});
 	}
 }

@@ -19,8 +19,16 @@ import view.MainFrame;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+/**
+ * The controller class for the main frame.
+ * @author Philip
+ * @version 1.0
+ * @since 2020-10-17
+ *
+ */
 public class MainFrameController implements ControllerInterface {
 
+    // finals
     private final MainFrame MAINFRAME;
     private final Stage STAGE;
     private final Scene SCENE;
@@ -36,14 +44,22 @@ public class MainFrameController implements ControllerInterface {
     private final int resizeArea;
     private final int dragArea;
 
+    // position and size values
     private double mPresSceneX, mPresSceneY;
     private double mPresScreeX, mPresScreeY;
     private double mPresStageW, mPresStageH;
 
+    // transitions
     private FadeTransition closeTransition;
     private FadeTransition minimizeTransition;
     private ScaleTransition shrinkTransition;
 
+    /**
+     * Constructor for the MainFrameController.
+     *
+     * @param stage the primary stage of the application.
+     * @param mainFrame the view class of the mainFrame.
+     */
     public MainFrameController(Stage stage, MainFrame mainFrame) {
         this.STAGE = stage;
         this.SCENE = stage.getScene();
@@ -58,9 +74,12 @@ public class MainFrameController implements ControllerInterface {
         initShrinkTransition();
         setActions();
         createListener();
-        launch();
+        setResizeActions();
     }
 
+    /**
+     * Initializes fade transition when closing the window.
+     */
     private void initCloseFadeTransition() {
         closeTransition = new FadeTransition(Duration.millis(300), STAGE.getScene().getRoot());
         closeTransition.setFromValue(1);
@@ -70,6 +89,9 @@ public class MainFrameController implements ControllerInterface {
         });
     }
 
+    /**
+     * Initializes fade transition when minimizing the window.
+     */
     private void initMinimizeFadeTransition() {
         minimizeTransition = new FadeTransition(Duration.millis(250), STAGE.getScene().getRoot());
         minimizeTransition.setFromValue(1);
@@ -80,6 +102,9 @@ public class MainFrameController implements ControllerInterface {
         });
     }
 
+    /**
+     * Initializes scale(shrink) transition when minimizing the window.
+     */
     private void initShrinkTransition() {
         shrinkTransition = new ScaleTransition(new Duration(250), STAGE.getScene().getRoot());
         shrinkTransition.setToX(0);
@@ -137,6 +162,9 @@ public class MainFrameController implements ControllerInterface {
         });
     }
 
+    /**
+     * Saves old stage-size values.
+     */
     private void updateOldStageSize() {
         oldWidth = STAGE.getWidth();
         oldHeight = STAGE.getHeight();
@@ -144,6 +172,9 @@ public class MainFrameController implements ControllerInterface {
         oldY = STAGE.getY();
     }
 
+    /**
+     * Sets the window to full screen.
+     */
     public void setFullScreen() {
         for (Screen screen : Screen.getScreens()) {
             Rectangle2D monitor = screen.getVisualBounds();
@@ -168,6 +199,9 @@ public class MainFrameController implements ControllerInterface {
         }
     }
 
+    /**
+     * Stores mouse events with cursor on the hashmap.
+     */
     private void createListener() {
         LISTENER.put(Cursor.NW_RESIZE, event -> {
             double newWidth = mPresStageW - (event.getScreenX() - mPresScreeX);
@@ -265,14 +299,20 @@ public class MainFrameController implements ControllerInterface {
         });
     }
 
+    /**
+     * Used to tell if the window is in full screen.
+     * @return boolean- true if window is set to full screen, false otherwise.
+     */
     private boolean isFullScreen() {
         Rectangle2D stageRec = new Rectangle2D(STAGE.getX(), STAGE.getY(), STAGE.getWidth(), STAGE.getHeight());
         Rectangle2D window = Screen.getScreensForRectangle(stageRec).get(0).getVisualBounds();
         return STAGE.getWidth() == window.getWidth() && STAGE.getHeight() == window.getHeight();
     }
 
-    private void launch() {
-
+    /**
+     * Sets actions for window resizing events.
+     */
+    private void setResizeActions() {
         SCENE.setOnMousePressed(event -> {
             mPresSceneX = event.getSceneX();
             mPresSceneY = event.getSceneY();
@@ -324,6 +364,10 @@ public class MainFrameController implements ControllerInterface {
         });
     }
 
+    /**
+     * Sets actions when the window is dragged
+     * @param c The cursor that should be displayed for the specific resize event.
+     */
     private void fireAction(Cursor c) {
         if (c == null) {
             SCENE.getRoot().setDisable(false);

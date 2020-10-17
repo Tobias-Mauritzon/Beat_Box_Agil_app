@@ -40,7 +40,9 @@ public class SettingsGUI implements GUIHandler{
         backButton = (Button) root.lookup("#backButton");
         toggleButton = (ToggleButton) root.lookup("#toggleButton");
     }
-
+    /**
+     * Sets default color on the toggle button to red.
+     */
     private void initToggleButton(){
         toggleButton.setStyle("-fx-background-color: red;");
     }
