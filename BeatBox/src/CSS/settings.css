@@ -4,13 +4,13 @@
  * 
  */
 
-
 /*
  * Settings for the root pane
  */
 #rootPane{
--fx-background-color: transparent;
-}	
+    -fx-background-color: transparent;
+   -fx-opacity: 1.0;
+}
 
 /*
  * Sets the background color of the tab pane
@@ -145,7 +145,7 @@
 /*
  * Settings for the back button
  */
-.button{
+#backButton{
     -fx-background-color: derive(-baseColor2, -20%);
 	-fx-background-radius: 10;
 	-fx-text-fill: -color1;
@@ -156,13 +156,6 @@
  */
 * :disabled{
     -fx-opacity: 1.0;
-}
-
-/*
- * sets opacity to 0 for theme-buttons when they are disabled.
- */
-.themeButtons: disabled{
-    -fx-opacity: 0;
 }
 
 /*

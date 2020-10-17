@@ -51,9 +51,4 @@
     -fx-background-size: stretch;
     -fx-background-position: center;
 }
-/*
- * Sets the opacity scene pane to 1 when disabled
- */
-#scenePane :disabled{
-    -fx-opacity: 1.0;
-}
+

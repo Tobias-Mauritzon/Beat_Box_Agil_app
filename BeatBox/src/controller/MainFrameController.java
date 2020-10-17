@@ -327,17 +327,14 @@ public class MainFrameController implements ControllerInterface {
     private void fireAction(Cursor c) {
         if (c == null) {
             SCENE.getRoot().setDisable(false);
-            SCENE.getRoot().setOpacity(1);
             SCENE.setOnMouseDragged(null);
             SCENE.setCursor(Cursor.DEFAULT);
         } else if (c == Cursor.DEFAULT) {
             SCENE.getRoot().setDisable(false);
-            SCENE.getRoot().setOpacity(1);
             SCENE.setCursor(c);
             SCENE.setOnMouseDragged(LISTENER.get(c));
         } else {
             SCENE.getRoot().setDisable(true);
-            SCENE.getRoot().setOpacity(1);
             SCENE.setCursor(c);
             SCENE.setOnMouseDragged(LISTENER.get(c));
         }
