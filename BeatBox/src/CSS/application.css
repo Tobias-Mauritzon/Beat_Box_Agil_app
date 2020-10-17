@@ -54,6 +54,6 @@
 /*
  * Sets the opacity for all object to 1 when disabled
  */
-* :disabled{
+#scenePane :disabled{
     -fx-opacity: 1.0;
 }
