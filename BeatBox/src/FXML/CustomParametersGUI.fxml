@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="900.0" stylesheets="@../CSS/customParameters.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox fx:id="mainBox" alignment="CENTER" fillWidth="false" prefHeight="750.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
          <children>
@@ -30,7 +31,7 @@
                <children>
                   <AnchorPane>
                      <children>
-                        <VBox fillWidth="false" prefHeight="174.4" prefWidth="450.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox alignment="CENTER" fillWidth="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane prefHeight="30.0" prefWidth="450.0" />
                               <GridPane alignment="CENTER" prefHeight="139.0" prefWidth="450.0">
@@ -87,9 +88,9 @@
                                     </Label>
                                  </children>
                               </GridPane>
-                              <AnchorPane prefHeight="30.0" prefWidth="450.0">
+                              <AnchorPane prefHeight="17.0">
                                  <children>
-                                    <Label fx:id="opError" alignment="CENTER" contentDisplay="CENTER" layoutY="12.0" prefHeight="38.4" prefWidth="450.4" text="Error: at least one operator must be selected!" textAlignment="CENTER" textFill="RED" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <Label fx:id="opError" alignment="CENTER" layoutX="100.0" layoutY="12.0" text="Error: at least one operator must be selected!" textAlignment="CENTER" textFill="RED" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -98,7 +99,7 @@
                   </AnchorPane>
                   <AnchorPane GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
                      <children>
-                        <VBox prefHeight="173.6" prefWidth="450.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox alignment="CENTER" prefHeight="173.6" prefWidth="450.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane prefHeight="30.0" prefWidth="200.0" />
                               <GridPane alignment="CENTER" prefHeight="185.6" prefWidth="197.0">
@@ -125,9 +126,9 @@
                                     <TextField fx:id="maxInput" text="10" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
-                              <AnchorPane prefHeight="30.0" prefWidth="200.0">
+                              <AnchorPane>
                                  <children>
-                                    <Label fx:id="rangeError" alignment="CENTER" contentDisplay="CENTER" prefHeight="22.4" prefWidth="455.2" text="Error: minimum number must be smaller than maximum number!" textAlignment="CENTER" textFill="RED" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <Label fx:id="rangeError" alignment="CENTER" contentDisplay="CENTER" text="Error: minimum number must be smaller than maximum number!" textAlignment="CENTER" textFill="RED" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -178,4 +179,9 @@
          </children>
       </AnchorPane>
    </children>
+   <stylesheets>
+      <URL value="@../CSS/customParameters.css" />
+      <URL value="@../CSS/mainFrame.css" />
+      <URL value="@../CSS/defaultTheme.css" />
+   </stylesheets>
 </AnchorPane>

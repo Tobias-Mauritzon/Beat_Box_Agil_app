@@ -71,7 +71,9 @@ public class NavigationMenu implements GUIHandler {
 	 */
 	private void initSlideEffect() {
 		sidePaneMaxWidth = sidePane.getPrefWidth();
-		sidePane.setTranslateX(-(sidePaneMaxWidth)); // start with closed sidebox
+		// start with closed sidebox
+		sidePane.setTranslateX(-(sidePaneMaxWidth));
+		sidePane.setOpacity(0.0);
 		sidePane.setPrefWidth(0.0);
 
 		openNav = new TranslateTransition(new Duration(350), sidePane);
@@ -85,11 +87,13 @@ public class NavigationMenu implements GUIHandler {
 	 */
 	public void slidePanel() {
 		if (sidePane.getTranslateX() != 0.0) {
+			sidePane.setOpacity(1.0);
 			openNav.play();
 			sidePane.setPrefWidth(sidePaneMaxWidth);
 		} else {
 			closeNav.play();
 			closeNav.setOnFinished(e -> {
+				sidePane.setOpacity(0.0);
 				sidePane.setPrefWidth(0.0);
 			});
 		}

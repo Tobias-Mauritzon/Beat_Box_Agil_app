@@ -151,6 +151,16 @@
 	-fx-text-fill: -color1;
 }
 
+/*
+ * Sets the opacity for all object to 1 when disabled
+ */
+* :disabled{
+    -fx-opacity: 1.0;
+}
+
+/*
+ * sets opacity to 0 for theme-buttons when they are disabled.
+ */
 .themeButtons: disabled{
     -fx-opacity: 0;
 }
