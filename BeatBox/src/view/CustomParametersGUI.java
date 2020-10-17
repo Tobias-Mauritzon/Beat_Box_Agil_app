@@ -19,7 +19,6 @@ public class CustomParametersGUI implements GUIHandler {
 	private CheckBox subCheckBox;
 	private CheckBox mulCheckBox;
 	private CheckBox divCheckBox;
-	private CheckBox timedCheckBox;
 	private Slider termSlider;
 	private TextField minInput;
 	private TextField maxInput;
@@ -27,6 +26,11 @@ public class CustomParametersGUI implements GUIHandler {
 	private Label rangeError;
 	private Label opError;
 
+	/**
+	 * Constructor.
+	 *
+	 * @param AnchorPane	the root of the scene.
+	 */
 	public CustomParametersGUI(AnchorPane root) {
 		this.root = root;
 		getGUIObjects();
@@ -77,7 +81,6 @@ public class CustomParametersGUI implements GUIHandler {
 		subCheckBox = (CheckBox) root.lookup("#subCheckBox");
 		mulCheckBox = (CheckBox) root.lookup("#mulCheckBox");
 		divCheckBox = (CheckBox) root.lookup("#divCheckBox");
-		timedCheckBox = (CheckBox) root.lookup("#timedCheckBox");
 		termSlider = (Slider) root.lookup("#termSlider");
 		minInput = (TextField) root.lookup("#minInput");
 		maxInput = (TextField) root.lookup("#maxInput");
@@ -137,18 +140,6 @@ public class CustomParametersGUI implements GUIHandler {
 	 */
 	public int getTermAmountData() {
 		return (int) termSlider.getValue();
-	}
-
-	/**
-	 * Get the data from the timed check box in a format that can be understood
-	 * by the ProblemParameters class.
-	 *
-	 * @see ProblemParameters class.
-	 *
-	 * @return int	the timed data.
-	 */
-	public boolean getTimedData() {
-		return timedCheckBox.isSelected();
 	}
 
 	/**

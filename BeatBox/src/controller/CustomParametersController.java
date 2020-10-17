@@ -55,7 +55,7 @@ public class CustomParametersController implements ControllerInterface {
 	public void setActions() {
 		cpGUI.getPlayButton().setOnAction(e -> {
 			cpModel.updateModel(cpGUI.getOperatorsData(), cpGUI.getRangeData(),
-					cpGUI.getTermAmountData(), cpGUI.getTimedData());
+					cpGUI.getTermAmountData(), false);
 			cpModel.generateProblemParameters();
 		});
 
