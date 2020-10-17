@@ -51,3 +51,9 @@
     -fx-background-size: stretch;
     -fx-background-position: center;
 }
+/*
+ * Sets the opacity for all object to 1 when disabled
+ */
+* :disabled{
+    -fx-opacity: 1.0;
+}

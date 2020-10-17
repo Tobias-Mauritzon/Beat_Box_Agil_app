@@ -23,3 +23,17 @@
 #responseText{
     -fx-opacity: 0.0;
 }
+
+/*
+ * Sets the opacity for all object to 1 when disabled
+ */
+* :disabled{
+    -fx-opacity: 1.0;
+}
+
+/*
+ * Sets the opacity of response text
+ */
+#responseText :disabled{
+    -fx-opacity: 0.0;
+}
