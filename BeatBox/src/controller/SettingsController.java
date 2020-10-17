@@ -44,8 +44,10 @@ public class SettingsController implements ControllerInterface{
 
         settingsGUI.getToggleButton().setOnAction(e->{
             if(settingsGUI.getToggleButton().isSelected()){
+                settingsGUI.getToggleButton().setStyle("-fx-background-color: green;");
                 stage.setFullScreen(true);
             }else{
+                settingsGUI.getToggleButton().setStyle("-fx-background-color: red;");
                 stage.setFullScreen(false);
             }
         });

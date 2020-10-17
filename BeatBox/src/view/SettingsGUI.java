@@ -28,6 +28,7 @@ public class SettingsGUI implements GUIHandler{
     public SettingsGUI(AnchorPane root){
         this.root = root;
         getGUIObjects();
+        initToggleButton();
     }
 
     @Override
@@ -38,6 +39,10 @@ public class SettingsGUI implements GUIHandler{
         sandThemeButton = (Button) root.lookup("#sandThemeButton");
         backButton = (Button) root.lookup("#backButton");
         toggleButton = (ToggleButton) root.lookup("#toggleButton");
+    }
+
+    private void initToggleButton(){
+        toggleButton.setStyle("-fx-background-color: red;");
     }
 
     public Button getDefaultThemeButton(){
