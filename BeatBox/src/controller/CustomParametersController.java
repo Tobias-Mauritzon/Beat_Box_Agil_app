@@ -67,9 +67,9 @@ public class CustomParametersController implements ControllerInterface {
 		}
 
 		for (TextField tf : cpGUI.getRangeInputs()) {
-			// Set text formatter so only numbers can be inputted
+			// Set text formatter so only numbers and the minus sign can be inputted.
 			tf.setTextFormatter(new TextFormatter<>(change -> {
-				if (change.getText().matches("[0-9]*")) {
+				if (change.getText().matches("[0-9-]*")) {
 					return change;
 				}
 				return null;
@@ -107,10 +107,14 @@ public class CustomParametersController implements ControllerInterface {
 	 */
 	private String fitStrValueToInt(String str) {
 		BigInteger val;
+		int illegalMinusIndex;
 
-		// If the there is no content in the new string, replace it with a 0.
-		if (str.equals("")) {
+		// If the there is no content in the new string, replace it with a 0. If there
+		// are any illegal strings regarding few zeroes and minus signs, correct them too.
+		if (str.equals("") || str.equals("0-") || str.equals("-")) {
 			str = "0";
+		} else if (str.equals("-0-")) {
+			str = "-0";
 		}
 
 		// Used to make sure any expression does not start with 0. Fixes an exception
@@ -118,12 +122,22 @@ public class CustomParametersController implements ControllerInterface {
 		// int.
 		if (str.charAt(0) == '0' && str.length() > 1) {
 			str = str.substring(1);
+		} else if (str.charAt(0) == '-' && str.charAt(1) == '0' && str.length() > 2) {
+			str = "-" + str.substring(2);
 		}
 
-		// Makes sure it is impossible to enter a value larger than what fits in an int.
+		// Make sure minus signs can not be placed in the middle of a number.
+		illegalMinusIndex = str.indexOf('-', 1);
+		if (illegalMinusIndex != -1) {
+			str = str.substring(0, illegalMinusIndex) + str.substring(illegalMinusIndex + 1);
+		}
+
+		// Makes sure it is impossible to enter a value larger or smaller than what fits in an int.
 		val = new BigInteger(str);
 		if (val.compareTo(BigInteger.valueOf(Integer.MAX_VALUE)) >= 0) {
 			str = String.valueOf(Integer.MAX_VALUE);
+		} else if (val.compareTo(BigInteger.valueOf(Integer.MIN_VALUE)) <= 0) {
+			str = String.valueOf(Integer.MIN_VALUE);
 		}
 
 		return str;
