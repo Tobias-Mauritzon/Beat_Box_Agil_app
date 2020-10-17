@@ -47,7 +47,7 @@ public class UserProfileTest {
 	 */
 	@Test
 	public void testAddProblemWhitModifiers() {
-		userJoachim.addProblemToHistory("2+2", "3", "4", 10, 100, new Operator[] { Operator.ADD });
+		userJoachim.addProblemToHistory("2+2", "3", "4");
 		History p = userJoachim.getHistory().get(0);
 		double answer = p.getUserAnswer();
 		assertTrue(Double.compare(answer, 3.0) == 0);
@@ -61,7 +61,7 @@ public class UserProfileTest {
 	 */
 	@Test
 	public void testAddProblemWhitOutModifiers() {
-		userJoachim.addProblemToHistory("2*2", "3", "4", 10, 100, null);
+		userJoachim.addProblemToHistory("2*2", "3", "4");
 		History p = userJoachim.getHistory().get(0);
 		Operator[] modifiers = p.getModifiers();
 		assertTrue(modifiers[2] == Operator.MUL);
@@ -76,7 +76,7 @@ public class UserProfileTest {
 	@Test
 	public void testSave() {
 		UserProfile test = new UserProfile("test");
-		test.addProblemToHistory("3+3", "6", "6", 10, 4, new Operator[] { Operator.ADD });
+		test.addProblemToHistory("3+3", "6", "6");
 		assertDoesNotThrow(() -> {
 			test.toArrayList();
 			SaveManager.saveFile(test, "test.Save");
@@ -91,7 +91,7 @@ public class UserProfileTest {
 	@Test
 	public void testLoad() {
 		UserProfile test = new UserProfile("test");
-		test.addProblemToHistory("3+3", "6", "6", 10, 4, new Operator[] { Operator.ADD });
+		test.addProblemToHistory("3+3", "6", "6");
 		try {
 			test.toArrayList();
 			SaveManager.saveFile(test, "test.Save");
@@ -99,7 +99,7 @@ public class UserProfileTest {
 		}
 
 		test = new UserProfile("test");
-		test.addProblemToHistory("5-5", "2", "0", 0, 2, new Operator[] { Operator.SUB });
+		test.addProblemToHistory("5-5", "2", "0");
 
 		try {
 			test = (UserProfile) SaveManager.loadFile("test.Save");
@@ -110,8 +110,6 @@ public class UserProfileTest {
 		History p = test.getHistory().get(0);
 
 		assertTrue(Double.compare(p.getUserAnswer(), 6.0) == 0);
-		assertTrue(p.getPoints() == 10);
-		assertTrue(p.getTimeRequired() == 4);
 
 	}
 

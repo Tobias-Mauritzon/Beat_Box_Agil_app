@@ -53,7 +53,6 @@ public class Grading {
 			// Rounds to two decimals
 			answerDouble = Math.round(answerDouble * 100.0) / 100.0;
 			userDouble = Math.round(userDouble * 100.0) / 100.0;
-			//boolean isEqual = answerDouble.equals(userDouble);
 			setHistory(problem, answer, userInput);
 			return (answerDouble.equals(userDouble));
 		}

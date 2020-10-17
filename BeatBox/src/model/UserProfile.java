@@ -22,7 +22,6 @@ public class UserProfile implements Serializable {
 	private static final long serialVersionUID = 1L; // used for saving the profile
 	private String name;
 	private List<History> history; // all problems stored as they come in
-	private HashMap<String, Integer> records; // maybe <recordType(as String), Problem>
 
 	/**
 	 * Constructor for UserProfile. A UserProfile is initialized with the given
@@ -33,7 +32,6 @@ public class UserProfile implements Serializable {
 	public UserProfile(String name) {
 		this.name = name;
 		this.history = FXCollections.observableArrayList();
-		this.records = new HashMap<String, Integer>();
 	}
 
 	/**
@@ -53,29 +51,16 @@ public class UserProfile implements Serializable {
 	public ObservableList<History> getHistory() {
 		return (ObservableList<History>) history;
 	}
-
-	/**
-	 * Gets records
-	 * 
-	 * @return hashmap of records
-	 */
-	public HashMap<String, Integer> getRecords() {
-		return records;
-	}
-
+	
 	/**
 	 * Adds a Problem last in UserProfile local LinkedList history
 	 * 
 	 * @param problem
 	 * @param userAnswer
 	 * @param correctAnswer
-	 * @param points
-	 * @param timeRequierd
-	 * @param modifiers
 	 */
-	public void addProblemToHistory(String problem, String userAnswer, String correctAnswer, int points,
-			int timeRequierd, Operator[] modifiers) {
-		history.add(new History(problem, userAnswer, correctAnswer, points, timeRequierd, modifiers));
+	public void addProblemToHistory(String problem, String userAnswer, String correctAnswer) {
+		history.add(new History(problem, userAnswer, correctAnswer));
 	}
 
 	/**

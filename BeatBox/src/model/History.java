@@ -18,8 +18,6 @@ public class History implements Serializable{
 	private final double userAnswer;
 	private final double correctAnswer;
 	private final String date;
-	private final int points; // placeholder
-	private final int timeRequired; // placeholder
 	private final Operator[] modifiers;
 	
 	/**Initialises the History class with required values
@@ -31,7 +29,7 @@ public class History implements Serializable{
 	 * @param modifiers used to create the problem, modifiers can 
 	 * 		be null and problem will be used as refrence
 	 */
-	public History(String problem, String userAnswer, String correctAnswer, int points, int timeRequired, Operator[] modifiers) {
+	public History(String problem, String userAnswer, String correctAnswer) {
 		this.problem = problem;
 		this.userAnswer = Double.parseDouble(userAnswer);
 		this.correctAnswer = Double.parseDouble(correctAnswer);
@@ -39,11 +37,9 @@ public class History implements Serializable{
 		
 		
 		this.date =  now.getYear()+"-"+String.format("%02d", now.getMonthValue())+"-"+String.format("%02d", now.getDayOfMonth())+" "+now.getHour()+":"+now.getMinute()+":"+now.getSecond();
-		this.points = points;
-		this.timeRequired = timeRequired;
 		
 		// if modifiers is null we look for what modifiers are used in the problem and add them to the list
-		if(modifiers == null) {
+
 			modifiers = new Operator[5];
 			if(problem.contains("+")) {
 				modifiers[0] = Operator.ADD;
@@ -60,8 +56,6 @@ public class History implements Serializable{
 			if(problem.contains("^")) {
 				modifiers[4] = Operator.EXP;
 			}
-		}
-		this.modifiers = modifiers;
 	}
 	
 	/**
@@ -95,23 +89,7 @@ public class History implements Serializable{
 	public String getDate() {
 		return date;
 	}
-	
-	/**
-	 * Gets points
-	 * @return points
-	 */
-	public int getPoints() {
-		return points;
-	}
-	
-	/**
-	 * Gets time required
-	 * @return time required
-	 */
-	public int getTimeRequired() {
-		return timeRequired;
-	}
-	
+
 	/**
 	 * Gets problem modifiers
 	 * @return List of Operators
