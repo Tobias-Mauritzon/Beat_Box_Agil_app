@@ -1,25 +1,12 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-
-import java.util.Locale;
-import java.util.Optional;
-
-import javax.swing.JLabel;
-
-import org.scilab.forge.jlatexmath.TeXConstants;
-import org.scilab.forge.jlatexmath.TeXFormula;
-import org.scilab.forge.jlatexmath.TeXIcon;
-
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -32,7 +19,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Locale;
-import java.util.Optional;
 
 /**
  * Class that creates a a prototype for the user profile gui
@@ -42,6 +28,7 @@ import java.util.Optional;
  */
 
 public class UserProfileGUI implements GUIHandler {
+
 	private AnchorPane root;
 	private Label userName;
 	private Button profileNew;
@@ -126,37 +113,6 @@ public class UserProfileGUI implements GUIHandler {
 	 */
 	public TableView<History> getHistory() {
 		return history;
-	}
-
-	/**
-	 * Opens an error dialog with an error message
-	 *
-	 * @param error message to display
-	 */
-	public void errorMessage(String error) {
-		Alert alert = new Alert(AlertType.ERROR);
-		alert.getDialogPane().getStylesheets().add(getClass().getResource("/CSS/dialog.css").toExternalForm());
-		alert.setTitle("Error Detected");
-		alert.setHeaderText("");
-		alert.setContentText(error);
-		alert.showAndWait();
-	}
-
-	/**
-	 * Opens a dialog that gets user input
-	 *
-	 * @param title title for the dialog box window
-	 * @return profile name as Optional<String>
-	 */
-	public Optional<String> getInput(String title, String inputText) {
-		TextInputDialog dialog = new TextInputDialog("");
-		dialog.getDialogPane().getStylesheets().add(getClass().getResource("/CSS/dialog.css").toExternalForm());
-		dialog.setTitle(title);
-		dialog.setGraphic(null);
-		dialog.setHeaderText("");
-		dialog.setContentText(inputText);
-
-		return dialog.showAndWait();
 	}
 
 	/***

@@ -46,19 +46,19 @@ public class UserController implements ControllerInterface {
 	 * Sets the actions for the userController GUI.
 	 */
 	public void setActions() {
+		// Sets the action for the new profile button.
+		userProfileGUI.getPNewButton().setOnAction((event) -> {
+			dialogMenuController.open("New");
+		});
+
 		// Sets the actions for the profile switch button
 		userProfileGUI.getPSwitchButton().setOnAction((event) -> {
 			dialogMenuController.open("Switch");
 		});
 
-		// Sets the actions for the profile Delete Button.
+		// Sets the actions for the profile delete Button.
 		userProfileGUI.getPDeleteButton().setOnAction((event) -> {
 			dialogMenuController.open("Delete");
-		});
-
-		// Sets the action for the new profile button.
-		userProfileGUI.getPNewButton().setOnAction((event) -> {
-			dialogMenuController.open("New");
 		});
 	}
 
@@ -75,7 +75,6 @@ public class UserController implements ControllerInterface {
 					return true;
 				}
 				return false;
-
 			}
 
 			@Override
