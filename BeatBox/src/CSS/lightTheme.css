@@ -1,0 +1,17 @@
+/*
+ * Light theme
+ * Contains 3 base colors and 2 other colors that are used for texts and other objects.
+ * Author: Philip
+ *
+ */
+
+* {
+	-base1: #3A3940;
+    -base2: #F0F0F2;
+    -base3: #D7D7D9;
+
+    -color1: BLACK;
+    -color2: WHITE;
+}
+
+

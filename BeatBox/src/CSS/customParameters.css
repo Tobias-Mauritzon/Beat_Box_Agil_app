@@ -1,4 +1,3 @@
-@import "theme1.css";
 
 /*
  * Settings for customParameters
@@ -10,9 +9,9 @@
  * Settings for all buttons in customParameters
  */
 .button{
-	-fx-background-color: -buttonColor;
-	-fx-text-fill: -buttonTextColor;
-	-fx-background-radius: 100.0;
+	-fx-background-color: derive(-baseColor2, -20%);
+    -fx-background-radius: 10;
+    -fx-text-fill: -color1;
 }
 
 /*
@@ -20,7 +19,7 @@
  */
 .label{
 	-fx-alignment: CENTER-LEFT;
-	-fx-text-fill: -labelTextColor; 
+	-fx-text-fill: -color1;
 }
 
 /*
@@ -42,7 +41,7 @@
  * Settings for all check-boxes in customParameters
  */
 .check-box{
-	-fx-text-fill: -checkBoxTextColor; 
+	-fx-text-fill: -color1;
 	
 }
 
@@ -50,36 +49,35 @@
  * Sets the background color of all check-boxes in customParameters
  */
 .check-box .box{
-	-fx-background-color: -checkBoxColor;
+	-fx-background-color: -color2;
 }
 
 /*
  * Sets the color of the marker of all check-boxes in customParameters
  */
 .check-box:selected .box .mark{
-	-fx-background-color: -checkBoxMarkColor;
+	-fx-background-color: BLACK;
 }
 
 /*
  * Sets the text color of all sliders in customParameters
  */
 .slider .axis{
-	-fx-tick-label-fill: -sliderTextColor;
+	-fx-tick-label-fill: -color1;
 }
 
 /*
  * Sets the color of the knob in all sliders in customParameters
  */
 .slider .thumb{
-	-fx-background-color: -slderKnobColor;
+	-fx-background-color: -color1;
 }
 /*
  * Settings for the title in customParameters
  */
 #title{
-	-fx-text-fill: -labelTextColor; 
+	-fx-text-fill: -color2;
 	-fx-alignment: CENTER-LEFT;
-	-fx-text-fill: -labelTextColor; 
 	-fx-padding: 0.0 0.0 0.0 10.0;
 	-fx-font-size: 15.0pt;	
 	-fx-font-family: "Rockwell";
@@ -112,6 +110,13 @@
 	-fx-font-size: 10.0pt;
     -fx-font-family: "Rockwell";
 	-fx-font-weight: NORMAL;
+}
+
+/*
+ * Sets the opacity for all object to 1 when disabled
+ */
+* :disabled{
+    -fx-opacity: 1.0;
 }
 
 

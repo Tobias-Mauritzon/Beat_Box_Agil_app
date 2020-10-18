@@ -1,40 +1,49 @@
-/* Settings for table views
- * Author: Joachim Antfolk
+/*
+ * Settings for the settings menu
  * Author: Philip
-*/
+ * 
+ */
 
-/* 
- * Settings for the root pane 
-*/
+
+/*
+ * Settings for the root pane
+ */
 #rootPane{
-	-fx-background-color: -baseColor1;
-}
+-fx-background-color: transparent;
+}	
 
-/* 
- * Settings for all tab-panes 
+/*
+ * Sets the background color of the tab pane
 */
 .tab-pane{
 	-fx-background-color: -baseColor1;
-	
 }
 
-/* 
+/*
+ * Settings for tab-panes
+ */
+.tabPanes{
+    -fx-background-color: -baseColor2;
+    -fx-border-size: 0;
+    -fx-padding: 0;
+}
+
+/*
  * Sets the tab size, color and border style
 */
 .tab-pane .tab-header-area .headers-region .tab {
 	-fx-pref-height: 25;
 	-fx-pref-width: 150;
-	
+
     -fx-background-color: derive(-baseColor2, 20%);
-	
+
 	-fx-padding: 0 0 0 13;
     -fx-border-radius: 10 10 0 0;
  	-fx-background-radius: 10 10 0 0;
-	
-	-fx-border-style: hidden hidden solid hidden; 
-	-fx-border-width: 2; 
+
+	-fx-border-style: hidden hidden solid hidden;
+	-fx-border-width: 2;
 	-fx-border-color: derive(-baseColor2, 20%);
-	
 }
 
 /*
@@ -42,7 +51,7 @@
 */
 .tab-pane .tab-header-area {
 	-fx-padding: 0 0 0 0;
-	
+
 }
 
 /*
@@ -59,7 +68,7 @@
 .tab-pane .tab-header-area .headers-region .tab:selected{
 	 -fx-border-color: -color1;
 	 -fx-background-color: derive(-baseColor2, 10%);
-	
+
 }
 
 /*
@@ -78,59 +87,74 @@
 }
 
 /*
- * Sets the button color when hovering over
-*/
-.button:hover{
-	-fx-background-color: derive(BLACK, 95%);
+ * Settings for back pane
+ */
+#settingsBackPane{
+	-fx-background-color: transparent;
+	-fx-background-radius: 25;
+	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,10) , 20, 0, 0 , 0 );
 }
 
 /*
- * Sets the color of the profile pane 
-*/
-#profilePane{
+ * Sets the color of the main pane
+ */
+#settingsMainPane{
 	-fx-background-color: -baseColor2;
 }
 
 /*
- * Sets the color of the color and height of the top pane 
-*/
-#topPane{
-	-fx-background-color: -baseColor1;
-	-fx-pref-height: 50;
+ * Settings for the stack pane
+ */
+.stackPane{
+    -fx-background-color: derive(-baseColor2, -20%);
+    -fx-background-radius:20;
 }
 
 /*
  * Settings for the title
-*/
-#titleUserName{
-	-fx-alignment: CENTER-LEFT;
+ */
+#title{
+	-fx-alignment: CENTER;
 	-fx-text-fill: -color2;
-	-fx-font-size: 15.0pt;
-	-fx-padding: 0 0 0 10;	
-	
+	-fx-font-size: 20.0pt;
 }
 
 /*
- * Settings for buttons
-*/
+ * Settings for the top pane
+ */
+#topPane{
+	-fx-background-color: -baseColor1;
+	-fx-background-radius: 25 25 0 0;
+}
+
+/*
+ * Settings for the bottom pane
+ */
+#bottomPane{
+	-fx-background-color: -baseColor1;
+	-fx-background-radius: 0 0 25 25;
+}
+
+/*
+ * Settings for the back pane
+ */
+#backPane{
+	-fx-background-color: -baseColor2;
+}
+
+/*
+ * Settings for the back button
+ */
 .button{
     -fx-background-color: derive(-baseColor2, -20%);
 	-fx-background-radius: 10;
 	-fx-text-fill: -color1;
 }
 
-/*
- * Settings for the profile-pic
- * Makes the pane circular
- * Gets the pic
- * Makes the pic stretch, to fill the whole circle
- * Centers the pane
-*/
-#profilePicPane{
-	-fx-background-radius: 100;
-	-fx-background-image: url("/menuIcons/Avatar4.png");
-    -fx-background-size: stretch;
-    -fx-background-position: center;
+#infoLabel{
+    -fx-text-fill: -color1;
+    -fx-font-size: 14.0pt;
+    -fx-background-color: transparent;
 }
 
 /*
@@ -139,3 +163,4 @@
 * :disabled{
     -fx-opacity: 1.0;
 }
+

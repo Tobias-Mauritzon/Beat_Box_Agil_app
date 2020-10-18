@@ -19,7 +19,7 @@ import java.util.LinkedList;
 /***
  * The Main class of the application, creates most classes and communicates
  * between them using delegates.
- * 
+ *
  * @author Greppe
  * @author Philip
  * @version 1.0
@@ -28,6 +28,7 @@ import java.util.LinkedList;
 public class Main extends Application {
 
 	private Scene mainScene;
+	private Stage mainStage;
 	private LinkedList<Scene> sceneList;
 
 	// View
@@ -37,6 +38,9 @@ public class Main extends Application {
 	private CustomParametersGUI customParametersGUI;
 	private DifficultyGUI diffGUI;
 	private MainFrame mainFrame;
+	private SettingsGUI settingsGUI;
+	private ThemeHandler themeHandler;
+	private DialogMenuGUI dialogMenuGUI;
 
 	// Model
 	private CustomParametersModel customParameters;
@@ -46,16 +50,19 @@ public class Main extends Application {
 	private NumberGenerator generator;
 	private Grading grade;
 	private DifficultyPresets diffPresets;
-	
+
 	// Controller
 	private ProblemGUIController problemController;
 	private NavigationMenuController navigationMenuController;
 	private DifficultyPresetsController diffPresetsController;
-	
+	private DialogMenuController dialogMenuController;
+	private MainFrameController mainFrameController;
+	private SettingsController settingsController;
+
 	public static void main(String[] args) {
 		Application.launch(args);
 	}
-	
+
 	@Override
 	public void start(Stage primaryStage) {
 		// Setup for main scene
@@ -78,7 +85,8 @@ public class Main extends Application {
 		primaryStage.initStyle(StageStyle.TRANSPARENT);
 		primaryStage.show();
 
-		// Create a list of scenes that is used in the sceneHandler 
+		mainStage = primaryStage;
+		// Create a list of scenes that is used in the sceneHandler
 		sceneList = new LinkedList<Scene>();
 		sceneList.add(createScene("/FXML/NavigationMenu.fxml")); // [0]
 		sceneList.add(createScene("/FXML/UserProfile.fxml")); // [1]
@@ -86,13 +94,15 @@ public class Main extends Application {
 		sceneList.add(createScene("/FXML/CustomParametersGUI.fxml")); // [3]
 		sceneList.add(createScene("/FXML/SettingsMenu.fxml")); // [4]
 		sceneList.add(createScene("/FXML/Difficulty.fxml")); // [5]
+		sceneList.add(createScene("/FXML/DialogMenu.fxml")); // [6]
 
 		// Instantiate all objects for the application
 		createViewObjects();
 		createModelObjects();
 		createControllerObjects();
-		new MainFrameController(primaryStage,mainFrame);
 		setDelegates();
+
+
 		mainFrame.addScene((AnchorPane)sceneList.get(0).getRoot());
 	}
 
@@ -105,7 +115,9 @@ public class Main extends Application {
 		userProfileGUI = new UserProfileGUI((AnchorPane) sceneList.get(1).getRoot());
 		problemGUI = new ProblemGUI((AnchorPane) sceneList.get(2).getRoot());
 		customParametersGUI = new CustomParametersGUI((AnchorPane) sceneList.get(3).getRoot());
+		settingsGUI = new SettingsGUI((AnchorPane) sceneList.get(4).getRoot());
 		diffGUI = new DifficultyGUI((AnchorPane) sceneList.get(5).getRoot());
+		dialogMenuGUI = new DialogMenuGUI((AnchorPane) sceneList.get(6).getRoot());
 	}
 
 	/**
@@ -124,11 +136,15 @@ public class Main extends Application {
 	 * Creates instances of controller classes.
 	 */
 	private void createControllerObjects() {
-		new UserController(userProfileGUI, profileHandler);
+		mainFrameController = new MainFrameController(mainStage,mainFrame);
+		dialogMenuController = new DialogMenuController(dialogMenuGUI,sceneHandler);
+		new UserController(userProfileGUI, profileHandler, dialogMenuController);
 		navigationMenuController = new NavigationMenuController(navigationMenu, sceneHandler);
 		problemController = new ProblemGUIController(problemGUI,grade,generator);
 		new CustomParametersController(customParametersGUI,customParameters);
 		diffPresetsController = new DifficultyPresetsController(diffPresets, diffGUI);
+		themeHandler = new ThemeHandler(mainScene);
+		new SettingsController(settingsGUI,themeHandler,sceneHandler,mainStage);
 
 	}
 
@@ -172,7 +188,7 @@ public class Main extends Application {
 
 	/**
 	 * Creates a new scene with a FXML document as parameter.
-	 * 
+	 *
 	 * @param stringFXML
 	 * @return returns the created scene
 	 */

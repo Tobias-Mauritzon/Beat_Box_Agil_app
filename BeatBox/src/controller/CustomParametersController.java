@@ -22,6 +22,7 @@ import java.math.BigInteger;
  * @author Philip
  */
 public class CustomParametersController implements ControllerInterface {
+
 	private final CustomParametersGUI cpGUI;
 	private final CustomParametersModel cpModel;
 	private boolean errorNoOpSelected;

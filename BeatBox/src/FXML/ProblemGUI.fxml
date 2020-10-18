@@ -44,12 +44,12 @@
       </GridPane>
       <VBox alignment="CENTER" layoutY="378.0" spacing="30.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <TextField fx:id="answerText" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="552.0" style="-fx-background-color: WHITE; -fx-text-inner-color: BLACK;" text="12">
+            <TextField fx:id="answerText" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="552.0" text="12">
                <font>
                   <Font name="Rockwell" size="30.0" />
                </font>
             </TextField>
-            <Button fx:id="answerButton" alignment="CENTER" mnemonicParsing="false" prefHeight="28.0" prefWidth="184.0" style="-fx-background-radius: 100; -fx-background-color: White;" text="Answer" textAlignment="CENTER">
+            <Button fx:id="answerButton" alignment="CENTER" mnemonicParsing="false" prefHeight="28.0" prefWidth="184.0" text="Answer" textAlignment="CENTER">
                <font>
                   <Font name="Rockwell" size="30.0" />
                </font>

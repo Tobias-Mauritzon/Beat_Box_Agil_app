@@ -1,41 +1,54 @@
-@import "theme1.css";
 
 /*
- * General GUI settings for the application
+ * GUI settings for Navigation Menu
  * Author: Philip
  *
  */
 
 /*
- * Settngs for NavigationMenuGUI
- *
+ * Makes all buttons transparent
  */
-
 .button{
 	-fx-background-color: transparent;
  	-fx-text-fill: transparent;
 }
 
+/*
+ * Sets the color of the root pane
+ */
 #rootPane{
 -fx-background-color: -baseColor1;
 
 }
 
+/*
+ * Sets the color of the slide menu
+ */
 #slideMenuBackground {
 	-fx-background-color: -baseColor1;
 }
 
+/*
+ * Sets the color of the menu bar
+ */
 #menuBar {
 	-fx-background-color: -baseColor1;
 }
 
+/*
+ * Sets the color of the scene pane
+ */
 #scenePane{
 	-fx-background-color: -baseColor2;
 }
 
+/*
+ * Sets the profile picture
+ */
 #profilePic{
 	-fx-background-radius: 100;
 	-fx-background-image: url("/menuIcons/Avatar4.png");
     -fx-background-size: stretch;
     -fx-background-position: center;
 }
+

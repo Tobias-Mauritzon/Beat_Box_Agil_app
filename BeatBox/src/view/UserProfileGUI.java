@@ -1,11 +1,5 @@
 package view;
 
-/**
- * Class that creates a a prototype for the user profile gui
- * @author Joachim Antfolk, Tobias Mauritzon, Philip AxenHamn, Andreas Greppe
- * @since 2020-10-09.
- */
-
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -22,17 +16,30 @@ import org.scilab.forge.jlatexmath.TeXIcon;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.AnchorPane;
 import model.History;
+import org.scilab.forge.jlatexmath.TeXConstants;
+import org.scilab.forge.jlatexmath.TeXFormula;
+import org.scilab.forge.jlatexmath.TeXIcon;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.Locale;
+import java.util.Optional;
+
+/**
+ * Class that creates a a prototype for the user profile gui
+ *
+ * @author Joachim Antfolk, Tobias Mauritzon, Philip Axenhamn, Andreas Greppe
+ * @since 2020-10-09.
+ */
 
 public class UserProfileGUI implements GUIHandler {
 	private AnchorPane root;
@@ -44,7 +51,7 @@ public class UserProfileGUI implements GUIHandler {
 
 	/**
 	 * the constructor for the GUIHandler.
-	 * 
+	 *
 	 * @param root the root of the subscene.
 	 */
 	public UserProfileGUI(AnchorPane root) {
@@ -69,7 +76,7 @@ public class UserProfileGUI implements GUIHandler {
 
 	/**
 	 * Sets the user name label text
-	 * 
+	 *
 	 * @param name
 	 */
 	public void setUserNameLabel(String name) {
@@ -78,7 +85,7 @@ public class UserProfileGUI implements GUIHandler {
 
 	/**
 	 * Sets the list that the table will reflect
-	 * 
+	 *
 	 * @param list List that implements ObservableList
 	 */
 	public void setHistoryList(ObservableList<History> list) {
@@ -87,7 +94,7 @@ public class UserProfileGUI implements GUIHandler {
 
 	/**
 	 * Gets the new profile button
-	 * 
+	 *
 	 * @return new profile button
 	 */
 	public Button getPNewButton() {
@@ -96,7 +103,7 @@ public class UserProfileGUI implements GUIHandler {
 
 	/**
 	 * Gets the switch profile button
-	 * 
+	 *
 	 * @return switch profile button
 	 */
 	public Button getPSwitchButton() {
@@ -105,7 +112,7 @@ public class UserProfileGUI implements GUIHandler {
 
 	/**
 	 * Gets the delete profile button
-	 * 
+	 *
 	 * @return delete profile button
 	 */
 	public Button getPDeleteButton() {
@@ -114,7 +121,7 @@ public class UserProfileGUI implements GUIHandler {
 
 	/**
 	 * Gets the History TabelView
-	 * 
+	 *
 	 * @return the History TabelView.
 	 */
 	public TableView<History> getHistory() {
@@ -123,7 +130,7 @@ public class UserProfileGUI implements GUIHandler {
 
 	/**
 	 * Opens an error dialog with an error message
-	 * 
+	 *
 	 * @param error message to display
 	 */
 	public void errorMessage(String error) {
@@ -137,7 +144,7 @@ public class UserProfileGUI implements GUIHandler {
 
 	/**
 	 * Opens a dialog that gets user input
-	 * 
+	 *
 	 * @param title title for the dialog box window
 	 * @return profile name as Optional<String>
 	 */

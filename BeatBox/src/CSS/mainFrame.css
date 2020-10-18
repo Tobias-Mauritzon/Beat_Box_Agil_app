@@ -1,61 +1,71 @@
-@import "theme1.css";
-
 /*
- * General GUI settings for the application
+ * General GUI settings for the application and the main frame
  * Author: Philip
  *
  */
 
 /*
- * Settngs for NavigationMenuGUI
+ * Settings for MainFrame
  *
+ */
+.root{
+
+    -baseColor1: -base1;
+    -baseColor2: -base2;
+    -baseColor3: -base3;
+
+    -fx-background-color: -baseColor2;
+
+    -fx-font-size: 12.0pt;
+    -fx-font-family: "Rockwell";
+    -fx-font-weight: NORMAL;
+
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+
+    -errorTextColor: #FA1000;
+}
+
+/*
+ * Sets the color of the top bar
  */
 #topBar{
 -fx-background-color: -baseColor1;
-
 }
 
+/*
+ * Sets the color of the root pane
+ */
 #rootPane{
 -fx-background-color: transparent;
-
-
 }
 
+/*
+ * Sets the color of the scene pane
+ */
 #scenePane{
 -fx-background-color: transparent;
-
 }
 
-#mainScenePane{
--fx-background-color: -baseColor2;
-
-}
-
-.button{
+/*
+ * Settings for frame buttons
+ */
+.frameButtons{
 	-fx-background-color: transparent;
 	-fx-background-radius: 0;
 	-fx-padding: 0 0 0 0;
 	-fx-focus-color: transparent;
 	-fx-border-color: transparent;
-
-
 }
-
-
-
 
 /*
- * CAN BE REMOVED AFTER IMPLEMENTING BUTTON(USED TO GET RID OF RESIZE BUG)
+ * Settings for all labels in the application
  */
-#closeButton: pressed{
-	-fx-background-color: transparent;
-}
-
-#fullScreenButton: hover{
-	-fx-background-color: derive(-baseColor1, 40%);
-}
-
-#minimizeButton: hover{
-	-fx-background-color: derive(-baseColor1, 40%);
+.label{
+	-fx-text-fill: -color1;
+	-fx-alignment: CENTER;
+	-fx-font-size: 12.0pt;
+	-fx-font-family: "Rockwell";
+	-fx-font-weight: NORMAL;
 }
 

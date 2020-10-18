@@ -1,0 +1,17 @@
+/*
+ * Sand theme
+ * Contains 3 base colors and 2 other colors that are used for texts and other objects.
+ * Author: Philip
+ *
+ */
+
+* {
+	-base1: #402312;
+    -base2: #BF926B;
+    -base3: #8C6645;
+
+     -color1: WHITE;
+     -color2: WHITE;
+}
+
+
