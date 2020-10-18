@@ -78,7 +78,7 @@ public class DialogMenuController implements ControllerInterface{
         }
         setEvents();
         setActions();
-        sceneHandler.applyScene(5);
+        sceneHandler.applyScene(6);
     }
 
     /**
