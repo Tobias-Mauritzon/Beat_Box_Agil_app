@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.collections.FXCollections;
 import model.ProfileHandler;
 import view.UserProfileGUI;
 
@@ -71,7 +70,7 @@ public class UserController implements ControllerInterface {
 			public boolean newProfile(Optional<String> name) {
 				if (profileHandler.addProfile(name)) {
 					userProfileGUI.setUserNameLabel(profileHandler.getCurrentProfile().getName());
-					userProfileGUI.getHistory().setItems(FXCollections.observableArrayList(profileHandler.getCurrentProfile().getHistory()));
+					userProfileGUI.getHistory().setItems(profileHandler.getCurrentProfile().getHistory());
 					return true;
 				}
 				return false;
@@ -81,7 +80,7 @@ public class UserController implements ControllerInterface {
 			public boolean switchProfile(Optional<String> name) {
 				if (profileHandler.switchProfile(name)) {
 					userProfileGUI.setUserNameLabel(profileHandler.getCurrentProfile().getName());
-					userProfileGUI.getHistory().setItems(FXCollections.observableArrayList(profileHandler.getCurrentProfile().getHistory()));
+					userProfileGUI.getHistory().setItems((profileHandler.getCurrentProfile().getHistory()));
 					return true;
 				}
 				return false;
