@@ -10,7 +10,7 @@
  * 
  */
 #rootPane{
-	-fx-background-color: -baseColor1;
+	-fx-background-color: -baseColor2;
 	
 }	
 
@@ -63,4 +63,24 @@
 	-fx-font-size: 12.0pt;
 	-fx-font-family: "Rockwell";
 	-fx-font-weight: NORMAL;
+}
+
+#topPane {
+    -fx-background-color: -baseColor1;
+}
+
+#categoryLabel {
+    -fx-text-fill: -color2;
+    -fx-alignment: CENTER-LEFT;
+    -fx-padding: 0.0 0.0 0.0 10.0;
+    -fx-font-size: 15.0pt;
+    -fx-font-family: "Rockwell";
+    -fx-font-weight: NORMAL;
+}
+
+/*
+ * Sets the opacity for all object to 1 when disabled
+ */
+* :disabled{
+    -fx-opacity: 1.0;
 }
