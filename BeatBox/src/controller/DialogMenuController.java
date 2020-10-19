@@ -60,20 +60,23 @@ public class DialogMenuController implements ControllerInterface{
     public void open(String operation){
         dialogMenuGUI.resetInfoLabel();
         switch (operation) {
-            case "New" -> {
+            case "New":{
                 dialogMenuGUI.setTitle("New Profile");
                 dialogMenuGUI.setButtonText("Add");
                 setOperationAction(newProfile);
+                break;
             }
-            case "Switch" -> {
+            case "Switch" :{
                 dialogMenuGUI.setTitle("Switch Profile");
                 dialogMenuGUI.setButtonText(operation);
                 setOperationAction(switchProfile);
+                break;
             }
-            case "Delete" -> {
+            case "Delete":{
                 dialogMenuGUI.setTitle("Delete Profile");
                 dialogMenuGUI.setButtonText(operation);
                 setOperationAction(deleteProfile);
+                break;
             }
         }
         setEvents();
